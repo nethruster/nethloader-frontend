@@ -1,16 +1,19 @@
 :local {
     .cpsubheader {
         width: 100%;
+
         border-bottom: 1px solid #e1e4e8;
 
         &Wrapper {
-            width: 100%;
             max-width: var(--content-max-width);
+
+            width: 100%;
         }
     
         &UserStats {
-            font-size: .85em;
             flex: 6;
+
+            font-size: .85em;
         }
 
         &Tabs {
@@ -23,8 +26,9 @@
             }
 
             a {
-                cursor: pointer;
                 height: 100%;
+                
+                cursor: pointer;
             }
         }
     }

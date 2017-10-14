@@ -6,7 +6,7 @@ export default class CPUser extends Component {
   render () {
     return (
       <div class={`${style.usercp} flex flex-dc`}>
-        <p>UserCP</p>
+        <p>User CP</p>
       </div>
     )
   }
