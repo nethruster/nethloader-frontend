@@ -19,7 +19,6 @@ SCSS and styles
 * Avoid producing more than 3 nested selectors in the resulting css.
 * Write ``:global`` styles only and only for non-component specific rules. 
 * ``:local`` class names must be written in camelCase.
-* Class naming follows a "child name concats to parent name &trade;" method (``.className`` > ``.classNameChildClassName``).
 * Every class has to organize its style properties, within what's reasonable, in the following way and separating each section with a newline when necessary:
     * Size and position (``display``, ``position``, etc...)
     * Box appearance (``color``, ``background``, ``opacity``, ``border``, etc...)
