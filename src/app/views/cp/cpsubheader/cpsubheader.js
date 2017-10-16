@@ -1,5 +1,6 @@
 import { h, Component } from 'preact'
 import { NavLink } from 'react-router-dom'
+
 import style from './cpsubheader.scss'
 
 export default class CPSubheader extends Component {

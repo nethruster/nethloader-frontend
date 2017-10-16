@@ -28,8 +28,10 @@
         &Buttons {
             position: relative;
 
+            a:not(:last-child) { margin-bottom: var(--base-pm); }
+            
             &Button {
-                &:not(:last-child) { margin-bottom: var(--base-pm); }
+                
 
                 max-width: 150px;
 

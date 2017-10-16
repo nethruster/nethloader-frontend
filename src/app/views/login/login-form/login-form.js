@@ -39,12 +39,13 @@ export default withRouter(class LoginForm extends Component {
     this.setState({loggingIn: true})
 
     try {
-      await requestLogin(this.state.email, this.state.password).then((result) => {
-        this.props.history.push('/randomroute')
+      await requestLogin(this.state.email, this.state.password).then(async (result) => {
+        window.sessionStorage.setItem('jwtToken', result)
         this.setState({
           loggingIn: false,
           formValidationText: ''
         })
+        this.props.history.push('/cp')
       })
     } catch (err) {
       this.setState({

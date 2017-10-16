@@ -23,8 +23,7 @@ const requestLogin = async function (email, password) {
   validateForm(email, password)
 
   try {
-    let loginResponse = await login(email, password)
-    return loginResponse
+    return await login(email, password)
   } catch (err) {
     console.log(err)
     throw Error('Something went wrong while trying to log in')
@@ -32,7 +31,7 @@ const requestLogin = async function (email, password) {
 }
 
 const login = async function (email, password) {
-  await fetch(apiBaseUrl, {
+  return fetch(apiBaseUrl, {
     method: 'post',
     body: JSON.stringify({
       query: `mutation{ login(email: "${email}", password: "${password}") }`
@@ -43,8 +42,7 @@ const login = async function (email, password) {
     }
   }).then(async (response) => {
     if (response.status >= 200 && response.status < 300) {
-      let token = (await response.json()).data.login
-      return jwtDecode(token)
+      return (await response.json()).data.login
     } else {
       throw Error(response.status)
     }
