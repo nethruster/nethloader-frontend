@@ -1,5 +1,5 @@
 import { h, Component } from 'preact'
-
+import { NavLink } from 'react-router-dom'
 import style from './cpsubheader.scss'
 
 export default class CPSubheader extends Component {
@@ -9,13 +9,13 @@ export default class CPSubheader extends Component {
         <div class={`${style.cpsubheaderWrapper} flex flex-cross-center flex-sb`}>
           <div class={style.cpsubheaderUserStats}>
             <p>Name</p>
-            <p>15 uploads</p>
+            <p>0 uploads</p>
           </div>
           <div class={`${style.cpsubheaderTabs} flex flex-cross-center`}>
             <nav class='flex flex-cross-center flex-sa'>
-              <a class='flex flex-full-center'>Uploads</a>
-              <a class='flex flex-full-center'>Settings</a>
-              <a class='flex flex-full-center'>Admin Settings</a>
+              <NavLink exact to='/cp/' class='flex flex-full-center'>Overview</NavLink>
+              <NavLink exact to='/cp/settings' class='flex flex-full-center'>Settings</NavLink>
+              <NavLink exact to='/cp/neth-admin' class='flex flex-full-center'>Admin Settings</NavLink>
             </nav>
           </div>
         </div>

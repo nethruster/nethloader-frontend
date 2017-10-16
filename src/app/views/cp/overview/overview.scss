@@ -1,0 +1,12 @@
+:local {
+    .overview {
+        flex: 1;
+        width: 100%;
+        max-width: var(--content-max-width);
+
+        padding: 0 calc(var(--base-pm) * 2);
+        margin: calc(var(--base-pm) * 2) 0;
+    }
+
+    .sidebar { flex: .8; }
+}

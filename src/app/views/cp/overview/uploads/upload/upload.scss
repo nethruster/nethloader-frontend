@@ -1,0 +1,42 @@
+:local {
+    .upload {
+        &:not(:last-child) { border-bottom: 1px solid #e1e4e8; }
+
+        &Image {
+            flex: 1;
+            max-width: 100px;
+            min-width: 90px;
+            height: 90px;
+
+            margin-right: calc(var(--base-pm) * 2);
+
+            img { border-radius: var(--base-br); }
+        }
+
+        &DataSpec,
+        &DataDate {
+            flex: 2;
+
+            opacity: .95;
+
+            text-align: center;
+            font-size: .8em;
+
+            span { font-weight: 500; }
+        }
+
+        &Buttons {
+            position: relative;
+
+            &Button {
+                &:not(:last-child) { margin-bottom: var(--base-pm); }
+
+                max-width: 150px;
+
+                margin: 0;
+
+                svg { width: 17px; }
+            }
+        }
+    }
+}

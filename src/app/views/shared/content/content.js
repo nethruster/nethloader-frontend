@@ -12,7 +12,7 @@ export default class Content extends Component {
       <div class={`${style.content} flex flex-dc`} role='main'>
         <HeaderNav />
         <Switch>
-        <Route
+          <Route
             path='/cp'
             component={asyncComponent(() => import(/* webpackChunkName: "content_cp" */'../../cp/cp.js')
               .then(module => module.default))} />

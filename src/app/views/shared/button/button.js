@@ -14,6 +14,7 @@ export default class Button extends Component {
               ${this.props.big ? style.buttonBig : ''}
               ${this.props.small ? style.buttonSmall : ''}
               ${this.props.transparent ? style.buttonTransparent : ''}
+              ${this.props.customClass ? this.props.customClass : ''}
               flex flex-full-center` }
         tabindex={this.props.tabindex}>
         {this.props.icon ? <Icon iconName={this.props.icon} /> : null}&nbsp;

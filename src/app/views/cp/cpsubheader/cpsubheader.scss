@@ -5,32 +5,35 @@
         border-bottom: 1px solid #e1e4e8;
 
         &Wrapper {
+            width: 100%;
             max-width: var(--content-max-width);
 
-            width: 100%;
+            padding: 0 var(--base-pm);
         }
     
-        &UserStats {
-            flex: 6;
-
-            font-size: .85em;
-        }
+        &UserStats { font-size: .85em; }
 
         &Tabs {
-            flex: 2;
             height: 100%;
 
             nav {
-                flex: 1;
                 height: 100%;
             }
 
             a {
                 height: 100%;
-                
+
+                border-bottom: 2px solid #fff;
+
+                padding: calc(var(--base-pm) * 2);
+
                 cursor: pointer;
             }
         }
     }
     
+}
+
+:global {
+    a.active { border-bottom: 2px solid var(--cpsubheader-tab-color); }
 }
