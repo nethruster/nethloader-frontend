@@ -61,5 +61,24 @@
                 border-color: var(--button-border-color-transparent--hover);
             }
         }
+
+        &Nav {
+            outline: none;
+            border-radius: 0;
+            height: 60px;
+            color: transparentize(#fff, .2);
+            margin: 0;
+            border: 0;
+            text-transform: none;
+            font-size: 1.05em;
+            font: inherit;
+            font-weight: 300;
+            
+            
+            &:hover {
+                color: #fff;
+                background-color: transparentize(#fff, .9);
+            }
+        }
     }
 }

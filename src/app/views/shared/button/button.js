@@ -14,11 +14,12 @@ export default class Button extends Component {
               ${this.props.big ? style.buttonBig : ''}
               ${this.props.small ? style.buttonSmall : ''}
               ${this.props.transparent ? style.buttonTransparent : ''}
+              ${this.props.navButton ? style.buttonNav : ''}
               ${this.props.customClass ? this.props.customClass : ''}
               flex flex-full-center` }
         tabindex={this.props.tabindex}>
         {this.props.icon ? <Icon iconName={this.props.icon} /> : null}&nbsp;
-        {this.props.spinner ? <Spinner color={this.props.spinnerColor} size={this.props.spinnerSize} /> : this.props.text}&nbsp;
+        <p>{this.props.spinner ? <Spinner color={this.props.spinnerColor} size={this.props.spinnerSize} /> : this.props.text}&nbsp;</p>
       </button>
     )
   }
