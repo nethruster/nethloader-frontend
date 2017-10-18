@@ -4,6 +4,10 @@ import DayPickerInput from 'react-day-picker/DayPickerInput'
 
 import style from './search-dates.scss'
 
+import locale from 'locale'
+
+const viewStrings = locale.cp.overview.search.dates
+
 export default class SearchDates extends Component {
   constructor (props) {
     super(props)
@@ -37,21 +41,21 @@ export default class SearchDates extends Component {
 
     return (
       <div class={`${style.searchDates} flex flex-dc`}>
-        <p>between</p>
+        <p>{viewStrings.between}</p>
         <DayPickerInput
           value={formattedAfterDay}
           onDayChange={this.handleAfterDayChange}
           format={this.DAY_FORMAT}
           placeholder={this.DAY_FORMAT}
-          dayPickerProps={{todayButton: 'Go to Today'}}
+          dayPickerProps={{todayButton: viewStrings.go_to_today}}
         />
-        <p>and</p>
+        <p>{viewStrings.and}</p>
         <DayPickerInput
           value={formattedBeforeDay}
           onDayChange={this.handleBeforeDayChange}
           format={this.DAY_FORMAT}
           placeholder={this.DAY_FORMAT}
-          dayPickerProps={{todayButton: 'Go to Today'}}
+          dayPickerProps={{todayButton: viewStrings.go_to_today}}
         />
       </div>
     )

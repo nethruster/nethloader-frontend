@@ -1,4 +1,7 @@
 {
+  "header_nav": {
+    "about_nethloader": "About Nethloader"
+  },
   "home": {
     "intro": "This domain is using Nethloader, a self hosted media sharing service.",
     "buttons": {
@@ -15,5 +18,40 @@
     },
     "forgot_password": "I forgot my password",
     "not_registered": "I don't have an account"
+  },
+  "cp": {
+    "subheader": {
+      "uploads": "uploads",
+      "tabs": {
+        "overview": "Overview",
+        "settings": "Settings",
+        "admin_settings": "Admin settings"
+      }
+    },
+    "overview": {
+      "search": {
+        "search_title": "Search uploads",
+        "gifs": "Gifs",
+        "images": "Images",
+        "dates": {
+          "between": "between",
+          "and": "and",
+          "go_to_today": "Go to Today"
+        }
+      },
+      "uploads": {
+        "upload": {
+          "type": "Type",
+          "uploaded": "Uploaded",
+          "at": "At",
+          "download": "Download",
+          "copy_url": "Copy url"
+        }
+      }
+    }
+  },
+  "footer": {
+    "version": "Version",
+    "login": "Login"
   }
 }

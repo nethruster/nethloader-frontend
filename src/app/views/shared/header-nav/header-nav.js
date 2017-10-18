@@ -4,6 +4,10 @@ import Button from '../button/button.js'
 
 import style from './header-nav.scss'
 
+import locale from 'locale'
+
+const viewStrings = locale.header_nav
+
 export default class HeaderNav extends Component {
   render () {
     return (
@@ -13,7 +17,7 @@ export default class HeaderNav extends Component {
           <p class={`${style.headerNavLogoTitle} flex flex-full-center`}>Nethloader</p>
         </div>
         <div>
-          <Button text='About Nethloader' navButton />
+          <Button text={viewStrings.about_nethloader} navButton />
         </div>
       </header>
     )
