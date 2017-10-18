@@ -10,7 +10,7 @@ export default class CPSubheader extends Component {
         <div class={`${style.cpsubheaderWrapper} flex flex-cross-center flex-sb`}>
           <div class={style.cpsubheaderUserStats}>
             <p>Name</p>
-            <p>0 uploads</p>
+            <p>X uploads</p>
           </div>
           <div class={`${style.cpsubheaderTabs} flex flex-cross-center`}>
             <nav class='flex flex-cross-center flex-sa'>

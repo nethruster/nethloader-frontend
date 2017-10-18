@@ -1,6 +1,7 @@
 import { h, Component } from 'preact'
 
 import Uploads from './uploads/uploads.js'
+import Search from './search/search.js'
 
 import style from './overview.scss'
 
@@ -10,7 +11,7 @@ export default class Overview extends Component {
       <div class={`${style.overview} flex`}>
         <Uploads />
         <div class={style.sidebar}>
-          Search
+          <Search />
         </div>
       </div>
     )

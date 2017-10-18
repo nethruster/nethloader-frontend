@@ -2,6 +2,6 @@
     .uploads {
         flex: 2;
         
-        margin: var(--base-pm);
+        margin: 0 calc(var(--base-pm) * 2);
     }
 }

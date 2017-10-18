@@ -1,6 +1,12 @@
 :local {
     .upload {
-        &:not(:last-child) { border-bottom: 1px solid #e1e4e8; }
+        &:not(:last-child) { 
+            border-bottom: 1px solid #e1e4e8;
+
+            padding-bottom: var(--base-pm);
+        }
+
+        &:not(:first-child) { padding-top: var(--base-pm); }
 
         &Image {
             flex: 1;
@@ -9,6 +15,10 @@
             height: 90px;
 
             margin-right: calc(var(--base-pm) * 2);
+
+            border-radius: var(--base-br);
+
+            overflow: hidden;
 
             img { border-radius: var(--base-br); }
         }

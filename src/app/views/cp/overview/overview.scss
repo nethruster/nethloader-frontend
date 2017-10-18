@@ -8,5 +8,9 @@
         margin: calc(var(--base-pm) * 2) 0;
     }
 
-    .sidebar { flex: .8; }
+    .sidebar { 
+        flex: .8;
+        
+        border-left: 1px solid #e1e4e8;
+     }
 }
