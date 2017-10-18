@@ -1,7 +1,7 @@
 import { h, Component } from 'preact'
 
 import Icon from '../../../shared/icon/icon.js'
-import SearchDates from '../search-dates/search-dates.js'
+import SearchDates from './search-dates/search-dates.js'
 
 import style from './search.scss'
 

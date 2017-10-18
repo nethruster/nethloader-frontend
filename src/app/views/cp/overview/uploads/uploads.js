@@ -10,6 +10,11 @@ export default class Uploads extends Component {
       <div class={style.uploads}>
         <ul>
           <Upload />
+          <Upload />
+          <Upload />
+          <Upload />
+          <Upload />
+          <Upload />
         </ul>
       </div>
     )

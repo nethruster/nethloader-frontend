@@ -6,7 +6,7 @@ import style from './upload.scss'
 
 export default class Upload extends Component {
   render () {
-    const testImage = ''
+    const testImage = 'https://images.unsplash.com/photo-1484199408980-5918a796a53f?dpr=1&auto=format&fit=crop&w=1373&q=60&cs=tinysrgb'
     return (
       <li class={`${style.upload} flex flex-cross-center flex-sb`}>
         <div class={`${style.uploadImage} flex flex-full-center`}><img src={testImage} /></div>

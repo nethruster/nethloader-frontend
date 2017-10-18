@@ -24,7 +24,10 @@
         }
 
         &Logo {
-            height: 220px;
+            img {
+                width: 150px;
+            }
+            
         }
     }
 }

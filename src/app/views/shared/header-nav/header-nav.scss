@@ -7,7 +7,6 @@
         padding: 0 calc(var(--base-pm) * 5);
 
         &Logo {
-            max-width: 22px;
             margin: 0;
 
             &Title {
@@ -15,8 +14,13 @@
 
                 margin: 0 var(--base-pm);
 
-                font-size: 20px;
+                font-size: 1.5em;
                 font-weight: 300;
+            }
+
+            img {
+                width: var(--headerNavLogoSize);
+                height: var(--headerNavLogoSize);
             }
 
         }
