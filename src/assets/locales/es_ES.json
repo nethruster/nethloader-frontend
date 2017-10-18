@@ -1,0 +1,19 @@
+{
+  "home": {
+    "intro": "Este dominio usa Nethloader, un servicio personal para compartir contenido multimedia.",
+    "buttons": {
+      "more_info": "Más información",
+      "source_code": "GitHub"
+    }
+  },
+  "login": {
+    "title": "Iniciar sesión",
+    "form": {
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "login": "Iniciar sesión"
+    },
+    "forgot_password": "He olvidado mi contraseña",
+    "not_registered": "No tengo una cuenta"
+  }
+}
