@@ -1,5 +1,3 @@
-import jwtDecode from 'jwt-decode'
-
 import { apiBaseUrl } from 'app.config'
 
 // RegEx to make sure that the email is valid
@@ -7,11 +5,11 @@ const emailExp = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>
 
 const validateForm = function (email, password) {
   if (!email) {
-    throw Error('The email field is empty')
+    throw Error('empty_email')
   } else if (!emailExp.test(email)) {
-    throw Error('That email is not valid')
+    throw Error('invalid_email')
   } else if (!password) {
-    throw Error('The password field is empty')
+    throw Error('empty_password')
   }
 }
 
@@ -22,15 +20,13 @@ const requestLogin = async function (email, password) {
   // Validate form data before trying to log in
   validateForm(email, password)
 
-  try {
-    return await login(email, password)
-  } catch (err) {
-    console.log(err)
-    throw Error('Something went wrong while trying to log in')
-  }
+  return login(email, password).then((token) => token)
 }
 
 const login = async function (email, password) {
+  // Fetch will throw an error if it fails,
+  // this error is managed in the login-form
+  // component algong with the rest of errors
   return fetch(apiBaseUrl, {
     method: 'post',
     body: JSON.stringify({
@@ -40,11 +36,20 @@ const login = async function (email, password) {
       'accept': 'application/json',
       'content-type': 'application/json'
     }
-  }).then(async (response) => {
+  }).then((response) => {
     if (response.status >= 200 && response.status < 300) {
-      return (await response.json()).data.login
+      return response.json().then((result) => {
+        if (result.data.login) {
+          return result.data.login
+        } else {
+          // Tried login and got invalid or null token
+          throw Error('invalid_credentials')
+        }
+      })
     } else {
-      throw Error(response.status)
+      // Server reached but returned invalid response
+      console.error(response.status)
+      throw Error('invalid_server_response')
     }
   })
 }

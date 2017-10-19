@@ -23,6 +23,8 @@ export default withRouter(class LoginForm extends Component {
       formValidationText: ''
     }
 
+    this.errorMessage = ''
+
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -34,25 +36,49 @@ export default withRouter(class LoginForm extends Component {
     })
   }
 
-  async handleSubmit (event) {
+  handleSubmit (event) {
     event.preventDefault()
     this.setState({loggingIn: true})
 
-    try {
-      await requestLogin(this.state.email, this.state.password).then(async (result) => {
-        window.sessionStorage.setItem('jwtToken', result)
-        this.setState({
-          loggingIn: false,
-          formValidationText: ''
-        })
-        this.props.history.push('/cp')
-      })
-    } catch (err) {
+    requestLogin(this.state.email, this.state.password).then((result) => {
+      window.sessionStorage.setItem('jwtToken', result)
       this.setState({
         loggingIn: false,
-        formValidationText: err.message
+        formValidationText: ''
       })
-    }
+      this.props.history.push('/cp')
+    }).catch((err) => {
+      // Reset error message
+      this.errorMessage = ''
+
+      // Manage visible UI error messages to avoid hardcoding them in the
+      // logic (makes localisation and user feedback control a lot easier)
+      switch (err.message) {
+        case 'Failed to fetch':
+          this.errorMessage = 'Couldn\'t connect to server'
+          break
+        case 'invalid_server_response':
+          this.errorMessage = 'Something went wrong while trying to log in, try again later'
+          break
+        case 'empty_email':
+          this.errorMessage = 'The email field is empty'
+          break
+        case 'invalid_email':
+          this.errorMessage = 'That email is not valid'
+          break
+        case 'empty_password':
+          this.errorMessage = 'The password field is empty'
+          break
+        case 'invalid_credentials':
+          this.errorMessage = 'Invalid credentials'
+          break
+      }
+
+      this.setState({
+        loggingIn: false,
+        formValidationText: this.errorMessage || err.message
+      })
+    })
   }
 
   render () {
