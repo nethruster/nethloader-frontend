@@ -3,10 +3,9 @@ import { NavLink } from 'react-router-dom'
 
 import Icon from '../icon/icon.js'
 
-import { version } from 'app.config'
-
 import style from './footer.scss'
 
+import { version } from 'app.config'
 import locale from 'locale'
 
 const viewStrings = locale.footer

@@ -12,7 +12,7 @@ const requestLogin = async function (emailvalue, passwordvalue) {
   email = emailvalue
   password = passwordvalue
 
-  // Remove possible whitespace on the email
+  // Remove possible whitespace from the email
   emailvalue = email.trim()
 
   // Validate form data before trying to log in

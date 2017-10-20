@@ -53,5 +53,10 @@
   "footer": {
     "version": "Version",
     "login": "Iniciar Sesión"
+  },
+  "shared": {
+    "modal": {
+      "close": "Cerrar"
+    }
   }
 }

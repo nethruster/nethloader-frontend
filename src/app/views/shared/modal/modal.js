@@ -4,6 +4,10 @@ import Button from '../button/button.js'
 
 import './modal.scss'
 
+import locale from 'locale'
+
+const viewStrings = locale.shared.modal
+
 export default class Modal extends Component {
   render () {
     return (
@@ -12,7 +16,7 @@ export default class Modal extends Component {
           <div class='modal-content-header'>{this.props.modalTitle}</div>
           <div class='modal-content-body'>{this.props.modalContent}</div>
           <div class='flex modal-content-footer'>
-            <Button text='close' icon='close' onClickExecute={this.props.toggleModal} customClass='modal-close-button' />
+            <Button text={viewStrings.close} icon='close' onClickExecute={this.props.toggleModal} customClass='modal-close-button' />
           </div>
         </div>
         <div class='modal-overlay' onClick={this.props.toggleModal}>{}</div>

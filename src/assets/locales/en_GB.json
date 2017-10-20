@@ -19,6 +19,12 @@
     "forgot_password": "I forgot my password",
     "not_registered": "I don't have an account"
   },
+  "media_view": {
+    "buttons": {
+      "download": "Download",
+      "view_original": "View original"
+    }
+  },
   "cp": {
     "subheader": {
       "uploads": "uploads",
@@ -53,5 +59,10 @@
   "footer": {
     "version": "Version",
     "login": "Login"
+  },
+  "shared": {
+    "modal": {
+      "close": "Close"
+    }
   }
 }

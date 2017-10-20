@@ -5,6 +5,7 @@ import Modal from '../modal/modal.js'
 
 import style from './header-nav.scss'
 
+import { version } from 'app.config'
 import locale from 'locale'
 
 const viewStrings = locale.header_nav
@@ -14,7 +15,7 @@ export default class HeaderNav extends Component {
     super(props)
 
     this.state = {
-      isActive: false
+      isModalActive: false
     }
 
     this.toggleModal = this.toggleModal.bind(this)
@@ -22,13 +23,14 @@ export default class HeaderNav extends Component {
 
   toggleModal (event) {
     event.stopPropagation()
-    this.setState({isActive: !this.state.isActive})
+    this.setState({isModalActive: !this.state.isModalActive})
   }
 
   render () {
     const modalContent = (
       <p>
-        This format <strong>allows</strong> , use of <sup>html passed as prop</sup>
+        This format <strong>allows</strong> , use of <sup>html passed as a prop</sup><br />
+        Nethloader v{version}
       </p>
       )
     return (
@@ -40,7 +42,7 @@ export default class HeaderNav extends Component {
         <div>
           <Button text={viewStrings.about_nethloader} navButton onClickExecute={this.toggleModal} />
         </div>
-        <Modal modalTitle='About the project' modalContent={modalContent} isActive={this.state.isActive} toggleModal={this.toggleModal} />
+        <Modal modalTitle='About the project' modalContent={modalContent} isActive={this.state.isModalActive} toggleModal={this.toggleModal} />
       </header>
     )
   }

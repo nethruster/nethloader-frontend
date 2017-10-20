@@ -46,7 +46,7 @@
             transition: opacity .2s, transform .2s;
 
             &-header {
-                margin-bottom: 16px;
+                margin-bottom: calc(var(--base-pm) * 4);
 
                 font-size: 1.6em;
                 font-weight: 300;
