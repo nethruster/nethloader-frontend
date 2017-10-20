@@ -1,9 +1,27 @@
+'use strict'
+
 import { apiBaseUrl } from 'app.config'
+
+let email = ''
+let password = ''
 
 // RegEx to make sure that the email is valid
 const emailExp = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
 
-const validateForm = function (email, password) {
+const requestLogin = async function (emailvalue, passwordvalue) {
+  email = emailvalue
+  password = passwordvalue
+
+  // Remove possible whitespace on the email
+  emailvalue = email.trim()
+
+  // Validate form data before trying to log in
+  validateForm()
+
+  return login().then((token) => token)
+}
+
+const validateForm = function () {
   if (!email) {
     throw Error('empty_email')
   } else if (!emailExp.test(email)) {
@@ -13,20 +31,10 @@ const validateForm = function (email, password) {
   }
 }
 
-const requestLogin = async function (email, password) {
-  // Remove possible whitespace on the email
-  email = email.trim()
-
-  // Validate form data before trying to log in
-  validateForm(email, password)
-
-  return login(email, password).then((token) => token)
-}
-
-const login = async function (email, password) {
+const fetchServerLogin = async function () {
   // Fetch will throw an error if it fails,
   // this error is managed in the login-form
-  // component algong with the rest of errors
+  // component algong with the rest of errors thrown outside of it
   return fetch(apiBaseUrl, {
     method: 'post',
     body: JSON.stringify({
@@ -38,18 +46,22 @@ const login = async function (email, password) {
     }
   }).then((response) => {
     if (response.status >= 200 && response.status < 300) {
-      return response.json().then((result) => {
-        if (result.data.login) {
-          return result.data.login
-        } else {
-          // Tried login and got invalid or null token
-          throw Error('invalid_credentials')
-        }
-      })
+      return response.json()
     } else {
       // Server reached but returned invalid response
       console.error(response.status)
       throw Error('invalid_server_response')
+    }
+  })
+}
+
+const login = async function () {
+  return fetchServerLogin().then((result) => {
+    if (result.data.login) {
+      return result.data.login
+    } else {
+      // Tried login and got invalid or null token
+      throw Error('invalid_credentials')
     }
   })
 }
