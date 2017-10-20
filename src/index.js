@@ -1,3 +1,5 @@
+'use strict'
+
 import { h, render } from 'preact'
 
 import asyncComponent from 'asyncComponent'

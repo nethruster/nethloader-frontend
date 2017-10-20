@@ -17,7 +17,8 @@ export default class Button extends Component {
               ${this.props.navButton ? style.buttonNav : ''}
               ${this.props.customClass ? this.props.customClass : ''}
               flex flex-full-center` }
-        tabindex={this.props.tabindex}>
+        tabindex={this.props.tabindex}
+        onClick={this.props.onClickExecute}>
         {this.props.icon ? <Icon iconName={this.props.icon} /> : null}&nbsp;
         <p class='flex'>{this.props.spinner ? <Spinner color={this.props.spinnerColor} size={this.props.spinnerSize} /> : this.props.text}&nbsp;</p>
       </button>

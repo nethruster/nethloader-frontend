@@ -19,6 +19,8 @@
         transition-property: color, background-color, border-color;
         cursor: pointer;
 
+        svg { width: 20px; }
+
         &:hover {
             svg { color: var(--button-text-color-default--hover); } 
         }
@@ -47,6 +49,8 @@
         &Small {
             padding: calc(var(--base-pm) / 2) calc(var(--base-pm) * 2);
             font-size: 12px;
+
+            svg { width: 17px; }
         }
 
         &Transparent {
