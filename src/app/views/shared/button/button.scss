@@ -82,6 +82,10 @@
             &:hover {
                 color: #fff;
                 background-color: transparentize(#fff, .9);
+
+                svg {
+                    color: #fff;
+                }
             }
         }
     }

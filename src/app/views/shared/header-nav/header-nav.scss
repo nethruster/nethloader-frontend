@@ -22,7 +22,16 @@
                 width: var(--headerNavLogoSize);
                 height: var(--headerNavLogoSize);
             }
+        }
 
+        &Links {
+            font-size: .9em;
+
+            button {
+                padding: var(--base-pm) calc(var(--base-pm) * 3);
+                
+                white-space: nowrap;
+            }
         }
     }
 }
