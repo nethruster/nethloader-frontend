@@ -1413,7 +1413,7 @@ cookie@0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
 
-copy-webpack-plugin@^4.0.1:
+copy-webpack-plugin@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/copy-webpack-plugin/-/copy-webpack-plugin-4.2.0.tgz#252bb94597f96399d23d7fad355f8d3a661ac096"
   dependencies:

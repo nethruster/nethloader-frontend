@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const isProduction = process.argv.indexOf('-p') !== -1 // Check if we are in production mode
 
@@ -89,6 +90,10 @@ module.exports = {
       },
       hash: true,
       template: APP_DIR + '/index.html'
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: path.join(APP_DIR, 'assets', 'favicons'), to: path.join(BUILD_DIR, 'assets', 'favicons') }
+    ])
+
   ]
 }
