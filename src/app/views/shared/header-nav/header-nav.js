@@ -1,4 +1,5 @@
 import { h, Component } from 'preact'
+import {withRouter} from 'react-router-dom'
 
 import Button from '../button/button.js'
 import Modal from '../modal/modal.js'
@@ -7,10 +8,11 @@ import style from './header-nav.scss'
 
 import { version } from 'app.config'
 import locale from 'locale'
+import { closeSession } from 'session-utils/login-manager'
 
 const viewStrings = locale.header_nav
 
-export default class HeaderNav extends Component {
+export default withRouter(class HeaderNav extends Component {
   constructor (props) {
     super(props)
 
@@ -19,11 +21,17 @@ export default class HeaderNav extends Component {
     }
 
     this.toggleModal = this.toggleModal.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
   }
 
   toggleModal (event) {
     event.stopPropagation()
     this.setState({isModalActive: !this.state.isModalActive})
+  }
+
+  handleLogout () {
+    closeSession()
+    this.props.history.push('/login')
   }
 
   render () {
@@ -39,11 +47,12 @@ export default class HeaderNav extends Component {
           <img src='../../../../assets/img/logo.svg' alt='Nethloader Logo' />
           <p class={`${style.headerNavLogoTitle} flex flex-full-center`}>Nethloader</p>
         </div>
-        <div>
-          <Button text={viewStrings.about_nethloader} navButton onClickExecute={this.toggleModal} />
-        </div>
+        <nav class={`${style.headerNavLinks} flex flex-full-center`}>
+          <Button text={viewStrings.about_nethloader} icon='help-circle' navButton onClickExecute={this.toggleModal} />
+          <Button text='Logout' icon='logout' navButton onClickExecute={this.handleLogout} />
+        </nav>
         <Modal modalTitle='About the project' modalContent={modalContent} isActive={this.state.isModalActive} toggleModal={this.toggleModal} />
       </header>
     )
   }
-}
+})

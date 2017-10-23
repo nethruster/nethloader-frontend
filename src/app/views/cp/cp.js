@@ -3,10 +3,17 @@ import { Switch, Route } from 'react-router-dom'
 
 import asyncComponent from 'asyncComponent'
 import CPSubheader from './cpsubheader/cpsubheader.js'
+import { checkSessionState } from 'session-utils/session-storage'
 
 import style from './cp.scss'
 
 export default class ControlPanel extends Component {
+  componentWillMount () {
+    if (!checkSessionState()) {
+      this.props.history.push('/login')
+    }
+  }
+
   render () {
     return (
       <div class={`${style.cp} flex flex-dc flex-cross-center`}>

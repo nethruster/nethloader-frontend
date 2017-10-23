@@ -6,7 +6,8 @@ import Button from '../../shared/button/button.js'
 
 import style from './login-form.scss'
 
-import { requestLogin } from 'login/login-manager'
+import { requestLogin } from 'session-utils/login-manager'
+import { checkSessionState } from 'session-utils/session-storage'
 
 import locale from 'locale'
 
@@ -29,6 +30,12 @@ export default withRouter(class LoginForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  componentWillMount () {
+    if (checkSessionState()) {
+      this.props.history.push('/cp')
+    }
+  }
+
   handleChange (event) {
     this.setState({
       [event.target.id]: event.target.value,
@@ -41,13 +48,13 @@ export default withRouter(class LoginForm extends Component {
     this.setState({loggingIn: true})
 
     requestLogin(this.state.email, this.state.password).then((result) => {
-      window.sessionStorage.setItem('jwtToken', result)
       this.setState({
         loggingIn: false,
         formValidationText: ''
       })
       this.props.history.push('/cp')
     }).catch((err) => {
+      console.error(err)
       // Reset error message
       this.errorMessage = ''
 
@@ -72,6 +79,8 @@ export default withRouter(class LoginForm extends Component {
         case 'invalid_credentials':
           this.errorMessage = 'Invalid credentials'
           break
+        default:
+          console.error(err.message)
       }
 
       this.setState({

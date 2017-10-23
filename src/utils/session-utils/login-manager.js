@@ -2,6 +2,8 @@
 
 import { apiBaseUrl } from 'app.config'
 
+import { updateSessionStorage, getCurrentSessionToken } from 'session-utils/session-storage'
+
 let email = ''
 let password = ''
 
@@ -57,8 +59,10 @@ const fetchServerLogin = async function () {
 
 const login = async function () {
   return fetchServerLogin().then((result) => {
-    if (result.data.login) {
-      return result.data.login
+    let sessionToken = result.data.login
+    if (sessionToken) {
+      updateSessionStorage(sessionToken)
+      return sessionToken
     } else {
       // Tried login and got invalid or null token
       throw Error('invalid_credentials')
@@ -66,6 +70,16 @@ const login = async function () {
   })
 }
 
+const closeSession = function () {
+  if (getCurrentSessionToken()) {
+    window.sessionStorage.removeItem('jwtToken')
+    window.sessionStorage.removeItem('sessionData')
+  } else {
+    console.warn('login-manager/closeSession: Couldn\'t find session')
+  }
+}
+
 export {
-  requestLogin
+  requestLogin,
+  closeSession
 }
