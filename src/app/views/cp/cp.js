@@ -2,22 +2,15 @@ import { h, Component } from 'preact'
 import { Switch, Route } from 'react-router-dom'
 
 import asyncComponent from 'asyncComponent'
-import CPSubheader from './cpsubheader/cpsubheader.js'
-import { checkSessionState } from 'session-utils/session-storage'
+import Subheader from './subheader/subheader.js'
 
 import style from './cp.scss'
 
 export default class ControlPanel extends Component {
-  componentWillMount () {
-    if (!checkSessionState()) {
-      this.props.history.push('/login')
-    }
-  }
-
   render () {
     return (
       <div class={`${style.cp} flex flex-dc flex-cross-center`}>
-        <CPSubheader />
+        <Subheader />
         <Switch>
           <Route
             path='/cp/'
@@ -32,7 +25,7 @@ export default class ControlPanel extends Component {
           <Route
             path='/cp/neth-admin'
             exact
-            component={asyncComponent(() => import(/* webpackChunkName: "content_cp_cpadmin" */'./cpadmin/cpadmin.js')
+            component={asyncComponent(() => import(/* webpackChunkName: "content_cp_admin" */'./admin/admin.js')
               .then(module => module.default))} />
         </Switch>
       </div>

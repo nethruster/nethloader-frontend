@@ -8,11 +8,10 @@ import style from './header-nav.scss'
 
 import { version } from 'app.config'
 import locale from 'locale'
-import { closeSession } from 'session-utils/login-manager'
 
 const viewStrings = locale.header_nav
 
-export default withRouter(class HeaderNav extends Component {
+export default class HeaderNav extends Component {
   constructor (props) {
     super(props)
 
@@ -21,17 +20,11 @@ export default withRouter(class HeaderNav extends Component {
     }
 
     this.toggleModal = this.toggleModal.bind(this)
-    this.handleLogout = this.handleLogout.bind(this)
   }
 
   toggleModal (event) {
     event.stopPropagation()
     this.setState({isModalActive: !this.state.isModalActive})
-  }
-
-  handleLogout () {
-    closeSession()
-    this.props.history.push('/login')
   }
 
   render () {
@@ -55,4 +48,4 @@ export default withRouter(class HeaderNav extends Component {
       </header>
     )
   }
-})
+}

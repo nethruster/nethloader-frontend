@@ -3,19 +3,19 @@ import { NavLink } from 'react-router-dom'
 
 import Icon from '../../shared/icon/icon.js'
 
-import style from './cpsubheader.scss'
+import style from './subheader.scss'
 
 import locale from 'locale'
 
 const viewStrings = locale.cp.subheader
 
-export default class CPSubheader extends Component {
+export default class Subheader extends Component {
   render () {
     return (
       <div class={`${style.cpsubheader} flex flex-main-center`}>
         <div class={`${style.cpsubheaderWrapper} flex flex-cross-center flex-sb`}>
           <div class={style.cpsubheaderUserStats}>
-            <p>Claudio</p>
+            <p>Username</p>
             <p>X {viewStrings.uploads}</p>
           </div>
           <div class={`${style.cpsubheaderTabs} flex flex-cross-center`}>

@@ -1,25 +1,23 @@
 import { h, Component } from 'preact'
-import {withRouter} from 'react-router-dom'
 
 import FormInput from './../../shared/form-input/form-input.js'
 import Button from '../../shared/button/button.js'
 
 import style from './login-form.scss'
 
-import { requestLogin } from 'session-utils/login-manager'
-import { checkSessionState } from 'session-utils/session-storage'
-
 import locale from 'locale'
 
 const viewStrings = locale.login.form
 
-export default withRouter(class LoginForm extends Component {
+export default class LoginForm extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      email: '',
-      password: '',
+      credentials: {
+        email: '',
+        password: ''
+      },
       loggingIn: false,
       formValidationText: ''
     }
@@ -30,64 +28,21 @@ export default withRouter(class LoginForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentWillMount () {
-    if (checkSessionState()) {
-      this.props.history.push('/cp')
-    }
-  }
-
   handleChange (event) {
+    let credentials = {
+      ...this.state.credentials
+    }
+
+    credentials[event.target.id] = event.target.value
+
     this.setState({
-      [event.target.id]: event.target.value,
+      credentials,
       formValidationText: ''
     })
   }
 
   handleSubmit (event) {
     event.preventDefault()
-    this.setState({loggingIn: true})
-
-    requestLogin(this.state.email, this.state.password).then((result) => {
-      this.setState({
-        loggingIn: false,
-        formValidationText: ''
-      })
-      this.props.history.push('/cp')
-    }).catch((err) => {
-      console.error(err)
-      // Reset error message
-      this.errorMessage = ''
-
-      // Manage visible UI error messages to avoid hardcoding them in the
-      // logic (makes localisation and user feedback control a lot easier)
-      switch (err.message) {
-        case 'Failed to fetch':
-          this.errorMessage = 'Couldn\'t connect to server'
-          break
-        case 'invalid_server_response':
-          this.errorMessage = 'Something went wrong while trying to log in, try again later'
-          break
-        case 'empty_email':
-          this.errorMessage = 'The email field is empty'
-          break
-        case 'invalid_email':
-          this.errorMessage = 'That email is not valid'
-          break
-        case 'empty_password':
-          this.errorMessage = 'The password field is empty'
-          break
-        case 'invalid_credentials':
-          this.errorMessage = 'Invalid credentials'
-          break
-        default:
-          console.error(err.message)
-      }
-
-      this.setState({
-        loggingIn: false,
-        formValidationText: this.errorMessage || err.message
-      })
-    })
   }
 
   render () {
@@ -100,4 +55,4 @@ export default withRouter(class LoginForm extends Component {
       </form>
     )
   }
-})
+}

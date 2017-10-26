@@ -1,6 +1,6 @@
 import { h, Component } from 'preact'
 
-import style from './cpadmin.scss'
+import style from './admin.scss'
 
 export default class CPAdmin extends Component {
   render () {
