@@ -20,7 +20,8 @@
   "homepage": "https://github.com/nethruster/nethloader#readme",
   "standard": {
     "globals": [
-      "fetch"
+      "fetch",
+      "Image"
     ],
     "ignore": [
       "node_modules/**"

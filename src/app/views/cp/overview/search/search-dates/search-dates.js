@@ -1,3 +1,5 @@
+// TODO: remove DayPicker
+
 import { h, Component } from 'preact'
 import moment from 'moment'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
