@@ -1,8 +1,4 @@
-// TODO: remove DayPicker
-
 import { h, Component } from 'preact'
-import moment from 'moment'
-import DayPickerInput from 'react-day-picker/DayPickerInput'
 
 import style from './search-dates.scss'
 
@@ -15,50 +11,30 @@ export default class SearchDates extends Component {
     super(props)
 
     this.state = {
-      beforeDay: undefined,
-      afterDay: undefined
+      beforeDate: '',
+      afterDate: ''
     }
 
-    this.DAY_FORMAT = 'DD/MM/YYYY'
-
-    this.handleBeforeDayChange = this.handleBeforeDayChange.bind(this)
-    this.handleAfterDayChange = this.handleAfterDayChange.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  handleBeforeDayChange (beforeDay, modifiers) {
-    this.setState({
-      beforeDay
-    })
-  };
+  handleChange (event) {
+    let state = {
+      ...this.state
+    }
 
-  handleAfterDayChange (afterDay, modifiers) {
-    this.setState({
-      afterDay
-    })
-  };
+    state[event.target.id] = event.target.value
+
+    this.setState({...state})
+  }
 
   render () {
-    const formattedBeforeDay = this.state.beforeDay ? moment(this.state.beforeDay).format(this.DAY_FORMAT) : ''
-    const formattedAfterDay = this.state.afterDay ? moment(this.state.afterDay).format(this.DAY_FORMAT) : ''
-
     return (
-      <div class={`${style.searchDates} flex flex-dc`}>
+      <div class={`${style.searchDates} flex flex-dc flex-cross-center`}>
         <p>{viewStrings.between}</p>
-        <DayPickerInput
-          value={formattedAfterDay}
-          onDayChange={this.handleAfterDayChange}
-          format={this.DAY_FORMAT}
-          placeholder={this.DAY_FORMAT}
-          dayPickerProps={{todayButton: viewStrings.go_to_today}}
-        />
+        <input id='beforeDate' type='date' onChange={this.handleChange} />
         <p>{viewStrings.and}</p>
-        <DayPickerInput
-          value={formattedBeforeDay}
-          onDayChange={this.handleBeforeDayChange}
-          format={this.DAY_FORMAT}
-          placeholder={this.DAY_FORMAT}
-          dayPickerProps={{todayButton: viewStrings.go_to_today}}
-        />
+        <input id='afterDate' type='date' onChange={this.handleChange} />
       </div>
     )
   }
