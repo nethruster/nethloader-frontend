@@ -6,19 +6,18 @@ export default class AsyncMedia extends Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      isLoaded: false
-    }
+    this.state = {isLoaded: false}
   }
 
   componentWillMount () {
     if (!this.state.isLoaded) {
       let tempImgComponent = new Image()
       tempImgComponent.src = this.props.src
-
       tempImgComponent.onload = () => {
-        this.setState({ isLoaded: true })
+        this.setState({isLoaded: true})
       }
+
+      tempImgComponent.remove()
     }
   }
 

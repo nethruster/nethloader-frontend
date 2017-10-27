@@ -13,11 +13,10 @@ import locale from 'locale'
 const viewStrings = locale.login.form
 
 function mapStateToProps (state) {
-  const { isFetching, isAuthenticated } = state.auth
+  const {isFetching} = state.auth
 
   return {
-    isFetching,
-    isAuthenticated
+    isFetching
   }
 }
 
@@ -37,12 +36,6 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentWillMount () {
-    if (this.props.isAuthenticated) {
-      this.context.router.history.push('/cp')
-    }
-  }
-
   handleChange (event) {
     let credentials = {
       ...this.state.credentials
@@ -56,12 +49,12 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
     })
   }
 
-  handleSubmit (event, dispatch) {
+  handleSubmit (event) {
     event.preventDefault()
     this.props.dispatch(loginUser(this.state.credentials, this.context.router.history))
   }
 
-  render ({ dispatch, isFetching, isAuthenticated }) {
+  render ({ dispatch, isFetching }) {
     return (
       <form class={`${style.form} flex flex-full-center flex-dc`} onSubmit={this.handleSubmit}>
         <FormInput inputId='email' inputType='email' inputLabel={viewStrings.email} changeHandler={this.handleChange} required noValidationStyle />

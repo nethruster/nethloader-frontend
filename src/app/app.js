@@ -1,12 +1,19 @@
 import { h, Component } from 'preact'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { connect } from 'preact-redux'
 
 import asyncComponent from 'asyncComponent'
 
 import style from './app.scss'
 
-export default class App extends Component {
-  render () {
+function mapStateToProps (state) {
+  const {isAuthenticated} = state.auth
+
+  return {isAuthenticated}
+}
+
+export default connect(mapStateToProps)(class App extends Component {
+  render ({isAuthenticated}) {
     return (
       <BrowserRouter>
         <Switch>
@@ -16,10 +23,18 @@ export default class App extends Component {
             component={asyncComponent(() => import(/* webpackChunkName: "home" */'./views/home/home.js').then(module => module.default))}
           />
 
+          {isAuthenticated ? <Redirect from='/login' to='/cp' />
+          : 
           <Route
             exact
             path='/login'
             component={asyncComponent(() => import(/* webpackChunkName: "login" */'./views/login/login.js').then(module => module.default))}
+          />}
+
+          <Route
+            exact
+            path='/register'
+            component={asyncComponent(() => import(/* webpackChunkName: "register" */'./views/register/register.js').then(module => module.default))}
           />
 
           <Route
@@ -30,4 +45,4 @@ export default class App extends Component {
       </BrowserRouter>
     )
   }
-}
+})

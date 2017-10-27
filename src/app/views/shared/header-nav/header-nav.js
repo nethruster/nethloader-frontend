@@ -1,5 +1,5 @@
 import { h, Component } from 'preact'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'preact-redux'
 
 import Button from '../button/button.js'
@@ -24,9 +24,7 @@ export default connect(mapStateToProps)(class HeaderNav extends Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      isModalActive: false
-    }
+    this.state = {isModalActive: false}
 
     this.toggleModal = this.toggleModal.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
@@ -38,7 +36,7 @@ export default connect(mapStateToProps)(class HeaderNav extends Component {
   }
 
   handleLogout () {
-    this.props.dispatch(logoutUser(this.context.router.history, this.context.router.route.location.pathname))
+    this.props.dispatch(logoutUser(this.context.router.history))
   }
 
   render ({dispatch, isAuthenticated}) {
@@ -56,7 +54,7 @@ export default connect(mapStateToProps)(class HeaderNav extends Component {
         </div>
         <nav class={`${style.headerNavLinks} flex flex-full-center`}>
           <Button text={viewStrings.about_nethloader} icon='help-circle' navButton onClickExecute={this.toggleModal} />
-          { isAuthenticated ? <Button text='Logout' icon='logout' navButton onClickExecute={this.handleLogout} /> : <NavLink to='/login'><Button text='Login' icon='login' navButton /></NavLink>}
+          {isAuthenticated ? <Button text='Logout' icon='logout' navButton onClickExecute={this.handleLogout} /> : <Link to='/login'><Button text='Login' icon='login' navButton /></Link>}
         </nav>
         <Modal modalTitle='About the project' modalContent={modalContent} isActive={this.state.isModalActive} toggleModal={this.toggleModal} />
       </header>
