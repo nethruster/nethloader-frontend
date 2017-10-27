@@ -2,21 +2,19 @@
 import appConstants from './constants'
 
 // Login
-const requestLogin = (credentials) => {
+const requestLogin = () => {
   return {
     type: appConstants.LOGIN_REQUEST,
     isFetching: true,
-    isAuthenticated: false,
-    credentials
+    isAuthenticated: false
   }
 }
 
-const receiveLogin = (token) => {
+const receiveLogin = () => {
   return {
     type: appConstants.LOGIN_SUCCESS,
     isFetching: false,
-    isAuthenticated: true,
-    jwtToken: token
+    isAuthenticated: true
   }
 }
 
@@ -46,10 +44,38 @@ const receiveLogout = () => {
   }
 }
 
+// Register
+const requestRegister = () => {
+  return {
+    type: appConstants.REGISTER_REQUEST,
+    isFetching: true
+  }
+}
+
+const receiveRegister = () => {
+  return {
+    type: appConstants.REGISTER_SUCCESS,
+    isFetching: false
+  }
+}
+
+const registerError = (errorMessage) => {
+  return {
+    type: appConstants.REGISTER_FAILURE,
+    isFetching: false,
+    errorMessage
+  }
+}
+
 export {
   requestLogin,
   receiveLogin,
   loginError,
+
   requestLogout,
-  receiveLogout
+  receiveLogout,
+
+  requestRegister,
+  receiveRegister,
+  registerError
 }

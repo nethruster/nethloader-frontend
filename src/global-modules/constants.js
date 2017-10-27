@@ -8,5 +8,10 @@ export default keymirror({
 
   // Logout
   LOGOUT_REQUEST: null,
-  LOGOUT_SUCCESS: null
+  LOGOUT_SUCCESS: null,
+
+  // Register
+  REGISTER_REQUEST: null,
+  REGISTER_SUCCESS: null,
+  REGISTER_FAILURE: null
 })

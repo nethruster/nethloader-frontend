@@ -2,13 +2,11 @@ import { combineReducers } from 'redux'
 
 import appConstants from './constants'
 
-const initialState = {
+// Auth reducer
+const auth = (state = {
   isFetching: false,
   isAuthenticated: !!window.localStorage.getItem('jwtToken')
-}
-
-// Auth reducer
-const auth = (state = initialState, action) => {
+}, action) => {
   switch (action.type) {
     case appConstants.LOGIN_REQUEST:
       return Object.assign({}, state, {
@@ -42,8 +40,33 @@ const auth = (state = initialState, action) => {
   }
 }
 
+// Register reducer
+const account = (state = {
+  isFetching: false
+}, action) => {
+  switch (action.type) {
+    case appConstants.REGISTER_REQUEST:
+      return Object.assign({}, state, {
+        isFetching: true
+      })
+    case appConstants.REGISTER_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        errorMessage: ''
+      })
+    case appConstants.REGISTER_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        errorMessage: action.message
+      })
+    default:
+      return state
+  }
+}
+
 const reducers = combineReducers({
-  auth
+  auth,
+  account
 })
 
 export default reducers

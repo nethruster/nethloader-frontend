@@ -1,4 +1,5 @@
 import { h, Component } from 'preact'
+import { Link } from 'react-router-dom'
 
 import LoginForm from './login-form/login-form.js'
 import Footer from '../shared/footer/footer.js'
@@ -19,7 +20,7 @@ export default class Login extends Component {
           <LoginForm />
           <div class={`${style.loginAltLinks} flex flex-cross-center flex-sb`}>
             <a href='mailto:admin@domain.com' rel='noopener'>{viewStrings.forgot_password}</a>
-            <a href='mailto:admin@domain.com' rel='noopener'>{viewStrings.not_registered}</a>
+            <Link to='/register' rel='noopener'>{viewStrings.not_registered}</Link>
           </div>
         </div>
         <Footer />
