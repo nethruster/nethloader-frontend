@@ -1,7 +1,10 @@
 import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
 
 import FormInput from './../../shared/form-input/form-input.js'
 import Button from '../../shared/button/button.js'
+
+import { loginUser } from 'serverAPI'
 
 import style from './login-form.scss'
 
@@ -9,7 +12,16 @@ import locale from 'locale'
 
 const viewStrings = locale.login.form
 
-export default class LoginForm extends Component {
+function mapStateToProps (state) {
+  const { isFetching, isAuthenticated } = state.auth
+
+  return {
+    isFetching,
+    isAuthenticated
+  }
+}
+
+export default connect(mapStateToProps)(class LoginForm extends Component {
   constructor (props) {
     super(props)
 
@@ -18,14 +30,17 @@ export default class LoginForm extends Component {
         email: '',
         password: ''
       },
-      loggingIn: false,
       formValidationText: ''
     }
 
-    this.errorMessage = ''
-
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentWillMount () {
+    if (this.props.isAuthenticated) {
+      this.context.router.history.push('/cp')
+    }
   }
 
   handleChange (event) {
@@ -41,18 +56,19 @@ export default class LoginForm extends Component {
     })
   }
 
-  handleSubmit (event) {
+  handleSubmit (event, dispatch) {
     event.preventDefault()
+    this.props.dispatch(loginUser(this.state.credentials, this.context.router.history))
   }
 
-  render () {
+  render ({ dispatch, isFetching, isAuthenticated }) {
     return (
       <form class={`${style.form} flex flex-full-center flex-dc`} onSubmit={this.handleSubmit}>
         <FormInput inputId='email' inputType='email' inputLabel={viewStrings.email} changeHandler={this.handleChange} required noValidationStyle />
         <FormInput inputId='password' inputType='password' inputLabel={viewStrings.password} changeHandler={this.handleChange} required noValidationStyle />
         <p class={style.formValidationText}>{this.state.formValidationText}</p>
-        <Button contrast text={viewStrings.login} spinner={this.state.loggingIn} spinnerColor='#fff' spinnerSize='14' />
+        <Button contrast text={viewStrings.login} spinner={isFetching} spinnerColor='#fff' spinnerSize='14' />
       </form>
     )
   }
-}
+})

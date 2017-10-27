@@ -16,6 +16,7 @@ module.exports = {
       'preact',
       'preact-compat',
       'react-router-dom',
+      'preact-redux',
       'app.config',
       'locale'
     ]
@@ -67,7 +68,7 @@ module.exports = {
     },
     modules: [
       APP_DIR + '/assets/',
-      APP_DIR + '/utils/',
+      APP_DIR + '/global-modules/',
       'node_modules'
     ]
   },
