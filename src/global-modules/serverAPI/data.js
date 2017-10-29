@@ -14,7 +14,7 @@ const getUserData = (id, authToken) => {
       'authentication': authToken
     },
     body: JSON.stringify({
-      query: `query{ user(id: "${id}") { id, name, email, apiKey, isAdmin, images { id, extension, createdAt }}}`
+      query: `query{ user(id: "${id}") { name, email, apiKey, isAdmin, images { id, extension, createdAt }}}`
     })
   }
 

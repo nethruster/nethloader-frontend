@@ -1,7 +1,7 @@
 'use strict'
 
 /**
- * Returns false if a string is empty or just spaces
+ * Returns true if a string is empty or just spaces
  * @param string str
  * @return boolean
  */
@@ -17,7 +17,7 @@ const validateEmail = (email) => {
 }
 
 /**
- * Returns true if a string is validated by alphanumeric only regex
+ * Returns true if a string is valid towards alphanumeric only regex
  * @param string name
  * @return boolean
  */
