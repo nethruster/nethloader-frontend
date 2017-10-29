@@ -5,7 +5,7 @@ import { connect } from 'preact-redux'
 import Button from '../button/button.js'
 import Modal from '../modal/modal.js'
 
-import { logoutUser } from 'serverAPI'
+import { logoutUser } from 'serverAPI/auth'
 
 import style from './header-nav.scss'
 

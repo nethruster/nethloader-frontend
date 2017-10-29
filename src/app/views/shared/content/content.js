@@ -5,10 +5,12 @@ import { connect } from 'preact-redux'
 import asyncComponent from 'asyncComponent'
 import HeaderNav from '../header-nav/header-nav.js'
 
+import { getUserData } from 'serverAPI/data'
+
 import style from './content.scss'
 
 function mapStateToProps (state) {
-  const isAuthenticated = state.auth.isAuthenticated
+  const {isAuthenticated} = state.auth
 
   return {isAuthenticated}
 }
@@ -28,7 +30,7 @@ export default connect(mapStateToProps)(class Content extends Component {
           <Redirect from='/cp' to='/login' />}
 
           <Route
-            path='/:id'
+            path='/:id([A-Za-z0-9_~]{10})'
             component={asyncComponent(() => import(/* webpackChunkName: "content_media-view" */'../../media-view/media-view.js')
               .then(module => module.default))} />
         </Switch>

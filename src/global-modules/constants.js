@@ -13,5 +13,10 @@ export default keymirror({
   // Register
   REGISTER_REQUEST: null,
   REGISTER_SUCCESS: null,
-  REGISTER_FAILURE: null
+  REGISTER_FAILURE: null,
+
+  // Data - user
+  USER_DATA_REQUEST: null,
+  USER_DATA_SUCCESS: null,
+  USER_DATA_FAILURE: null
 })

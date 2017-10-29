@@ -1,5 +1,4 @@
-'use strict'
-import appConstants from './constants'
+import appConstants from '../constants'
 
 // Login
 const requestLogin = () => {
@@ -44,38 +43,11 @@ const receiveLogout = () => {
   }
 }
 
-// Register
-const requestRegister = () => {
-  return {
-    type: appConstants.REGISTER_REQUEST,
-    isFetching: true
-  }
-}
-
-const receiveRegister = () => {
-  return {
-    type: appConstants.REGISTER_SUCCESS,
-    isFetching: false
-  }
-}
-
-const registerError = (errorMessage) => {
-  return {
-    type: appConstants.REGISTER_FAILURE,
-    isFetching: false,
-    errorMessage
-  }
-}
-
 export {
   requestLogin,
   receiveLogin,
   loginError,
 
   requestLogout,
-  receiveLogout,
-
-  requestRegister,
-  receiveRegister,
-  registerError
+  receiveLogout
 }

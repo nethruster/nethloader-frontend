@@ -4,7 +4,7 @@ import { connect } from 'preact-redux'
 import FormInput from './../../shared/form-input/form-input.js'
 import Button from '../../shared/button/button.js'
 
-import { registerUser } from 'serverAPI'
+import { registerUser } from 'serverAPI/account'
 import { validateEmpty, validateEmail, validateName } from 'utils'
 
 import style from './register-form.scss'

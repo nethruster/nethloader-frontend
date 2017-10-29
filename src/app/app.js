@@ -38,7 +38,7 @@ export default connect(mapStateToProps)(class App extends Component {
           />
 
           <Route
-            path='/:id'
+            path='/:content'
             component={asyncComponent(() => import(/* webpackChunkName: "content" */'./views/shared/content/content.js').then(module => module.default))}
           />
         </Switch>

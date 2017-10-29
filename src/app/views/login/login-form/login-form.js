@@ -4,7 +4,7 @@ import { connect } from 'preact-redux'
 import FormInput from './../../shared/form-input/form-input.js'
 import Button from '../../shared/button/button.js'
 
-import { loginUser } from 'serverAPI'
+import { loginUser } from 'serverAPI/auth'
 
 import style from './login-form.scss'
 
