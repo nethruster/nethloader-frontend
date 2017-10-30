@@ -4,7 +4,7 @@ import { connect } from 'preact-redux'
 import FormInput from './../../shared/form-input/form-input.js'
 import Button from '../../shared/button/button.js'
 
-import { loginUser } from 'serverAPI/auth'
+import { loginUser } from 'serverAPI/authentication'
 
 import style from './login-form.scss'
 
@@ -13,7 +13,7 @@ import locale from 'locale'
 const viewStrings = locale.login.form
 
 function mapStateToProps (state) {
-  const {isFetching} = state.auth
+  const {isFetching} = state.authentication
 
   return {
     isFetching

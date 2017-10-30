@@ -12,13 +12,13 @@ const APP_DIR = path.resolve(__dirname, 'src')
 module.exports = {
   entry: {
     'main': APP_DIR + '/index.js',
+    'config': 'app.config',
+    'locale': 'locale',
     'vendor': [
       'preact',
       'preact-compat',
       'react-router-dom',
-      'preact-redux',
-      'app.config',
-      'locale'
+      'preact-redux'
     ]
   },
   output: {
@@ -84,7 +84,7 @@ module.exports = {
       minRatio: 0.8
     }) : new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin('vendor'),
+    new webpack.optimize.CommonsChunkPlugin({names: ['vendor', 'config', 'locale']}),
     new HtmlWebpackPlugin({
       minify: {
         collapseWhitespace: true

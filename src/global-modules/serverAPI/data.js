@@ -4,7 +4,7 @@ import { apiBaseUrl } from 'app.config'
 
 import { requestUserData, receiveUserData, userDataError } from 'actions/data'
 
-// Login
+// User data
 const getUserData = (id, authToken) => {
   let requestConfig = {
     method: 'POST',
@@ -32,9 +32,8 @@ const getUserData = (id, authToken) => {
         })
         .then(result => {
           if (!result.data.user) {
-            console.log(result)
-            dispatch(userDataError(result))
-            return Promise.reject(result)
+            dispatch(userDataError(result.errors[0].message))
+            return Promise.reject(result.errors[0].message)
           } else {
             // If login was successful, set the token in local storage
             window.localStorage.setItem('neth-userData', JSON.stringify(result.data.user))

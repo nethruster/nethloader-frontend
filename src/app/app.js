@@ -7,7 +7,7 @@ import asyncComponent from 'asyncComponent'
 import style from './app.scss'
 
 function mapStateToProps (state) {
-  const {isAuthenticated} = state.auth
+  const {isAuthenticated} = state.authentication
 
   return {isAuthenticated}
 }

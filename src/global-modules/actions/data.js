@@ -4,7 +4,8 @@ const requestUserData = () => {
   return {
     type: appConstants.USER_DATA_REQUEST,
     hasData: false,
-    data: {}
+    data: {},
+    errorMessage: ''
   }
 }
 
@@ -12,7 +13,8 @@ const receiveUserData = (data) => {
   return {
     type: appConstants.USER_DATA_SUCCESS,
     hasData: true,
-    data
+    data,
+    errorMesage: ''
   }
 }
 
@@ -20,6 +22,7 @@ const userDataError = (errorMessage) => {
   return {
     type: appConstants.USER_DATA_FAILURE,
     hasData: false,
+    data: {},
     errorMessage
   }
 }

@@ -35,16 +35,14 @@ const registerUser = (data, history) => {
             dispatch(registerError(result.errors[0].message))
             return Promise.reject(result.errors[0].message)
           } else {
-            let decodedData = JSON.stringify(jwtDecode(result.data.register))
+            let decodedData = jwtDecode(result.data.register)
 
             // If register was successful, set the token in local storage
-            window.localStorage.setItem('jwtToken', result.data.register)
-            window.localStorage.setItem('sessionData', decodedData)
+            window.localStorage.setItem('neth-jwtToken', result.data.register)
+            window.localStorage.setItem('neth-sessionData', JSON.stringify(decodedData))
             // Dispatch the success action
             dispatch(receiveRegister())
 
-            // Fill in user data
-            dispatch(getUserData(decodedData.id, result.data.register))
             history.push('/cp')
           }
         }).catch(err => console.log(err))

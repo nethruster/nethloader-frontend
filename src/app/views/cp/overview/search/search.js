@@ -20,6 +20,10 @@ export default class Search extends Component {
           <input type='checkbox' id='box-2' />
           <label for='box-2'>{viewStrings.gifs}</label>
         </div>
+        <div class='flex flex-dc flex-full-center'>
+          <p>By ID</p>
+          <input type='text' placeholder='ID' />
+        </div>
         <SearchDates />
       </div>
     )

@@ -13,10 +13,7 @@ const viewStrings = locale.cp.subheader
 function mapStateToProps (state) {
   const {hasData, data} = state.data
 
-  return {
-    hasData,
-    data
-  }
+  return {hasData, data}
 }
 
 export default connect(mapStateToProps)(class Subheader extends Component {

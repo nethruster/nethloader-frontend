@@ -32,9 +32,35 @@ const pad = (number) => {
   return (number < 10) ? (`0${number}`) : number
 }
 
+const copyToClipboard = (event) => {
+  let textArea = document.createElement('textarea')
+
+  textArea.style.position = 'absolute'
+  textArea.style.pointerEvents = 'none'
+  textArea.style.zIndex = '-5'
+  textArea.value = event.currentTarget.dataset.copytext
+
+  document.body.append(textArea)
+
+  textArea.select()
+  document.execCommand('copy')
+  textArea.remove()
+}
+
+/**
+ * Return true if current unix time is smaller than the token's expiry date
+ * @param int tokenExpDate
+ * @return boolean
+ */
+const checkTokenExpiryDate = async (tokenExpDate) => {
+  return Math.floor((new Date()).getTime() / 1000) < tokenExpDate
+}
+
 export {
   validateEmpty,
   validateEmail,
   validateName,
-  pad
+  pad,
+  copyToClipboard,
+  checkTokenExpiryDate
 }

@@ -5,8 +5,7 @@ import jwtDecode from 'jwt-decode'
 
 import {
   requestLogin, receiveLogin, loginError,
-  requestLogout, receiveLogout } from 'actions/auth'
-import { getUserData } from './data'
+  requestLogout, receiveLogout } from 'actions/authentication'
 
 // Login
 const loginUser = (credentials, history) => {
@@ -43,10 +42,8 @@ const loginUser = (credentials, history) => {
             window.localStorage.setItem('neth-jwtToken', result.data.login)
             window.localStorage.setItem('neth-sessionData', JSON.stringify(decodedData))
             // Dispatch the success action
-            dispatch(receiveLogin())
+            dispatch(receiveLogin(result.data.login, decodedData))
 
-            // Fill in user data
-            dispatch(getUserData(decodedData.id, result.data.login))
             history.push('/cp')
           }
         }).catch(err => console.log(err))
@@ -69,7 +66,23 @@ const logoutUser = (history) => {
   }
 }
 
+const logoutUserNoHistory = () => {
+  return dispatch => {
+    dispatch(requestLogout())
+
+    Object.keys(window.localStorage).forEach((value) => {
+      if (value.substring(0, 4) === 'neth') {
+        window.localStorage.removeItem(value)
+      }
+    })
+
+    dispatch(receiveLogout())
+    window.location.reload()
+  }
+}
+
 export {
   loginUser,
-  logoutUser
+  logoutUser,
+  logoutUserNoHistory
 }

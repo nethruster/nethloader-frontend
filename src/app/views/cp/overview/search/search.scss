@@ -18,46 +18,75 @@
         &Checkbox {
             margin-top: calc(var(--base-pm) * 2);
         }
-    }
 
-    input[type="checkbox"] { display: none; }
+        input[type="checkbox"] { display: none; }
+        
+        input[type="checkbox"] + label {
+          display: block;
+          position: relative;
+          padding-left: 35px;
     
-    input[type="checkbox"] + label {
-      display: block;
-      position: relative;
-      padding-left: 35px;
-      font: inherit;
-      cursor: pointer;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-    }
+          font: inherit;
+          cursor: pointer;
+          
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+        }
+        
+        input[type="checkbox"] + label:last-child { margin-bottom: 0; }
+        
+        input[type="checkbox"] + label:before {
+          content: '';
+          display: block;
+          width: 15px;
+          height: 15px;
+          position: absolute;
+          left: 10px;
+          top: 5px;
     
-    input[type="checkbox"] + label:last-child { margin-bottom: 0; }
+          border: 1px solid var(--input-accent-color);
+          opacity: .6;
     
-    input[type="checkbox"] + label:before {
-      content: '';
-      display: block;
-      width: 15px;
-      height: 15px;
-      border: 1px solid #1e87f0;
-      position: absolute;
-      left: 10px;
-      top: 5px;
-      opacity: .6;
-      -webkit-transition: all .12s, border-color .08s;
-      transition: all .12s, border-color .08s;
-    }
+          -webkit-transition: all .12s, border-color .08s;
+          transition: all .12s, border-color .08s;
+        }
+        
+        input[type="checkbox"]:checked + label:before {
+          width: 5px;
+          top: 4px;
+          left: 15px;
     
-    input[type="checkbox"]:checked + label:before {
-      width: 5px;
-      top: 4px;
-      left: 15px;
-      border-radius: 0;
-      opacity: 1;
-      border-top-color: transparent;
-      border-left-color: transparent;
-      -webkit-transform: rotate(45deg);
-      transform: rotate(45deg);
+          border-radius: 0;
+          opacity: 1;
+          border-top-color: transparent;
+          border-left-color: transparent;
+    
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+    
+        p {
+            margin: calc(var(--base-pm) * 2) 0;
+    
+            text-align: center;
+            opacity: .8;
+    
+            font-size: .8em;
+        }
+    
+        input[type='date'],
+        input[type='text'] {
+            padding: var(--base-pm);
+    
+            border: 1px solid var(--input-accent-color);
+            border-radius: var(--base-br);
+            color: inherit;
+    
+            text-transform: uppercase;
+            font-family: inherit;
+            font-size: .8em;
+            
+        }
     }
 }

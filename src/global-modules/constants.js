@@ -18,5 +18,9 @@ export default keymirror({
   // Data - user
   USER_DATA_REQUEST: null,
   USER_DATA_SUCCESS: null,
-  USER_DATA_FAILURE: null
+  USER_DATA_FAILURE: null,
+
+  MEDIA_UPLOAD_REQUEST: null,
+  MEDIA_UPLOAD_SUCCESS: null,
+  MEDIA_UPLOAD_FAILURE: null
 })

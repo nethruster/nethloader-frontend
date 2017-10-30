@@ -8,10 +8,7 @@ import style from './uploads.scss'
 function mapStateToProps (state) {
   const {hasData, data} = state.data
 
-  return {
-    hasData,
-    data
-  }
+  return {hasData, data}
 }
 
 export default connect(mapStateToProps)(class Uploads extends Component {

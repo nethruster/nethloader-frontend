@@ -5,15 +5,19 @@ const requestLogin = () => {
   return {
     type: appConstants.LOGIN_REQUEST,
     isFetching: true,
-    isAuthenticated: false
+    isAuthenticated: false,
+    sessionData: '',
+    token: ''
   }
 }
 
-const receiveLogin = () => {
+const receiveLogin = (token, sessionData) => {
   return {
     type: appConstants.LOGIN_SUCCESS,
     isFetching: false,
-    isAuthenticated: true
+    isAuthenticated: true,
+    sessionData,
+    token
   }
 }
 
@@ -22,6 +26,8 @@ const loginError = (errorMessage) => {
     type: appConstants.LOGIN_FAILURE,
     isFetching: false,
     isAuthenticated: false,
+    sessionData: '',
+    token: '',
     errorMessage
   }
 }
@@ -39,7 +45,9 @@ const receiveLogout = () => {
   return {
     type: appConstants.LOGOUT_SUCCESS,
     isFetching: false,
-    isAuthenticated: false
+    isAuthenticated: false,
+    sessionData: '',
+    token: ''
   }
 }
 

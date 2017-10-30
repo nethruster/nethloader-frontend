@@ -18,7 +18,8 @@ let createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore)
 
 let App = asyncComponent(() => import(/* webpackChunkName: "app" */'./app/app.js').then(module => module.default))
 
-let store = createStoreWithMiddleware(reducers, module.hot ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() : null)
+// TODO: remove redux dev tools in production
+let store = createStoreWithMiddleware(reducers, (window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
 
 const mountPoint = document.getElementById('nethloader')
 

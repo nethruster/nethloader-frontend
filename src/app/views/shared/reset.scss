@@ -35,6 +35,7 @@
         text-rendering: optimizeLegibility;
         font-feature-settings: "kern";
         box-sizing: border-box;
+        overflow-x: hidden;
     }
 
     body {
