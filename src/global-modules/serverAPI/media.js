@@ -2,7 +2,7 @@
 
 import { apiBaseUrl } from 'app.config'
 
-import { requestMedaUpload, receiveMediaUpload, mediaUploadError,
+import { requestMediaUpload, receiveMediaUpload, mediaUploadError,
   requestMediaInfo, mediaInfoError, receiveMediaInfo } from 'actions/media'
 import {getUserData} from 'serverAPI/data'
 
@@ -10,7 +10,7 @@ import {getUserData} from 'serverAPI/data'
 const uploadMedia = (id, media, authToken) => {
   let formData = new FormData()
 
-  formData.append('files', media[0], media[0].name)
+  formData.append('files', media, media.name)
   formData.append('query', `mutation{uploadImage{id, extension, createdAt}}`)
 
   let requestConfig = {
@@ -23,10 +23,10 @@ const uploadMedia = (id, media, authToken) => {
   }
 
   return dispatch => {
-    dispatch(requestMedaUpload())
+    dispatch(requestMediaUpload())
 
     return fetch(apiBaseUrl, requestConfig)
-        .then(response => {
+        .then((response) => {
           if (response.status >= 200 && response.status < 300) {
             return response.json()
           } else {
@@ -34,7 +34,7 @@ const uploadMedia = (id, media, authToken) => {
             return Promise.reject(response.status)
           }
         })
-        .then(result => {
+        .then(async (result) => {
           if (!result.data.uploadImage) {
             dispatch(mediaUploadError(result))
             return Promise.reject(result)

@@ -28,11 +28,11 @@ export default connect(mapStateToProps)(class Content extends Component {
         if (result) {
           this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token))
         } else {
-          this.props.dispatch(logoutUserNoHistory())
+          this.props.dispatch(logoutUserNoHistory(true))
         }
       }) 
     } else {
-      this.props.dispatch(logoutUserNoHistory())
+      this.props.dispatch(logoutUserNoHistory(false))
     }
   }
 

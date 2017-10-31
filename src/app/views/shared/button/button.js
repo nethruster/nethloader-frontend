@@ -18,8 +18,10 @@ export default class Button extends Component {
               this.props.customClass ? this.props.customClass : ''}
               flex flex-full-center` }
         tabindex={this.props.tabindex}
+        type={this.props.type}
         onClick={this.props.onClickExecute}
-        data-copytext={this.props.copyText}>
+        data-copytext={this.props.copyText}
+        disabled={this.props.disabled} >
         {this.props.icon ? <Icon iconName={this.props.icon} /> : null}&nbsp;
         <p class='flex'>{this.props.spinner ? <Spinner color={this.props.spinnerColor} size={this.props.spinnerSize} /> : this.props.text}&nbsp;</p>
       </button>

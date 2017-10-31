@@ -19,6 +19,11 @@
         transition-property: color, background-color, border-color;
         cursor: pointer;
 
+        &:disabled {
+            opacity: .65;
+            pointer-events: none;
+        }
+
         svg { width: 20px; }
 
         &:hover {

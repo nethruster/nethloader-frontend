@@ -1,9 +1,8 @@
 import appConstants from '../constants'
 
-const requestMedaUpload = () => {
+const requestMediaUpload = () => {
   return {
     type: appConstants.MEDIA_UPLOAD_REQUEST,
-    isUploading: true,
     data: {}
   }
 }
@@ -11,7 +10,6 @@ const requestMedaUpload = () => {
 const receiveMediaUpload = (data) => {
   return {
     type: appConstants.MEDIA_UPLOAD_SUCCESS,
-    isUploading: false,
     data
   }
 }
@@ -19,7 +17,6 @@ const receiveMediaUpload = (data) => {
 const mediaUploadError = (errorMessage) => {
   return {
     type: appConstants.MEDIA_UPLOAD_FAILURE,
-    isUploading: false,
     errorMessage
   }
 }
@@ -50,7 +47,7 @@ const mediaInfoError = (errorMessage) => {
 }
 
 export {
-  requestMedaUpload,
+  requestMediaUpload,
   receiveMediaUpload,
   mediaUploadError,
   requestMediaInfo,

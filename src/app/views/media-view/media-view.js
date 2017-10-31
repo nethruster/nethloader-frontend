@@ -11,7 +11,7 @@ import { getMediaInfo } from 'serverAPI/media'
 import style from './media-view.scss'
 
 function mapStateToProps (state) {
-  const {mediaInfo} = state.media
+  const {mediaInfo} = state.mediaInfo
 
   return {mediaInfo}
 }
