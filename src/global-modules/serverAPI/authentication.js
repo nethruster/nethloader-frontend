@@ -66,18 +66,16 @@ const logoutUser = (history) => {
   }
 }
 
-const logoutUserNoHistory = () => {
+const logoutUserNoHistory = (willReload) => {
   return dispatch => {
-    dispatch(requestLogout())
-
     Object.keys(window.localStorage).forEach((value) => {
       if (value.substring(0, 4) === 'neth') {
         window.localStorage.removeItem(value)
       }
     })
-
-    dispatch(receiveLogout())
-    window.location.reload()
+    if (willReload) {
+      window.location.reload()
+    }
   }
 }
 

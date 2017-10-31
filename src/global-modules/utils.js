@@ -56,11 +56,48 @@ const checkTokenExpiryDate = async (tokenExpDate) => {
   return Math.floor((new Date()).getTime() / 1000) < tokenExpDate
 }
 
+/**
+ * Return formated date (DD/MM/YYY) from a given unix time value
+ * @param int date
+ * @return string
+ */
+const computeDate = (date) => {
+  let dateObj = new Date(date)
+
+  // Note: We add 1 to the month because months are counted from 0
+  return `${pad(dateObj.getDate())}-${pad(dateObj.getMonth() + 1)}-${dateObj.getFullYear()}`
+}
+
+/**
+ * Return formated time (HH:mm) from a given unix time value
+ * @param int date
+ * @return string
+ */
+const computeTime = (date) => {
+  let dateObj = new Date(date)
+
+  return `${pad(dateObj.getHours())}:${pad(dateObj.getMinutes())}`
+}
+
+/**
+ * Return the time zone offset from a given unix time value
+ * @param int date
+ * @return string
+ */
+const computeDateFormat = (date) => {
+  let dateObj = new Date(date)
+
+  return `DD/MM/YYY GMT${dateObj.getTimezoneOffset() / 60}`
+}
+
 export {
   validateEmpty,
   validateEmail,
   validateName,
   pad,
   copyToClipboard,
-  checkTokenExpiryDate
+  checkTokenExpiryDate,
+  computeDate,
+  computeTime,
+  computeDateFormat
 }

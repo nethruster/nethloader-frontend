@@ -2,8 +2,6 @@
     .mediaInfo {
         margin: calc(var(--base-pm) * 2) 0;
 
-        font-size: .75em;
-
         p {
             margin: var(--base-pm);
 
@@ -23,6 +21,25 @@
             button {
                 margin: 0;
             }
+        }
+        
+    }
+
+    .dataSpec,
+    .dataDate {
+        flex: 2;
+
+        opacity: .7;
+
+        text-align: center;
+        font-size: .8em;
+
+        span { font-weight: 500; }
+
+        small { opacity: .8 }
+
+        &:hover {
+            opacity: 1
         }
     }
 }

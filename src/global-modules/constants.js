@@ -22,5 +22,9 @@ export default keymirror({
 
   MEDIA_UPLOAD_REQUEST: null,
   MEDIA_UPLOAD_SUCCESS: null,
-  MEDIA_UPLOAD_FAILURE: null
+  MEDIA_UPLOAD_FAILURE: null,
+
+  MEDIA_INFO_REQUEST: null,
+  MEDIA_INFO_SUCCESS: null,
+  MEDIA_INFO_FAILURE: null
 })
