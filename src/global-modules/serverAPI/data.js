@@ -40,7 +40,7 @@ const getUserData = (id, authToken) => {
             // Dispatch the success action
             dispatch(receiveUserData(result.data.user))
           }
-        }).catch(err => console.log(err))
+        }).catch(err => console.log('getUserData: ' + err))
   }
 }
 

@@ -4,7 +4,6 @@ import { apiBaseUrl } from 'app.config'
 import jwtDecode from 'jwt-decode'
 
 import { requestRegister, receiveRegister, registerError } from 'actions/account'
-import { getUserData } from './data'
 
 // Register
 const registerUser = (data, history) => {
@@ -45,7 +44,7 @@ const registerUser = (data, history) => {
 
             history.push('/cp')
           }
-        }).catch(err => console.log(err))
+        }).catch(err => console.log('registerUser: ' + err))
   }
 }
 

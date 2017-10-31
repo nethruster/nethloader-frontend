@@ -46,7 +46,7 @@ const loginUser = (credentials, history) => {
 
             history.push('/cp')
           }
-        }).catch(err => console.log(err))
+        }).catch(err => console.log('loginUser: ' + err))
   }
 }
 
@@ -67,20 +67,45 @@ const logoutUser = (history) => {
 }
 
 const logoutUserNoHistory = (willReload) => {
-  return dispatch => {
-    Object.keys(window.localStorage).forEach((value) => {
-      if (value.substring(0, 4) === 'neth') {
-        window.localStorage.removeItem(value)
-      }
-    })
-    if (willReload) {
-      window.location.reload()
+  Object.keys(window.localStorage).forEach((value) => {
+    if (value.substring(0, 4) === 'neth') {
+      window.localStorage.removeItem(value)
     }
+  })
+  if (willReload) {
+    window.location.reload()
   }
+}
+
+const checkCurrentSessionToken = (token) => {
+  let requestConfig = {
+    method: 'POST',
+    headers: {
+      'accept': 'application/json',
+      'content-type': 'application/json',
+      'authentication': token
+    },
+    body: JSON.stringify({
+      query: `query{IsCurrentSessionValid}`
+    })
+  }
+
+  return fetch(apiBaseUrl, requestConfig)
+        .then(response => {
+          if (response.status >= 200 && response.status < 300) {
+            return response.json()
+          } else {
+            return Promise.reject(response.status)
+          }
+        })
+        .then(result => {
+          return result.data.IsCurrentSessionValid
+        }).catch(err => console.log('checkCurrentSessionToken: ' + err))
 }
 
 export {
   loginUser,
   logoutUser,
-  logoutUserNoHistory
+  logoutUserNoHistory,
+  checkCurrentSessionToken
 }

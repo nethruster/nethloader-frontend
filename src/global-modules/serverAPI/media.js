@@ -44,7 +44,7 @@ const uploadMedia = (id, media, authToken) => {
             dispatch(getUserData(id, authToken))
             return result.data.uploadImage.id
           }
-        }).catch(err => console.log(err))
+        }).catch(err => console.log('uploadMedia: ' + err))
   }
 }
 
@@ -80,7 +80,7 @@ const getMediaInfo = (mediaId) => {
             // Dispatch the success action
             dispatch(receiveMediaInfo(result.data.image))
           }
-        }).catch(err => console.log(err))
+        }).catch(err => console.log('getMediaInfo:' + err))
   }
 }
 

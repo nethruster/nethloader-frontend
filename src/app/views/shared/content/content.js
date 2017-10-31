@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'preact-redux'
 
 import {getUserData} from 'serverAPI/data'
-import {logoutUserNoHistory} from 'serverAPI/authentication'
+import {logoutUserNoHistory, checkCurrentSessionToken} from 'serverAPI/authentication'
 import {checkTokenExpiryDate} from 'utils'
 
 import asyncComponent from 'asyncComponent'
@@ -24,13 +24,13 @@ function mapStateToProps (state) {
 export default connect(mapStateToProps)(class Content extends Component {
   componentWillMount() {
     if(this.props.isAuthenticated) {
-      checkTokenExpiryDate(this.props.sessionData.exp).then((result) => {
-        if (result) {
-          this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token))
-        } else {
-          this.props.dispatch(logoutUserNoHistory(true))
-        }
-      }) 
+      checkCurrentSessionToken(this.props.token).then(async (result) => {
+         if (await result){ 
+            await checkTokenExpiryDate(this.props.sessionData.exp) ? this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token)) : logoutUserNoHistory(true)
+          } else {
+            this.props.dispatch(logoutUserNoHistory(true))
+          }
+      })
     } else {
       this.props.dispatch(logoutUserNoHistory(false))
     }
