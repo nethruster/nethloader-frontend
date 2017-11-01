@@ -7,7 +7,7 @@ import Modal from '../../modal/modal.js'
 
 import { uploadMedia } from 'serverAPI/media'
 
-import style from './upload.scss'
+import style from './uploadMedia.scss'
 
 function mapStateToProps (state) {
   const {token, sessionData} = state.authentication
@@ -18,7 +18,7 @@ function mapStateToProps (state) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(class HeaderNav extends Component {
+export default withRouter(connect(mapStateToProps)(class UploadMedia extends Component {
   constructor (props) {
     super(props)
 
@@ -100,7 +100,7 @@ export default withRouter(connect(mapStateToProps)(class HeaderNav extends Compo
           this.toggleIsUploading()
           this.resetFileInput(event)
           this.toggleUploadModal()
-          this.context.router.history.push(`/${imageId}`)
+          this.props.history.push(`/${imageId}`)
         }
       })
     })

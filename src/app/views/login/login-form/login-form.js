@@ -15,9 +15,7 @@ const viewStrings = locale.login.form
 function mapStateToProps (state) {
   const {isFetching} = state.authentication
 
-  return {
-    isFetching
-  }
+  return {isFetching}
 }
 
 export default connect(mapStateToProps)(class LoginForm extends Component {

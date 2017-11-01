@@ -4,7 +4,6 @@ import { connect } from 'preact-redux'
 
 import Button from '../button/button.js'
 import Modal from '../modal/modal.js'
-import Upload from './upload/upload.js'
 
 import { logoutUser } from 'serverAPI/authentication'
 
@@ -32,11 +31,18 @@ export default withRouter(connect(mapStateToProps)(class HeaderNav extends Compo
         help: {
           isActive: false
         }
-      }
+      },
+      UploadMedia: null
     }
 
     this.toggleHelpModal = this.toggleHelpModal.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
+    this.loadUploadMediaComponent = this.loadUploadMediaComponent.bind(this)
+  }
+
+  async loadUploadMediaComponent () {
+    let UploadMedia = (await import(/*webpackChunkName: "shared_header-nav_uploadmedia"*/'./uploadMedia/uploadMedia.js')).default
+    this.setState({ UploadMedia });
   }
 
   toggleHelpModal () {
@@ -50,7 +56,7 @@ export default withRouter(connect(mapStateToProps)(class HeaderNav extends Compo
   }
 
   handleLogout () {
-    this.props.dispatch(logoutUser(this.context.router.history))
+    this.props.dispatch(logoutUser(this.props.history))
   }
 
   render ({dispatch, isAuthenticated, token}) {
@@ -68,7 +74,7 @@ export default withRouter(connect(mapStateToProps)(class HeaderNav extends Compo
           <p class={`${style.headerNavLogoTitle} flex flex-full-center`}>Nethloader</p>
         </div>
         <nav class={`${style.headerNavLinks} flex flex-full-center`}>
-          {isAuthenticated && <Upload />}
+          {isAuthenticated && (this.state.UploadMedia ? <this.state.UploadMedia /> : this.loadUploadMediaComponent())}
           {isAuthenticated && <NavLink to='/cp' activeClassName='dom-hidden'><Button text='Control Panel' icon='cp' navButton /></NavLink>}
           <Button text={viewStrings.about_nethloader} icon='help-circle' navButton onClickExecute={this.toggleHelpModal} />
           {isAuthenticated ? <Button text='Logout' icon='logout' navButton onClickExecute={this.handleLogout} /> : <NavLink to='/login'><Button text='Login' icon='login' navButton /></NavLink>}
