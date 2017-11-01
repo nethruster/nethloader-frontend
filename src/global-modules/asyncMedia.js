@@ -2,6 +2,8 @@ import { h, Component } from 'preact'
 
 import ViewLoading from '../app/views/shared/view-loading/view-loading.js'
 
+const supportedVideoFormats = ['mp4', 'webm', 'ogg']
+
 export default class AsyncMedia extends Component {
   constructor (props) {
     super(props)
@@ -9,8 +11,12 @@ export default class AsyncMedia extends Component {
     this.state = {isLoaded: false}
   }
 
+  isVideoFormat () {
+    return supportedVideoFormats.includes(this.props.type)
+  }
+
   componentWillMount () {
-    if (!this.state.isLoaded) {
+    if (!this.state.isLoaded && !this.isVideoFormat()) {
       let tempImgComponent = new Image()
       tempImgComponent.src = this.props.src
       tempImgComponent.onload = () => {
@@ -18,10 +24,12 @@ export default class AsyncMedia extends Component {
       }
 
       tempImgComponent.remove()
+    } else {
+      this.setState({ isLoaded: true })
     }
   }
 
   render () {
-    return this.state.isLoaded ? <img src={this.props.src} /> : <ViewLoading />
+    return this.state.isLoaded ? (this.isVideoFormat() ? <video preload controlsList='nodownload' width={this.props.width} controls={this.props.controls}><source src={this.props.src} type={`video/${this.props.type}`} /></video> : <img src={this.props.src} />) : <ViewLoading />
   }
 }

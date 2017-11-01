@@ -8,7 +8,7 @@ export default class MediaItem extends Component {
   render () {
     return (
       <div class={`${style.mediaItem}`}>
-        <AsyncMedia src={this.props.mediaSrc} />
+        <AsyncMedia src={this.props.mediaSrc} type={this.props.type} controls />
       </div>
     )
   }

@@ -45,7 +45,7 @@ export default class Upload extends Component {
     const imageUrl = `${window.location.origin}/${this.props.id}`
     return (
       <li class={`${style.upload} flex flex-cross-center flex-sb`} data-id={this.props.id}>
-        <div class={`${style.uploadImage} flex flex-full-center`} title='Click to open'><Link target='_blank' rel='noopener' to={`/${this.props.id}`}><AsyncMedia src={imagePath} /></Link></div>
+        <div class={`${style.uploadImage} flex flex-full-center`} title='Click to open'><Link target='_blank' rel='noopener' to={`/${this.props.id}`}><AsyncMedia src={imagePath} type={this.props.type} width='100' /></Link></div>
         <div class={`${style.uploadDataSpec} flex flex-dc`}><p><span>ID:</span> {this.props.id}</p> <p><span>{viewStrings.type}:</span> {this.props.type}</p></div>
         <div class={`${style.uploadDataDate} flex flex-dc`} title={computeDateFormat(this.props.upDate)}><small>{computeDateFormat(this.props.upDate)}</small><p><span>{viewStrings.uploaded}:</span> {computeDate(this.props.upDate)}</p> <p><span>{viewStrings.at}:</span> {computeTime(this.props.upDate)}</p></div>
         <div class={`${style.uploadButtons} flex flex-dc flex-sa`}><a href={imagePath} download><Button small text={viewStrings.download} icon='download' customClass={style.uploadButtonsButton} /></a><a><Button small icon='copy' text={this.state.copy.valueCopied ? 'COPIED!' : viewStrings.copy_url} copyText={imageUrl} onClickExecute={this.handleCopyClick} customClass={style.uploadButtonsButton} /></a></div>

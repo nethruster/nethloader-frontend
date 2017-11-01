@@ -7,8 +7,10 @@
         border-radius: var(--base-br);
         border: 1px solid rgba(0,0,0,.08);
 
-        img {
+        img,
+        video {
             border-radius: var(--base-br);
+            max-width: 100%;
         }
     }
 }

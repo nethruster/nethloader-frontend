@@ -12,15 +12,33 @@ function mapStateToProps (state) {
 }
 
 export default connect(mapStateToProps)(class Uploads extends Component {
-  render ({hasData, data}) {
-    let mediaList = hasData ? data.images.map((entry) => {
-      return <Upload key={entry.id} id={entry.id} type={entry.extension} upDate={entry.createdAt} />
-    }) : () => { return 'Loading' }
+  compareByDate (a, b) {
+    if (a.createdAt > b.createdAt) {
+      return -1
+    }
+    if (a.createdAt < b.createdAt) {
+      return 1
+    }
+    return 0
+  }
 
+  computeMediaList (sort) {
+    let mediaList = this.props.data.images
+    switch (sort) {
+      case 'byDate':
+        mediaList.sort(this.compareByDate)
+        break
+    }
+    return mediaList.map((entry) => {
+      return <Upload key={entry.id} id={entry.id} type={entry.extension} upDate={entry.createdAt} />
+    })
+  }
+
+  render ({hasData, data}) {
     return (
       <div class={style.uploads}>
         <ul>
-          {mediaList}
+          {hasData ? this.computeMediaList('byDate') : 'Loading'}
         </ul>
       </div>
     )

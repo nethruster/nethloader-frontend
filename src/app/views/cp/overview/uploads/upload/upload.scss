@@ -1,5 +1,8 @@
 :local {
     .upload {
+        border-left: 4px solid transparent;
+        padding-left: 8px;
+
         &:not(:last-child) { 
             border-bottom: 1px solid #e1e4e8;
 
@@ -7,6 +10,8 @@
         }
 
         &:not(:first-child) { padding-top: var(--base-pm); }
+
+        &:hover { border-left-color: #1e87f0 }
 
         &Image {
             flex: 1;
