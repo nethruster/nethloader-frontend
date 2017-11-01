@@ -1,6 +1,6 @@
 :local {
     .headerNav {
-        height: 60px;
+        height: var(--headerNavHeight);
 
         background: var(--bg-blue-gradient);
         

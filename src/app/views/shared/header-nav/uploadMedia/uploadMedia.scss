@@ -13,7 +13,7 @@
             width: 100%;
             border: 1px dashed;
             font-weight: 300;
-            color: #1e87f0;
+            color: var(--button-bg-color-contrast);
             text-transform: uppercase;
             padding: calc(var(--base-pm) * 8);
             margin: calc(var(--base-pm) * 2) 0;

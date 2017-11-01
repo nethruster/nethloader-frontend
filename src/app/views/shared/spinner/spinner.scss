@@ -5,13 +5,13 @@
     }
 
     @keyframes spinner-dash {
-        0% { stroke-dashoffset:88px; }
+        0% { stroke-dashoffset: 88px; }
         50% {
-            stroke-dashoffset:22px;
+            stroke-dashoffset: 22px;
             transform: rotate(135deg);
         }
         100% {
-            stroke-dashoffset:88px;
+            stroke-dashoffset: 88px;
             transform: rotate(450deg);
         }
     }

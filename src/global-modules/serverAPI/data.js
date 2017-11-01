@@ -35,7 +35,8 @@ const getUserData = (id, authToken) => {
             dispatch(userDataError(result.errors[0].message))
             return Promise.reject(result.errors[0].message)
           } else {
-            // If login was successful, set the token in local storage
+            // TODO Check if we already have the latest data
+            // Set the token in local storage
             window.localStorage.setItem('neth-userData', JSON.stringify(result.data.user))
             // Dispatch the success action
             dispatch(receiveUserData(result.data.user))

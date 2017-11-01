@@ -1,23 +1,25 @@
 :local {
     .upload {
         border-left: 4px solid transparent;
-        padding-left: 8px;
+        padding-left: var(--base-pm);
+        border-radius: var(--base-br) 0 0 var(--base-br);
+        overflow: hidden;
+        max-height: var(--cp-overview-medialist-height);
 
         &:not(:last-child) { 
-            border-bottom: 1px solid #e1e4e8;
+            border-bottom: 1px solid var(--cp-overview-layoutborder-color);
 
             padding-bottom: var(--base-pm);
         }
 
         &:not(:first-child) { padding-top: var(--base-pm); }
 
-        &:hover { border-left-color: #1e87f0 }
+        &:hover { border-left-color: var(--cp-overview-medialist-item-activeborder-color) }
 
-        &Image {
+        &Media {
             flex: 1;
-            max-width: 100px;
-            min-width: 90px;
-            height: 90px;
+            max-width: var(--cp-overview-medialist-media-width);
+            max-height: var(--cp-overview-medialist-media-height);
 
             margin-right: calc(var(--base-pm) * 2);
 

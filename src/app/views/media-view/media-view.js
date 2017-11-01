@@ -5,7 +5,7 @@ import MediaItem from './media-item/media-item.js'
 import MediaInfo from './media-info/media-info.js'
 import ViewLoading from '../shared/view-loading/view-loading'
 
-import { mediaPath } from 'app.config'
+import { baseMediaPath } from 'app.config'
 import { getMediaInfo } from 'serverAPI/media'
 
 import style from './media-view.scss'
@@ -29,7 +29,7 @@ export default connect(mapStateToProps)(class MediaView extends Component {
         ...this.state
       }
 
-      state.mediaSrc = `${mediaPath}${this.props.mediaInfo.id}.${this.props.mediaInfo.extension}`
+      state.mediaSrc = `${baseMediaPath}${this.props.mediaInfo.id}.${this.props.mediaInfo.extension}`
 
       this.setState(state)
     })

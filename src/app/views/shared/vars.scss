@@ -13,7 +13,8 @@
         --loadingSpinnerColor: #1e87f0;
 
         --headerNavLogoColor: #fff;
-        --headerNavLogoSize: 45px;
+        --headerNavLogoSize: 38px;
+        --headerNavHeight: 60px;
 
         --paper-background-color: #fff;
         --paper-text-color: #222;
@@ -32,6 +33,9 @@
         --button-text-color-transparent--hover: #fff;
         --button-border-color-transparent: #e5e5e5;
         --button-border-color-transparent--hover: #fff;
+        --button-text-color-nav--default: rgba(255,255,255,.8);
+        --button-text-color-nav--hover: rgba(255,255,255, 1);
+        --button-bg-color-nav--hover: rgba(255,255,255, .1);
 
         --input-bg-color-default: #fff;
         --input-text-color-default: #666;
@@ -42,11 +46,24 @@
         
         --media-view-card-background-color: transparentize(#f8f8f8, .25);
 
-        --cpsubheader-active-tab-border-color: darken(#1e87f0, 10%);
+        --cp-subheader-active-tab-border-color: darken(#1e87f0, 10%);
 
-        --input-accent-color: #1e87f0;
+        --cp-overview-search-input-accent-color: #1e87f0;
+        --cp-overview-search-title-color: #1e87f0;
 
-        --subheader-tab-color-default: #249af3;
-        --subheader-tab-color-admin: #D50000;
+        --cp-subheader-tab-color-default: rgba(124, 124, 124, 0.6);
+        --cp-subheader-tab-color-active: #249af3;
+        --cp-subheader-tab-color-admin: #D50000;
+        
+        --cp-overview-layoutborder-color: #e1e4e8;
+
+        --cp-overview-medialist-height: 90px;
+        --cp-overview-medialist-media-width: 100px;
+        --cp-overview-medialist-media-height: 74px;
+        --cp-overview-medialist-item-activeborder-color: #1e87f0;
+
+        --modal-content-border-color: rgba(27,31,35,0.25);
+        --modal-content-background-color: #fff;
+        --modal-body-text-color: rgb(90, 62, 62);
     }
 }

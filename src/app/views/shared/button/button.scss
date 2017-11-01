@@ -75,7 +75,7 @@
             outline: none;
             border-radius: 0;
             height: 60px;
-            color: transparentize(#fff, .2);
+            color: var(--button-text-color-nav--default);
             margin: 0;
             border: 0;
             text-transform: none;
@@ -85,11 +85,11 @@
             
             
             &:hover {
-                color: #fff;
-                background-color: transparentize(#fff, .9);
+                color: var(--button-text-color-nav--hover);
+                background-color: var(--button-bg-color-nav--hover);
 
                 svg {
-                    color: #fff;
+                    color: var(--button-text-color-nav--hover);
                 }
             }
         }

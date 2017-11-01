@@ -30,6 +30,6 @@ export default class AsyncMedia extends Component {
   }
 
   render () {
-    return this.state.isLoaded ? (this.isVideoFormat() ? <video preload controlsList='nodownload' width={this.props.width} controls={this.props.controls}><source src={this.props.src} type={`video/${this.props.type}`} /></video> : <img src={this.props.src} />) : <ViewLoading />
+    return this.state.isLoaded ? (this.isVideoFormat() ? <video preload controlsList='nodownload' height={this.props.size} controls={this.props.controls}><source src={this.props.src} type={`video/${this.props.type}`} /></video> : <img src={this.props.src} />) : <ViewLoading />
   }
 }

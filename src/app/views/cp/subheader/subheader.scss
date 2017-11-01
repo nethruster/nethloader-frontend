@@ -2,7 +2,7 @@
     .cpsubheader {
         width: 100%;
 
-        border-bottom: 1px solid #e1e4e8;
+        border-bottom: 1px solid var(--cp-overview-layoutborder-color);
 
         &Wrapper {
             width: 100%;
@@ -27,7 +27,7 @@
 
                 height: 100%;
 
-                border-bottom: 2px solid #fff;
+                border-bottom: 2px solid transparent;
 
                 padding: calc(var(--base-pm) * 2);
 
@@ -36,7 +36,7 @@
                 svg {
                     width: 20px;
 
-                    color: rgba(124, 124, 124, 0.6);
+                    color: var(--cp-subheader-tab-color-default);
 
                     transition: color .2s;
                 }
@@ -45,11 +45,11 @@
                     svg {
                         opacity: 1;
 
-                        color: var(--subheader-tab-color-default);
+                        color: var(--cp-subheader-tab-color-active);
                     }
 
                     &[data-adminbutton] {
-                        svg { color: var(--subheader-tab-color-admin); }
+                        svg { color: var(--cp-subheader-tab-color-admin); }
                     }
                 }
             }
@@ -60,16 +60,16 @@
 
 :global {
     a.active {
-        border-bottom: 2px solid var(--cpsubheader-active-tab-border-color); 
+        border-bottom: 2px solid var(--cp-subheader-active-tab-border-color); 
     
         svg {
             opacity: 1;
 
-            color: var(--subheader-tab-color-default);
+            color: var(--cp-subheader-tab-color-active);
         }
 
         &[data-adminbutton] {
-            svg { color: var(--subheader-tab-color-admin); }
+            svg { color: var(--cp-subheader-tab-color-admin); }
         }
     }
 }
