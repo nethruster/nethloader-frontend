@@ -11,25 +11,28 @@ import locale from 'locale'
 const viewStrings = locale.cp.subheader
 
 function mapStateToProps (state) {
-  const {hasData, data} = state.data
+  const {isFetching, data} = state.data
 
-  return {hasData, data}
+  return {
+    isFetching,
+    data
+  }
 }
 
 export default connect(mapStateToProps)(class Subheader extends Component {
-  render ({hasData, data}) {
+  render ({isFetching, data}) {
     return (
       <div class={`${style.cpsubheader} flex flex-main-center`}>
         <div class={`${style.cpsubheaderWrapper} flex flex-cross-center flex-sb`}>
           <div class={style.cpsubheaderUserStats}>
-            <p>{hasData ? data.name : 'Loading'}</p>
-            <p>{hasData ? data.images.length : 'Loading'} {viewStrings.uploads}</p>
+            <p>{isFetching && !data ? 'Loading' : data.name}</p>
+            <p>{isFetching && !data ? 'Loading' : data.images.length} {viewStrings.uploads}</p>
           </div>
           <div class={`${style.cpsubheaderTabs} flex flex-cross-center`}>
             <nav class='flex flex-cross-center flex-sa'>
               <NavLink exact to='/cp/'><Icon iconName='overview' />&nbsp;{viewStrings.tabs.overview}</NavLink>
               <NavLink exact to='/cp/settings'><Icon iconName='settings' />&nbsp;{viewStrings.tabs.settings}</NavLink>
-              {hasData ? (data.isAdmin ? <NavLink exact to='/cp/neth-admin' data-adminbutton><Icon iconName='admin-settings' />&nbsp;{viewStrings.tabs.admin_settings}</NavLink> : null) : null}
+              {isFetching ? null : (data.isAdmin ? <NavLink exact to='/cp/neth-admin' data-adminbutton><Icon iconName='admin-settings' />&nbsp;{viewStrings.tabs.admin_settings}</NavLink> : null)}
             </nav>
           </div>
         </div>

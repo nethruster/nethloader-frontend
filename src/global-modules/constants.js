@@ -24,6 +24,10 @@ export default keymirror({
   MEDIA_UPLOAD_SUCCESS: null,
   MEDIA_UPLOAD_FAILURE: null,
 
+  MEDIA_DELETE_REQUEST: null,
+  MEDIA_DELETE_SUCCESS: null,
+  MEDIA_DELETE_FAILURE: null,
+
   MEDIA_INFO_REQUEST: null,
   MEDIA_INFO_SUCCESS: null,
   MEDIA_INFO_FAILURE: null

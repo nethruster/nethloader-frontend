@@ -39,7 +39,7 @@ export default connect(mapStateToProps)(class MediaView extends Component {
     return (
       <div class={`${style.mediaView} flex flex-full-center`}>
         {this.state.mediaSrc ? <div class={`${style.mediaViewWrapper} flex flex-dc flex-full-center`}>
-          <MediaItem mediaSrc={this.state.mediaSrc} type={this.props.mediaInfo.extension} />
+          <MediaItem mediaSrc={this.state.mediaSrc} type={this.props.mediaInfo.extension} id={this.props.mediaInfo.id} />
           <MediaInfo mediaSrc={this.state.mediaSrc} data={this.props.mediaInfo} />
         </div> : <ViewLoading />}
       </div>

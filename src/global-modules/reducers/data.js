@@ -3,26 +3,25 @@ import appConstants from '../constants'
 // Data reducer
 const data = (state = {
   isFetching: false,
-  hasData: !!window.localStorage.getItem('neth-userData'),
   data: JSON.parse(window.localStorage.getItem('neth-userData')) || {},
   errorMessage: ''
 }, action) => {
   switch (action.type) {
     case appConstants.USER_DATA_REQUEST:
       return Object.assign({}, state, {
-        hasData: false,
+        isFetching: true,
         data: {},
         errorMessage: ''
       })
     case appConstants.USER_DATA_SUCCESS:
       return Object.assign({}, state, {
-        hasData: true,
+        isFetching: false,
         data: action.data,
         errorMessage: ''
       })
     case appConstants.USER_DATA_FAILURE:
       return Object.assign({}, state, {
-        hasData: false,
+        isFetching: false,
         data: {},
         errorMessage: action.errorMessage
       })

@@ -3,7 +3,7 @@ import appConstants from '../constants'
 const requestUserData = () => {
   return {
     type: appConstants.USER_DATA_REQUEST,
-    hasData: false,
+    isFetching: true,
     data: {},
     errorMessage: ''
   }
@@ -12,7 +12,7 @@ const requestUserData = () => {
 const receiveUserData = (data) => {
   return {
     type: appConstants.USER_DATA_SUCCESS,
-    hasData: true,
+    isFetching: false,
     data,
     errorMesage: ''
   }
@@ -21,7 +21,7 @@ const receiveUserData = (data) => {
 const userDataError = (errorMessage) => {
   return {
     type: appConstants.USER_DATA_FAILURE,
-    hasData: false,
+    isFetching: false,
     data: {},
     errorMessage
   }

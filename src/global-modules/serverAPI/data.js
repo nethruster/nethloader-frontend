@@ -36,7 +36,7 @@ const getUserData = (id, authToken) => {
             return Promise.reject(result.errors[0].message)
           } else {
             // TODO Check if we already have the latest data
-            // Set the token in local storage
+            // Set the data in local storage
             window.localStorage.setItem('neth-userData', JSON.stringify(result.data.user))
             // Dispatch the success action
             dispatch(receiveUserData(result.data.user))
@@ -44,7 +44,6 @@ const getUserData = (id, authToken) => {
         }).catch(err => console.log('getUserData: ' + err))
   }
 }
-
 export {
   getUserData
 }

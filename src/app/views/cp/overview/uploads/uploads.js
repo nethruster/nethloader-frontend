@@ -1,17 +1,31 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
 
+import { deleteMedia } from 'serverAPI/media'
+
 import Upload from './upload/upload.js'
 
 import style from './uploads.scss'
 
 function mapStateToProps (state) {
-  const {hasData, data} = state.data
+  const {isFetching, data} = state.data
+  const {token, sessionData} = state.authentication
 
-  return {hasData, data}
+  return {
+    isFetching,
+    data,
+    token,
+    sessionData
+  }
 }
 
 export default connect(mapStateToProps)(class Uploads extends Component {
+  constructor (props) {
+    super(props)
+
+    this.handleDeleteMedia = this.handleDeleteMedia.bind(this)
+  }
+
   compareByDate (a, b) {
     if (a.createdAt > b.createdAt) {
       return -1
@@ -24,21 +38,31 @@ export default connect(mapStateToProps)(class Uploads extends Component {
 
   computeMediaList (sort) {
     let mediaList = this.props.data.images
-    switch (sort) {
-      case 'byDate':
-        mediaList.sort(this.compareByDate)
-        break
+    if (mediaList.length > 0) {
+      switch (sort) {
+        case 'byDate':
+          mediaList.sort(this.compareByDate)
+          break
+        default:
+          break
+      }
+      return mediaList.map((entry, index) => {
+        return <Upload key={index} data={entry} deleteMedia={this.handleDeleteMedia} />
+      })
+    } else {
+      return 'No media'
     }
-    return mediaList.map((entry) => {
-      return <Upload key={entry.id} id={entry.id} type={entry.extension} upDate={entry.createdAt} />
-    })
   }
 
-  render ({hasData, data}) {
+  handleDeleteMedia (childElement) {
+    this.props.dispatch(deleteMedia(childElement.dataset.id, this.props.token, this.props.sessionData.id))
+  }
+
+  render ({dispatch}) {
     return (
       <div class={style.uploads}>
-        <ul>
-          {hasData ? this.computeMediaList('byDate') : 'Loading'}
+        <ul ref={(el) => { this.mediaListDOMNode = el }}>
+          {this.props.isFetching ? 'Loading media...' : this.computeMediaList('byDate')}
         </ul>
       </div>
     )

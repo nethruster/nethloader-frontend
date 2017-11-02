@@ -1,18 +1,18 @@
 :local {
     .upload {
-        border-left: 4px solid transparent;
-        padding-left: var(--base-pm);
-        border-radius: var(--base-br) 0 0 var(--base-br);
-        overflow: hidden;
+        min-height: var(--cp-overview-medialist-height);
         max-height: var(--cp-overview-medialist-height);
 
-        &:not(:last-child) { 
-            border-bottom: 1px solid var(--cp-overview-layoutborder-color);
+        padding-left: var(--base-pm);
+        padding-top: var(--base-pm);
+        padding-bottom: var(--base-pm);
 
-            padding-bottom: var(--base-pm);
-        }
+        border-left: 4px solid transparent;
+        border-radius: var(--base-br) 0 0 var(--base-br);
 
-        &:not(:first-child) { padding-top: var(--base-pm); }
+        overflow: hidden;
+
+        &:not(:last-child) { border-bottom: 1px solid var(--cp-overview-layoutborder-color); }
 
         &:hover { border-left-color: var(--cp-overview-medialist-item-activeborder-color) }
 
@@ -53,6 +53,21 @@
                 max-width: 150px;
 
                 margin: 0;
+            }
+        }
+
+        &DeleteButton {
+            min-height: 42px;
+            min-width: 42px;
+
+            margin-left: var(--base-pm);
+            
+            border-radius: 100%;
+            
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgba(0,0,0,.1)
             }
         }
     }

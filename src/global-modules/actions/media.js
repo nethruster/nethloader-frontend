@@ -3,14 +3,14 @@ import appConstants from '../constants'
 const requestMediaUpload = () => {
   return {
     type: appConstants.MEDIA_UPLOAD_REQUEST,
-    data: {}
+    mediaData: {}
   }
 }
 
-const receiveMediaUpload = (data) => {
+const receiveMediaUpload = (mediaData) => {
   return {
     type: appConstants.MEDIA_UPLOAD_SUCCESS,
-    data
+    mediaData
   }
 }
 
@@ -18,6 +18,27 @@ const mediaUploadError = (errorMessage) => {
   return {
     type: appConstants.MEDIA_UPLOAD_FAILURE,
     errorMessage
+  }
+}
+
+const requestMediaDelete = () => {
+  return {
+    type: appConstants.MEDIA_DELETE_REQUEST,
+    status: false
+  }
+}
+
+const receiveMediaDelete = () => {
+  return {
+    type: appConstants.MEDIA_DELETE_SUCCESS,
+    status: true
+  }
+}
+
+const mediaDeleteError = () => {
+  return {
+    type: appConstants.MEDIA_DELETE_FAILURE,
+    status: false
   }
 }
 
@@ -52,5 +73,8 @@ export {
   mediaUploadError,
   requestMediaInfo,
   receiveMediaInfo,
-  mediaInfoError
+  mediaInfoError,
+  requestMediaDelete,
+  receiveMediaDelete,
+  mediaDeleteError
 }

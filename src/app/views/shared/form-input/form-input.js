@@ -8,6 +8,7 @@ export default class FormInput extends Component {
       <div class='input-container flex flex-dc'>
         <input id={this.props.inputId}
           class={`${style.inputClass} ${this.props.inputState}`}
+          name={this.props.inputId}
           type={this.props.inputType}
           placeholder={this.props.inputLabel}
           required={this.props.required}

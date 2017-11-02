@@ -3,8 +3,10 @@
 import { apiBaseUrl } from 'app.config'
 
 import { requestMediaUpload, receiveMediaUpload, mediaUploadError,
+  requestMediaDelete, receiveMediaDelete, mediaDeleteError,
   requestMediaInfo, mediaInfoError, receiveMediaInfo } from 'actions/media'
-import {getUserData} from 'serverAPI/data'
+
+import { getUserData } from 'serverAPI/data'
 
 // Upload
 const uploadMedia = (id, media, authToken) => {
@@ -34,7 +36,7 @@ const uploadMedia = (id, media, authToken) => {
             return Promise.reject(response.status)
           }
         })
-        .then(async (result) => {
+        .then((result) => {
           if (!result.data.uploadImage) {
             dispatch(mediaUploadError(result))
             return Promise.reject(result)
@@ -45,6 +47,47 @@ const uploadMedia = (id, media, authToken) => {
             return result.data.uploadImage.id
           }
         }).catch(err => console.log('uploadMedia: ' + err))
+  }
+}
+
+// Delete
+const deleteMedia = (mediaId, authToken, userId) => {
+  let requestConfig = {
+    method: 'POST',
+    headers: {
+      'accept': 'application/json',
+      'content-type': 'application/json',
+      'authentication': authToken
+    },
+    body: JSON.stringify({
+      query: `mutation{ deleteImage(id: "${mediaId}")}`
+    })
+  }
+
+  return dispatch => {
+    dispatch(requestMediaDelete())
+
+    return fetch(apiBaseUrl, requestConfig)
+      .then((response) => {
+        if (response.status >= 200 && response.status < 300) {
+          return response.json()
+        } else {
+          dispatch(mediaDeleteError(response.status))
+          return Promise.reject(response.status)
+        }
+      })
+      .then((result) => {
+        if (!result.data.deleteImage) {
+          dispatch(mediaDeleteError(result))
+          return Promise.reject(result)
+        } else {
+          // Dispatch the success action
+          dispatch(receiveMediaDelete())
+
+          // Refresh user data
+          dispatch(getUserData(userId, authToken))
+        }
+      }).catch(err => console.log('deleteMedia: ' + err))
   }
 }
 
@@ -86,5 +129,6 @@ const getMediaInfo = (mediaId) => {
 
 export {
   uploadMedia,
-  getMediaInfo
+  getMediaInfo,
+  deleteMedia
 }
