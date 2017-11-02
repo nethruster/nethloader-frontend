@@ -50,7 +50,9 @@ export default connect(mapStateToProps)(class Uploads extends Component {
         return <Upload key={index} data={entry} deleteMedia={this.handleDeleteMedia} />
       })
     } else {
-      return 'No media'
+      return (<p class={`${style.nomedia} flex flex-full-center`} ripple='ripple'>
+                No media available
+              </p>)
     }
   }
 

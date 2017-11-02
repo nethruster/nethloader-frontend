@@ -35,7 +35,7 @@ export default withRouter(connect(mapStateToProps)(class HeaderNav extends Compo
       UploadMedia: null
     }
 
-    this.toggleHelpModal = this.toggleHelpModal.bind(this)
+    // this.toggleHelpModal = this.toggleHelpModal.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
     this.loadUploadMediaComponent = this.loadUploadMediaComponent.bind(this)
   }
@@ -45,27 +45,27 @@ export default withRouter(connect(mapStateToProps)(class HeaderNav extends Compo
     this.setState({ UploadMedia });
   }
 
-  toggleHelpModal () {
-    let modals = {
-      ...this.state.modals
-    }
+  // toggleHelpModal () {
+  //   let modals = {
+  //     ...this.state.modals
+  //   }
 
-    modals.help.isActive = !modals.help.isActive
+  //   modals.help.isActive = !modals.help.isActive
 
-    this.setState({modals})
-  }
+  //   this.setState({modals})
+  // }
 
   handleLogout () {
     this.props.dispatch(logoutUser(this.props.history))
   }
 
   render ({dispatch, isAuthenticated, token}) {
-    const helpModalContent = (
-      <p>
-        This format <strong>allows</strong> use of <sup>html passed as a prop</sup><br />
-        Nethloader v{version} <br />
-      </p>
-    )
+    // const helpModalContent = (
+    //   <p>
+    //     This format <strong>allows</strong> use of <sup>html passed as a prop</sup><br />
+    //     Nethloader v{version} <br />
+    //   </p>
+    // )
 
     return (
       <header class={`${style.headerNav} flex flex-cross-center flex-sb`} role='menubar'>
@@ -76,10 +76,10 @@ export default withRouter(connect(mapStateToProps)(class HeaderNav extends Compo
         <nav class={`${style.headerNavLinks} flex flex-full-center`}>
           {isAuthenticated && (this.state.UploadMedia ? <this.state.UploadMedia /> : this.loadUploadMediaComponent())}
           {isAuthenticated && <NavLink to='/cp' activeClassName='dom-hidden'><Button text='Control Panel' icon='cp' navButton /></NavLink>}
-          <Button text={viewStrings.about_nethloader} icon='help-circle' navButton onClickExecute={this.toggleHelpModal} />
+          {/* <Button text={viewStrings.about_nethloader} icon='help-circle' navButton onClickExecute={this.toggleHelpModal} /> */}
           {isAuthenticated ? <Button text='Logout' icon='logout' navButton onClickExecute={this.handleLogout} /> : <NavLink to='/login'><Button text='Login' icon='login' navButton /></NavLink>}
         </nav>
-        <Modal modalTitle='About the project' modalContent={helpModalContent} isActive={this.state.modals.help.isActive} toggleModal={this.toggleHelpModal} />
+        {/* <Modal modalTitle='About the project' modalContent={helpModalContent} isActive={this.state.modals.help.isActive} toggleModal={this.toggleHelpModal} /> */}
       </header>
     )
   }

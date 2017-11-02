@@ -6,6 +6,7 @@ import Button from '../../button/button.js'
 import Modal from '../../modal/modal.js'
 
 import { uploadMedia } from 'serverAPI/media'
+import { isValidFormat } from 'utils'
 
 import style from './uploadMedia.scss'
 
@@ -90,23 +91,28 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
 
   handleUploadSubmit (event) {
     event.preventDefault()
+    if (this.state.modals.upload.files.length <= 0) {
+      console.log('No files selected')
+    } else if (this.state.modals.upload.files.length > 0) {
+      this.toggleIsUploading()
 
-    this.toggleIsUploading()
+      this.state.modals.upload.files.forEach((file, index) => {
+        this.props.dispatch(uploadMedia(this.props.sessionData.id, file, this.props.token)).then((imageId) => {
+          this.increaseUploadingFileIndexCount()
 
-    this.state.modals.upload.files.forEach((file, index) => {
-      this.props.dispatch(uploadMedia(this.props.sessionData.id, file, this.props.token)).then((imageId) => {
-        this.increaseUploadingFileIndexCount()
-
-        return imageId
-      }).then((imageId) => {
-        if (this.state.modals.upload.uploadingFileIndex === this.state.modals.upload.selectedFiles.length) {
-          this.toggleIsUploading()
-          this.resetFileInput(event)
-          this.toggleUploadModal()
-          this.props.history.push(`/${imageId}`)
-        }
+          return imageId
+        }).then((imageId) => {
+          if (this.state.modals.upload.uploadingFileIndex === this.state.modals.upload.selectedFiles.length) {
+            this.toggleIsUploading()
+            this.resetFileInput(event)
+            this.toggleUploadModal()
+            this.props.history.push(`/${imageId}`)
+          }
+        })
       })
-    })
+    } else {
+      console.log('Something went wrong')
+    }
   }
 
   handleFileChange (event) {
@@ -115,8 +121,12 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     }
 
     for (let i = 0; i < event.target.files.length; i++) {
-      modals.upload.files.push(event.target.files[i])
-      modals.upload.selectedFiles.push(event.target.files[i].name)
+      if (isValidFormat(event.target.files[i].type)) {
+        modals.upload.files.push(event.target.files[i])
+        modals.upload.selectedFiles.push(event.target.files[i].name)
+      } else {
+        console.log('Detected invalid file type: ' + event.target.files[i].name)
+      }
     }
 
     this.setState({modals})
@@ -145,7 +155,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     const uploadModalContent = (
       <div>
         <form onSubmit={this.handleUploadSubmit} class={`${style.uploadForm} flex flex-dc flex-full-center`}>
-          <input type='file' id='fileInput' name='file' accept='.png,.jpg,.gif,.mp4' onChange={this.handleFileChange} multiple />
+          <input type='file' id='fileInput' name='file' accept='image/*, video/*' onChange={this.handleFileChange} multiple />
           {this.state.modals.upload.isUploading ? <label class='flex flex-full-center'>Uploading file {this.state.modals.upload.uploadingFileIndex}/{this.state.modals.upload.selectedFiles.length}</label> : <label onDragOver={this.onDragOver} onDrop={this.handleFileDrop} for='fileInput' class='flex flex-full-center'>{this.state.modals.upload.selectedFiles.length === 0 ? 'Click to add files or drop them here' : 'Click to add more files or drop them here'}</label>}
           {this.state.modals.upload.isUploading ? null : <p title={this.state.modals.upload.selectedFiles.join(',')}>{this.state.modals.upload.selectedFiles.length} files selected</p>}
           <Button type='submit' text='Upload' spinner={this.state.modals.upload.isUploading} disabled={this.state.modals.upload.isUploading} spinnerColor='#fff' spinnerSize='14' contrast tabindex='-1' />

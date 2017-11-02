@@ -9,7 +9,6 @@ import reducers from 'reducers'
 
 import asyncComponent from 'asyncComponent'
 
-
 if(module.hot) {
   require('preact/devtools')
 }

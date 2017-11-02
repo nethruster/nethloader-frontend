@@ -1,5 +1,8 @@
 'use strict'
 
+const supportedVideoFormats = ['video/mp4', 'video/webm', 'video/ogg']
+const supportedMimeTypes = [...supportedVideoFormats, 'image/png', 'image/jpeg', 'image/jpg', 'image/png', 'image/gif']
+
 /**
  * Returns true if a string is empty or just spaces
  * @param string str
@@ -90,6 +93,24 @@ const computeDateFormat = (date) => {
   return `DD/MM/YYY GMT${dateObj.getTimezoneOffset() / 60}`
 }
 
+/**
+ * Return true if a video format is valid
+ * @param string type
+ * @return boolean
+ */
+const isValidVideoFormat = (type) => {
+  return supportedVideoFormats.includes(type)
+}
+
+/**
+ * Return true if a a format is valid
+ * @param string type
+ * @return boolean
+ */
+const isValidFormat = (type) => {
+  return supportedMimeTypes.includes(type)
+}
+
 export {
   validateEmpty,
   validateEmail,
@@ -99,5 +120,7 @@ export {
   checkTokenExpiryDate,
   computeDate,
   computeTime,
-  computeDateFormat
+  computeDateFormat,
+  isValidVideoFormat,
+  isValidFormat
 }

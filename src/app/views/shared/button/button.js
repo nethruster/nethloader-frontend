@@ -4,7 +4,13 @@ import style from './button.scss'
 import Icon from '../icon/icon.js'
 import Spinner from '../spinner/spinner.js'
 
+import mdripple from 'mdripple'
+
 export default class Button extends Component {
+  componentDidMount () {
+    mdripple(this.buttonEl)
+  }
+
   render () {
     return (
       <button
@@ -21,7 +27,9 @@ export default class Button extends Component {
         type={this.props.type}
         onClick={this.props.onClickExecute}
         data-copytext={this.props.copyText}
-        disabled={this.props.disabled} >
+        disabled={this.props.disabled}
+        ref={(el) => { this.buttonEl = el }}
+        ripple='ripple'>
         {this.props.icon ? <Icon iconName={this.props.icon} /> : null}&nbsp;
         <p class='flex'>{this.props.spinner ? <Spinner color={this.props.spinnerColor} size={this.props.spinnerSize} /> : this.props.text}&nbsp;</p>
       </button>
