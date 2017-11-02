@@ -40,16 +40,19 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     this.handleFileChange = this.handleFileChange.bind(this)
     this.increaseUploadingFileIndexCount = this.increaseUploadingFileIndexCount.bind(this)
     this.toggleIsUploading = this.toggleIsUploading.bind(this)
+    this.handleFileDrop = this.handleFileDrop.bind(this)
   }
 
   toggleUploadModal () {
-    let modals = {
-      ...this.state.modals
+    if (!this.state.modals.upload.isUploading) {
+      let modals = {
+        ...this.state.modals
+      }
+
+      modals.upload.isActive = !modals.upload.isActive
+
+      this.setState({modals})
     }
-
-    modals.upload.isActive = !modals.upload.isActive
-
-    this.setState({modals})
   }
 
   resetFileInput (event) {
@@ -119,13 +122,32 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     this.setState({modals})
   }
 
+  onDragOver (event) {
+    event.preventDefault()
+  }
+
+  handleFileDrop (event) {
+    event.preventDefault()
+
+    let modals = {
+      ...this.state.modals
+    }
+
+    for (let i = 0; i < event.dataTransfer.files.length; i++) {
+      modals.upload.files.push(event.dataTransfer.files[i])
+      modals.upload.selectedFiles.push(event.dataTransfer.files[i].name)
+    }
+
+    this.setState({ modals })
+  }
+
   render ({dispatch, isAuthenticated, token}) {
     const uploadModalContent = (
       <div>
         <form onSubmit={this.handleUploadSubmit} class={`${style.uploadForm} flex flex-dc flex-full-center`}>
           <input type='file' id='fileInput' name='file' accept='.png,.jpg,.gif,.mp4' onChange={this.handleFileChange} multiple />
-          {this.state.modals.upload.isUploading ? <label class='flex flex-full-center'>Uploading file {this.state.modals.upload.uploadingFileIndex}/{this.state.modals.upload.selectedFiles.length}</label> : <label for='fileInput' class='flex flex-full-center'>{this.state.modals.upload.selectedFiles.length === 0 ? 'Click to add files' : 'Click to add more files'}</label>}
-          {this.state.modals.upload.isUploading ? '' : <p title={this.state.modals.upload.selectedFiles.join(',')}>{this.state.modals.upload.selectedFiles.length} files selected</p>}
+          {this.state.modals.upload.isUploading ? <label class='flex flex-full-center'>Uploading file {this.state.modals.upload.uploadingFileIndex}/{this.state.modals.upload.selectedFiles.length}</label> : <label onDragOver={this.onDragOver} onDrop={this.handleFileDrop} for='fileInput' class='flex flex-full-center'>{this.state.modals.upload.selectedFiles.length === 0 ? 'Click to add files or drop them here' : 'Click to add more files or drop them here'}</label>}
+          {this.state.modals.upload.isUploading ? null : <p title={this.state.modals.upload.selectedFiles.join(',')}>{this.state.modals.upload.selectedFiles.length} files selected</p>}
           <Button type='submit' text='Upload' spinner={this.state.modals.upload.isUploading} disabled={this.state.modals.upload.isUploading} spinnerColor='#fff' spinnerSize='14' contrast tabindex='-1' />
         </form>
       </div>

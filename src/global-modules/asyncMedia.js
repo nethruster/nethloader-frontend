@@ -36,7 +36,7 @@ export default class AsyncMedia extends Component {
 
       tempVideoComponent.oncanplay = () => {
         let mediaNode =
-        (<video preload='metadata' controlsList='nodownload' height={this.props.size} controls={this.props.controls}>
+        (<video preload='metadata' height={this.props.size} controls={this.props.controls}>
           <source src={this.props.src} type={`video/${this.props.type}`} />
         </video>)
 
