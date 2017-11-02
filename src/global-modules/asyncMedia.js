@@ -8,7 +8,7 @@ export default class AsyncMedia extends Component {
   constructor (props) {
     super(props)
 
-    this.state = {isLoaded: false}
+    this.state = {mediaNode: null}
   }
 
   isVideoFormat () {
@@ -16,20 +16,39 @@ export default class AsyncMedia extends Component {
   }
 
   componentWillMount () {
-    if (!this.state.isLoaded && !this.isVideoFormat()) {
+    if (!this.state.mediaNode && !this.isVideoFormat()) {
       let tempImgComponent = new Image()
       tempImgComponent.src = this.props.src
-      tempImgComponent.onload = () => {
-        this.setState({isLoaded: true})
-      }
 
-      tempImgComponent.remove()
+      tempImgComponent.onload = () => {
+        let mediaNode = <img src={this.props.src} />
+
+        this.setState({mediaNode})
+
+        tempImgComponent.remove()
+      }
     } else {
-      this.setState({ isLoaded: true })
+      let tempVideoComponent = document.createElement('video')
+      let tempSourceElement = document.createElement('source')
+      tempSourceElement.src = this.props.src
+      tempSourceElement.type = `video/${this.props.type}`
+      tempVideoComponent.appendChild(tempSourceElement)
+
+      tempVideoComponent.oncanplay = () => {
+        let mediaNode =
+        (<video preload='metadata' controlsList='nodownload' height={this.props.size} controls={this.props.controls}>
+          <source src={this.props.src} type={`video/${this.props.type}`} />
+        </video>)
+
+        this.setState({ mediaNode })
+
+        tempSourceElement.remove()
+        tempVideoComponent.remove()
+      }
     }
   }
 
   render () {
-    return this.state.isLoaded ? (this.isVideoFormat() ? <video preload='metadata' controlsList='nodownload' height={this.props.size} controls={this.props.controls} data-mediaId={this.props.id}><source src={this.props.src} type={`video/${this.props.type}`} /></video> : <img src={this.props.src} />) : <ViewLoading />
+    return this.state.mediaNode ? this.state.mediaNode : <ViewLoading />
   }
 }

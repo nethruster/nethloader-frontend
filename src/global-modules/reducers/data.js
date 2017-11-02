@@ -2,7 +2,7 @@ import appConstants from '../constants'
 
 // Data reducer
 const data = (state = {
-  isFetching: false,
+  isFetching: true,
   data: JSON.parse(window.localStorage.getItem('neth-userData')) || {},
   errorMessage: ''
 }, action) => {

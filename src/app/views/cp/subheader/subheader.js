@@ -25,8 +25,8 @@ export default connect(mapStateToProps)(class Subheader extends Component {
       <div class={`${style.cpsubheader} flex flex-main-center`}>
         <div class={`${style.cpsubheaderWrapper} flex flex-cross-center flex-sb`}>
           <div class={style.cpsubheaderUserStats}>
-            <p>{isFetching && !data ? 'Loading' : data.name}</p>
-            <p>{isFetching && !data ? 'Loading' : data.images.length} {viewStrings.uploads}</p>
+            <p>{isFetching ? 'Loading' : data.name}</p>
+            <p>{isFetching ? 'Loading' : data.images.length} {viewStrings.uploads}</p>
           </div>
           <div class={`${style.cpsubheaderTabs} flex flex-cross-center`}>
             <nav class='flex flex-cross-center flex-sa'>
