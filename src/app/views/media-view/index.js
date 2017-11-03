@@ -35,12 +35,12 @@ export default connect(mapStateToProps)(class MediaView extends Component {
     })
   }
 
-  render ({mediaInfo, mediaSrc}) {
+  render ({mediaInfo}) {
     return (
       <div class={`${style.mediaView} flex flex-full-center`}>
-        {mediaSrc ? <div class={`${style.mediaViewWrapper} flex flex-dc flex-full-center`}>
-          <MediaItem mediaSrc={mediaSrc} type={mediaInfo.extension} id={mediaInfo.id} />
-          <MediaInfo mediaSrc={mediaSrc} data={mediaInfo} />
+        {this.state.mediaSrc ? <div class={`${style.mediaViewWrapper} flex flex-dc flex-full-center`}>
+          <MediaItem mediaSrc={this.state.mediaSrc} type={mediaInfo.extension} id={mediaInfo.id} />
+          <MediaInfo mediaSrc={this.state.mediaSrc} data={mediaInfo} />
         </div> : <ViewLoading />}
       </div>
     )

@@ -8,7 +8,7 @@ import { computeDateFormat, computeDate, computeTime } from 'utils'
 import style from './styles.scss'
 import '../../shared/paper/paper.scss'
 
-const viewStrings = locale.media_view
+const viewStrings = locale.media_view.info
 
 export default class MediaInfo extends Component {
   render ({data, mediaSrc}) {
@@ -19,8 +19,8 @@ export default class MediaInfo extends Component {
           <a href={mediaSrc} download rel='noopener' title='Download image'><Button text={viewStrings.buttons.download} small tabindex='-1' icon='download' /></a>
         </div>
         <div class='flex flex-full-center'>
-          <div class={`${style.dataSpec} flex flex-dc`}><p><span>ID:</span> {data.id}</p> <p><span>Type:</span> {data.extension}</p></div>
-          <div class={`${style.dataDate} flex flex-dc`} title={computeDateFormat(data.createdAt)}><p><span>Uploaded:</span> {computeDate(data.createdAt)}</p> <p><span>At:</span> {computeTime(data.createdAt)}</p></div>
+          <div class={`${style.dataSpec} flex flex-dc`}><p><span>ID:</span> {data.id}</p> <p><span>{viewStrings.type}:</span> {data.extension}</p></div>
+          <div class={`${style.dataDate} flex flex-dc`} title={computeDateFormat(data.createdAt)}><p><span>{viewStrings.uploaded}:</span> {computeDate(data.createdAt)}</p> <p><span>{viewStrings.at}:</span> {computeTime(data.createdAt)}</p></div>
         </div>
       </div>
     )

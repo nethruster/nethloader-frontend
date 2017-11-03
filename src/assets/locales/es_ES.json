@@ -1,6 +1,8 @@
 {
   "header_nav": {
-    "about_nethloader": "Acerca de Nethloader"
+    "about_nethloader": "Acerca de Nethloader",
+    "login": "Iniciar sesión",
+    "logout": "Cerrar sesión"
   },
   "home": {
     "intro": "Este dominio usa Nethloader, un servicio personal para compartir contenido multimedia.",
@@ -19,13 +21,42 @@
     "forgot_password": "He olvidado mi contraseña",
     "not_registered": "No tengo una cuenta"
   },
+  "register": {
+    "title": "Crea una cuenta",
+    "form": {
+      "username": "Nombre de usuario",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "password_confirm": "Vuelve a escribir la contraseña",
+      "register": "Registrarme",
+      "validation": {
+        "empty": "Este campo está vacío",
+        "invalid_email": "Los correos electronicos deben incluir '@' y contener un dominio",
+        "invalid_username": "Los nombres de usuario sólo deben contener caracteres alfanumericos",
+        "unequal_passwords": "Las contraseñas no coinciden, asegurate de que son iguales",
+        "valid": "Valido"
+      }
+    },
+    "has_account": "Ya tengo una cuenta"
+  },
+  "media_view": {
+    "info": {
+      "type": "Tipo",
+      "uploaded": "Subido el",
+      "at": "A las",
+      "buttons": {
+        "download": "Descargar",
+        "view_original": "Ver original"
+      }
+    }
+  },
   "cp": {
     "subheader": {
       "uploads": "archivos",
       "tabs": {
         "overview": "Resumen",
         "settings": "Ajustes",
-        "admin_settings": "Ajustes de admin"
+        "admin_settings": "Ajustes de admin."
       }
     },
     "overview": {
@@ -35,17 +66,20 @@
         "images": "Imágenes",
         "dates": {
           "between": "entre",
-          "and": "y",
-          "go_to_today": "Ir a hoy"
+          "and": "y"
         }
       },
       "uploads": {
+        "no_media": "No hay archivos",
+        "loading_media": "Cargando elementos",
         "upload": {
           "type": "Tipo",
-          "uploaded": "Subido",
+          "uploaded": "Subido el",
           "at": "A las",
           "download": "Descargar",
-          "copy_url": "Copiar url"
+          "copy_url": "Copiar url",
+          "click_open": "Haz click para abrir",
+          "copied": "COPIADO!"
         }
       }
     }
@@ -57,6 +91,21 @@
   "shared": {
     "modal": {
       "close": "Cerrar"
+    },
+    "upload_media": {
+      "response": {
+        "no_files": "No se han seleccionado archivos",
+        "error": "Algo ha ido mal"
+      },
+      "input": {
+        "text": "Haz click para añadir archivos o arrástralos aqui",
+        "files_text": "Haz click para añadir más archivos o arrástralos aqui",
+        "uploading_file": "Subiendo archivo",
+        "files_selected": "archivos seleccionados",
+        "upload_submit": "Subir"
+      },
+      "modal_button": "Subir",
+      "invalid_file_detected": "Archivo inválido detectado"
     }
   }
 }

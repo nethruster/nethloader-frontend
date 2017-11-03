@@ -4,8 +4,11 @@ import { connect } from 'preact-redux'
 import Upload from './upload'
 
 import { deleteMedia } from 'serverAPI/media'
+import locale from 'locale'
 
 import style from './styles.scss'
+
+const viewStrings = locale.cp.overview.uploads
 
 function mapStateToProps (state) {
   const {isFetching, data} = state.data
@@ -50,9 +53,9 @@ export default connect(mapStateToProps)(class Uploads extends Component {
         return <Upload key={index} data={entry} deleteMedia={this.handleDeleteMedia} />
       })
     } else {
-      return (<p class={`${style.nomedia} flex flex-full-center`} ripple='ripple'>
-                No media available
-              </p>)
+      return (<p class={`${style.nomedia} flex flex-full-center`}>
+        {viewStrings.no_media}
+      </p>)
     }
   }
 
@@ -64,7 +67,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     return (
       <div class={style.uploads}>
         <ul ref={(el) => { this.mediaListDOMNode = el }}>
-          {isFetching ? 'Loading media...' : this.computeMediaList('byDate')}
+          {isFetching ? `${viewStrings.loading_media}...` : this.computeMediaList('byDate')}
         </ul>
       </div>
     )

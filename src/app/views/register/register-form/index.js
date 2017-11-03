@@ -11,7 +11,7 @@ import style from './styles.scss'
 
 import locale from 'locale'
 
-const viewStrings = locale.login.form
+const viewStrings = locale.register.form
 
 function mapStateToProps (state) {
   const {isFetching} = state.account
@@ -66,26 +66,26 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
 
     if (validateEmpty(input.value)) {
       activeInputOnState.inputState = 'invalid'
-      activeInputOnState.validationMessage = 'This field is empty'
+      activeInputOnState.validationMessage = viewStrings.validation.empty
     } else if (input.type === 'email' && !validateEmail(input.value)) {
       activeInputOnState.inputState = 'invalid'
-      activeInputOnState.validationMessage = 'Emails should include \'@\' and a domain name'
+      activeInputOnState.validationMessage = viewStrings.validation.invalid_email
     } else if (input.id === 'username' && !validateName(input.value)) {
       activeInputOnState.inputState = 'invalid'
-      activeInputOnState.validationMessage = 'Usernames should only contain alphanumeric characters'
+      activeInputOnState.validationMessage = viewStrings.validation.invalid_username
     } else if (input.type === 'password') {
       if (this.state.data.password.value !== this.state.data.cpassword.value) {
         data.password.inputState = 'invalid'
         data.cpassword.inputState = 'invalid'
-        data.password.validationMessage = 'Password fields don\'t match, make sure they are the same'
+        data.password.validationMessage = viewStrings.validation.unequal_passwords
       } else if (this.state.data.password.value === this.state.data.cpassword.value) {
         data.password.inputState = 'valid'
         data.cpassword.inputState = 'valid'
-        data.password.validationMessage = 'Valid'
+        data.password.validationMessage = viewStrings.validation.valid
       }
     } else {
       activeInputOnState.inputState = 'valid'
-      activeInputOnState.validationMessage = 'Valid'
+      activeInputOnState.validationMessage = viewStrings.validation.valid
     }
 
     this.setState({
@@ -109,9 +109,9 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
         <FormInput inputId='username' inputType='text' inputLabel='Username' changeHandler={this.handleChange} required inputState={this.state.data.username.inputState} validationMessage={this.state.data.username.validationMessage} />
         <FormInput inputId='email' inputType='email' inputLabel={viewStrings.email} changeHandler={this.handleChange} required inputState={this.state.data.email.inputState} validationMessage={this.state.data.email.validationMessage} />
         <FormInput inputId='password' inputType='password' inputLabel={viewStrings.password} changeHandler={this.handleChange} required inputState={this.state.data.password.inputState} validationMessage={this.state.data.password.validationMessage} />
-        <FormInput inputId='cpassword' inputType='password' inputLabel='Retype Password' changeHandler={this.handleChange} required inputState={this.state.data.cpassword.inputState} validationMessage={this.state.data.cpassword.validationMessage} />
+        <FormInput inputId='cpassword' inputType='password' inputLabel={viewStrings.password_confirm} changeHandler={this.handleChange} required inputState={this.state.data.cpassword.inputState} validationMessage={this.state.data.cpassword.validationMessage} />
         <p class={style.formValidationText}>{this.state.formValidationText}</p>
-        <Button contrast text='Register' spinner={isFetching} spinnerColor='#fff' spinnerSize='14' disabled={isFetching} />
+        <Button contrast text={viewStrings.register} spinner={isFetching} spinnerColor='#fff' spinnerSize='14' disabled={isFetching} />
       </form>
     )
   }

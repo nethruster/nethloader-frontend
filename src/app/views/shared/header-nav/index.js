@@ -73,7 +73,7 @@ export default withRouter(connect(mapStateToProps)(class HeaderNav extends Compo
         <nav class={`${style.headerNavLinks} flex flex-full-center`}>
           {isAuthenticated && (this.state.UploadMedia ? <this.state.UploadMedia /> : this.loadUploadMediaComponent())}
           {isAuthenticated && <NavLink to='/cp' activeClassName='dom-hidden'><Button text='Control Panel' icon='cp' navButton /></NavLink>}
-          {isAuthenticated ? <Button text='Logout' icon='logout' navButton onClickExecute={this.handleLogout} /> : <NavLink to='/login'><Button text='Login' icon='login' navButton /></NavLink>}
+          {isAuthenticated ? <Button text={viewStrings.logout} icon='logout' navButton onClickExecute={this.handleLogout} /> : <NavLink to='/login'><Button text={viewStrings.login} icon='login' navButton /></NavLink>}
           <Button icon='help-circle' navButton onClickExecute={this.toggleHelpModal} />
         </nav>
         <Modal modalTitle='About the project' modalContent={helpModalContent} isActive={this.state.modals.help.isActive} toggleModal={this.toggleHelpModal} />

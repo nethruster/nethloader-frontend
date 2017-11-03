@@ -7,8 +7,11 @@ import Modal from '../../modal'
 
 import { isValidFormat } from 'utils'
 import { uploadMedia } from 'serverAPI/media'
+import locale from 'locale'
 
 import style from './styles.scss'
+
+const viewStrings = locale.shared.upload_media
 
 function mapStateToProps (state) {
   const {token, sessionData} = state.authentication
@@ -95,7 +98,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     event.preventDefault()
 
     if (this.state.modals.upload.files.length <= 0) {
-      console.log('No files selected')
+      console.log(viewStrings.response.no_files)
     } else if (this.state.modals.upload.files.length > 0) {
       this.toggleIsUploading()
 
@@ -117,7 +120,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
         })
       })
     } else {
-      console.log('Something went wrong')
+      console.log(viewStrings.response.error)
     }
   }
 
@@ -131,7 +134,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
         modals.upload.files.push(event.target.files[i])
         modals.upload.selectedFiles.push(event.target.files[i].name)
       } else {
-        console.log('Detected invalid file type: ' + event.target.files[i].name)
+        console.log(`${viewStrings.invalid_file_detected}: ` + event.target.files[i].name)
       }
     }
 
@@ -163,16 +166,16 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
       <div>
         <form onSubmit={this.handleUploadSubmit} class={`${style.uploadForm} flex flex-dc flex-full-center`}>
           <input type='file' id='fileInput' name='file' accept='image/*, video/*' onChange={this.handleFileChange} multiple />
-          {this.state.modals.upload.isUploading ? <label class='flex flex-full-center'>Uploading file {this.state.modals.upload.uploadingFileIndex}/{this.state.modals.upload.selectedFiles.length}</label> : <label onDragOver={this.onDragOver} onDrop={this.handleFileDrop} for='fileInput' class='flex flex-full-center'>{this.state.modals.upload.selectedFiles.length === 0 ? 'Click to add files or drop them here' : 'Click to add more files or drop them here'}</label>}
-          {this.state.modals.upload.isUploading ? null : <p title={this.state.modals.upload.selectedFiles.join(',')}>{this.state.modals.upload.selectedFiles.length} files selected</p>}
-          <Button type='submit' text='Upload' spinner={this.state.modals.upload.isUploading} disabled={this.state.modals.upload.isUploading} spinnerColor='#fff' spinnerSize='14' contrast tabindex='-1' />
+          {this.state.modals.upload.isUploading ? <label class='flex flex-full-center'>{viewStrings.input.uploading_file} {this.state.modals.upload.uploadingFileIndex}/{this.state.modals.upload.selectedFiles.length}</label> : <label onDragOver={this.onDragOver} onDrop={this.handleFileDrop} for='fileInput' class='flex flex-full-center'>{this.state.modals.upload.selectedFiles.length === 0 ? viewStrings.input.text : viewStrings.input.files_text}</label>}
+          {this.state.modals.upload.isUploading ? null : <p title={this.state.modals.upload.selectedFiles.join(',')}>{this.state.modals.upload.selectedFiles.length} {viewStrings.input.files_selected}</p>}
+          <Button type='submit' text={viewStrings.input.upload_submit} spinner={this.state.modals.upload.isUploading} disabled={this.state.modals.upload.isUploading} spinnerColor='#fff' spinnerSize='14' contrast tabindex='-1' />
         </form>
       </div>
     )
 
     return (
       <span>
-        <Button text='Upload' icon='upload' navButton onClickExecute={this.toggleUploadModal} />
+        <Button text={viewStrings.modal_button} icon='upload' navButton onClickExecute={this.toggleUploadModal} />
         <Modal modalTitle='' modalContent={uploadModalContent} isActive={this.state.modals.upload.isActive} toggleModal={this.toggleUploadModal} />
       </span>
 
