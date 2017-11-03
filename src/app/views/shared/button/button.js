@@ -31,7 +31,7 @@ export default class Button extends Component {
         ref={(el) => { this.buttonEl = el }}
         ripple='ripple'>
         {this.props.icon ? <Icon iconName={this.props.icon} /> : null}&nbsp;
-        <p class='flex'>{this.props.spinner ? <Spinner color={this.props.spinnerColor} size={this.props.spinnerSize} /> : this.props.text}&nbsp;</p>
+        <p class='flex'>{this.props.spinner ? <Spinner color={this.props.spinnerColor} size={this.props.spinnerSize} /> : this.props.text}</p>
       </button>
     )
   }

@@ -14,7 +14,8 @@ export default class FormInput extends Component {
           required={this.props.required}
           onInput={this.props.changeHandler}
           noValidationStyle={this.props.noValidationStyle}
-          title={this.props.inputLabel} />
+          title={this.props.inputLabel}
+          autofocus={this.props.autofocus} />
         <label for={this.props.inputId}>{this.props.validationMessage}</label>
       </div>
     )

@@ -39,7 +39,7 @@ export default class Upload extends Component {
     setTimeout(() => {
       copy.valueCopied = false
       this.setState({copy})
-    }, 2000)
+    }, 1500)
   }
 
   handleDeleteClick () {

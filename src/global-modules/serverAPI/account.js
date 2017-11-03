@@ -6,7 +6,7 @@ import jwtDecode from 'jwt-decode'
 import { requestRegister, receiveRegister, registerError } from 'actions/account'
 
 // Register
-const registerUser = (data, history) => {
+const registerUser = (data, history, registerFormElement) => {
   let requestConfig = {
     method: 'POST',
     headers: {
@@ -42,7 +42,8 @@ const registerUser = (data, history) => {
             // Dispatch the success action
             dispatch(receiveRegister())
 
-            history.push('/cp')
+            registerFormElement.reset()
+            history.push('/login')
           }
         }).catch(err => console.log('registerUser: ' + err))
   }

@@ -101,17 +101,17 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
       email: this.state.data.email.value,
       password: this.state.data.password.value
     }
-    this.props.dispatch(registerUser(data, this.context.router.history))
+    this.props.dispatch(registerUser(data, this.context.router.history, this.regiterForm))
   }
   render ({dispatch, isFetching}) {
     return (
-      <form class={`${style.form} flex flex-full-center flex-dc`} onSubmit={this.handleSubmit}>
+      <form class={`${style.form} flex flex-full-center flex-dc`} onSubmit={this.handleSubmit} ref={(el) => { this.regiterForm = el }}>
         <FormInput inputId='username' inputType='text' inputLabel='Username' changeHandler={this.handleChange} required inputState={this.state.data.username.inputState} validationMessage={this.state.data.username.validationMessage} />
         <FormInput inputId='email' inputType='email' inputLabel={viewStrings.email} changeHandler={this.handleChange} required inputState={this.state.data.email.inputState} validationMessage={this.state.data.email.validationMessage} />
         <FormInput inputId='password' inputType='password' inputLabel={viewStrings.password} changeHandler={this.handleChange} required inputState={this.state.data.password.inputState} validationMessage={this.state.data.password.validationMessage} />
         <FormInput inputId='cpassword' inputType='password' inputLabel='Retype Password' changeHandler={this.handleChange} required inputState={this.state.data.cpassword.inputState} validationMessage={this.state.data.cpassword.validationMessage} />
         <p class={style.formValidationText}>{this.state.formValidationText}</p>
-        <Button contrast text='Register' spinner={isFetching} spinnerColor='#fff' spinnerSize='14' />
+        <Button contrast text='Register' spinner={isFetching} spinnerColor='#fff' spinnerSize='14' disabled={isFetching} />
       </form>
     )
   }

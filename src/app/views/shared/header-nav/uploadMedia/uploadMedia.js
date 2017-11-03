@@ -36,7 +36,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     }
 
     this.toggleUploadModal = this.toggleUploadModal.bind(this)
-    this.resetFileInput = this.resetFileInput.bind(this)
+    this.resetForm = this.resetForm.bind(this)
     this.handleUploadSubmit = this.handleUploadSubmit.bind(this)
     this.handleFileChange = this.handleFileChange.bind(this)
     this.increaseUploadingFileIndexCount = this.increaseUploadingFileIndexCount.bind(this)
@@ -44,6 +44,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     this.handleFileDrop = this.handleFileDrop.bind(this)
   }
 
+   // Utility methods
   toggleUploadModal () {
     if (!this.state.modals.upload.isUploading) {
       let modals = {
@@ -56,12 +57,12 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     }
   }
 
-  resetFileInput (event) {
+  resetForm (event) {
     let modals = {
       ...this.state.modals
     }
 
-    event.target.value = ''
+    event.target.reset()
     modals.upload.files = []
     modals.upload.selectedFiles = []
     modals.upload.uploadingFileIndex = 0
@@ -89,6 +90,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     this.setState({modals})
   }
 
+  // Traditional file input methods
   handleUploadSubmit (event) {
     event.preventDefault()
     if (this.state.modals.upload.files.length <= 0) {
@@ -103,10 +105,13 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
           return imageId
         }).then((imageId) => {
           if (this.state.modals.upload.uploadingFileIndex === this.state.modals.upload.selectedFiles.length) {
+            let fileCount = this.state.modals.upload.uploadingFileIndex
+            this.resetForm(event)
             this.toggleIsUploading()
-            this.resetFileInput(event)
             this.toggleUploadModal()
-            this.props.history.push(`/${imageId}`)
+            if (fileCount === 1) {
+              this.props.history.push(`/${imageId}`)
+            }
           }
         })
       })
@@ -132,6 +137,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     this.setState({modals})
   }
 
+  // Drag & drop methods
   onDragOver (event) {
     event.preventDefault()
   }
