@@ -1,4 +1,5 @@
 'use strict'
+import { logoutUserNoHistory, checkCurrentSessionToken } from 'serverAPI/authentication'
 
 const supportedVideoFormats = ['video/mp4', 'video/webm', 'video/ogg']
 const supportedMimeTypes = [...supportedVideoFormats, 'image/png', 'image/jpeg', 'image/jpg', 'image/png', 'image/gif']
@@ -111,6 +112,16 @@ const isValidFormat = (type) => {
   return supportedMimeTypes.includes(type)
 }
 
+const checkUserSessionValidity = async (token, tokenExp) => {
+  return checkCurrentSessionToken(token).then(async (result) => {
+    if (await result) {
+      return !!checkTokenExpiryDate(tokenExp)
+    } else {
+      return false
+    }
+  })
+}
+
 export {
   validateEmpty,
   validateEmail,
@@ -122,5 +133,6 @@ export {
   computeTime,
   computeDateFormat,
   isValidVideoFormat,
-  isValidFormat
+  isValidFormat,
+  checkUserSessionValidity
 }

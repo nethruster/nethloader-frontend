@@ -1,6 +1,6 @@
 import { h, Component } from 'preact'
 
-import ViewLoading from '../app/views/shared/view-loading/view-loading.js'
+import ViewLoading from '../app/views/shared/view-loading'
 
 import { isValidVideoFormat } from 'utils'
 

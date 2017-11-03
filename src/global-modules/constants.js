@@ -15,19 +15,22 @@ export default keymirror({
   REGISTER_SUCCESS: null,
   REGISTER_FAILURE: null,
 
-  // Data - user
+  // User data
   USER_DATA_REQUEST: null,
   USER_DATA_SUCCESS: null,
   USER_DATA_FAILURE: null,
 
+  // Upload media
   MEDIA_UPLOAD_REQUEST: null,
   MEDIA_UPLOAD_SUCCESS: null,
   MEDIA_UPLOAD_FAILURE: null,
 
+  // Delete media
   MEDIA_DELETE_REQUEST: null,
   MEDIA_DELETE_SUCCESS: null,
   MEDIA_DELETE_FAILURE: null,
 
+  // Media Info
   MEDIA_INFO_REQUEST: null,
   MEDIA_INFO_SUCCESS: null,
   MEDIA_INFO_FAILURE: null
