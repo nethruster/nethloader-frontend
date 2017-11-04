@@ -18,11 +18,13 @@ export default class Upload extends Component {
     super(props)
 
     this.state = {
-      copy: {valueCopied: false}
+      copy: {valueCopied: false},
+      isSelected: false
     }
 
     this.handleCopyClick = this.handleCopyClick.bind(this)
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
+    this.toggleSelect = this.toggleSelect.bind(this)
   }
 
   handleCopyClick (event) {
@@ -45,16 +47,35 @@ export default class Upload extends Component {
     this.props.deleteMedia(this.uploadEl)
   }
 
+  toggleSelect () {
+    this.setState({isSelected: !this.state.isSelected})
+    this.props.handleToggleSelect(this.props.data.id, this.state.isSelected)
+  }
+
   render ({data}) {
     const mediaPath = `${baseMediaPath}${data.id}.${data.extension}`
     const mediaUrl = `/${data.id}`
     return (
-      <li class={`${style.upload} flex flex-cross-center flex-sb`} data-id={data.id} ref={(el) => { this.uploadEl = el }}>
+      <li class={`${style.upload} ${this.state.isSelected ? style.uploadSelected : ''} flex flex-cross-center flex-sb`} data-id={data.id} ref={(el) => { this.uploadEl = el }}>
         <div class={`${style.uploadMedia} flex flex-full-center`} title={viewStrings.click_open}><Link target='_blank' rel='noopener' to={mediaUrl} class='flex flex-full-center'><AsyncMedia src={mediaPath} type={data.extension} size='74' id={data.id} /></Link></div>
         <div class={`${style.uploadDataSpec} flex flex-dc`}><p><span>ID:</span> {this.props.data.id}</p> <p><span>{viewStrings.type}:</span> {data.extension}</p></div>
         <div class={`${style.uploadDataDate} flex flex-dc`} title={computeDateFormat(data.createdAt)}><small>{computeDateFormat(data.createdAt)}</small><p><span>{viewStrings.uploaded}:</span> {computeDate(data.createdAt)}</p> <p><span>{viewStrings.at}:</span> {computeTime(data.createdAt)}</p></div>
         <div class={`${style.uploadButtons} flex flex-dc flex-sa`}><a href={mediaPath} download><Button small text={viewStrings.download} icon='download' customClass={style.uploadButtonsButton} /></a><a><Button small icon='copy' text={this.state.copy.valueCopied ? viewStrings.copied : viewStrings.copy_url} copyText={`${window.location.origin}${mediaUrl}`} onClickExecute={this.handleCopyClick} customClass={style.uploadButtonsButton} /></a></div>
-        <div class={`${style.uploadDeleteButton} flex flex-full-center`} onClick={this.handleDeleteClick}><Icon iconName='delete' iconColor='#e53935' /></div>
+        {
+          this.props.selectMode
+
+        ? (
+          <label className='flex flex-full-center'>
+            <input type='checkbox' onChange={this.toggleSelect} checked={this.state.isSelected} />
+            <span className='md__checkbox-material'><span className='md__checkbox-check' /></span>
+          </label>
+        )
+        : (
+          <div class={`${style.uploadDeleteButton} flex flex-full-center`} onClick={this.handleDeleteClick}>
+            <Icon iconName='delete' iconColor='#e53935' />
+          </div>
+        )
+        }
       </li>
     )
   }

@@ -16,7 +16,8 @@
 
         &:not(:last-child) { border-bottom: 1px solid var(--cp-overview-layoutborder-color); }
 
-        &:hover { border-left-color: var(--cp-overview-medialist-item-activeborder-color) }
+        &:hover,
+        &Selected { border-left-color: var(--cp-overview-medialist-item-activeborder-color) }
 
         &Media {
             flex: 1;
@@ -75,5 +76,220 @@
                 background-color: rgba(0,0,0,.075)
             }
         }
+
+         &SelectButton {
+            min-height: 42px;
+            min-width: 42px;
+
+            margin-left: var(--base-pm);
+            
+            border-radius: 100%;
+            
+            cursor: pointer;
+
+            transition: background-color .3s;
+
+            &:hover {
+                background-color: rgba(0,0,0,.075)
+            }
+        }
+    }
+}
+
+:global {
+// Huge thanks to this pen https://codepen.io/abottega/pen/vNzQMo
+// Licensed under the MIT license.
+
+label {
+    min-height: 42px;
+    min-width: 42px;
+
+    margin-left: var(--base-pm);
+}
+
+// Hide native checkbox
+input[type=checkbox] {
+    opacity: 0;
+    position: absolute;
+    margin: 0;
+    z-index: -1;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    left: 0;
+    pointer-events: none;
+   
+}
+
+.md__checkbox-material {
+    vertical-align: middle;
+    position: relative;
+    top: 3px;
+    cursor: pointer;
+    
+    &:before {
+        position: absolute;
+        left: 8px;
+        top: 2px;
+        content: "";
+        background-color: rgba(0,0,0,0.5);
+        height: 4px;
+        width: 4px;
+        border-radius: 100%;
+        z-index: 1;
+        opacity: 0;
+        margin: 0;
+    }
+
+    .md__checkbox-check {
+        position: relative;
+        display: inline-block;
+        width: var(--md-checkbox-size);
+        height: var(--md-checkbox-size);
+        border: 2px solid;
+        border-radius: 2px;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .md__checkbox-check:before {
+        position: absolute;
+        content: "";
+        transform: rotate(45deg);
+        display: block;
+        margin-top: -4px;
+        margin-left: 6px;
+        width: 0;
+        height: 0;
+        box-shadow:
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0 inset;
+        animation: checkbox-off var(--md-checkbox-animation-check) forwards ease-out;
+    }
+}
+
+input[type=checkbox]:focus + .md__checkbox-material .md__checkbox-check:after {
+    opacity: 0.2;
+}
+
+input[type=checkbox]:checked + .md__checkbox-material .md__checkbox-check:before {
+    box-shadow:
+        0 0 0 10px,
+        10px -10px 0 10px,
+        32px 0px 0 20px,
+        0px 32px 0 20px,
+        -5px 5px 0 10px,
+        20px -12px 0 11px;
+    animation: checkbox-on var(--md-checkbox-animation-check) forwards ease-out;
+}
+}
+
+// Animations
+@keyframes checkbox-on {
+0% {
+    box-shadow:
+        0 0 0 10px,
+        10px -10px 0 10px,
+        32px 0px 0 20px,
+        0px 32px 0 20px,
+        -5px 5px 0 10px,
+        15px 2px 0 11px;
+}
+
+50% {
+    box-shadow:
+        0 0 0 10px,
+        10px -10px 0 10px,
+        32px 0px 0 20px,
+        0px 32px 0 20px,
+        -5px 5px 0 10px,
+        20px 2px 0 11px;
+}
+
+100% {
+    box-shadow:
+        0 0 0 10px,
+        10px -10px 0 10px,
+        32px 0px 0 20px,
+        0px 32px 0 20px,
+        -5px 5px 0 10px,
+        20px -12px 0 11px;
+    }
+}
+
+@keyframes checkbox-off {
+    0% {
+        box-shadow:
+            0 0 0 10px,
+            10px -10px 0 10px,
+            32px 0px 0 20px,
+            0px 32px 0 20px,
+            -5px 5px 0 10px,
+            20px -12px 0 11px,
+            0 0 0 0 inset;
+    }
+
+    25% {
+        box-shadow:
+            0 0 0 10px,
+            10px -10px 0 10px,
+            32px 0px 0 20px,
+            0px 32px 0 20px,
+            -5px 5px 0 10px,
+            20px -12px 0 11px,
+            0 0 0 0 inset;
+    }
+
+    50% {
+        transform: rotate(45deg);
+        margin-top: -4px;
+        margin-left: 6px;
+        width: 0px;
+        height: 0px;
+        box-shadow:
+            0 0 0 10px,
+            10px -10px 0 10px,
+            32px 0px 0 20px,
+            0px 32px 0 20px,
+            -5px 5px 0 10px,
+            15px 2px 0 11px,
+            0 0 0 0 inset;
+    }
+
+    51% {
+        transform: rotate(0deg);
+        margin-top: -2px;
+        margin-left: -2px;
+        width: 20px;
+        height: 20px;
+        box-shadow:
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0px 0px 0 10px inset;
+    }
+
+    100% {
+        transform: rotate(0deg);
+        margin-top: -2px;
+        margin-left: -2px;
+        width: 20px;
+        height: 20px;
+        box-shadow:
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0px 0px 0 0px inset;
     }
 }

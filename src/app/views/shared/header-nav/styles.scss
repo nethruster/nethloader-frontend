@@ -1,6 +1,6 @@
 :local {
     .headerNav {
-        height: var(--headerNavHeight);
+        height: var(--header-nav-height);
 
         background: var(--bg-blue-gradient);
         
@@ -10,7 +10,7 @@
             margin: 0;
 
             &Title {
-                color: var(--headerNavLogoColor);
+                color: var(--header-nav-logo-color);
 
                 margin: 0 var(--base-pm);
 
@@ -19,8 +19,8 @@
             }
 
             img {
-                width: var(--headerNavLogoSize);
-                height: var(--headerNavLogoSize);
+                width: var(--header-nav-logo-size);
+                height: var(--header-nav-logo-size);
             }
         }
 

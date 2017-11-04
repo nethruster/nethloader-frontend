@@ -73,7 +73,7 @@
 
         &Nav {
             width: auto;
-            height: 60px;
+            height: var(--header-nav-height);
 
             margin: 0;
 

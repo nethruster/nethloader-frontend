@@ -10,16 +10,16 @@
 
         --content-max-width: 1300px;
 
-        --loadingSpinnerColor: #1e87f0;
+        --loading-spinner-color: #1e87f0;
 
-        --headerNavLogoColor: #fff;
-        --headerNavLogoSize: 34px;
-        --headerNavHeight: 50px;
+        --header-nav-logo-color: #fff;
+        --header-nav-logo-size: 34px;
+        --header-nav-height: 50px;
 
         --paper-background-color: #fff;
         --paper-text-color: #222;
 
-        --formValidationTextErrorColor: #D50000;
+        --form-validation-text-error-color: #D50000;
 
         --button-bg-color-default: transparent;
         --button-text-color-default: #222;
@@ -65,5 +65,9 @@
         --modal-content-border-color: rgba(27,31,35,0.25);
         --modal-content-background-color: #fff;
         --modal-body-text-color: rgb(90, 62, 62);
+
+        --md-checkbox-size: 20px;
+        --md-checkbox-animation-ripple: 700ms;
+        --md-checkbox-animation-check: 0.2s;
     }
 }

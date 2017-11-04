@@ -168,18 +168,22 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
           <input type='file' id='fileInput' name='file' accept='image/*, video/*' onChange={this.handleFileChange} multiple />
           {
             this.state.modals.upload.isUploading
-              ? <label class='flex flex-full-center'>
+              ? (<label class='flex flex-full-center'>
                 {viewStrings.input.uploading_file} {this.state.modals.upload.uploadingFileIndex}/{this.state.modals.upload.selectedFiles.length}
-              </label>
-              : <label onDragOver={this.onDragOver} onDrop={this.handleFileDrop} for='fileInput' class='flex flex-full-center'>
+              </label>)
+              : (<label onDragOver={this.onDragOver} onDrop={this.handleFileDrop} for='fileInput' class='flex flex-full-center'>
                 {this.state.modals.upload.selectedFiles.length === 0 ? viewStrings.input.text : viewStrings.input.files_text}
                 {/* SVG label dashed border */}
                 <svg>
                   <rect width='100%' height='100%' />
                 </svg>
-              </label>
+              </label>)
           }
-          {this.state.modals.upload.isUploading ? null : <p title={this.state.modals.upload.selectedFiles.join(',')}>{this.state.modals.upload.selectedFiles.length} {viewStrings.input.files_selected}</p>}
+          {this.state.modals.upload.isUploading ? null
+          : <p title={this.state.modals.upload.selectedFiles.join(',')}>
+            {this.state.modals.upload.selectedFiles.length} {viewStrings.input.files_selected}
+          </p>
+          }
           <Button type='submit' text={viewStrings.input.upload_submit} spinner={this.state.modals.upload.isUploading} disabled={this.state.modals.upload.isUploading} spinnerColor='#fff' spinnerSize='14' contrast tabindex='-1' />
         </form>
       </div>

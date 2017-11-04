@@ -2,7 +2,8 @@
   "header_nav": {
     "about_nethloader": "About Nethloader",
     "login": "Login",
-    "logout": "Logout"
+    "logout": "Logout",
+    "cp": "Control Panel"
   },
   "home": {
     "intro": "This domain is using Nethloader, a self hosted media sharing service.",
