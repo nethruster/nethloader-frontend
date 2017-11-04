@@ -13,6 +13,13 @@ export default class Button extends Component {
   }
 
   render ({round, contrast, big, small, transparent, navButton, customClass, tabindex, type, onClickExecute, copyText, disabled, icon, spinner, spinnerColor, spinnerSize, text}) {
+    /* eslint-disable no-lone-blocks */
+    {
+      /* You'll probably wonder why the fuck did I lay out the following class attribute like
+       * this, don't panic, let me explain: It's to avoid generating line breaks on the rendered
+       * component's class attr */
+    }
+    /* eslint-enable no-lone-blocks */
     return (
       <button
         class={`${style.button} ${

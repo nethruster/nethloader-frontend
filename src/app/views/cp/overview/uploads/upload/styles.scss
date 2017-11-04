@@ -12,6 +12,8 @@
 
         overflow: hidden;
 
+        transition: border .15s;
+
         &:not(:last-child) { border-bottom: 1px solid var(--cp-overview-layoutborder-color); }
 
         &:hover { border-left-color: var(--cp-overview-medialist-item-activeborder-color) }
@@ -23,6 +25,7 @@
 
             margin-right: calc(var(--base-pm) * 2);
 
+            border: 1px solid rgba(0,0,0,.08);
             border-radius: var(--base-br);
 
             overflow: hidden;
@@ -66,8 +69,10 @@
             
             cursor: pointer;
 
+            transition: background-color .3s;
+
             &:hover {
-                background-color: rgba(0,0,0,.1)
+                background-color: rgba(0,0,0,.075)
             }
         }
     }

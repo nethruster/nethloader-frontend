@@ -11,5 +11,7 @@
         &-small { max-width: 650px; }
 
         &-padding { padding: calc(var(--base-pm) * 4) calc(var(--base-pm) * 4); }
+
+        &-transparent { background-color: transparent; }
     }
 }

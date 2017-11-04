@@ -62,8 +62,8 @@
     "overview": {
       "search": {
         "search_title": "Search uploads",
-        "gifs": "Gifs",
-        "images": "Images",
+        "video": "Videos",
+        "image": "Images/Gif",
         "dates": {
           "between": "between",
           "and": "and"

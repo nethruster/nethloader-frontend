@@ -31,17 +31,18 @@ export default connect(mapStateToProps)(class Content extends Component {
       logoutUserNoHistory(false)
     }
   }
-
   render ({dispatch, isAuthenticated}) {
     return (
       <div class={`${style.content} flex flex-dc`} role='main'>
         <HeaderNav />
         <Switch>
           {isAuthenticated ? 
+          
           <Route
             path='/cp'
-            component={asyncComponent(() => import(/* webpackChunkName: "content_cp" */'../../cp')
+            component={asyncComponent(() => import(/* webpackChunkName: "content_cp" */'../../cp') 
           .then(module => module.default))} /> 
+
           : 
           <Redirect from='/cp' to='/login' />}
 

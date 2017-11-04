@@ -13,7 +13,7 @@ const viewStrings = locale.media_view.info
 export default class MediaInfo extends Component {
   render ({data, mediaSrc}) {
     return (
-      <div class={`paper paper-small ${style.mediaInfo} flex flex-dc`}>
+      <div class={`paper paper-small paper-transparent ${style.mediaInfo} flex flex-dc`}>
         <div class={`${style.mediaInfoButtons} flex flex-sa`}>
           <a href={mediaSrc} target='_blank' rel='noopener' title='Open original image in a new tab'><Button text={viewStrings.buttons.view_original} small tabindex='-1' icon='fullscreen' /></a>
           <a href={mediaSrc} download rel='noopener' title='Download image'><Button text={viewStrings.buttons.download} small tabindex='-1' icon='download' /></a>
