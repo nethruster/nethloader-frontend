@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Button from '../../../../shared/button/'
 import Icon from '../../../../shared/icon/'
+import MdCheckbox from '../../../../shared/md-checkbox'
 import AsyncMedia from 'asyncMedia'
 
 import locale from 'locale'
@@ -64,12 +65,7 @@ export default class Upload extends Component {
         {
           this.props.selectMode
 
-        ? (
-          <label className='flex flex-full-center'>
-            <input type='checkbox' onChange={this.toggleSelect} checked={this.state.isSelected} />
-            <span className='md__checkbox-material'><span className='md__checkbox-check' /></span>
-          </label>
-        )
+        ? <MdCheckbox toggleSelect={this.toggleSelect} isSelected={this.state.isSelected} />
         : (
           <div class={`${style.uploadDeleteButton} flex flex-full-center`} onClick={this.handleDeleteClick}>
             <Icon iconName='delete' iconColor='#e53935' />
