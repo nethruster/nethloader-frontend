@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Button from '../../../../shared/button/'
 import Icon from '../../../../shared/icon/'
-import MdCheckbox from '../../../../shared/md-checkbox'
+import Checkbox from '../../../../shared/checkbox'
 import AsyncMedia from 'asyncMedia'
 
 import locale from 'locale'
@@ -59,13 +59,13 @@ export default class Upload extends Component {
     return (
       <li class={`${style.upload} ${this.state.isSelected ? style.uploadSelected : ''} flex flex-cross-center flex-sb`} data-id={data.id} ref={(el) => { this.uploadEl = el }}>
         <div class={`${style.uploadMedia} flex flex-full-center`} title={viewStrings.click_open}><Link target='_blank' rel='noopener' to={mediaUrl} class='flex flex-full-center'><AsyncMedia src={mediaPath} type={data.extension} size='74' id={data.id} /></Link></div>
-        <div class={`${style.uploadDataSpec} flex flex-dc`}><p><span>ID:</span> {this.props.data.id}</p> <p><span>{viewStrings.type}:</span> {data.extension}</p></div>
+        <div class={`${style.uploadDataSpec} flex flex-dc`}><p><span>ID:</span> {data.id}</p> <p><span>{viewStrings.type}:</span> {data.extension}</p></div>
         <div class={`${style.uploadDataDate} flex flex-dc`} title={computeDateFormat(data.createdAt)}><small>{computeDateFormat(data.createdAt)}</small><p><span>{viewStrings.uploaded}:</span> {computeDate(data.createdAt)}</p> <p><span>{viewStrings.at}:</span> {computeTime(data.createdAt)}</p></div>
         <div class={`${style.uploadButtons} flex flex-dc flex-sa`}><a href={mediaPath} download><Button small text={viewStrings.download} icon='download' customClass={style.uploadButtonsButton} /></a><a><Button small icon='copy' text={this.state.copy.valueCopied ? viewStrings.copied : viewStrings.copy_url} copyText={`${window.location.origin}${mediaUrl}`} onClickExecute={this.handleCopyClick} customClass={style.uploadButtonsButton} /></a></div>
         {
           this.props.selectMode
 
-        ? <MdCheckbox toggleSelect={this.toggleSelect} isSelected={this.state.isSelected} />
+        ? <Checkbox toggleSelect={this.toggleSelect} isSelected={this.state.isSelected} id={data.id} customClass={style.uploadSelectButton} />
         : (
           <div class={`${style.uploadDeleteButton} flex flex-full-center`} onClick={this.handleDeleteClick}>
             <Icon iconName='delete' iconColor='#e53935' />
