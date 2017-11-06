@@ -65,7 +65,7 @@ export default class Upload extends Component {
         {
           this.props.selectMode
 
-        ? <Checkbox toggleSelect={this.toggleSelect} isSelected={this.state.isSelected} id={data.id} customClass={style.uploadSelectButton} />
+        ? <Checkbox onChangeHandler={this.toggleSelect} isSelected={this.state.isSelected} id={data.id} customClass={style.uploadSelectButton} />
         : (
           <div class={`${style.uploadDeleteButton} flex flex-full-center`} onClick={this.handleDeleteClick}>
             <Icon iconName='delete' iconColor='#e53935' />

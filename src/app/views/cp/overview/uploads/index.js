@@ -2,17 +2,17 @@ import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
 
 import Upload from './upload'
-import Button from '../../../shared/button'
-import Icon from '../../../shared/icon'
+import UploadsToolbar from './uploads-toolbar'
 
 import { deleteMedia } from 'serverAPI/media'
+import { compareDate } from 'utils'
 import locale from 'locale'
 
 import style from './styles.scss'
 
 const viewStrings = locale.cp.overview.uploads
 
-function mapStateToProps (state) {
+const mapStateToProps = (state) => {
   const {isFetching, data} = state.data
   const {token, sessionData} = state.authentication
 
@@ -33,20 +33,10 @@ export default connect(mapStateToProps)(class Uploads extends Component {
       selectedMedia: []
     }
 
-    this.handleDeleteMedia = this.handleDeleteMedia.bind(this)
+    this.deleteMediaElement = this.deleteMediaElement.bind(this)
     this.toggleIsSelecting = this.toggleIsSelecting.bind(this)
-    this.handleSelectedMedia = this.handleSelectedMedia.bind(this)
+    this.handleSelectMedia = this.handleSelectMedia.bind(this)
     this.deleteSelectedMedia = this.deleteSelectedMedia.bind(this)
-  }
-
-  compareByDate (a, b) {
-    if (a.createdAt > b.createdAt) {
-      return -1
-    }
-    if (a.createdAt < b.createdAt) {
-      return 1
-    }
-    return 0
   }
 
   computeMediaList (sort) {
@@ -54,13 +44,13 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     if (mediaList.length > 0) {
       switch (sort) {
         case 'byDate':
-          mediaList.sort(this.compareByDate)
+          mediaList.sort(compareDate)
           break
         default:
           break
       }
       return mediaList.map((entry, index) => {
-        return <Upload key={index} data={entry} deleteMedia={this.handleDeleteMedia} selectMode={this.state.isSelecting} handleToggleSelect={this.handleSelectedMedia} />
+        return <Upload key={index} data={entry} deleteMedia={this.deleteMediaElement} selectMode={this.state.isSelecting} handleToggleSelect={this.handleSelectMedia} />
       })
     } else {
       return (<p class={`${style.nomedia} flex flex-full-center`}>
@@ -69,7 +59,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     }
   }
 
-  handleSelectedMedia (id, state) {
+  handleSelectMedia (id, state) {
     let selectedMedia = this.state.selectedMedia
 
     if (state) {
@@ -81,7 +71,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     this.setState({selectedMedia})
   }
 
-  handleDeleteMedia (childElement) {
+  deleteMediaElement (childElement) {
     this.props.dispatch(deleteMedia(childElement.dataset.id, this.props.token, this.props.sessionData.id))
   }
 
@@ -105,15 +95,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     const hasMedia = !isFetching && data.images.length > 0
     return (
       <div class={style.uploads}>
-        {hasMedia ? <div class={`flex ${style.uploadsMenu}`}>
-          <div class={`flex flex-cross-center flex-sb ${style.uploadsMenuSelect}`}>
-            <Button text={this.state.isSelecting ? 'Disable select' : 'Enable select'} customClass={style.uploadsMenuButton} small contrast onClickExecute={this.toggleIsSelecting} disabled={!hasMedia} />
-            <div class={`flex flex-cross-center flex-sb ${style.uploadsMenuSelectButtons} ${this.state.isSelecting ? style.uploadsMenuSelectButtonsActive : ''}`}>
-              {/* <span class='flex flex-full-center'><Icon iconName='selectall' /></span> */}
-              <span class='flex flex-full-center' onClick={this.deleteSelectedMedia}><Icon iconName='delete' iconColor='#e53935' /></span>
-            </div>
-          </div>
-        </div>
+        {hasMedia ? <UploadsToolbar isSelecting={this.state.isSelecting} toggleIsSelecting={this.toggleIsSelecting} deleteSelectedMedia={this.deleteSelectedMedia} hasMedia={hasMedia} />
         : null }
         <ul ref={(el) => { this.mediaListDOMNode = el }}>
           {isFetching ? `${viewStrings.loading_media}...` : this.computeMediaList('byDate')}

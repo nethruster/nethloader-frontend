@@ -104,7 +104,7 @@ const isValidVideoFormat = (type) => {
 }
 
 /**
- * Return true if a a format is valid
+ * Return true if a format is valid
  * @param string type
  * @return boolean
  */
@@ -112,6 +112,12 @@ const isValidFormat = (type) => {
   return supportedMimeTypes.includes(type)
 }
 
+/**
+ * Return true if the user session token is correct and hasn't expired
+ * @param string token
+ * @param int tokenExp
+ * @return boolean
+ */
 const checkUserSessionValidity = async (token, tokenExp) => {
   return checkCurrentSessionToken(token).then(async (result) => {
     if (await result) {
@@ -120,6 +126,22 @@ const checkUserSessionValidity = async (token, tokenExp) => {
       return false
     }
   })
+}
+
+/**
+ * Basic size comparator method for dates
+ * @param int date1
+ * @param int date2
+ * @return int
+ */
+const compareDate = (date1, date2) => {
+  if (date1.createdAt > date2.createdAt) {
+    return -1
+  }
+  if (date1.createdAt < date2.createdAt) {
+    return 1
+  }
+  return 0
 }
 
 export {
@@ -134,5 +156,6 @@ export {
   computeDateFormat,
   isValidVideoFormat,
   isValidFormat,
-  checkUserSessionValidity
+  checkUserSessionValidity,
+  compareDate
 }

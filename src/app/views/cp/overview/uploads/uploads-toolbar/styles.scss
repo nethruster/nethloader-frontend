@@ -1,0 +1,43 @@
+:local {
+    .uploadsToolbar {
+            justify-content: flex-end;
+
+            &Button {
+                width: auto;
+
+                margin: 0;                
+            }
+
+            &Select {
+                flex: 1;
+                
+                &Buttons {
+                    opacity: 0;
+
+                    visibility: hidden;
+                    pointer-events: none;
+                    
+                    span {
+                        min-height: 42px;
+                        min-width: 42px;
+
+                        margin-left: 8px;
+                        padding: 8px;
+
+                        border-radius: 100%;                        
+
+                        cursor: pointer;
+                       
+                        &:hover { background-color: rgba(0,0,0,.1); }
+                    }
+
+                    &Active {
+                        opacity: 1;
+
+                        pointer-events: initial;
+                        visibility: visible;                        
+                    }
+                }
+            }
+        }
+}
