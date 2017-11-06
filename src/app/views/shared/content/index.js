@@ -22,11 +22,13 @@ function mapStateToProps (state) {
 }
 
 export default connect(mapStateToProps)(class Content extends Component {
-  componentWillMount() {
+  async componentWillMount() {
     if(this.props.isAuthenticated) {
-      checkUserSessionValidity(this.props.token, this.props.sessionData.exp).then(async (result) => {
-        await result ? this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token)) : logoutUserNoHistory(true)
-      })
+      if(await checkUserSessionValidity(this.props.token, this.props.sessionData.exp)) {
+        this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token)) 
+      } else {
+        logoutUserNoHistory(true)
+      }
     } else {
       logoutUserNoHistory(false)
     }

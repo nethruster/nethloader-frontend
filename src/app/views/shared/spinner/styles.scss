@@ -16,7 +16,10 @@
         }
     }
 
-    .spinner { transform: translate(0, 0); }
+    .spinner { 
+        transform: translate(0, 0); 
+        margin: calc(var(--base-pm) * 2);
+    }
 
     .spinner > svg {
         animation: spinner-rotate 1.4s linear infinite;

@@ -12,11 +12,10 @@ export default (loader, collection) => (
       this.state = { component: null }
     }
 
-    componentWillMount () {
+    async componentWillMount () {
       if (!this.state.component) {
-        loader().then((component) => {
-          this.setState({ component })
-        })
+        let component = await loader()
+        this.setState({ component })
       }
     }
 

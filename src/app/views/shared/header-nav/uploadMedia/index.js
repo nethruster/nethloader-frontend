@@ -102,22 +102,21 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     } else if (this.state.modals.upload.files.length > 0) {
       this.toggleIsUploading()
 
-      this.state.modals.upload.files.forEach((file, index) => {
-        this.props.dispatch(uploadMedia(this.props.sessionData.id, file, this.props.token)).then((imageId) => {
-          this.increaseUploadingFileIndexCount()
+      this.state.modals.upload.files.forEach(async (file, index) => {
+        let responseImageId = await this.props.dispatch(uploadMedia(this.props.sessionData.id, file, this.props.token))
 
-          return imageId
-        }).then((imageId) => {
-          if (this.state.modals.upload.uploadingFileIndex === this.state.modals.upload.selectedFiles.length) {
-            let fileCount = this.state.modals.upload.uploadingFileIndex
-            this.resetForm(event)
-            this.toggleIsUploading()
-            this.toggleUploadModal()
-            if (fileCount === 1) {
-              this.props.history.push(`/${imageId}`)
-            }
+        this.increaseUploadingFileIndexCount()
+
+        if (this.state.modals.upload.uploadingFileIndex === this.state.modals.upload.selectedFiles.length) {
+          let fileCount = this.state.modals.upload.uploadingFileIndex
+          this.resetForm(event)
+          this.toggleIsUploading()
+          this.toggleUploadModal()
+
+          if (fileCount === 1) {
+            this.props.history.push(`/${responseImageId}`)
           }
-        })
+        }
       })
     } else {
       console.log(viewStrings.response.error)

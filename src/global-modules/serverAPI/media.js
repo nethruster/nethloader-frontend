@@ -24,29 +24,31 @@ const uploadMedia = (id, media, authToken) => {
     body: formData
   }
 
-  return dispatch => {
+  return async dispatch => {
     dispatch(requestMediaUpload())
 
-    return fetch(apiBaseUrl, requestConfig)
-        .then((response) => {
-          if (response.status >= 200 && response.status < 300) {
-            return response.json()
-          } else {
-            dispatch(mediaUploadError(response.status))
-            return Promise.reject(response.status)
-          }
-        })
-        .then((result) => {
-          if (!result.data.uploadImage) {
-            dispatch(mediaUploadError(result))
-            return Promise.reject(result)
-          } else {
-            // Dispatch the success action
-            dispatch(receiveMediaUpload(result.data.uploadImage))
-            dispatch(getUserData(id, authToken))
-            return result.data.uploadImage.id
-          }
-        }).catch(err => console.log('uploadMedia: ' + err))
+    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+
+    if (serverResponse.status >= 200 && serverResponse.status < 300) {
+      let responseData = await serverResponse.json()
+
+      if (responseData.data.uploadImage) {
+        // Dispatch the success action
+        dispatch(receiveMediaUpload(responseData.data.uploadImage))
+        // Refetch user data
+        dispatch(getUserData(id, authToken))
+
+        return responseData.data.uploadImage.id
+      } else {
+        console.log('uploadMedia - responseData: ' + responseData)
+        dispatch(mediaUploadError(responseData))
+        return Promise.reject(responseData)
+      }
+    } else {
+      console.log('uploadMedia - serverResponse: ' + serverResponse)
+      dispatch(mediaUploadError(serverResponse.status))
+      return Promise.reject(serverResponse.status)
+    }
   }
 }
 
@@ -64,30 +66,29 @@ const deleteMedia = (mediaId, authToken, userId) => {
     })
   }
 
-  return dispatch => {
+  return async dispatch => {
     dispatch(requestMediaDelete())
 
-    return fetch(apiBaseUrl, requestConfig)
-      .then((response) => {
-        if (response.status >= 200 && response.status < 300) {
-          return response.json()
-        } else {
-          dispatch(mediaDeleteError(response.status))
-          return Promise.reject(response.status)
-        }
-      })
-      .then((result) => {
-        if (!result.data.deleteImage) {
-          dispatch(mediaDeleteError(result))
-          return Promise.reject(result)
-        } else {
-          // Dispatch the success action
-          dispatch(receiveMediaDelete())
+    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+    if (serverResponse.status >= 200 && serverResponse.status < 300) {
+      let responseData = await serverResponse.json()
 
-          // Refresh user data
-          dispatch(getUserData(userId, authToken))
-        }
-      }).catch(err => console.log('deleteMedia: ' + err))
+      if (responseData.data.deleteImage) {
+        // Dispatch the success action
+        dispatch(receiveMediaDelete())
+
+        // Refresh user data
+        dispatch(getUserData(userId, authToken))
+      } else {
+        console.log('deleteMedia - responseData:' + responseData)
+        dispatch(mediaDeleteError(responseData))
+        return Promise.reject(responseData)
+      }
+    } else {
+      console.log('deleteMedia - serverResponse:' + serverResponse)
+      dispatch(mediaDeleteError(serverResponse.status))
+      return Promise.reject(serverResponse.status)
+    }
   }
 }
 
@@ -103,27 +104,27 @@ const getMediaInfo = (mediaId) => {
     })
   }
 
-  return dispatch => {
+  return async dispatch => {
     dispatch(requestMediaInfo())
 
-    return fetch(apiBaseUrl, requestConfig)
-        .then(response => {
-          if (response.status >= 200 && response.status < 300) {
-            return response.json()
-          } else {
-            dispatch(mediaInfoError(response.status))
-            return Promise.reject(response.status)
-          }
-        })
-        .then(result => {
-          if (!result.data.image) {
-            dispatch(mediaInfoError(result.errors[0].message))
-            return Promise.reject(result.errors[0].message)
-          } else {
-            // Dispatch the success action
-            dispatch(receiveMediaInfo(result.data.image))
-          }
-        }).catch(err => console.log('getMediaInfo:' + err))
+    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+
+    if (serverResponse.status >= 200 && serverResponse.status < 300) {
+      let responseData = await serverResponse.json()
+
+      if (responseData.data.image) {
+        // Dispatch the success action
+        dispatch(receiveMediaInfo(responseData.data.image))
+      } else {
+        console.log('getMediaInfo - responseData: ' + responseData)
+        dispatch(mediaInfoError(responseData.errors[0].message))
+        return Promise.reject(responseData.errors[0].message)
+      }
+    } else {
+      console.log('getMediaInfo - serverResponse: ' + serverResponse)
+      dispatch(mediaInfoError(serverResponse.status))
+      return Promise.reject(serverResponse.status)
+    }
   }
 }
 

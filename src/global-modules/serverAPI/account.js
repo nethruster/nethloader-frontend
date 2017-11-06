@@ -17,35 +17,36 @@ const registerUser = (data, history, registerFormElement) => {
     })
   }
 
-  return dispatch => {
+  return async dispatch => {
     dispatch(requestRegister())
 
-    return fetch(apiBaseUrl, requestConfig)
-        .then(response => {
-          if (response.status >= 200 && response.status < 300) {
-            return response.json()
-          } else {
-            dispatch(registerError(response.status))
-            return Promise.reject(response.status)
-          }
-        })
-        .then(result => {
-          if (!result.data.register) {
-            dispatch(registerError(result.errors[0].message))
-            return Promise.reject(result.errors[0].message)
-          } else {
-            let decodedData = jwtDecode(result.data.register)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig)
 
-            // If register was successful, set the token in local storage
-            window.localStorage.setItem('neth-jwtToken', result.data.register)
-            window.localStorage.setItem('neth-sessionData', JSON.stringify(decodedData))
-            // Dispatch the success action
-            dispatch(receiveRegister())
+    if (serverResponse.status >= 200 && serverResponse.status < 300) {
+      let responseData = await serverResponse.json()
 
-            registerFormElement.reset()
-            history.push('/login')
-          }
-        }).catch(err => console.log('registerUser: ' + err))
+      if (responseData.data.register) {
+        let decodedData = jwtDecode(responseData.data.register)
+
+        // If register was successful, set the token in local storage
+        window.localStorage.setItem('neth-jwtToken', responseData.data.register)
+        window.localStorage.setItem('neth-sessionData', JSON.stringify(decodedData))
+
+        // Dispatch the success action
+        dispatch(receiveRegister())
+
+        registerFormElement.reset()
+        history.push('/login')
+      } else {
+        console.log('registerUser - responseData: ' + responseData)
+        dispatch(registerError(responseData.errors[0].message))
+        return Promise.reject(responseData.errors[0].message)
+      }
+    } else {
+      console.log('registerUser - serverResponse: ' + serverResponse)
+      dispatch(registerError(serverResponse.status))
+      return Promise.reject(serverResponse.status)
+    }
   }
 }
 

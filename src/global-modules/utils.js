@@ -1,5 +1,5 @@
 'use strict'
-import { logoutUserNoHistory, checkCurrentSessionToken } from 'serverAPI/authentication'
+import { checkCurrentSessionToken } from 'serverAPI/authentication'
 
 const supportedVideoFormats = ['video/mp4', 'video/webm', 'video/ogg']
 const supportedMimeTypes = [...supportedVideoFormats, 'image/png', 'image/jpeg', 'image/jpg', 'image/png', 'image/gif']
@@ -36,6 +36,10 @@ const pad = (number) => {
   return (number < 10) ? (`0${number}`) : number
 }
 
+/**
+ * Copy a string to the clipboard
+ * @param onClickEvent event
+ */
 const copyToClipboard = (event) => {
   let textArea = document.createElement('textarea')
 
@@ -119,13 +123,11 @@ const isValidFormat = (type) => {
  * @return boolean
  */
 const checkUserSessionValidity = async (token, tokenExp) => {
-  return checkCurrentSessionToken(token).then(async (result) => {
-    if (await result) {
-      return !!checkTokenExpiryDate(tokenExp)
-    } else {
-      return false
-    }
-  })
+  if (await checkCurrentSessionToken(token)) {
+    return !!checkTokenExpiryDate(tokenExp)
+  } else {
+    return false
+  }
 }
 
 /**

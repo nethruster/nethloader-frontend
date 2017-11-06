@@ -57,6 +57,7 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
     let data = {
       ...this.state.data
     }
+
     let formValidationText = ''
     let input = event.target
     let activeInputOnState = data[event.target.id]

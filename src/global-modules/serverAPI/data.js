@@ -18,30 +18,30 @@ const getUserData = (id, authToken) => {
     })
   }
 
-  return dispatch => {
+  return async dispatch => {
     dispatch(requestUserData())
 
-    return fetch(apiBaseUrl, requestConfig)
-        .then(response => {
-          if (response.status >= 200 && response.status < 300) {
-            return response.json()
-          } else {
-            dispatch(userDataError(response.status))
-            return Promise.reject(response.status)
-          }
-        })
-        .then(result => {
-          if (!result.data.user) {
-            dispatch(userDataError(result.errors[0].message))
-            return Promise.reject(result.errors[0].message)
-          } else {
-            // TODO Check if we already have the latest data
-            // Set the data in local storage
-            window.localStorage.setItem('neth-userData', JSON.stringify(result.data.user))
-            // Dispatch the success action
-            dispatch(receiveUserData(result.data.user))
-          }
-        }).catch(err => console.log('getUserData: ' + err))
+    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+
+    if (serverResponse.status >= 200 && serverResponse.status < 300) {
+      let responseData = await serverResponse.json()
+
+      if (responseData.data.user) {
+        // TODO Check if we already have the latest data
+        // Set the data in local storage
+        window.localStorage.setItem('neth-userData', JSON.stringify(responseData.data.user))
+        // Dispatch the success action
+        dispatch(receiveUserData(responseData.data.user))
+      } else {
+        console.log('getUserData - responseData: ' + responseData)
+        dispatch(userDataError(responseData.errors[0].message))
+        return Promise.reject(responseData.errors[0].message)
+      }
+    } else {
+      console.log('getUserData - serverResponse: ' + serverResponse)
+      dispatch(userDataError(serverResponse.status))
+      return Promise.reject(serverResponse.status)
+    }
   }
 }
 export {

@@ -19,34 +19,34 @@ const loginUser = (credentials, history) => {
     })
   }
 
-  return dispatch => {
+  return async dispatch => {
     dispatch(requestLogin())
 
-    return fetch(apiBaseUrl, requestConfig)
-        .then(response => {
-          if (response.status >= 200 && response.status < 300) {
-            return response.json()
-          } else {
-            dispatch(loginError(response.status))
-            return Promise.reject(response.status)
-          }
-        })
-        .then(result => {
-          if (!result.data.login) {
-            dispatch(loginError(result.errors[0].message))
-            return Promise.reject(result.errors[0].message)
-          } else {
-            // If login was successful, set the token in local storage
-            let decodedData = jwtDecode(result.data.login)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig)
 
-            window.localStorage.setItem('neth-jwtToken', result.data.login)
-            window.localStorage.setItem('neth-sessionData', JSON.stringify(decodedData))
-            // Dispatch the success action
-            dispatch(receiveLogin(result.data.login, decodedData))
+    if (serverResponse.status >= 200 && serverResponse.status < 300) {
+      let responseData = await serverResponse.json()
 
-            history.push('/cp')
-          }
-        }).catch(err => console.log('loginUser: ' + err))
+      if (responseData.data.login) {
+        // If login was successful, set the token in local storage
+        let decodedData = jwtDecode(responseData.data.login)
+
+        window.localStorage.setItem('neth-jwtToken', responseData.data.login)
+        window.localStorage.setItem('neth-sessionData', JSON.stringify(decodedData))
+        // Dispatch the success action
+        dispatch(receiveLogin(responseData.data.login, decodedData))
+
+        history.push('/cp')
+      } else {
+        console.log('loginUser - responseData: ' + responseData)
+        dispatch(loginError(responseData.errors[0].message))
+        return Promise.reject(responseData.errors[0].message)
+      }
+    } else {
+      console.log('loginUser - serverResponse: ' + serverResponse)
+      dispatch(loginError(serverResponse.status))
+      return Promise.reject(serverResponse.status)
+    }
   }
 }
 
@@ -77,7 +77,7 @@ const logoutUserNoHistory = (willReload) => {
   }
 }
 
-const checkCurrentSessionToken = (token) => {
+const checkCurrentSessionToken = async (token) => {
   let requestConfig = {
     method: 'POST',
     headers: {
@@ -90,17 +90,16 @@ const checkCurrentSessionToken = (token) => {
     })
   }
 
-  return fetch(apiBaseUrl, requestConfig)
-        .then(response => {
-          if (response.status >= 200 && response.status < 300) {
-            return response.json()
-          } else {
-            return Promise.reject(response.status)
-          }
-        })
-        .then(result => {
-          return result.data.IsCurrentSessionValid
-        }).catch(err => console.log('checkCurrentSessionToken: ' + err))
+  let serverResponse = await fetch(apiBaseUrl, requestConfig)
+
+  if (serverResponse.status >= 200 && serverResponse.status < 300) {
+    let responseData = await serverResponse.json()
+
+    return responseData.data.IsCurrentSessionValid
+  } else {
+    console.log('checkCurrentSessionToken: ' + serverResponse)
+    return Promise.reject(serverResponse.status)
+  }
 }
 
 export {
