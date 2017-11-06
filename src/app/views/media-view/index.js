@@ -26,7 +26,7 @@ export default connect(mapStateToProps)(class MediaView extends Component {
   componentWillMount () {
     this.props.dispatch(getMediaInfo(this.context.router.route.match.params.id)).then(() => {
       let mediaSrc = `${baseMediaPath}${this.props.mediaInfo.id}.${this.props.mediaInfo.extension}`
-      this.setState(mediaSrc)
+      this.setState({mediaSrc})
     })
   }
 
