@@ -2,3 +2,4 @@ dist/*
 !/dist/.gitkeep
 npm-debug*
 node_modules
+yarn-error*
