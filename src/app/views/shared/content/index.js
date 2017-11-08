@@ -4,7 +4,7 @@ import { connect } from 'preact-redux'
 
 import { checkUserSessionValidity } from 'utils'
 import { getUserData } from 'serverAPI/data'
-import { logoutUserNoHistory } from 'serverAPI/authentication'
+import { logoutUser } from 'serverAPI/authentication'
 
 import asyncComponent from 'asyncComponent'
 import HeaderNav from '../header-nav'
@@ -27,13 +27,12 @@ export default connect(mapStateToProps)(class Content extends Component {
       if (await checkUserSessionValidity(this.props.token, this.props.sessionData.exp)) {
         this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token))
       } else {
-        logoutUserNoHistory(true)
+        logoutUser()
       }
-    } else {
-      logoutUserNoHistory(false)
     }
   }
-  render ({dispatch, isAuthenticated}) {
+  
+  render ({isAuthenticated}) {
     return (
       <div class={`${style.content} flex flex-dc`} role='main'>
         <HeaderNav />

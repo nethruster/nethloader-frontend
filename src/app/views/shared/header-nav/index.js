@@ -53,7 +53,7 @@ export default withRouter(connect(mapStateToProps)(class HeaderNav extends Compo
   }
 
   handleLogout () {
-    this.props.dispatch(logoutUser(this.props.history))
+    this.props.dispatch(logoutUser())
   }
 
   render ({dispatch, isAuthenticated, token}) {

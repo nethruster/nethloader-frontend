@@ -3,10 +3,11 @@ import jwtDecode from 'jwt-decode'
 
 import {
   requestLogin, receiveLogin, loginError,
+  requestRegister, receiveRegister, registerError,
   requestLogout, receiveLogout } from 'actions/authentication'
 
 // Login
-const loginUser = (credentials, history) => {
+const loginUser = (credentials, history, loginFormElement) => {
   let requestConfig = {
     method: 'POST',
     headers: {
@@ -33,7 +34,7 @@ const loginUser = (credentials, history) => {
         window.localStorage.setItem('neth-sessionData', JSON.stringify(decodedData))
         // Dispatch the success action
         dispatch(receiveLogin(responseData.data.login, decodedData))
-
+        loginFormElement.reset()
         history.push('/cp')
       } else {
         console.log('loginUser - responseData: ', responseData)
@@ -48,8 +49,54 @@ const loginUser = (credentials, history) => {
   }
 }
 
+// Register
+const registerUser = (data, history, registerFormElement) => {
+  let requestConfig = {
+    method: 'POST',
+    headers: {
+      'accept': 'application/json',
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      query: `mutation{ register(name: "${data.username}", email: "${data.email}", password: "${data.password}") }`
+    })
+  }
+
+  return async dispatch => {
+    dispatch(requestRegister())
+
+    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+
+    if (serverResponse.status >= 200 && serverResponse.status < 300) {
+      let responseData = await serverResponse.json()
+
+      if (responseData.data.register) {
+        let decodedData = jwtDecode(responseData.data.register)
+
+        // If register was successful, set the token in local storage
+        window.localStorage.setItem('neth-jwtToken', responseData.data.register)
+        window.localStorage.setItem('neth-sessionData', JSON.stringify(decodedData))
+
+        // Dispatch the success action
+        dispatch(receiveRegister(responseData.data.register, decodedData))
+
+        registerFormElement.reset()
+        history.push('/cp')
+      } else {
+        console.log('registerUser - responseData: ', responseData)
+        dispatch(registerError(responseData.errors[0].message))
+        return Promise.reject(responseData.errors[0].message)
+      }
+    } else {
+      console.log('registerUser - serverResponse: ', serverResponse)
+      dispatch(registerError(serverResponse.status))
+      return Promise.reject(serverResponse.status)
+    }
+  }
+}
+
 // Logout
-const logoutUser = (history) => {
+const logoutUser = () => {
   return dispatch => {
     dispatch(requestLogout())
 
@@ -60,18 +107,6 @@ const logoutUser = (history) => {
     })
 
     dispatch(receiveLogout())
-    history.push('/login')
-  }
-}
-
-const logoutUserNoHistory = (willReload) => {
-  Object.keys(window.localStorage).forEach((value) => {
-    if (value.substring(0, 4) === 'neth') {
-      window.localStorage.removeItem(value)
-    }
-  })
-  if (willReload) {
-    window.location.reload()
   }
 }
 
@@ -101,7 +136,7 @@ const checkCurrentSessionToken = async (token) => {
 
 export {
   loginUser,
+  registerUser,
   logoutUser,
-  logoutUserNoHistory,
   checkCurrentSessionToken
 }

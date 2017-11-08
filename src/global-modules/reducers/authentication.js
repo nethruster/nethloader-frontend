@@ -31,6 +31,29 @@ const auth = (state = {
         token: '',
         errorMessage: action.errorMessage
       })
+    case appConstants.REGISTER_REQUEST:
+      return Object.assign({}, state, {
+        isFetching: true,
+        isAuthenticated: false,
+        sessionData: '',
+        token: ''
+      })
+    case appConstants.REGISTER_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        isAuthenticated: true,
+        sessionData: action.sessionData,
+        token: action.token,
+        errorMessage: ''
+      })
+    case appConstants.REGISTER_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        isAuthenticated: false,
+        sessionData: '',
+        token: '',
+        errorMessage: action.errorMessage
+      })
     case appConstants.LOGOUT_REQUEST:
       return Object.assign({}, state, {
         isFetching: true,

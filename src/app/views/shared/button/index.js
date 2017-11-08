@@ -8,6 +8,12 @@ import mdripple from 'mdripple'
 import style from './styles.scss'
 
 export default class Button extends Component {
+  shouldComponentUpdate (nextProps, nextState) {
+    return (this.props.disabled !== nextProps.disabled) ||
+           (this.props.spinner !== nextProps.spinner) ||
+           (this.props.text !== nextProps.text)
+  }
+
   componentDidMount () {
     mdripple(this.buttonEl)
   }
@@ -37,7 +43,7 @@ export default class Button extends Component {
         disabled={disabled}
         ref={(el) => { this.buttonEl = el }}
         ripple='ripple'>
-        {icon ? <Icon iconName={icon} /> : null}&nbsp;
+        {icon && !spinner ? <Icon iconName={icon} /> : null}&nbsp;
         <p class='flex'>{spinner ? <Spinner color={spinnerColor} size={spinnerSize} /> : text}</p>
       </button>
     )

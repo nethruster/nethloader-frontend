@@ -3,6 +3,10 @@ import { h, Component } from 'preact'
 import style from './styles.scss'
 
 export default class FormInput extends Component {
+  shouldComponentUpdate (nextProps, nextState) {
+    return this.props.validationMessage !== nextProps.validationMessage
+  }
+
   render ({inputId, inputType, inputState, inputLabel, required, changeHandler, noValidationStyle, autofocus, validationMessage}) {
     return (
       <div class='input-container flex flex-dc'>

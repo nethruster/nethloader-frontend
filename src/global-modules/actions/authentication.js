@@ -32,6 +32,38 @@ const loginError = (errorMessage) => {
   }
 }
 
+// Register
+const requestRegister = () => {
+  return {
+    type: appConstants.REGISTER_REQUEST,
+    isFetching: true,
+    isAuthenticated: false,
+    sessionData: '',
+    token: ''
+  }
+}
+
+const receiveRegister = (token, sessionData) => {
+  return {
+    type: appConstants.REGISTER_SUCCESS,
+    isFetching: false,
+    isAuthenticated: true,
+    sessionData,
+    token
+  }
+}
+
+const registerError = (errorMessage) => {
+  return {
+    type: appConstants.REGISTER_FAILURE,
+    isFetching: false,
+    isAuthenticated: false,
+    sessionData: '',
+    token: '',
+    errorMessage
+  }
+}
+
 // Logout
 const requestLogout = () => {
   return {
@@ -55,7 +87,9 @@ export {
   requestLogin,
   receiveLogin,
   loginError,
-
+  requestRegister,
+  receiveRegister,
+  registerError,
   requestLogout,
   receiveLogout
 }

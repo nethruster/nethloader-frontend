@@ -6,6 +6,10 @@ import './styles.scss'
 import '../../../../assets/img/icons.svg'
 
 export default class Button extends Component {
+  shouldComponentUpdate () {
+    return false
+  }
+  
   render ({iconName}) {
     const iconStyle = {
       fill: this.props.iconColor

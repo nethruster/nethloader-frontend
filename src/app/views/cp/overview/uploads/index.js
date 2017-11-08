@@ -154,7 +154,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
         <Modal isActive={this.state.modals.singleDelete.isActive} toggleModal={this.toggleDeleteConfirmModal} closeButtonText='Wait, no' acceptButtonText='Yes, do it' onAcceptExecute={this.confirmSingleDelete}>
           <p class='flex flex-full-center'>Are you sure that you want to delete the selected item?</p>
         </Modal>
-        <Modal isActive={this.state.modals.multipleDelete.isActive} toggleModal={this.toggleDeleteConfirmModal} closeButtonText='Wait, no' acceptButtonText='Yes, do it' onAcceptExecute={this.confirmMultipleDelete}>
+        <Modal isActive={this.state.modals.multipleDelete.isActive} toggleModal={this.toggleDeleteConfirmModal} closeButtonText='Wait, no' acceptButtonText='Yes, do it' onAcceptExecute={this.confirmMultipleDelete} disabled={this.state.isDeleting}>
           <p class='flex flex-full-center'>
             You are about to delete {selectedMedia.length} items, are you sure that you want to proceed?
           </p>

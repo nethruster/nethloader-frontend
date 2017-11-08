@@ -20,6 +20,10 @@ function mapStateToProps (state) {
 }
 
 export default connect(mapStateToProps)(class Subheader extends Component {
+  shouldComponentUpdate (nextProps, nextState) {
+    return this.props.isFetching !== nextProps.isFetching
+  }
+  
   render ({isFetching, data}) {
     return (
       <div class={`${style.cpsubheader} flex flex-main-center`}>

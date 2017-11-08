@@ -7,7 +7,6 @@ import Subheader from './subheader'
 import style from './styles.scss'
 
 export default class ControlPanel extends Component {
-
   render () {
     return (
       <div class={`${style.cp} flex flex-dc flex-cross-center`}>

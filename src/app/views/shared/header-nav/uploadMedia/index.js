@@ -164,7 +164,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     return (
       <span>
         <Button text={viewStrings.modal_button} icon='upload' navButton onClickExecute={this.toggleUploadModal} />
-        <Modal isActive={this.state.modals.upload.isActive} toggleModal={this.toggleUploadModal}>
+        <Modal isActive={this.state.modals.upload.isActive} toggleModal={this.toggleUploadModal} disabled={this.state.modals.upload.isUploading}>
           <div>
             <form onSubmit={this.handleUploadSubmit} class={`${style.uploadForm} flex flex-dc flex-full-center`}>
               <input type='file' id='fileInput' name='file' accept='image/*, video/*' onChange={this.handleFileChange} multiple />
@@ -193,7 +193,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
                   </p>
                 )
               }
-              <Button type='submit' text={viewStrings.input.upload_submit} spinner={this.state.modals.upload.isUploading} disabled={this.state.modals.upload.isUploading} spinnerColor='#fff' spinnerSize='14' contrast tabindex='-1' />
+              <Button type='submit' text={viewStrings.input.upload_submit} disabled={this.state.modals.upload.isUploading} spinner={this.state.modals.upload.isUploading} spinnerColor='#fff' spinnerSize='14' contrast tabindex='-1' />
             </form>
           </div>
         </Modal>

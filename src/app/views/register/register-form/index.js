@@ -5,7 +5,7 @@ import FormInput from './../../shared/form-input'
 import Button from '../../shared/button'
 
 import { validateEmpty, validateEmail, validateName } from 'utils'
-import { registerUser } from 'serverAPI/account'
+import { registerUser } from 'serverAPI/authentication'
 
 import style from './styles.scss'
 
@@ -51,6 +51,15 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  shouldComponentUpdate (nextProps, nextState) {
+    return (this.state.data.username.value !== nextState.data.username.value) ||
+      (this.state.data.password.value !== nextState.data.password.value) ||
+      (this.state.data.email.value !== nextState.data.email.value) ||
+      (this.state.data.cpassword.value !== nextState.data.cpassword.value) ||
+      (this.state.data.formValidationText !== nextState.formValidationText) ||
+      (this.props.isFetching !== nextProps.isFetching)
   }
 
   handleChange (event) {
@@ -102,11 +111,11 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
       email: this.state.data.email.value,
       password: this.state.data.password.value
     }
-    this.props.dispatch(registerUser(data, this.context.router.history, this.regiterForm))
+    this.props.dispatch(registerUser(data, this.context.router.history, this.registerForm))
   }
   render ({dispatch, isFetching}) {
     return (
-      <form class={`${style.form} flex flex-full-center flex-dc`} onSubmit={this.handleSubmit} ref={(el) => { this.regiterForm = el }}>
+      <form class={`${style.form} flex flex-full-center flex-dc`} onSubmit={this.handleSubmit} ref={(el) => { this.registerForm = el }}>
         <FormInput inputId='username' inputType='text' inputLabel='Username' changeHandler={this.handleChange} required inputState={this.state.data.username.inputState} validationMessage={this.state.data.username.validationMessage} />
         <FormInput inputId='email' inputType='email' inputLabel={viewStrings.email} changeHandler={this.handleChange} required inputState={this.state.data.email.inputState} validationMessage={this.state.data.email.validationMessage} />
         <FormInput inputId='password' inputType='password' inputLabel={viewStrings.password} changeHandler={this.handleChange} required inputState={this.state.data.password.inputState} validationMessage={this.state.data.password.validationMessage} />

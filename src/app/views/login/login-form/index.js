@@ -33,6 +33,12 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  shouldComponentUpdate (nextProps, nextState) {
+    return (this.state.credentials.email !== nextState.credentials.email) ||
+      (this.state.credentials.password !== nextState.credentials.password) ||
+      (this.props.isFetching !== nextProps.isFetching)
+  }
+
   handleChange (event) {
     let credentials = {
       ...this.state.credentials
@@ -48,12 +54,12 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
 
   handleSubmit (event) {
     event.preventDefault()
-    this.props.dispatch(loginUser(this.state.credentials, this.context.router.history))
+    this.props.dispatch(loginUser(this.state.credentials, this.context.router.history, this.loginForm))
   }
 
   render ({ dispatch, isFetching }) {
     return (
-      <form class={`${style.form} flex flex-full-center flex-dc`} onSubmit={this.handleSubmit}>
+      <form class={`${style.form} flex flex-full-center flex-dc`} onSubmit={this.handleSubmit} ref={(el) => { this.loginForm = el }}>
         <FormInput inputId='email' inputType='email' inputLabel={viewStrings.email} changeHandler={this.handleChange} required noValidationStyle autofocus />
         <FormInput inputId='password' inputType='password' inputLabel={viewStrings.password} changeHandler={this.handleChange} required noValidationStyle />
         <p class={style.formValidationText}>{this.state.formValidationText}</p>
