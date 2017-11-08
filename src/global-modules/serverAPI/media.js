@@ -1,5 +1,3 @@
-'use strict'
-
 import { apiBaseUrl } from 'app.config'
 
 import { requestMediaUpload, receiveMediaUpload, mediaUploadError,
@@ -35,16 +33,14 @@ const uploadMedia = (media, authToken) => {
         dispatch(receiveMediaUpload(responseData.data.uploadImage))
 
         return responseData.data.uploadImage.id
-      } else {
-        console.log('uploadMedia - responseData: ', responseData)
-        dispatch(mediaUploadError(responseData))
-        return Promise.reject(responseData)
       }
-    } else {
-      console.log('uploadMedia - serverResponse: ', serverResponse)
-      dispatch(mediaUploadError(serverResponse.status))
-      return Promise.reject(serverResponse.status)
+      console.log('uploadMedia - responseData: ', responseData)
+      dispatch(mediaUploadError(responseData))
+      return Promise.reject(responseData)
     }
+    console.log('uploadMedia - serverResponse: ', serverResponse)
+    dispatch(mediaUploadError(serverResponse.status))
+    return Promise.reject(serverResponse.status)
   }
 }
 

@@ -1,5 +1,3 @@
-'use strict'
-
 import { apiBaseUrl } from 'app.config'
 import jwtDecode from 'jwt-decode'
 

@@ -1,5 +1,3 @@
-'use strict'
-
 import { apiBaseUrl } from 'app.config'
 import jwtDecode from 'jwt-decode'
 
@@ -96,10 +94,9 @@ const checkCurrentSessionToken = async (token) => {
     let responseData = await serverResponse.json()
 
     return responseData.data.IsCurrentSessionValid
-  } else {
-    console.log('checkCurrentSessionToken: ', serverResponse)
-    return Promise.reject(serverResponse.status)
   }
+  console.log('checkCurrentSessionToken: ', serverResponse)
+  return Promise.reject(serverResponse.status)
 }
 
 export {

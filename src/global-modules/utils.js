@@ -1,4 +1,4 @@
-'use strict'
+
 import { checkCurrentSessionToken } from 'serverAPI/authentication'
 
 const supportedVideoFormats = ['video/mp4', 'video/webm', 'video/ogg']
@@ -125,9 +125,8 @@ const isValidFormat = (type) => {
 const checkUserSessionValidity = async (token, tokenExp) => {
   if (await checkCurrentSessionToken(token)) {
     return !!checkTokenExpiryDate(tokenExp)
-  } else {
-    return false
   }
+  return false
 }
 
 export {

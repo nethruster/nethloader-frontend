@@ -51,15 +51,15 @@ export default class Upload extends Component {
         <div class={`${style.uploadDataDate} flex flex-dc`} title={computeDateFormat(data.createdAt)}><small>{computeDateFormat(data.createdAt)}</small><p><span>{viewStrings.uploaded}:</span> {computeDate(data.createdAt)} - {computeTime(data.createdAt)}</p></div>
         <div class={`${style.uploadButtons} flex flex-dc flex-sa`}><a href={mediaPath} download><Button small text={viewStrings.download} icon='download' customClass={style.uploadButtonsButton} /></a><a><Button small icon='copy' text={this.state.copy.valueCopied ? viewStrings.copied : viewStrings.copy_url} copyText={`${mediaUrl}`} onClickExecute={this.handleCopyClick} customClass={style.uploadButtonsButton} /></a></div>
         {
-        this.props.selectMode
-        ? <Checkbox onChangeHandler={handleToggleSelect} isSelected={isSelected} id={data.id} customClass={style.uploadSelectButton} />
-        : (
-          <Link target='_blank' rel='noopener' to={mediaUrl} class='flex flex-full-center' title={viewStrings.click_open}>
-            <div class={`${style.uploadOpenButton} flex flex-full-center`}>
-              <Icon iconName='open-in-new' />
-            </div>
-          </Link>
-        )
+          this.props.selectMode
+            ? <Checkbox onChangeHandler={handleToggleSelect} isSelected={isSelected} id={data.id} customClass={style.uploadSelectButton} />
+            : (
+              <Link target='_blank' rel='noopener' to={mediaUrl} class='flex flex-full-center' title={viewStrings.click_open}>
+                <div class={`${style.uploadOpenButton} flex flex-full-center`}>
+                  <Icon iconName='open-in-new' />
+                </div>
+              </Link>
+            )
         }
       </li>
     )

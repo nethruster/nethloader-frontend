@@ -23,14 +23,13 @@ export default class Button extends Component {
     return (
       <button
         class={`${style.button} ${
-              round ? style.buttonRound : ''} ${
-              contrast ? style.buttonContrast : ''} ${
-              big ? style.buttonBig : ''} ${
-              small ? style.buttonSmall : ''} ${
-              transparent ? style.buttonTransparent : ''} ${
-              navButton ? style.buttonNav : ''} ${
-              customClass || ''}
-              flex flex-full-center` }
+          round ? style.buttonRound : ''} ${
+          contrast ? style.buttonContrast : ''} ${
+          big ? style.buttonBig : ''} ${
+          small ? style.buttonSmall : ''} ${
+          transparent ? style.buttonTransparent : ''} ${
+          navButton ? style.buttonNav : ''} ${
+          customClass || ''} flex flex-full-center`}
         tabindex={tabindex}
         type={type}
         onClick={onClickExecute}

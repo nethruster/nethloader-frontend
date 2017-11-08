@@ -1,5 +1,3 @@
-'use strict'
-
 import { h, render } from 'preact'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'preact-redux'
@@ -9,7 +7,7 @@ import asyncComponent from 'asyncComponent'
 
 import reducers from 'reducers'
 
-if(module.hot) {
+if (module.hot) {
   require('preact/devtools')
 }
 

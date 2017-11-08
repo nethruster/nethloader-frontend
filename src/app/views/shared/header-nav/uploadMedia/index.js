@@ -46,7 +46,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     this.handleFileDrop = this.handleFileDrop.bind(this)
   }
 
-   // Utility methods
+  // Utility methods
   increaseUploadedFileCount () {
     let modals = {
       ...this.state.modals
@@ -186,12 +186,12 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
                   )
               }
               {this.state.modals.upload.isUploading
-              ? null
-              : (
-                <p title={this.state.modals.upload.selectedFiles.join(', ')}>
-                  {this.state.modals.upload.selectedFiles.length} {viewStrings.input.files_selected}
-                </p>
-              )
+                ? null
+                : (
+                  <p title={this.state.modals.upload.selectedFiles.join(', ')}>
+                    {this.state.modals.upload.selectedFiles.length} {viewStrings.input.files_selected}
+                  </p>
+                )
               }
               <Button type='submit' text={viewStrings.input.upload_submit} spinner={this.state.modals.upload.isUploading} disabled={this.state.modals.upload.isUploading} spinnerColor='#fff' spinnerSize='14' contrast tabindex='-1' />
             </form>

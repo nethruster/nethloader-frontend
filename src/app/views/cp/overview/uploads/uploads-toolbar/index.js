@@ -6,7 +6,7 @@ import Icon from '../../../../shared/icon'
 import style from './styles.scss'
 
 export default class UploadsToolbar extends Component {
-  render ({ isSelecting, toggleIsSelecting, handleDeleteClick, toggleSelectAll, hasMedia}) {
+  render ({isSelecting, toggleIsSelecting, handleDeleteClick, toggleSelectAll, hasMedia}) {
     return (
       <div class={`flex ${style.uploadsToolbar}`}>
         <div class={`flex flex-cross-center flex-sb ${style.uploadsToolbarSelect}`}>

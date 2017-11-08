@@ -22,10 +22,10 @@ function mapStateToProps (state) {
 }
 
 export default connect(mapStateToProps)(class Content extends Component {
-  async componentWillMount() {
-    if(this.props.isAuthenticated) {
-      if(await checkUserSessionValidity(this.props.token, this.props.sessionData.exp)) {
-        this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token)) 
+  async componentWillMount () {
+    if (this.props.isAuthenticated) {
+      if (await checkUserSessionValidity(this.props.token, this.props.sessionData.exp)) {
+        this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token))
       } else {
         logoutUserNoHistory(true)
       }
@@ -38,15 +38,13 @@ export default connect(mapStateToProps)(class Content extends Component {
       <div class={`${style.content} flex flex-dc`} role='main'>
         <HeaderNav />
         <Switch>
-          {isAuthenticated ? 
-          
-          <Route
-            path='/cp'
-            component={asyncComponent(() => import(/* webpackChunkName: "content_cp" */'../../cp') 
-          .then(module => module.default))} /> 
+          {isAuthenticated
+            ? <Route
+              path='/cp'
+              component={asyncComponent(() => import(/* webpackChunkName: "content_cp" */'../../cp')
+                .then(module => module.default))} />
 
-          : 
-          <Redirect from='/cp' to='/login' />}
+            : <Redirect from='/cp' to='/login' />}
 
           <Route
             path='/:id([A-Za-z0-9_~]{10})'

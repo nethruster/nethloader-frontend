@@ -4,7 +4,7 @@ import { connect } from 'preact-redux'
 
 import asyncComponent from 'asyncComponent'
 
-import style from './styles.scss'
+import './styles.scss'
 
 function mapStateToProps (state) {
   const {isAuthenticated} = state.authentication
@@ -24,12 +24,12 @@ export default connect(mapStateToProps)(class App extends Component {
           />
 
           {isAuthenticated ? <Redirect from='/login' to='/cp' />
-          : 
-          <Route
-            exact
-            path='/login'
-            component={asyncComponent(() => import(/* webpackChunkName: "login" */'./views/login').then(module => module.default))}
-          />}
+            : <Route
+              exact
+              path='/login'
+              component={asyncComponent(() => import(/* webpackChunkName: "login" */'./views/login').then(module => module.default))}
+            />
+          }
 
           <Route
             exact

@@ -38,8 +38,8 @@ export default withRouter(connect(mapStateToProps)(class HeaderNav extends Compo
   }
 
   async loadUploadMediaComponent () {
-    let UploadMedia = (await import(/*webpackChunkName: "shared_header-nav_uploadmedia"*/'./uploadMedia')).default
-    this.setState({ UploadMedia });
+    let UploadMedia = (await import(/* webpackChunkName: "shared_header-nav_uploadmedia" */'./uploadMedia')).default
+    this.setState({ UploadMedia })
   }
 
   toggleHelpModal () {

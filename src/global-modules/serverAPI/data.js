@@ -1,5 +1,3 @@
-'use strict'
-
 import { apiBaseUrl } from 'app.config'
 
 import { requestUserData, receiveUserData, userDataError } from 'actions/data'

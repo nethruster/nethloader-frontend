@@ -61,11 +61,12 @@ export default connect(mapStateToProps)(class Uploads extends Component {
       return mediaList.map((entry, index) =>
         <Upload key={entry.id} data={entry} isSelected={this.props.selectedMedia.includes(entry.id)} selectMode={this.state.isSelecting} handleToggleSelect={this.handleToggleMedia} />
       )
-    } else {
-      return (<p class={`${style.nomedia} flex flex-full-center`}>
-        {viewStrings.no_media}
-      </p>)
     }
+    return (
+      <p class={`${style.nomedia} flex flex-full-center`}>
+        {viewStrings.no_media}
+      </p>
+    )
   }
 
   toggleIsSelecting () {
@@ -143,8 +144,10 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     const hasMedia = !isFetching && data.images.length > 0
     return (
       <div class={style.uploads}>
-        {hasMedia ? <UploadsToolbar isSelecting={this.state.isSelecting} toggleIsSelecting={this.toggleIsSelecting} handleDeleteClick={this.toggleDeleteConfirmModal} toggleSelectAll={this.handleToggleAllMedia} hasMedia={hasMedia} />
-        : null }
+        {
+          hasMedia ? <UploadsToolbar isSelecting={this.state.isSelecting} toggleIsSelecting={this.toggleIsSelecting} handleDeleteClick={this.toggleDeleteConfirmModal} toggleSelectAll={this.handleToggleAllMedia} hasMedia={hasMedia} />
+            : null
+        }
         <ul>
           {isFetching ? `${viewStrings.loading_media}...` : this.computeMediaList('byDate')}
         </ul>
