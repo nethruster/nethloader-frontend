@@ -38,12 +38,12 @@ const loginUser = (credentials, history) => {
 
         history.push('/cp')
       } else {
-        console.log('loginUser - responseData: ' + responseData)
+        console.log('loginUser - responseData: ', responseData)
         dispatch(loginError(responseData.errors[0].message))
         return Promise.reject(responseData.errors[0].message)
       }
     } else {
-      console.log('loginUser - serverResponse: ' + serverResponse)
+      console.log('loginUser - serverResponse: ', serverResponse)
       dispatch(loginError(serverResponse.status))
       return Promise.reject(serverResponse.status)
     }
@@ -97,7 +97,7 @@ const checkCurrentSessionToken = async (token) => {
 
     return responseData.data.IsCurrentSessionValid
   } else {
-    console.log('checkCurrentSessionToken: ' + serverResponse)
+    console.log('checkCurrentSessionToken: ', serverResponse)
     return Promise.reject(serverResponse.status)
   }
 }

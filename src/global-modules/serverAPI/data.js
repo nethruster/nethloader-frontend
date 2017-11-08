@@ -33,12 +33,12 @@ const getUserData = (id, authToken) => {
         // Dispatch the success action
         dispatch(receiveUserData(responseData.data.user))
       } else {
-        console.log('getUserData - responseData: ' + responseData)
+        console.log('getUserData - responseData: ', responseData)
         dispatch(userDataError(responseData.errors[0].message))
         return Promise.reject(responseData.errors[0].message)
       }
     } else {
-      console.log('getUserData - serverResponse: ' + serverResponse)
+      console.log('getUserData - serverResponse: ', serverResponse)
       dispatch(userDataError(serverResponse.status))
       return Promise.reject(serverResponse.status)
     }

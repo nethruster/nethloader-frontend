@@ -6,10 +6,8 @@ import { requestMediaUpload, receiveMediaUpload, mediaUploadError,
   requestMediaDelete, receiveMediaDelete, mediaDeleteError,
   requestMediaInfo, mediaInfoError, receiveMediaInfo } from 'actions/media'
 
-import { getUserData } from 'serverAPI/data'
-
 // Upload
-const uploadMedia = (id, media, authToken) => {
+const uploadMedia = (media, authToken) => {
   let formData = new FormData()
 
   formData.append('files', media, media.name)
@@ -35,17 +33,15 @@ const uploadMedia = (id, media, authToken) => {
       if (responseData.data.uploadImage) {
         // Dispatch the success action
         dispatch(receiveMediaUpload(responseData.data.uploadImage))
-        // Refetch user data
-        dispatch(getUserData(id, authToken))
 
         return responseData.data.uploadImage.id
       } else {
-        console.log('uploadMedia - responseData: ' + responseData)
+        console.log('uploadMedia - responseData: ', responseData)
         dispatch(mediaUploadError(responseData))
         return Promise.reject(responseData)
       }
     } else {
-      console.log('uploadMedia - serverResponse: ' + serverResponse)
+      console.log('uploadMedia - serverResponse: ', serverResponse)
       dispatch(mediaUploadError(serverResponse.status))
       return Promise.reject(serverResponse.status)
     }
@@ -53,7 +49,7 @@ const uploadMedia = (id, media, authToken) => {
 }
 
 // Delete
-const deleteMedia = (mediaId, authToken, userId) => {
+const deleteMedia = (mediaId, authToken) => {
   let requestConfig = {
     method: 'POST',
     headers: {
@@ -76,16 +72,13 @@ const deleteMedia = (mediaId, authToken, userId) => {
       if (responseData.data.deleteImage) {
         // Dispatch the success action
         dispatch(receiveMediaDelete())
-
-        // Refresh user data
-        dispatch(getUserData(userId, authToken))
       } else {
-        console.log('deleteMedia - responseData:' + responseData)
+        console.log('deleteMedia - responseData:', responseData)
         dispatch(mediaDeleteError(responseData))
         return Promise.reject(responseData)
       }
     } else {
-      console.log('deleteMedia - serverResponse:' + serverResponse)
+      console.log('deleteMedia - serverResponse:', serverResponse)
       dispatch(mediaDeleteError(serverResponse.status))
       return Promise.reject(serverResponse.status)
     }
@@ -116,12 +109,12 @@ const getMediaInfo = (mediaId) => {
         // Dispatch the success action
         dispatch(receiveMediaInfo(responseData.data.image))
       } else {
-        console.log('getMediaInfo - responseData: ' + responseData)
+        console.log('getMediaInfo - responseData: ', responseData)
         dispatch(mediaInfoError(responseData.errors[0].message))
         return Promise.reject(responseData.errors[0].message)
       }
     } else {
-      console.log('getMediaInfo - serverResponse: ' + serverResponse)
+      console.log('getMediaInfo - serverResponse: ', serverResponse)
       dispatch(mediaInfoError(serverResponse.status))
       return Promise.reject(serverResponse.status)
     }

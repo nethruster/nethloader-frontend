@@ -130,22 +130,6 @@ const checkUserSessionValidity = async (token, tokenExp) => {
   }
 }
 
-/**
- * Basic size comparator method for dates
- * @param int date1
- * @param int date2
- * @return int
- */
-const compareDate = (date1, date2) => {
-  if (date1.createdAt > date2.createdAt) {
-    return -1
-  }
-  if (date1.createdAt < date2.createdAt) {
-    return 1
-  }
-  return 0
-}
-
 export {
   validateEmpty,
   validateEmail,
@@ -158,6 +142,5 @@ export {
   computeDateFormat,
   isValidVideoFormat,
   isValidFormat,
-  checkUserSessionValidity,
-  compareDate
+  checkUserSessionValidity
 }

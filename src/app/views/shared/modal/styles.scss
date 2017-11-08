@@ -38,7 +38,7 @@
             background-color: var(--modal-content-background-color);
             opacity: 0;
 
-            padding: calc(var(--base-pm) * 3);
+            padding: calc(var(--base-pm) * 2.5);
 
             pointer-events: none;
             transform: scale(.8) translateY(35px);
@@ -57,7 +57,9 @@
                 font-size: .95em;
             }
 
-            &-footer { justify-content: flex-end; }
+            &-footer {
+                justify-content: flex-end
+            }
         }
 
         &-overlay {
@@ -74,10 +76,29 @@
             transition: opacity .2s;
         }
 
-        &-close-button {
+        &-close-button,
+        &-accept-button {
             width: auto;
 
-            margin-bottom: var(--base-pm);
+            margin-bottom: 0;
+            margin-left: var(--base-pm);
+
+            svg {
+                width: 18px;
+            }
+        }
+
+        &-close-button {
+            &:hover svg{
+                color: red;
+            }
+        }
+
+        &-accept-button {
+            &:hover svg { 
+                color: green;
+                
+            }
         }
     }
 }

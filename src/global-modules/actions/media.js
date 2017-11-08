@@ -67,6 +67,36 @@ const mediaInfoError = (errorMessage) => {
   }
 }
 
+const mediaSelect = (selectedMedia) => {
+  return {
+    type: appConstants.MEDIA_SELECT,
+    selectedMedia
+  }
+}
+
+const mediaUnselect = (selectedMedia) => {
+  return {
+    type: appConstants.MEDIA_UNSELECT,
+    selectedMedia
+  }
+}
+
+const mediaSelectAll = (selectedMedia) => {
+  return {
+    type: appConstants.MEDIA_SELECT_ALL,
+    selectedMedia,
+    allToggled: true
+  }
+}
+
+const mediaUnselectAll = () => {
+  return {
+    type: appConstants.MEDIA_UNSELECT_ALL,
+    selectedMedia: [],
+    allToggled: false
+  }
+}
+
 export {
   requestMediaUpload,
   receiveMediaUpload,
@@ -76,5 +106,9 @@ export {
   mediaInfoError,
   requestMediaDelete,
   receiveMediaDelete,
-  mediaDeleteError
+  mediaDeleteError,
+  mediaSelect,
+  mediaUnselect,
+  mediaSelectAll,
+  mediaUnselectAll
 }

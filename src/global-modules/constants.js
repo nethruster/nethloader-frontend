@@ -33,5 +33,11 @@ export default keymirror({
   // Media Info
   MEDIA_INFO_REQUEST: null,
   MEDIA_INFO_SUCCESS: null,
-  MEDIA_INFO_FAILURE: null
+  MEDIA_INFO_FAILURE: null,
+
+  // Media Select
+  MEDIA_SELECT: null,
+  MEDIA_UNSELECT: null,
+  MEDIA_SELECT_ALL: null,
+  MEDIA_UNSELECT_ALL: null
 })

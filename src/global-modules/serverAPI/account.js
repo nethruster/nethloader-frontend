@@ -38,12 +38,12 @@ const registerUser = (data, history, registerFormElement) => {
         registerFormElement.reset()
         history.push('/login')
       } else {
-        console.log('registerUser - responseData: ' + responseData)
+        console.log('registerUser - responseData: ', responseData)
         dispatch(registerError(responseData.errors[0].message))
         return Promise.reject(responseData.errors[0].message)
       }
     } else {
-      console.log('registerUser - serverResponse: ' + serverResponse)
+      console.log('registerUser - serverResponse: ', serverResponse)
       dispatch(registerError(serverResponse.status))
       return Promise.reject(serverResponse.status)
     }

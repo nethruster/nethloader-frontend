@@ -32,8 +32,8 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
           isActive: false,
           selectedFiles: [],
           files: [],
-          uploadingFileIndex: 0,
-          isUploading: false
+          isUploading: false,
+          uploadedFileCount: 0
         }
       }
     }
@@ -42,12 +42,21 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     this.resetForm = this.resetForm.bind(this)
     this.handleUploadSubmit = this.handleUploadSubmit.bind(this)
     this.handleFileChange = this.handleFileChange.bind(this)
-    this.increaseUploadingFileIndexCount = this.increaseUploadingFileIndexCount.bind(this)
     this.toggleIsUploading = this.toggleIsUploading.bind(this)
     this.handleFileDrop = this.handleFileDrop.bind(this)
   }
 
    // Utility methods
+  increaseUploadedFileCount () {
+    let modals = {
+      ...this.state.modals
+    }
+
+    modals.upload.uploadedFileCount++
+
+    this.setState({modals})
+  }
+
   toggleUploadModal () {
     if (!this.state.modals.upload.isUploading) {
       let modals = {
@@ -73,16 +82,6 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     this.setState({modals})
   }
 
-  increaseUploadingFileIndexCount () {
-    let modals = {
-      ...this.state.modals
-    }
-
-    modals.upload.uploadingFileIndex++
-
-    this.setState({modals})
-  }
-
   toggleIsUploading () {
     let modals = {
       ...this.state.modals
@@ -97,26 +96,27 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
   handleUploadSubmit (event) {
     event.preventDefault()
 
-    if (this.state.modals.upload.files.length <= 0) {
+    let filesToUpload = this.state.modals.upload.files
+    if (filesToUpload.length <= 0) {
       console.log(viewStrings.response.no_files)
-    } else if (this.state.modals.upload.files.length > 0) {
+    } else if (filesToUpload.length > 0) {
       this.toggleIsUploading()
 
-      this.state.modals.upload.files.forEach(async (file, index) => {
-        let responseImageId = await this.props.dispatch(uploadMedia(this.props.sessionData.id, file, this.props.token))
+      filesToUpload.forEach(async (file, index) => {
+        this.props.dispatch(uploadMedia(file, this.props.token)).then((imageId) => {
+          this.increaseUploadedFileCount()
 
-        this.increaseUploadingFileIndexCount()
+          if (this.state.modals.upload.uploadedFileCount === this.state.modals.upload.selectedFiles.length) {
+            let fileCount = this.state.modals.upload.uploadedFileCount
+            this.resetForm(event)
+            this.toggleIsUploading()
+            this.toggleUploadModal()
 
-        if (this.state.modals.upload.uploadingFileIndex === this.state.modals.upload.selectedFiles.length) {
-          let fileCount = this.state.modals.upload.uploadingFileIndex
-          this.resetForm(event)
-          this.toggleIsUploading()
-          this.toggleUploadModal()
-
-          if (fileCount === 1) {
-            this.props.history.push(`/${responseImageId}`)
+            if (fileCount === 1) {
+              this.props.history.push(`/${imageId}`)
+            }
           }
-        }
+        })
       })
     } else {
       console.log(viewStrings.response.error)
@@ -161,37 +161,42 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
   }
 
   render ({dispatch, isAuthenticated, token}) {
-    const uploadModalContent = (
-      <div>
-        <form onSubmit={this.handleUploadSubmit} class={`${style.uploadForm} flex flex-dc flex-full-center`}>
-          <input type='file' id='fileInput' name='file' accept='image/*, video/*' onChange={this.handleFileChange} multiple />
-          {
-            this.state.modals.upload.isUploading
-              ? (<label class='flex flex-full-center'>
-                {viewStrings.input.uploading_file} {this.state.modals.upload.uploadingFileIndex}/{this.state.modals.upload.selectedFiles.length}
-              </label>)
-              : (<label onDragOver={this.onDragOver} onDrop={this.handleFileDrop} for='fileInput' class='flex flex-full-center'>
-                {this.state.modals.upload.selectedFiles.length === 0 ? viewStrings.input.text : viewStrings.input.files_text}
-                {/* SVG label dashed border */}
-                <svg>
-                  <rect width='100%' height='100%' />
-                </svg>
-              </label>)
-          }
-          {this.state.modals.upload.isUploading ? null
-          : <p title={this.state.modals.upload.selectedFiles.join(',')}>
-            {this.state.modals.upload.selectedFiles.length} {viewStrings.input.files_selected}
-          </p>
-          }
-          <Button type='submit' text={viewStrings.input.upload_submit} spinner={this.state.modals.upload.isUploading} disabled={this.state.modals.upload.isUploading} spinnerColor='#fff' spinnerSize='14' contrast tabindex='-1' />
-        </form>
-      </div>
-    )
-
     return (
       <span>
         <Button text={viewStrings.modal_button} icon='upload' navButton onClickExecute={this.toggleUploadModal} />
-        <Modal modalTitle='' modalContent={uploadModalContent} isActive={this.state.modals.upload.isActive} toggleModal={this.toggleUploadModal} />
+        <Modal isActive={this.state.modals.upload.isActive} toggleModal={this.toggleUploadModal}>
+          <div>
+            <form onSubmit={this.handleUploadSubmit} class={`${style.uploadForm} flex flex-dc flex-full-center`}>
+              <input type='file' id='fileInput' name='file' accept='image/*, video/*' onChange={this.handleFileChange} multiple />
+              {
+                this.state.modals.upload.isUploading
+                  ? (
+                    <label class='flex flex-full-center'>
+                      {viewStrings.input.uploading_file} {this.state.modals.upload.uploadedFileCount}/{this.state.modals.upload.selectedFiles.length}
+                    </label>
+                  )
+                  : (
+                    <label onDragOver={this.onDragOver} onDrop={this.handleFileDrop} for='fileInput' class='flex flex-full-center'>
+                      {this.state.modals.upload.selectedFiles.length === 0 ? viewStrings.input.text : viewStrings.input.files_text}
+                      {/* SVG label dashed border */}
+                      <svg>
+                        <rect width='100%' height='100%' />
+                      </svg>
+                    </label>
+                  )
+              }
+              {this.state.modals.upload.isUploading
+              ? null
+              : (
+                <p title={this.state.modals.upload.selectedFiles.join(', ')}>
+                  {this.state.modals.upload.selectedFiles.length} {viewStrings.input.files_selected}
+                </p>
+              )
+              }
+              <Button type='submit' text={viewStrings.input.upload_submit} spinner={this.state.modals.upload.isUploading} disabled={this.state.modals.upload.isUploading} spinnerColor='#fff' spinnerSize='14' contrast tabindex='-1' />
+            </form>
+          </div>
+        </Modal>
       </span>
 
     )

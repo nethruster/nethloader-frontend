@@ -3,7 +3,7 @@ import { combineReducers } from 'redux'
 import authentication from 'reducers/authentication'
 import account from 'reducers/account'
 import data from 'reducers/data'
-import { mediaUpload, mediaInfo, mediaDelete } from 'reducers/media'
+import { mediaUpload, mediaInfo, mediaDelete, mediaSelect } from 'reducers/media'
 
 const reducers = combineReducers({
   authentication,
@@ -11,7 +11,8 @@ const reducers = combineReducers({
   data,
   mediaUpload,
   mediaInfo,
-  mediaDelete
+  mediaDelete,
+  mediaSelect
 })
 
 export default reducers

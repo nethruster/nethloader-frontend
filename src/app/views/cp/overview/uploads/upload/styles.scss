@@ -16,8 +16,7 @@
 
         &:not(:last-child) { border-bottom: 1px solid var(--cp-overview-layoutborder-color); }
 
-        &:hover,
-        &Selected { border-left-color: var(--cp-overview-medialist-item-activeborder-color) }
+        &:hover { border-left-color: var(--cp-overview-medialist-item-activeborder-color) }
 
         &Media {
             flex: 1;
@@ -30,6 +29,8 @@
             border-radius: var(--base-br);
 
             overflow: hidden;
+
+            user-select: none;
 
             img { border-radius: var(--base-br); }
         }
@@ -60,7 +61,7 @@
             }
         }
 
-        &DeleteButton {
+        &OpenButton {
             min-height: 42px;
             min-width: 42px;
 

@@ -57,13 +57,6 @@ export default withRouter(connect(mapStateToProps)(class HeaderNav extends Compo
   }
 
   render ({dispatch, isAuthenticated, token}) {
-    const helpModalContent = (
-      <p>
-        This format <strong>allows</strong> use of <sup>html passed as a prop</sup><br />
-        Nethloader v{version} <br />
-      </p>
-    )
-
     return (
       <header class={`${style.headerNav} flex flex-cross-center flex-sb`} role='menubar'>
         <div class={`${style.headerNavLogo} flex`}>
@@ -72,11 +65,17 @@ export default withRouter(connect(mapStateToProps)(class HeaderNav extends Compo
         </div>
         <nav class={`${style.headerNavLinks} flex flex-full-center`}>
           {isAuthenticated && (this.state.UploadMedia ? <this.state.UploadMedia /> : this.loadUploadMediaComponent())}
-          {isAuthenticated && <NavLink to='/cp' activeClassName='dom-hidden'><Button text={viewStrings.cp} icon='cp' navButton /></NavLink>}
+          {isAuthenticated && <NavLink to='/cp' activeClassName='nav-active'><Button text={viewStrings.cp} icon='cp' navButton /></NavLink>}
           {isAuthenticated ? <Button text={viewStrings.logout} icon='logout' navButton onClickExecute={this.handleLogout} /> : <NavLink to='/login'><Button text={viewStrings.login} icon='login' navButton /></NavLink>}
           <Button icon='help-circle' navButton onClickExecute={this.toggleHelpModal} />
         </nav>
-        <Modal modalTitle='About the project' modalContent={helpModalContent} isActive={this.state.modals.help.isActive} toggleModal={this.toggleHelpModal} />
+        
+        <Modal modalTitle='About the project' isActive={this.state.modals.help.isActive} toggleModal={this.toggleHelpModal}>
+          <p>
+            This format <strong>allows</strong> use of <sup>html passed as a prop</sup><br />
+            Nethloader v{version} <br />
+          </p>
+        </Modal>
       </header>
     )
   }

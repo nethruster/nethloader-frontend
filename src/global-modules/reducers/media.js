@@ -72,8 +72,37 @@ const mediaInfo = (state = {
   }
 }
 
+const mediaSelect = (state = {
+  selectedMedia: [],
+  allToggled: false
+}, action) => {
+  switch (action.type) {
+    case appConstants.MEDIA_SELECT:
+      return Object.assign({}, state, {
+        selectedMedia: action.selectedMedia
+      })
+    case appConstants.MEDIA_UNSELECT:
+      return Object.assign({}, state, {
+        selectedMedia: action.selectedMedia
+      })
+    case appConstants.MEDIA_SELECT_ALL:
+      return Object.assign({}, state, {
+        selectedMedia: action.selectedMedia,
+        allToggled: true
+      })
+    case appConstants.MEDIA_UNSELECT_ALL:
+      return Object.assign({}, state, {
+        selectedMedia: [],
+        allToggled: false
+      })
+    default:
+      return state
+  }
+}
+
 export {
   mediaUpload,
   mediaInfo,
-  mediaDelete
+  mediaDelete,
+  mediaSelect
 }

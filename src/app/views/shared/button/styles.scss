@@ -97,3 +97,20 @@
         }
     }
 }
+
+:global {
+    a.nav-active {
+       button {
+            color: var(--button-text-color-nav--hover);
+        background-color: var(--button-bg-color-nav--hover);
+
+        svg { color: var(--button-text-color-nav--hover); }
+       }
+    }
+
+    button {
+        .spinner {
+            margin: 0;
+        }
+    }
+}
