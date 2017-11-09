@@ -10,8 +10,6 @@
         border-left: 4px solid transparent;
         border-radius: var(--base-br) 0 0 var(--base-br);
 
-        overflow: hidden;
-
         transition: border .15s;
 
         &:not(:last-child) { border-bottom: 1px solid var(--cp-overview-layoutborder-color); }
@@ -29,7 +27,6 @@
             border-radius: var(--base-br);
 
             overflow: hidden;
-
             user-select: none;
 
             img { border-radius: var(--base-br); }
@@ -49,19 +46,8 @@
             small { opacity: .8 }
         }
 
-        &Buttons {
-            position: relative;
-
-            a:not(:last-child) { margin-bottom: var(--base-pm); }
-            
-            &Button {
-                max-width: 150px;
-
-                margin: 0;
-            }
-        }
-
-        &OpenButton {
+        &OpenButton,
+        &SelectButton {
             min-height: 42px;
             min-width: 42px;
 
@@ -73,26 +59,7 @@
 
             transition: background-color .3s;
 
-            &:hover {
-                background-color: rgba(0,0,0,.075)
-            }
-        }
-
-         &SelectButton {
-            min-height: 42px;
-            min-width: 42px;
-
-            margin-left: var(--base-pm);
-            
-            border-radius: 100%;
-            
-            cursor: pointer;
-
-            transition: background-color .3s;
-
-            &:hover {
-                background-color: rgba(0,0,0,.075)
-            }
+            &:hover { background-color: var(--icon-bg-color-action-button--hover) }
         }
     }
 }

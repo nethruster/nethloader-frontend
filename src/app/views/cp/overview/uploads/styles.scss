@@ -2,7 +2,7 @@
     .uploads {
         flex: 2;
 
-        margin: 0 calc(var(--base-pm) * 2);
+        margin: var(--base-pm) calc(var(--base-pm) * 2);
 
         .nomedia {
             font-weight: 300;

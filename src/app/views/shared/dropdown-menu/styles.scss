@@ -1,0 +1,77 @@
+:local {
+    .triggerIcon {
+        min-height: 42px;
+        min-width: 42px;
+        
+        border-radius: 100%;
+        
+        cursor: pointer;
+
+        transition: background-color .3s;
+
+        &:hover { background-color: var(--icon-bg-color-action-button--hover); }
+    }
+
+    .dropdown {
+        &Wrapper {
+            position: relative;
+
+            margin-left: var(--base-pm);            
+        }
+
+        &Menu {
+            position: absolute;
+            min-width: 150px;
+            max-height: 0;
+            top: 0;
+            left: 0;
+
+            background: #fff;
+            opacity: 0;
+            border: 1px solid transparent;
+            border-radius: var(--base-br);
+            
+            overflow: hidden;
+            pointer-events: none;
+            transition: .3s ease-in-out;
+            transition-property: max-height, opacity, box-shadow;
+
+            li {
+                &:not(:last-child) { border-bottom: 1px solid  var(--dropdown-item-border-color)}
+            }
+
+            &.active {
+                max-height: 200px;
+
+                border-color: var(--button-border-color-default);
+                box-shadow: 0 2px 4px 0 rgba(78, 86, 95, 0.1);
+                opacity: 1;
+                
+                z-index: 3;
+                pointer-events: initial;
+            }
+        }
+
+        &Overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+
+            pointer-events: none;
+
+            &.active {
+                z-index: 2;
+                pointer-events: initial;
+            }
+        }
+    }
+
+    @media (max-width: 900px) {
+        .dropdownMenu {
+            left: auto;
+            right: 0;
+        }
+    }
+}

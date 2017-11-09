@@ -18,7 +18,7 @@ export default class Button extends Component {
     mdripple(this.buttonEl)
   }
 
-  render ({round, contrast, big, small, transparent, navButton, customClass, tabindex, type, onClickExecute, copyText, disabled, icon, spinner, spinnerColor, spinnerSize, text}) {
+  render ({id, round, contrast, big, small, transparent, navButton, dropdown, customClass, tabindex, type, onClickExecute, copyText, disabled, icon, spinner, spinnerColor, spinnerSize, text}) {
     /* eslint-disable no-lone-blocks */
     {
       /* You'll probably wonder why the fuck did I lay out the following class attribute like
@@ -28,6 +28,7 @@ export default class Button extends Component {
     /* eslint-enable no-lone-blocks */
     return (
       <button
+        id={id}
         class={`${style.button} ${
           round ? style.buttonRound : ''} ${
           contrast ? style.buttonContrast : ''} ${
@@ -35,6 +36,7 @@ export default class Button extends Component {
           small ? style.buttonSmall : ''} ${
           transparent ? style.buttonTransparent : ''} ${
           navButton ? style.buttonNav : ''} ${
+          dropdown ? style.buttonDropdown : ''} ${
           customClass || ''} flex flex-full-center`}
         tabindex={tabindex}
         type={type}

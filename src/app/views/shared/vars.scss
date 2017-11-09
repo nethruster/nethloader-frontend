@@ -37,6 +37,8 @@
         --button-text-color-nav--hover: rgba(255,255,255, 1);
         --button-bg-color-nav--hover: rgba(255,255,255, .1);
 
+        --icon-bg-color-action-button--hover: rgba(56, 61, 66, 0.075);
+
         --input-bg-color-default: #fff;
         --input-text-color-default: #666;
         --input-border-color-default: #e5e5e5;
@@ -67,5 +69,7 @@
         --modal-body-text-color: rgb(43, 43, 43);
         --modal-accept-button-icon-color: #1e87f0;
         --modal-close-button-icon-color: #D50000;
+
+        --dropdown-item-border-color: lighten(#222, 80%);
     }
 }

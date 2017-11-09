@@ -95,6 +95,25 @@
                 svg { color: var(--button-text-color-nav--hover); }
             }
         }
+
+        &Dropdown {
+            justify-content: flex-start;
+
+            padding: calc(var(--base-pm) * 1.5) calc(var(--base-pm) * 2);
+            margin: 0;
+
+            
+            cursor: pointer;
+            border: 0;
+            border-radius: 0;
+
+            font-size: .9em;
+            text-transform: capitalize;            
+
+            svg { width: 17px; }
+
+            &:hover { background-color: rgba(56, 61, 66, 0.075) }
+        }
     }
 }
 
