@@ -106,6 +106,12 @@ const logoutUser = () => {
       }
     })
 
+    Object.keys(window.sessionStorage).forEach((value) => {
+      if (value.substring(0, 4) === 'neth') {
+        window.localStorage.removeItem(value)
+      }
+    })
+
     dispatch(receiveLogout())
   }
 }

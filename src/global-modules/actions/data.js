@@ -3,17 +3,17 @@ import appConstants from '../constants'
 const requestUserData = () => {
   return {
     type: appConstants.USER_DATA_REQUEST,
-    isFetching: true,
-    data: {},
+    isFetchingUser: true,
+    userData: {},
     errorMessage: ''
   }
 }
 
-const receiveUserData = (data) => {
+const receiveUserData = (userData) => {
   return {
     type: appConstants.USER_DATA_SUCCESS,
-    isFetching: false,
-    data,
+    isFetchingUser: false,
+    userData,
     errorMesage: ''
   }
 }
@@ -21,8 +21,35 @@ const receiveUserData = (data) => {
 const userDataError = (errorMessage) => {
   return {
     type: appConstants.USER_DATA_FAILURE,
-    isFetching: false,
-    data: {},
+    isFetchingUser: false,
+    userData: {},
+    errorMessage
+  }
+}
+
+const requestUserMedia = () => {
+  return {
+    type: appConstants.USER_MEDIA_REQUEST,
+    isFetchingMedia: true,
+    userMedia: {},
+    errorMessage: ''
+  }
+}
+
+const receiveUserMedia = (userMedia) => {
+  return {
+    type: appConstants.USER_MEDIA_SUCCESS,
+    isFetchingMedia: false,
+    userMedia,
+    errorMesage: ''
+  }
+}
+
+const userMediaError = (errorMessage) => {
+  return {
+    type: appConstants.USER_MEDIA_FAILURE,
+    isFetchingMedia: false,
+    userMedia: {},
     errorMessage
   }
 }
@@ -30,5 +57,8 @@ const userDataError = (errorMessage) => {
 export {
   requestUserData,
   receiveUserData,
-  userDataError
+  userDataError,
+  requestUserMedia,
+  receiveUserMedia,
+  userMediaError
 }

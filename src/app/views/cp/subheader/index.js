@@ -11,11 +11,14 @@ import style from './styles.scss'
 const viewStrings = locale.cp.subheader
 
 function mapStateToProps (state) {
-  const {isFetching, data} = state.data
+  const {isFetchingUser, userData} = state.userData
+  const { isFetchingMedia, mediaData } = state.userMedia
 
   return {
-    isFetching,
-    data
+    isFetchingUser,
+    userData,
+    isFetchingMedia,
+    mediaData
   }
 }
 
@@ -24,19 +27,19 @@ export default connect(mapStateToProps)(class Subheader extends Component {
     return this.props.isFetching !== nextProps.isFetching
   }
   
-  render ({isFetching, data}) {
+  render ({isFetchingUser, userData, isFetchingMedia, mediaData}) {
     return (
       <div class={`${style.cpsubheader} flex flex-main-center`}>
         <div class={`${style.cpsubheaderWrapper} flex flex-cross-center flex-sb`}>
           <div class={style.cpsubheaderUserStats}>
-            <p>{isFetching ? 'Loading' : data.name}</p>
-            <p>{isFetching ? 'Loading' : data.images.length} {viewStrings.uploads}</p>
+            <p>{isFetchingUser ? 'Loading...' : userData.name}</p>
+            <p>{isFetchingUser ? 'Loading...' : userData.email}</p>
           </div>
           <div class={`${style.cpsubheaderTabs} flex flex-cross-center`}>
             <nav class='flex flex-cross-center flex-sa'>
               <NavLink exact to='/cp/'><Icon iconName='overview' />&nbsp;{viewStrings.tabs.overview}</NavLink>
               <NavLink exact to='/cp/settings'><Icon iconName='settings' />&nbsp;{viewStrings.tabs.settings}</NavLink>
-              {isFetching ? null : (data.isAdmin ? <NavLink exact to='/cp/neth-admin' data-adminbutton><Icon iconName='admin-settings' />&nbsp;{viewStrings.tabs.admin_settings}</NavLink> : null)}
+              {isFetchingUser ? null : (userData.isAdmin ? <NavLink exact to='/cp/neth-admin' data-adminbutton><Icon iconName='admin-settings' />&nbsp;{viewStrings.tabs.admin_settings}</NavLink> : null)}
             </nav>
           </div>
         </div>

@@ -6,6 +6,7 @@ import UploadsToolbar from './uploads-toolbar'
 import Modal from '../../../shared/modal'
 
 import { deleteMedia } from 'serverAPI/media'
+import { getUserMedia } from 'serverAPI/data'
 import { mediaSelect, mediaUnselect, mediaSelectAll, mediaUnselectAll } from 'actions/media'
 
 import locale from 'locale'
@@ -15,13 +16,13 @@ import style from './styles.scss'
 const viewStrings = locale.cp.overview.uploads
 
 const mapStateToProps = (state) => {
-  const {isFetching, data} = state.data
+  const {isFetchingMedia, userMedia} = state.userMedia
   const {token, sessionData} = state.authentication
   const {selectedMedia, allToggled} = state.mediaSelect
 
   return {
-    isFetching,
-    data,
+    isFetchingMedia,
+    userMedia,
     token,
     sessionData,
     selectedMedia,
@@ -55,18 +56,8 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     this.confirmMultipleDelete = this.confirmMultipleDelete.bind(this)
   }
 
-  computeMediaList () {
-    let mediaList = this.props.data.images
-    if (mediaList.length > 0) {
-      return mediaList.map((entry, index) =>
-        <Upload key={entry.id} data={entry} isSelected={this.props.selectedMedia.includes(entry.id)} selectMode={this.state.isSelecting} handleToggleSelect={this.handleToggleMedia} />
-      )
-    }
-    return (
-      <p class={`${style.nomedia} flex flex-full-center`}>
-        {viewStrings.no_media}
-      </p>
-    )
+  componentWillMount () {
+    this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token))
   }
 
   toggleIsSelecting () {
@@ -77,8 +68,22 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     this.setState({ isDeleting: !this.state.isDeleting })
   }
 
+  computeMediaList () {
+    let mediaList = this.props.userMedia.images
+    if (mediaList.length > 0) {
+      return mediaList.map((entry, index) =>
+        <Upload key={entry.id} data={entry} isSelected={this.props.selectedMedia.includes(entry.id)} selectMode={this.state.isSelecting} handleToggleSelect={this.handleToggleMedia} toggleDeleteConfirmModal={this.toggleDeleteConfirmModal} />
+      )
+    }
+    return (
+      <p class={`${style.nomedia} flex flex-full-center`}>
+        {viewStrings.no_media}
+      </p>
+    )
+  }
+
   handleToggleMedia (event) {
-    let id = event.target.id
+    let id = event.currentTarget.id
     let selectedMedia = this.props.selectedMedia
 
     if (selectedMedia.includes(id)) {
@@ -91,7 +96,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
   }
 
   handleToggleAllMedia () {
-    let selectedMedia = this.props.data.images.map(el => el.id)
+    let selectedMedia = this.props.userMedia.images.map(el => el.id)
 
     if (this.props.allToggled) {
       this.props.dispatch(mediaUnselectAll())
@@ -118,8 +123,11 @@ export default connect(mapStateToProps)(class Uploads extends Component {
   }
 
   confirmSingleDelete () {
-    this.props.dispatch(deleteMedia(this.props.selectedMedia[0], this.props.token))
-    this.toggleDeleteConfirmModal()
+    this.props.dispatch(deleteMedia(this.props.selectedMedia[0], this.props.token)).then(() => {
+      this.props.dispatch(mediaUnselectAll())
+      this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token))
+      this.toggleDeleteConfirmModal()
+    })
   }
 
   confirmMultipleDelete () {
@@ -134,14 +142,16 @@ export default connect(mapStateToProps)(class Uploads extends Component {
 
         if (deleteIndexCount === selectedMedia.length) {
           this.toggleIsDeleting()
+          this.props.dispatch(mediaUnselectAll())
+          this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token))
           this.toggleDeleteConfirmModal()
         }
       })
     })
   }
 
-  render ({dispatch, isFetching, data, selectedMedia}) {
-    const hasMedia = !isFetching && data.images.length > 0
+  render ({dispatch, isFetchingMedia, userMedia, selectedMedia}) {
+    const hasMedia = !isFetchingMedia && userMedia.images.length > 0
     return (
       <div class={style.uploads}>
         {
@@ -149,7 +159,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
             : null
         }
         <ul>
-          {isFetching ? `${viewStrings.loading_media}...` : this.computeMediaList('byDate')}
+          {isFetchingMedia ? `${viewStrings.loading_media}...` : this.computeMediaList()}
         </ul>
         <Modal isActive={this.state.modals.singleDelete.isActive} toggleModal={this.toggleDeleteConfirmModal} closeButtonText='Wait, no' acceptButtonText='Yes, do it' onAcceptExecute={this.confirmSingleDelete}>
           <p class='flex flex-full-center'>Are you sure that you want to delete the selected item?</p>

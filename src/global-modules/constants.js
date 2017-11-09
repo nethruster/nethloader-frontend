@@ -20,6 +20,11 @@ export default keymirror({
   USER_DATA_SUCCESS: null,
   USER_DATA_FAILURE: null,
 
+  // User media
+  USER_MEDIA_REQUEST: null,
+  USER_MEDIA_SUCCESS: null,
+  USER_MEDIA_FAILURE: null,
+
   // Upload media
   MEDIA_UPLOAD_REQUEST: null,
   MEDIA_UPLOAD_SUCCESS: null,

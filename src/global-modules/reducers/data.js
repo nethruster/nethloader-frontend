@@ -1,28 +1,28 @@
 import appConstants from '../constants'
 
 // Data reducer
-const data = (state = {
-  isFetching: true,
-  data: JSON.parse(window.localStorage.getItem('neth-userData')) || {},
+const userData = (state = {
+  isFetching: false,
+  userData: JSON.parse(window.sessionStorage.getItem('neth-userData')) || {},
   errorMessage: ''
 }, action) => {
   switch (action.type) {
     case appConstants.USER_DATA_REQUEST:
       return Object.assign({}, state, {
-        isFetching: true,
-        data: {},
+        isFetchingUser: true,
+        userData: {},
         errorMessage: ''
       })
     case appConstants.USER_DATA_SUCCESS:
       return Object.assign({}, state, {
-        isFetching: false,
-        data: action.data,
+        isFetchingUser: false,
+        userData: action.userData,
         errorMessage: ''
       })
     case appConstants.USER_DATA_FAILURE:
       return Object.assign({}, state, {
-        isFetching: false,
-        data: {},
+        isFetchingUser: false,
+        userData: {},
         errorMessage: action.errorMessage
       })
     default:
@@ -30,4 +30,36 @@ const data = (state = {
   }
 }
 
-export default data
+const userMedia = (state = {
+  isFetching: false,
+  userMedia: JSON.parse(window.sessionStorage.getItem('neth-userMedia')) || {},
+  errorMessage: ''
+}, action) => {
+  switch (action.type) {
+    case appConstants.USER_MEDIA_REQUEST:
+      return Object.assign({}, state, {
+        isFetchingMedia: true,
+        userMedia: {},
+        errorMessage: ''
+      })
+    case appConstants.USER_MEDIA_SUCCESS:
+      return Object.assign({}, state, {
+        isFetchingMedia: false,
+        userMedia: action.userMedia,
+        errorMessage: ''
+      })
+    case appConstants.USER_MEDIA_FAILURE:
+      return Object.assign({}, state, {
+        isFetchingMedia: false,
+        userMedia: {},
+        errorMessage: action.errorMessage
+      })
+    default:
+      return state
+  }
+}
+
+export {
+  userData,
+  userMedia
+}

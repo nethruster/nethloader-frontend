@@ -7,6 +7,7 @@ import Modal from '../../modal'
 
 import { isValidFormat } from 'utils'
 import { uploadMedia } from 'serverAPI/media'
+import {getUserMedia} from 'serverAPI/data'
 import locale from 'locale'
 
 import style from './styles.scss'
@@ -77,7 +78,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     event.target.reset()
     modals.upload.files = []
     modals.upload.selectedFiles = []
-    modals.upload.uploadingFileIndex = 0
+    modals.upload.uploadedFileCount = 0
 
     this.setState({modals})
   }
@@ -114,6 +115,8 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
 
             if (fileCount === 1) {
               this.props.history.push(`/${imageId}`)
+            } else {
+              this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token))
             }
           }
         })
