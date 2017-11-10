@@ -4,7 +4,7 @@ import appConstants from '../constants'
 const auth = (state = {
   isFetching: false,
   isAuthenticated: !!window.localStorage.getItem('neth-jwtToken'),
-  sessionData: JSON.parse(window.localStorage.getItem('neth-sessionData')) || {},
+  sessionData: JSON.parse(window.localStorage.getItem('neth-sessionData')),
   token: window.localStorage.getItem('neth-jwtToken')
 }, action) => {
   switch (action.type) {

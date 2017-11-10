@@ -2,8 +2,8 @@ import appConstants from '../constants'
 
 // Data reducer
 const userData = (state = {
-  isFetching: true,
-  userData: JSON.parse(window.sessionStorage.getItem('neth-userData')) || {},
+  isFetchingUser: true,
+  userData: JSON.parse(window.sessionStorage.getItem('neth-userData')),
   errorMessage: ''
 }, action) => {
   switch (action.type) {
@@ -31,8 +31,8 @@ const userData = (state = {
 }
 
 const userMedia = (state = {
-  isFetching: true,
-  userMedia: JSON.parse(window.localStorage.getItem('neth-userMedia')) || {},
+  isFetchingMedia: true,
+  userMedia: JSON.parse(window.localStorage.getItem('neth-userMedia')),
   errorMessage: ''
 }, action) => {
   switch (action.type) {
