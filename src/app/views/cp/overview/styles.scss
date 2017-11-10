@@ -15,4 +15,49 @@
 
         margin: 0 calc(var(--base-pm) * 2);
      }
+
+     @media(max-width: 900px) {
+        .overview {
+            flex-direction: column-reverse;
+            flex: initial;
+        }
+
+        .sidebar {
+            // This hides everything except the title, if you changed yours and it doesn't fit, change this
+            max-height: 42px;
+
+            padding-bottom: 0;
+            
+            border-left: none;
+            border-bottom: 1px solid var(--cp-overview-layoutborder-color);
+
+            overflow: hidden;
+            transition: .2s ease-in-out;
+            transition-property: max-height, padding-bottom;
+
+            h3 {
+                pointer-events: initial;
+
+                svg {
+                    opacity: 1;
+                    
+                    transform: rotate(0deg);
+                    transition: transform .2s ease-in-out;
+                }
+            }
+
+            &Active {
+                max-height: 250px;
+
+                padding-bottom: calc(var(--base-pm) * 3);
+
+               h3 {
+                    svg { transform: rotate(180deg) }
+               }
+            }
+        }
+     }
+     @media(max-width: 400px) {
+         .overview { padding: 0; }
+     }
 }

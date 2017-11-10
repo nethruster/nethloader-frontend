@@ -70,7 +70,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
 
   computeMediaList () {
     let mediaList = this.props.userMedia.images
-    if (mediaList.length > 0) {
+    if (!!mediaList && mediaList.length > 0) {
       return mediaList.map((entry, index) =>
         <Upload key={entry.id} data={entry} isSelected={this.props.selectedMedia.includes(entry.id)} selectMode={this.state.isSelecting} handleToggleSelect={this.handleToggleMedia} toggleDeleteConfirmModal={this.toggleDeleteConfirmModal} />
       )
@@ -82,20 +82,25 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     )
   }
 
+  // Select
   handleToggleMedia (event) {
-    let id = event.currentTarget.id
+    let id = event.currentTarget.dataset.id
+
     let selectedMedia = this.props.selectedMedia
 
     if (selectedMedia.includes(id)) {
+      // Item is selected, unselect
       selectedMedia.splice(selectedMedia.indexOf(id), 1)
       this.props.dispatch(mediaUnselect(selectedMedia))
     } else {
+      // Item isn't selected, select
       selectedMedia.push(id)
       this.props.dispatch(mediaSelect(selectedMedia))
     }
   }
 
   handleToggleAllMedia () {
+    // Add all images available to selectedMedia
     let selectedMedia = this.props.userMedia.images.map(el => el.id)
 
     if (this.props.allToggled) {
@@ -113,6 +118,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
       }
 
       if (!this.state.isSelecting || this.props.selectedMedia.length === 1) {
+        // If we're not multiple-selecting or we're deleting just one item
         modals.singleDelete.isActive = !modals.singleDelete.isActive
       } else {
         modals.multipleDelete.isActive = !modals.multipleDelete.isActive
@@ -124,7 +130,9 @@ export default connect(mapStateToProps)(class Uploads extends Component {
 
   confirmSingleDelete () {
     this.props.dispatch(deleteMedia(this.props.selectedMedia[0], this.props.token)).then(() => {
+      // Reset selected items list
       this.props.dispatch(mediaUnselectAll())
+      // Refresh data
       this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token))
       this.toggleDeleteConfirmModal()
     })
@@ -142,7 +150,9 @@ export default connect(mapStateToProps)(class Uploads extends Component {
 
         if (deleteIndexCount === selectedMedia.length) {
           this.toggleIsDeleting()
+          // Reset selected items list
           this.props.dispatch(mediaUnselectAll())
+          // Refresh data
           this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token))
           this.toggleDeleteConfirmModal()
         }
@@ -151,12 +161,10 @@ export default connect(mapStateToProps)(class Uploads extends Component {
   }
 
   render ({dispatch, isFetchingMedia, userMedia, selectedMedia}) {
-    const hasMedia = !isFetchingMedia && userMedia.images.length > 0
     return (
       <div class={style.uploads}>
         {
-          hasMedia ? <UploadsToolbar isSelecting={this.state.isSelecting} toggleIsSelecting={this.toggleIsSelecting} handleDeleteClick={this.toggleDeleteConfirmModal} toggleSelectAll={this.handleToggleAllMedia} hasMedia={hasMedia} />
-            : null
+          !isFetchingMedia && userMedia.images.length > 0 && <UploadsToolbar isSelecting={this.state.isSelecting} toggleIsSelecting={this.toggleIsSelecting} handleDeleteClick={this.toggleDeleteConfirmModal} toggleSelectAll={this.handleToggleAllMedia} hasMedia={!!userMedia} />
         }
         <ul>
           {isFetchingMedia ? `${viewStrings.loading_media}...` : this.computeMediaList()}

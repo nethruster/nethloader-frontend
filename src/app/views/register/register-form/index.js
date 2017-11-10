@@ -14,7 +14,7 @@ import locale from 'locale'
 const viewStrings = locale.register.form
 
 function mapStateToProps (state) {
-  const {isFetching} = state.account
+  const {isFetching} = state.authentication
 
   return {isFetching}
 }
@@ -113,7 +113,7 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
     }
     this.props.dispatch(registerUser(data, this.context.router.history, this.registerForm))
   }
-  render ({dispatch, isFetching}) {
+  render ({isFetching}) {
     return (
       <form class={`${style.form} flex flex-full-center flex-dc`} onSubmit={this.handleSubmit} ref={(el) => { this.registerForm = el }}>
         <FormInput inputId='username' inputType='text' inputLabel='Username' changeHandler={this.handleChange} required inputState={this.state.data.username.inputState} validationMessage={this.state.data.username.validationMessage} />

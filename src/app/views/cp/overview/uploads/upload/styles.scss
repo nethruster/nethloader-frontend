@@ -17,7 +17,7 @@
         &:hover { border-left-color: var(--cp-overview-medialist-item-activeborder-color) }
 
         &Media {
-            flex: 1;
+            flex: 2;
             max-width: var(--cp-overview-medialist-media-width);
             max-height: var(--cp-overview-medialist-media-height);
 
@@ -60,6 +60,17 @@
             transition: background-color .3s;
 
             &:hover { background-color: var(--icon-bg-color-action-button--hover) }
+        }
+    }
+
+    @media(max-width: 650px) {
+        .upload {
+            &DataSpec { display: none; }
+
+            &DataDate {
+                span,
+                small { display: none; }
+            }
         }
     }
 }

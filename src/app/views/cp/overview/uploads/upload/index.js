@@ -48,7 +48,7 @@ export default class Upload extends Component {
     this.props.toggleDeleteConfirmModal()
   }
 
-  render ({data, isSelected, handleToggleSelect}) {
+  render ({data, isSelected, handleToggleSelect, selectMode}) {
     const mediaPath = `${baseMediaPath}${data.id}.${data.extension}`
     const mediaUrl = `${document.location.origin}/${data.id}`
     return (
@@ -69,11 +69,12 @@ export default class Upload extends Component {
         <DropDownMenu>
           <li><a href={mediaPath} download><Button text={viewStrings.download} icon='download' dropdown /></a></li>
           <li><Button icon='copy' text={this.state.copy.valueCopied ? viewStrings.copied : viewStrings.copy_url} copyText={`${mediaUrl}`} onClickExecute={this.handleCopyClick} dropdown /></li>
-          <li><Button id={data.id} text='Delete' icon='delete' dropdown onClickExecute={this.handleDeleteClick} /></li>
+          <li><Button dataId={data.id} text='Delete' icon='delete' dropdown onClickExecute={this.handleDeleteClick} disabled={selectMode} /></li>
         </DropDownMenu>
+        
         {
           this.props.selectMode
-            ? <Checkbox onChangeHandler={handleToggleSelect} isSelected={isSelected} id={data.id} customClass={style.uploadSelectButton} />
+            ? <Checkbox onChangeHandler={handleToggleSelect} isSelected={isSelected} dataId={data.id} customClass={style.uploadSelectButton} />
             : (
               <Link target='_blank' rel='noopener' to={mediaUrl} class='flex flex-full-center' title={viewStrings.click_open}>
                 <div class={`${style.uploadOpenButton} flex flex-full-center`}>

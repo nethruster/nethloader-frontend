@@ -20,15 +20,11 @@
         cursor: pointer;
 
         &:disabled {
-            opacity: .65;
+            opacity: .5;
             pointer-events: none;
         }
 
         svg { width: 20px; }
-
-        &:hover {
-            svg { color: var(--button-text-color-default--hover); } 
-        }
 
         &Round { border-radius: 500px; }
 
@@ -76,7 +72,8 @@
             height: var(--header-nav-height);
 
             margin: 0;
-
+            padding: var(--base-pm) calc(var(--base-pm) * 3);
+                
             outline: none;
             border: 0;
             border-radius: 0;
@@ -85,14 +82,13 @@
             font-size: 1.05em;
             font: inherit;
             font-weight: 300;
+            white-space: nowrap;
            
             text-transform: none;
             
             &:hover {
                 color: var(--button-text-color-nav--hover);
                 background-color: var(--button-bg-color-nav--hover);
-
-                svg { color: var(--button-text-color-nav--hover); }
             }
         }
 
@@ -114,6 +110,42 @@
 
             &:hover { background-color: rgba(56, 61, 66, 0.075) }
         }
+
+        &Floating {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: auto;
+
+            margin: calc(var(--base-pm) * 2);
+            padding: calc(var(--base-pm) * 2);
+
+            border: none;            
+            border-radius: 100%;
+            box-shadow: 0 2px 4px 0 rgba(78, 86, 95, 0.1);
+            background-color: var(--button-bg-color-floating--default);
+            color: var(--button-text-color-floating--default);
+
+            z-index: 5;
+            
+            svg {
+                width: 24px;
+                // Workaround to center svg icon
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            &:hover { background-color: var(--button-bg-color-floating--hover); }
+        }
+    }
+
+    @media(max-width: 600px) {
+        .button {
+            &Nav {
+                p { display: none; }
+            }
+        }
     }
 }
 
@@ -121,15 +153,13 @@
     a.nav-active {
        button {
             color: var(--button-text-color-nav--hover);
-        background-color: var(--button-bg-color-nav--hover);
+            background-color: var(--button-bg-color-nav--hover);
 
-        svg { color: var(--button-text-color-nav--hover); }
+            svg { color: var(--button-text-color-nav--hover); }
        }
     }
 
     button {
-        .spinner {
-            margin: 0;
-        }
+        .spinner { margin: 0; }
     }
 }

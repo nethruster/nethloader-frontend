@@ -1,18 +1,28 @@
 :local {
     .search {
         h3 {
-            text-align: center;
             margin-bottom: calc(var(--base-pm) * 2) 0;
+
+            text-align: center;
+            color: var(--cp-overview-search-title-color);
+            
             font-size: 1.3em;
             font-weight: 300;
-            color: var(--cp-overview-search-title-color);
+            
+            pointer-events: none;
+            user-select: none;
+            cursor: pointer;
 
             svg {
                 width: 20px;
-                
+
                 margin-right: var(base-pm);
                 margin-bottom: calc(var(base-pm) / 4);
+
+                opacity: 0;
+                
             }
+
         }
     
         input[type='date'],

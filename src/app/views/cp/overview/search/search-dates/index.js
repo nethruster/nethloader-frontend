@@ -31,10 +31,14 @@ export default class SearchDates extends Component {
   render () {
     return (
       <div class={`${style.searchDates} flex flex-dc flex-cross-center`}>
-        <p>{viewStrings.between}</p>
-        <input id='beforeDate' type='date' onChange={this.handleChange} />
-        <p>{viewStrings.and}</p>
-        <input id='afterDate' type='date' onChange={this.handleChange} />
+        <span>
+          <p>{viewStrings.between}</p>
+          <input id='beforeDate' type='date' onChange={this.handleChange} />
+        </span>
+        <span>
+          <p>{viewStrings.and}</p>
+          <input id='afterDate' type='date' onChange={this.handleChange} />
+        </span>
       </div>
     )
   }

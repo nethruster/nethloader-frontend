@@ -26,12 +26,13 @@
 
         &Links {
             font-size: .9em;
+        }
+    }
 
-            button {
-                padding: var(--base-pm) calc(var(--base-pm) * 3);
-                
-                white-space: nowrap;
-            }
+    @media(max-width: 600px) {
+        .headerNav {
+            padding: 0 calc(var(--base-pm) * 2);
+            &LogoTitle { display: none; }
         }
     }
 }

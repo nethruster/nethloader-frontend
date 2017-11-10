@@ -67,8 +67,8 @@ const getUserMedia = (id, authToken, extension = '', limit = 10, offset = 0) => 
       let responseData = await serverResponse.json()
       if (responseData.data.images) {
         // TODO Check if we already have the latest data
-        // Set the data in session storage
-        window.sessionStorage.setItem('neth-userMedia', JSON.stringify(responseData.data.images))
+        // Set the data in local storage
+        window.localStorage.setItem('neth-userMedia', JSON.stringify(responseData.data.images))
         // Dispatch the success action
         dispatch(receiveUserMedia(responseData.data.images))
       } else {

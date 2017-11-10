@@ -57,7 +57,7 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
     this.props.dispatch(loginUser(this.state.credentials, this.context.router.history, this.loginForm))
   }
 
-  render ({ dispatch, isFetching }) {
+  render ({isFetching}) {
     return (
       <form class={`${style.form} flex flex-full-center flex-dc`} onSubmit={this.handleSubmit} ref={(el) => { this.loginForm = el }}>
         <FormInput inputId='email' inputType='email' inputLabel={viewStrings.email} changeHandler={this.handleChange} required noValidationStyle autofocus />

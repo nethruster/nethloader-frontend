@@ -18,7 +18,7 @@ export default class Button extends Component {
     mdripple(this.buttonEl)
   }
 
-  render ({id, round, contrast, big, small, transparent, navButton, dropdown, customClass, tabindex, type, onClickExecute, copyText, disabled, icon, spinner, spinnerColor, spinnerSize, text}) {
+  render ({dataId, round, contrast, big, small, transparent, navButton, dropdown, floating, customClass, tabindex, type, onClickExecute, copyText, disabled, icon, spinner, spinnerColor, spinnerSize, text}) {
     /* eslint-disable no-lone-blocks */
     {
       /* You'll probably wonder why the fuck did I lay out the following class attribute like
@@ -28,7 +28,7 @@ export default class Button extends Component {
     /* eslint-enable no-lone-blocks */
     return (
       <button
-        id={id}
+        data-id={dataId}
         class={`${style.button} ${
           round ? style.buttonRound : ''} ${
           contrast ? style.buttonContrast : ''} ${
@@ -37,6 +37,7 @@ export default class Button extends Component {
           transparent ? style.buttonTransparent : ''} ${
           navButton ? style.buttonNav : ''} ${
           dropdown ? style.buttonDropdown : ''} ${
+          floating ? style.buttonFloating : ''} ${
           customClass || ''} flex flex-full-center`}
         tabindex={tabindex}
         type={type}
@@ -46,7 +47,7 @@ export default class Button extends Component {
         ref={(el) => { this.buttonEl = el }}
         ripple='ripple'>
         {icon && !spinner ? <Icon iconName={icon} /> : null}&nbsp;
-        <p class='flex'>{spinner ? <Spinner color={spinnerColor} size={spinnerSize} /> : text}</p>
+        {(spinner || text) && <p class='flex'>{spinner ? <Spinner color={spinnerColor} size={spinnerSize} /> : text}</p>}
       </button>
     )
   }

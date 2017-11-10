@@ -6,6 +6,8 @@
         --bg-shapes-layer: url(../assets/img/section-background.svg) 50% 17vh no-repeat;
         --blue-bg-text-color: rgba(255, 255, 255, 0.8);
 
+        --body-text-color: #24292e;
+
         --content-background-gradient: linear-gradient(to left top, #f2f2f2, #ffffff);
 
         --content-max-width: 1300px;
@@ -36,6 +38,9 @@
         --button-text-color-nav--default: rgba(255,255,255,.8);
         --button-text-color-nav--hover: rgba(255,255,255, 1);
         --button-bg-color-nav--hover: rgba(255,255,255, .1);
+        --button-bg-color-floating--default: lighten(#1e87f0, 5%);
+        --button-bg-color-floating--hover: #1e87f0;
+        --button-text-color-floating--default: #fff;
 
         --icon-bg-color-action-button--hover: rgba(56, 61, 66, 0.075);
 

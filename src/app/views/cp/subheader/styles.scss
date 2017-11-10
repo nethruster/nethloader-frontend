@@ -55,7 +55,11 @@
             }
         }
     }
-    
+    @media(max-width: 400px) {
+        .cpsubheader {
+            &UserStats { display: none; }
+        }
+    }
 }
 
 :global {
