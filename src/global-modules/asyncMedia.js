@@ -14,15 +14,15 @@ export default class AsyncMedia extends Component {
   componentWillMount () {
     if (!this.state.mediaNode) {
       if (isValidVideoFormat(`video/${this.props.type}`)) {
-        let tempVideoComponent = document.createElement('video')
-        let tempSourceElement = document.createElement('source')
+        const tempVideoComponent = document.createElement('video')
+        const tempSourceElement = document.createElement('source')
         tempSourceElement.src = this.props.src
         tempSourceElement.type = `video/${this.props.type}`
         tempVideoComponent.appendChild(tempSourceElement)
 
         tempVideoComponent.onloadeddata = () => {
-          let mediaNode =
-            (<video height={this.props.size} controls={this.props.controls}>
+          const mediaNode =
+            (<video preload='auto' height={this.props.size} controls={this.props.controls}>
               <source src={this.props.src} type={`video/${this.props.type}`} />
             </video>)
 
@@ -32,11 +32,11 @@ export default class AsyncMedia extends Component {
           tempVideoComponent.remove()
         }
       } else {
-        let tempImgComponent = new Image()
+        const tempImgComponent = new Image()
         tempImgComponent.src = this.props.src
 
         tempImgComponent.onload = () => {
-          let mediaNode = <img src={this.props.src} />
+          const mediaNode = <img src={this.props.src} />
 
           this.setState({ mediaNode })
 

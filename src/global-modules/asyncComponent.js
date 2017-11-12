@@ -14,7 +14,7 @@ export default (loader, collection) => (
 
     async componentWillMount () {
       if (!this.state.component) {
-        let component = await loader()
+        const component = await loader()
         this.setState({ component })
       }
     }

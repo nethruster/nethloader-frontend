@@ -8,6 +8,7 @@ import Modal from '../../modal'
 import { isValidFormat } from 'utils'
 import { uploadMedia } from 'serverAPI/media'
 import {getUserMedia} from 'serverAPI/data'
+import {scrollOn, scrollOff} from 'preventScroll'
 import locale from 'locale'
 
 import style from './styles.scss'
@@ -78,6 +79,8 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
       let modals = {
         ...this.state.modals
       }
+
+      modals.upload.isActive ? scrollOff() : scrollOn()
 
       modals.upload.isActive = !modals.upload.isActive
 
