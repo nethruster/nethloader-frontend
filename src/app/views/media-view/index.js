@@ -11,32 +11,27 @@ import { getMediaInfo } from 'serverAPI/media'
 import style from './styles.scss'
 
 function mapStateToProps (state) {
-  const {mediaInfo} = state.mediaInfo
+  const {mediaInfo, isFetching} = state.mediaInfo
 
-  return {mediaInfo}
+  return {
+    mediaInfo,
+    isFetching
+  }
 }
 
 export default connect(mapStateToProps)(class MediaView extends Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {mediaSrc: ''}
-  }
-
   componentWillMount () {
-    this.props.dispatch(getMediaInfo(this.context.router.route.match.params.id)).then(() => {
-      let mediaSrc = `${baseMediaPath}${this.props.mediaInfo.id}.${this.props.mediaInfo.extension}`
-      this.setState({mediaSrc})
-    })
+    this.props.dispatch(getMediaInfo(this.context.router.route.match.params.id))
   }
 
-  render ({mediaInfo}) {
+  render ({mediaInfo, isFetching}) {
+    const mediaSrc = `${baseMediaPath}${mediaInfo.id}.${mediaInfo.extension}`
     return (
       <div class={`${style.mediaView} flex flex-full-center`}>
-        {this.state.mediaSrc ? <div class={`${style.mediaViewWrapper} flex flex-dc flex-full-center`}>
-          <MediaItem mediaSrc={this.state.mediaSrc} type={mediaInfo.extension} id={mediaInfo.id} />
-          <MediaInfo mediaSrc={this.state.mediaSrc} data={mediaInfo} />
-        </div> : <ViewLoading />}
+        {isFetching ? <ViewLoading /> : <div class={`${style.mediaViewWrapper} flex flex-dc flex-full-center`}>
+          <MediaItem mediaSrc={mediaSrc} type={mediaInfo.extension} id={mediaInfo.id} />
+          <MediaInfo mediaSrc={mediaSrc} data={mediaInfo} />
+        </div>}
       </div>
     )
   }

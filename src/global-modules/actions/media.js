@@ -45,6 +45,7 @@ const mediaDeleteError = () => {
 const requestMediaInfo = () => {
   return {
     type: appConstants.MEDIA_INFO_REQUEST,
+    isFetching: true,
     mediaInfo: {}
   }
 }
@@ -52,6 +53,7 @@ const requestMediaInfo = () => {
 const receiveMediaInfo = (mediaInfo) => {
   return {
     type: appConstants.MEDIA_INFO_SUCCESS,
+    isFetching: false,
     mediaInfo
   }
 }
@@ -59,6 +61,7 @@ const receiveMediaInfo = (mediaInfo) => {
 const mediaInfoError = (errorMessage) => {
   return {
     type: appConstants.MEDIA_INFO_FAILURE,
+    isFetching: false,
     mediaInfo: {},
     errorMessage
   }
