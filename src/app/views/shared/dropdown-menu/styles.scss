@@ -1,17 +1,4 @@
 :local {
-    .triggerIcon {
-        min-height: 42px;
-        min-width: 42px;
-        
-        border-radius: 100%;
-        
-        cursor: pointer;
-
-        transition: background-color .3s;
-
-        &:hover { background-color: var(--icon-bg-color-action-button--hover); }
-    }
-
     .dropdown {
         &Wrapper {
             position: relative;
@@ -68,7 +55,7 @@
         }
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1460px) {
         .dropdownMenu {
             left: auto;
             right: 0;

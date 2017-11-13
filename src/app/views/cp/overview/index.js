@@ -24,9 +24,9 @@ export default class Overview extends Component {
     return (
       <div class={`${style.overview} flex`}>
         <Uploads />
-        <div class={`${style.sidebar} ${this.state.isSidebarActive ? style.sidebarActive : ''}`}>
+        {/* <div class={`${style.sidebar} ${this.state.isSidebarActive ? style.sidebarActive : ''}`}>
           <Search toggleSidebar={this.toggleSidebar} />
-        </div>
+        </div> */}
       </div>
     )
   }

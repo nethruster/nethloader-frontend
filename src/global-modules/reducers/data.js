@@ -33,6 +33,8 @@ const userData = (state = {
 const userMedia = (state = {
   isFetchingMedia: true,
   userMedia: JSON.parse(window.localStorage.getItem('neth-userMedia')),
+  mediaLimit: 10,
+  indexOffset: 0,
   errorMessage: ''
 }, action) => {
   switch (action.type) {
@@ -40,6 +42,8 @@ const userMedia = (state = {
       return Object.assign({}, state, {
         isFetchingMedia: true,
         userMedia: {},
+        mediaLimit: action.mediaLimit,
+        indexOffset: action.indexOffset,
         errorMessage: ''
       })
     case appConstants.USER_MEDIA_SUCCESS:
@@ -52,6 +56,8 @@ const userMedia = (state = {
       return Object.assign({}, state, {
         isFetchingMedia: false,
         userMedia: {},
+        mediaLimit: 10,
+        indexOffser: 0,
         errorMessage: action.errorMessage
       })
     default:

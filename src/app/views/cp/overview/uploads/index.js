@@ -7,7 +7,8 @@ import Modal from '../../../shared/modal'
 
 import { deleteMedia } from 'serverAPI/media'
 import { getUserMedia } from 'serverAPI/data'
-import { mediaSelect, mediaUnselect, mediaSelectAll, mediaUnselectAll } from 'actions/media'
+import { mediaSelect, mediaUnselect, mediaUnselectAll } from 'actions/media'
+import { scrollOn, scrollOff } from 'preventScroll'
 
 import locale from 'locale'
 
@@ -16,17 +17,18 @@ import style from './styles.scss'
 const viewStrings = locale.cp.overview.uploads
 
 const mapStateToProps = (state) => {
-  const {isFetchingMedia, userMedia} = state.userMedia
+  const {isFetchingMedia, userMedia, mediaLimit, indexOffset} = state.userMedia
   const {token, sessionData} = state.authentication
-  const {selectedMedia, allToggled} = state.mediaSelect
+  const {selectedMedia} = state.mediaSelect
 
   return {
     isFetchingMedia,
     userMedia,
+    mediaLimit,
+    indexOffset,
     token,
     sessionData,
-    selectedMedia,
-    allToggled
+    selectedMedia
   }
 }
 
@@ -35,23 +37,24 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     super(props)
 
     this.state = {
-      isSelecting: false,
       modals: {
         singleDelete: {
-          isActive: false,
-          id: ''
+          isActive: false
         },
         multipleDelete: {
           isActive: false
         }
       },
+      pagination: {
+        nextOffset: 10
+      },
+      isSelecting: false,
       isDeleting: false
     }
 
     this.toggleIsSelecting = this.toggleIsSelecting.bind(this)
     this.toggleDeleteConfirmModal = this.toggleDeleteConfirmModal.bind(this)
     this.handleToggleMedia = this.handleToggleMedia.bind(this)
-    this.handleToggleAllMedia = this.handleToggleAllMedia.bind(this)
     this.confirmSingleDelete = this.confirmSingleDelete.bind(this)
     this.confirmMultipleDelete = this.confirmMultipleDelete.bind(this)
   }
@@ -65,12 +68,12 @@ export default connect(mapStateToProps)(class Uploads extends Component {
   }
 
   toggleIsDeleting () {
-    this.setState({ isDeleting: !this.state.isDeleting })
+    this.setState({isDeleting: !this.state.isDeleting})
   }
 
   computeMediaList () {
     let mediaList = this.props.userMedia.images
-    if (!!mediaList && mediaList.length > 0) {
+    if (mediaList && mediaList.length > 0) {
       return mediaList.map((entry, index) =>
         <Upload key={entry.id} data={entry} isSelected={this.props.selectedMedia.includes(entry.id)} selectMode={this.state.isSelecting} handleToggleSelect={this.handleToggleMedia} toggleDeleteConfirmModal={this.toggleDeleteConfirmModal} />
       )
@@ -99,23 +102,14 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     }
   }
 
-  handleToggleAllMedia () {
-    // Add all images available to selectedMedia
-    let selectedMedia = this.props.userMedia.images.map(el => el.id)
-
-    if (this.props.allToggled) {
-      this.props.dispatch(mediaUnselectAll())
-    } else {
-      this.props.dispatch(mediaSelectAll(selectedMedia))
-    }
-  }
-
   // Delete
   toggleDeleteConfirmModal () {
     if (!this.state.isDeleting && this.props.selectedMedia.length > 0) {
       let modals = {
         ...this.state.modals
       }
+
+      modals.singleDelete.isActive || modals.multipleDelete.isActive ? scrollOff() : scrollOn()
 
       if (!this.state.isSelecting || this.props.selectedMedia.length === 1) {
         // If we're not multiple-selecting or we're deleting just one item
@@ -160,12 +154,10 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     })
   }
 
-  render ({dispatch, isFetchingMedia, userMedia, selectedMedia}) {
+  render ({isFetchingMedia, userMedia, selectedMedia}) {
     return (
       <div class={style.uploads}>
-        {
-          !isFetchingMedia && userMedia.images.length > 0 && <UploadsToolbar isSelecting={this.state.isSelecting} toggleIsSelecting={this.toggleIsSelecting} handleDeleteClick={this.toggleDeleteConfirmModal} toggleSelectAll={this.handleToggleAllMedia} hasMedia={!!userMedia} />
-        }
+        <UploadsToolbar isSelecting={this.state.isSelecting} toggleIsSelecting={this.toggleIsSelecting} handleDeleteClick={this.toggleDeleteConfirmModal} nextPageHandler={this.nextPage} prevPageHandler={this.prevPage} />
         <ul>
           {isFetchingMedia ? `${viewStrings.loading_media}...` : this.computeMediaList()}
         </ul>

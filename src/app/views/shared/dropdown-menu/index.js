@@ -1,6 +1,6 @@
 import { h, Component } from 'preact'
 
-import Icon from '../icon/'
+import Button from '../button'
 
 import style from './styles.scss'
 
@@ -23,9 +23,7 @@ export default class DropDownMenu extends Component {
     return (
       <div class='flex flex-full-center'>
         <div class={style.dropdownWrapper}>
-          <div class={`${style.triggerIcon} flex flex-full-center`} onClick={this.handleClick}>
-            <Icon iconName='dots-menu' />
-          </div>
+          <Button iconButton icon='dots-menu' onClickExecute={this.handleClick} />
           <div class={`${style.dropdownMenu} ${this.state.isOpen ? style.active : ''}`}>
             <ul>
               {this.props.children}

@@ -27,11 +27,13 @@ const userDataError = (errorMessage) => {
   }
 }
 
-const requestUserMedia = () => {
+const requestUserMedia = (mediaLimit, indexOffset) => {
   return {
     type: appConstants.USER_MEDIA_REQUEST,
     isFetchingMedia: true,
     userMedia: {},
+    mediaLimit,
+    indexOffset,
     errorMessage: ''
   }
 }
@@ -50,6 +52,8 @@ const userMediaError = (errorMessage) => {
     type: appConstants.USER_MEDIA_FAILURE,
     isFetchingMedia: false,
     userMedia: {},
+    mediaLimit: 10,
+    indexOffset: 0,
     errorMessage
   }
 }

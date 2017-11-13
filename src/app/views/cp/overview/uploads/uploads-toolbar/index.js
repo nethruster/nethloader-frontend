@@ -1,22 +1,59 @@
 import { h, Component } from 'preact'
+import {connect} from 'preact-redux'
 
 import Button from '../../../../shared/button'
 import Icon from '../../../../shared/icon'
+import UploadsPagination from './pagination/'
+import { mediaSelectAll, mediaUnselectAll } from 'actions/media'
 
 import style from './styles.scss'
 
-export default class UploadsToolbar extends Component {
-  render ({isSelecting, toggleIsSelecting, handleDeleteClick, toggleSelectAll, hasMedia}) {
+const mapStateToProps = (state) => {
+  const {userMedia, isFetchingMedia} = state.userMedia
+  const { allToggled } = state.mediaSelect
+
+  return {
+    userMedia,
+    isFetchingMedia,
+    allToggled
+  }
+}
+
+export default connect(mapStateToProps)(class UploadsToolbar extends Component {
+  constructor (props) {
+    super(props)
+
+    this.handleToggleAllMedia = this.handleToggleAllMedia.bind(this)
+  }
+
+  handleToggleAllMedia () {
+    // Add all images available to selectedMedia
+    let selectedMedia = this.props.userMedia.images.map(el => el.id)
+
+    if (this.props.allToggled) {
+      this.props.dispatch(mediaUnselectAll())
+    } else {
+      this.props.dispatch(mediaSelectAll(selectedMedia))
+    }
+  }
+
+  render ({isSelecting, toggleIsSelecting, handleDeleteClick, isFetchingMedia, userMedia, nextPageHandler, prevPageHandler}) {
     return (
-      <div class={`flex ${style.uploadsToolbar}`}>
+      <div class={`flex flex-dc ${style.uploadsToolbar} ${!isFetchingMedia && userMedia.images.length === 0 ? 'dom-hidden' : ''}`}>
         <div class={`flex flex-cross-center flex-sb ${style.uploadsToolbarSelect}`}>
-          <Button text={isSelecting ? 'Disable select' : 'Enable select'} customClass={style.uploadsToolbarButton} small contrast onClickExecute={toggleIsSelecting} disabled={!hasMedia} />
-          <div class={`flex flex-cross-center flex-sb ${style.uploadsToolbarSelectButtons} ${isSelecting ? style.uploadsToolbarSelectButtonsActive : ''}`}>
-            <span class='flex flex-full-center' onClick={toggleSelectAll}><Icon iconName='selectall' /></span>
-            <span class='flex flex-full-center' onClick={handleDeleteClick}><Icon iconName='delete' iconColor='#e53935' /></span>
+          <div class='flex flex-full-center'>
+            <Button iconButton icon='filter' />
+          </div>
+          <div class='flex flex-cross-center flex-sb'>
+            <Button iconButton icon={isSelecting ? 'select-off' : 'select-on'} onClickExecute={toggleIsSelecting} />
+            <div class={`flex flex-cross-center flex-sb ${style.uploadsToolbarSelectButtons} ${isSelecting ? style.uploadsToolbarSelectButtonsActive : ''}`}>
+              <Button iconButton icon='selectall' onClickExecute={this.handleToggleAllMedia} />
+              <Button iconButton icon='delete' onClickExecute={handleDeleteClick} iconColor='#e53935' />
+            </div>
           </div>
         </div>
+        <UploadsPagination />
       </div>
     )
   }
-}
+})

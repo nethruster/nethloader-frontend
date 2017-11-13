@@ -22,7 +22,7 @@
     }
 
     .spinner > svg {
-        animation: spinner-rotate 1.4s linear infinite;
+        animation: spinner-rotate 1.5s linear infinite;
         width: auto;
     }
 
@@ -30,8 +30,8 @@
         stroke-dasharray: 88px;
         stroke-dashoffset: 0;
         transform-origin: center;
-        animation: spinner-dash 1.4s ease-in-out infinite;
-        stroke-width: 1;
+        animation: spinner-dash 1.5s ease-in-out infinite;
+        stroke-width: 2;
         stroke-linecap: round;
         stroke: var(--loading-spinner-color);
     }

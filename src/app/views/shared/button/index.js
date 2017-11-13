@@ -11,6 +11,7 @@ export default class Button extends Component {
   shouldComponentUpdate (nextProps, nextState) {
     return (this.props.disabled !== nextProps.disabled) ||
            (this.props.spinner !== nextProps.spinner) ||
+           (this.props.icon !== nextProps.icon) ||
            (this.props.text !== nextProps.text)
   }
 
@@ -18,7 +19,7 @@ export default class Button extends Component {
     mdripple(this.buttonEl)
   }
 
-  render ({dataId, round, contrast, big, small, transparent, navButton, dropdown, floating, customClass, tabindex, type, onClickExecute, copyText, disabled, icon, spinner, spinnerColor, spinnerSize, text}) {
+  render ({dataId, round, contrast, big, small, transparent, navButton, dropdown, floating, iconButton, customClass, tabindex, type, onClickExecute, copyText, disabled, icon, iconColor, spinner, spinnerColor, spinnerSize, text}) {
     /* eslint-disable no-lone-blocks */
     {
       /* You'll probably wonder why the fuck did I lay out the following class attribute like
@@ -29,7 +30,7 @@ export default class Button extends Component {
     return (
       <button
         data-id={dataId}
-        class={`${style.button} ${
+        class={`flex flex-full-center ${style.button} ${
           round ? style.buttonRound : ''} ${
           contrast ? style.buttonContrast : ''} ${
           big ? style.buttonBig : ''} ${
@@ -38,7 +39,8 @@ export default class Button extends Component {
           navButton ? style.buttonNav : ''} ${
           dropdown ? style.buttonDropdown : ''} ${
           floating ? style.buttonFloating : ''} ${
-          customClass || ''} flex flex-full-center`}
+          iconButton ? style.buttonIcon : ''} ${
+          customClass || ''}`}
         tabindex={tabindex}
         type={type}
         onClick={onClickExecute}
@@ -46,7 +48,7 @@ export default class Button extends Component {
         disabled={disabled}
         ref={(el) => { this.buttonEl = el }}
         ripple='ripple'>
-        {icon && !spinner ? <Icon iconName={icon} /> : null}&nbsp;
+        {icon && !spinner ? <Icon iconName={icon} iconColor={iconColor} /> : null}&nbsp;
         {(spinner || text) && <p class='flex'>{spinner ? <Spinner color={spinnerColor} size={spinnerSize} /> : text}</p>}
       </button>
     )

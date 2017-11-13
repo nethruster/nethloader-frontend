@@ -23,9 +23,6 @@
         "pragma": "h"
         }
     },
-    "globals": {
-        "sleep": true
-    },
     "rules": {
         "react/jsx-no-bind": [2, { "ignoreRefs": true }],
         "react/jsx-no-duplicate-props": 2,

@@ -1,0 +1,32 @@
+:local {
+    .pagination {
+            &Nav {
+                margin: 0 8px;
+
+                font-size: .95em;
+
+                &Button {
+                    padding: 8px 16px;
+
+                    opacity: .8;
+                    border-radius: 4px 4px 0 0;
+                    
+                    cursor: pointer;
+                    transition: background-color .2s ease-in-out;
+
+                    &Disabled {
+                        opacity: .2;
+
+                        pointer-events: none;
+                    }
+
+                    &:nth-child(2) { text-align: right; }
+
+                    &:hover {
+                        opacity: 1;
+                        background-color: var(--cp-overview-layoutborder-color)
+                    }
+                }
+            }
+        }
+}

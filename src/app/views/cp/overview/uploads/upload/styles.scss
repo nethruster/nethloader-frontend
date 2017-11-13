@@ -3,9 +3,7 @@
         min-height: var(--cp-overview-medialist-height);
         max-height: var(--cp-overview-medialist-height);
 
-        padding-left: var(--base-pm);
-        padding-top: var(--base-pm);
-        padding-bottom: var(--base-pm);
+        padding: var(--base-pm);
 
         border-left: 4px solid transparent;
         border-radius: var(--base-br) 0 0 var(--base-br);
@@ -46,7 +44,6 @@
             small { opacity: .8 }
         }
 
-        &OpenButton,
         &SelectButton {
             min-height: 42px;
             min-width: 42px;

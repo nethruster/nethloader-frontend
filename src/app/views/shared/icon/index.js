@@ -6,8 +6,8 @@ import './styles.scss'
 import '../../../../assets/img/icons.svg'
 
 export default class Button extends Component {
-  shouldComponentUpdate () {
-    return false
+  shouldComponentUpdate (nextProps, nextState) {
+    return this.props.iconName !== nextProps.iconName
   }
   
   render ({iconName}) {

@@ -53,36 +53,35 @@ export default class Upload extends Component {
     const mediaUrl = `${document.location.origin}/${data.id}`
     return (
       <li class={`${style.upload} flex flex-cross-center flex-sb`} ref={(el) => { this.uploadEl = el }}>
-        <div class={`${style.uploadMedia} flex flex-full-center`}>
+        <div class={`${style.uploadMedia} flex flex-full-center`} tabindex='-4'>
           <AsyncMedia src={mediaPath} type={data.extension} size='74' id={data.id} />
         </div>
 
-        <div class={`${style.uploadDataSpec} flex flex-dc`}>
-          <p><span>ID:</span> {data.id}</p> <p><span>{viewStrings.type}:</span> {data.extension}</p>
+        <div class={`${style.uploadDataSpec} flex flex-dc`} tabindex='-4'>
+          <p><span>ID:</span> {data.id}</p>
+          <p><span>{viewStrings.type}:</span> {data.extension}</p>
         </div>
 
-        <div class={`${style.uploadDataDate} flex flex-dc`} title={computeDateFormat(data.createdAt)}>
+        <div class={`${style.uploadDataDate} flex flex-dc`} title={computeDateFormat(data.createdAt)} tabindex='-4'>
           <small>{computeDateFormat(data.createdAt)}</small>
           <p><span>{viewStrings.uploaded}:</span> {computeDate(data.createdAt)}<br />{computeTime(data.createdAt)}</p>
         </div>
 
+        {
+          this.props.selectMode
+            ? <Checkbox onChangeHandler={handleToggleSelect} isSelected={isSelected} dataId={data.id} customClass={style.uploadSelectButton} />
+            : (
+              <Link target='_blank' rel='noopener' to={mediaUrl} class='flex flex-full-center' title={viewStrings.click_open} tabindex='-2'>
+                <Button iconButton icon='open-in-new' />
+              </Link>
+            )
+        }
+        
         <DropDownMenu>
           <li><a href={mediaPath} download><Button text={viewStrings.download} icon='download' dropdown /></a></li>
           <li><Button icon='copy' text={this.state.copy.valueCopied ? viewStrings.copied : viewStrings.copy_url} copyText={`${mediaUrl}`} onClickExecute={this.handleCopyClick} dropdown /></li>
           <li><Button dataId={data.id} text='Delete' icon='delete' dropdown onClickExecute={this.handleDeleteClick} disabled={selectMode} /></li>
         </DropDownMenu>
-        
-        {
-          this.props.selectMode
-            ? <Checkbox onChangeHandler={handleToggleSelect} isSelected={isSelected} dataId={data.id} customClass={style.uploadSelectButton} />
-            : (
-              <Link target='_blank' rel='noopener' to={mediaUrl} class='flex flex-full-center' title={viewStrings.click_open}>
-                <div class={`${style.uploadOpenButton} flex flex-full-center`}>
-                  <Icon iconName='open-in-new' />
-                </div>
-              </Link>
-            )
-        }
       </li>
     )
   }
