@@ -60,7 +60,7 @@ const copyToClipboard = (event) => {
  * @param int tokenExpDate
  * @return boolean
  */
-const checkTokenExpiryDate = async (tokenExpDate) => {
+const checkTokenExpiryDate = (tokenExpDate) => {
   return Math.floor((new Date()).getTime() / 1000) < tokenExpDate
 }
 
@@ -126,6 +126,7 @@ const checkUserSessionValidity = async (token, tokenExp) => {
   if (await checkCurrentSessionToken(token)) {
     return !!checkTokenExpiryDate(tokenExp)
   }
+  
   return false
 }
 

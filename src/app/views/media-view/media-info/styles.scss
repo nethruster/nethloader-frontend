@@ -42,4 +42,12 @@
             opacity: 1
         }
     }
+
+    @media(max-width: 440px) {
+        .mediaInfo {
+            &Buttons {
+                flex-direction: column;
+            }
+        }
+    }
 }

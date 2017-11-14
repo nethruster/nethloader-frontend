@@ -25,10 +25,6 @@ export default connect(mapStateToProps)(class UploadsPagination extends Componen
   constructor (props) {
     super(props)
 
-    this.state = {
-      nextOffset: 0
-    }
-
     this.prevPage = this.prevPage.bind(this)
     this.nextPage = this.nextPage.bind(this)
   }
@@ -43,9 +39,7 @@ export default connect(mapStateToProps)(class UploadsPagination extends Componen
     let nextOffset = this.props.indexOffset - this.props.mediaLimit
 
     if (nextOffset >= 0) {
-      this.setState({ nextOffset })
-
-      this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token, '', this.props.mediaLimit, this.state.nextOffset))
+      this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token, '', this.props.mediaLimit, nextOffset))
     }
   }
 
@@ -53,18 +47,20 @@ export default connect(mapStateToProps)(class UploadsPagination extends Componen
     let nextOffset = this.props.indexOffset + this.props.mediaLimit
 
     if (nextOffset <= this.props.userMedia.totalCount) {
-      this.setState({ nextOffset })
-
-      this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token, '', this.props.mediaLimit, this.state.nextOffset))
+      this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token, '', this.props.mediaLimit, nextOffset))
     }
   }
 
   hasPrevPage () {
-    return this.state.nextOffset - this.props.mediaLimit > 0 || this.state.nextOffset > 0
+    let nextOffset = this.props.indexOffset - this.props.mediaLimit
+
+    return nextOffset >= 0 && this.props.indexOffset > 0
   }
 
   hasNextPage () {
-    return this.state.nextOffset + this.props.mediaLimit <= this.props.userMedia.totalCount
+    let nextOffset = this.props.indexOffset + this.props.mediaLimit
+
+    return nextOffset < this.props.userMedia.totalCount && !(this.props.userMedia.totalCount === this.props.mediaLimit)
   }
 
   render ({isFetchingMedia}) {

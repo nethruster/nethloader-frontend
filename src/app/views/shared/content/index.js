@@ -27,7 +27,7 @@ export default connect(mapStateToProps)(class Content extends Component {
       if (await checkUserSessionValidity(this.props.token, this.props.sessionData.exp)) {
         this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token))
       } else {
-        logoutUser()
+        this.props.dispatch(logoutUser())
       }
     }
   }

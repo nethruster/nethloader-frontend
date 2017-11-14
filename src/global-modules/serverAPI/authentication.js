@@ -136,6 +136,7 @@ const checkCurrentSessionToken = async (token) => {
 
     return responseData.data.IsCurrentSessionValid
   }
+
   console.log('checkCurrentSessionToken: ', serverResponse)
   return Promise.reject(serverResponse.status)
 }

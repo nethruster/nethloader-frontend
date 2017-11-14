@@ -41,7 +41,6 @@ const userMedia = (state = {
     case appConstants.USER_MEDIA_REQUEST:
       return Object.assign({}, state, {
         isFetchingMedia: true,
-        userMedia: {},
         mediaLimit: action.mediaLimit,
         indexOffset: action.indexOffset,
         errorMessage: ''
