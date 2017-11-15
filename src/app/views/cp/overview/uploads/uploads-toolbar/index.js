@@ -2,7 +2,6 @@ import { h, Component } from 'preact'
 import {connect} from 'preact-redux'
 
 import Button from '../../../../shared/button'
-import Icon from '../../../../shared/icon'
 import UploadsPagination from './pagination/'
 import { mediaSelectAll, mediaUnselectAll } from 'actions/media'
 
@@ -37,7 +36,7 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
     }
   }
 
-  render ({isSelecting, toggleIsSelecting, handleDeleteClick, isFetchingMedia, userMedia, nextPageHandler, prevPageHandler}) {
+  render ({isSelecting, toggleIsSelecting, handleDeleteClick, isFetchingMedia, userMedia, updateUserMedia}) {
     return (
       <div class={`flex flex-dc ${style.uploadsToolbar} ${!isFetchingMedia && userMedia.images.length === 0 ? 'dom-hidden' : ''}`}>
         <div class={`flex flex-cross-center flex-sb ${style.uploadsToolbarSelect}`}>
@@ -52,7 +51,7 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
             </div>
           </div>
         </div>
-        <UploadsPagination />
+        <UploadsPagination updateUserMedia={updateUserMedia} />
       </div>
     )
   }

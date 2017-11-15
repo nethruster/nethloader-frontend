@@ -17,6 +17,9 @@ export default class ControlPanel extends Component {
             exact
             component={asyncComponent(() => import(/* webpackChunkName: "content_cp_overview" */'./overview')
               .then(module => module.default))} />
+          <Route path='/cp/p/:pageFactor?'
+            component={asyncComponent(() => import(/* webpackChunkName: "content_cp_overview" */'./overview')
+              .then(module => module.default))} />
           <Route
             path='/cp/settings'
             exact

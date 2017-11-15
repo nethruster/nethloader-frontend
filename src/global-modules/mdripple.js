@@ -2,16 +2,17 @@
  * under the MIT LICENSE
  */
 
+// TODO: Fix duplicated ripples on reload or replace plugin for something else
+
 const mdripple = (element) => {
   let cleanUp, debounce, rippleContainer, showRipple
 
   debounce = (func, delay) => {
     return () => {
-      let args = arguments
       let context = this
 
       return setTimeout(() => {
-        return func.apply(context, args)
+        return func.apply(context)
       }, delay)
     }
   }

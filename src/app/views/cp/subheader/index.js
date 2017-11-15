@@ -34,7 +34,7 @@ export default connect(mapStateToProps)(class Subheader extends Component {
           </div>
           <div class={`${style.cpsubheaderTabs} flex flex-cross-center`}>
             <nav class='flex flex-cross-center flex-sa'>
-              <NavLink exact to='/cp/'><Icon iconName='overview' />&nbsp;{viewStrings.tabs.overview}</NavLink>
+              <NavLink to='/cp/'><Icon iconName='overview' />&nbsp;{viewStrings.tabs.overview}</NavLink>
               <NavLink exact to='/cp/settings'><Icon iconName='settings' />&nbsp;{viewStrings.tabs.settings}</NavLink>
               {!isFetchingUser && (userData.isAdmin && <NavLink exact to='/cp/neth-admin' data-adminbutton><Icon iconName='admin-settings' />&nbsp;{viewStrings.tabs.admin_settings}</NavLink>)}
             </nav>

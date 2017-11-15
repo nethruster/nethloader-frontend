@@ -28,5 +28,19 @@
                     }
                 }
             }
+
+            &List {
+                flex: 2;
+
+                span {
+                    width: 32px;
+                    height: 32px;
+
+                    margin: 4px;
+
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+            }
         }
 }

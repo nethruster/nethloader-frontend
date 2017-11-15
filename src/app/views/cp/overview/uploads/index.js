@@ -9,6 +9,7 @@ import { deleteMedia } from 'serverAPI/media'
 import { getUserMedia } from 'serverAPI/data'
 import { mediaSelect, mediaUnselect, mediaUnselectAll } from 'actions/media'
 import { scrollOn, scrollOff } from 'preventScroll'
+import { getPageFactor } from 'utils'
 
 import locale from 'locale'
 
@@ -45,9 +46,6 @@ export default connect(mapStateToProps)(class Uploads extends Component {
           isActive: false
         }
       },
-      pagination: {
-        nextOffset: 10
-      },
       isSelecting: false,
       isDeleting: false
     }
@@ -57,10 +55,16 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     this.handleToggleMedia = this.handleToggleMedia.bind(this)
     this.confirmSingleDelete = this.confirmSingleDelete.bind(this)
     this.confirmMultipleDelete = this.confirmMultipleDelete.bind(this)
+    this.updateUserMedia = this.updateUserMedia.bind(this)
   }
 
   componentWillMount () {
-    this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token))
+    this.updateUserMedia()
+  }
+
+  updateUserMedia () {
+    let offset = getPageFactor(this.context.router) * this.props.mediaLimit
+    this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token, '', this.props.mediaLimit, offset))
   }
 
   toggleIsSelecting () {
@@ -127,7 +131,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
       // Reset selected items list
       this.props.dispatch(mediaUnselectAll())
       // Refresh data
-      this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token))
+      this.updateUserMedia()
       this.toggleDeleteConfirmModal()
     })
   }
@@ -147,7 +151,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
           // Reset selected items list
           this.props.dispatch(mediaUnselectAll())
           // Refresh data
-          this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token))
+          this.updateUserMedia()
           this.toggleDeleteConfirmModal()
         }
       })
@@ -157,7 +161,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
   render ({isFetchingMedia, userMedia, selectedMedia}) {
     return (
       <div class={style.uploads}>
-        <UploadsToolbar isSelecting={this.state.isSelecting} toggleIsSelecting={this.toggleIsSelecting} handleDeleteClick={this.toggleDeleteConfirmModal} nextPageHandler={this.nextPage} prevPageHandler={this.prevPage} />
+        <UploadsToolbar isSelecting={this.state.isSelecting} toggleIsSelecting={this.toggleIsSelecting} handleDeleteClick={this.toggleDeleteConfirmModal} updateUserMedia={this.updateUserMedia} />
         <ul>
           {isFetchingMedia ? `${viewStrings.loading_media}...` : this.computeMediaList()}
         </ul>

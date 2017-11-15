@@ -130,6 +130,15 @@ const checkUserSessionValidity = async (token, tokenExp) => {
   return false
 }
 
+/**
+ * Return media list page numbre from url path
+ * @param object router
+ * @return int
+ */
+const getPageFactor = (router) => {
+  return Number(router.route.match.params.pageFactor) || 0
+}
+
 export {
   validateEmpty,
   validateEmail,
@@ -142,5 +151,6 @@ export {
   computeDateFormat,
   isValidVideoFormat,
   isValidFormat,
-  checkUserSessionValidity
+  checkUserSessionValidity,
+  getPageFactor
 }
