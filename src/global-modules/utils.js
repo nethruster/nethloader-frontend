@@ -61,7 +61,7 @@ const copyToClipboard = (event) => {
  * @return boolean
  */
 const checkTokenExpiryDate = (tokenExpDate) => {
-  return Math.floor((new Date()).getTime() / 1000) < tokenExpDate
+  return Math.floor(new Date().getTime() / 1000) < tokenExpDate
 }
 
 /**
@@ -131,7 +131,7 @@ const checkUserSessionValidity = async (token, tokenExp) => {
 }
 
 /**
- * Return media list page numbre from url path
+ * Return media list page number (factor) from url path
  * @param object router
  * @return int
  */

@@ -9,7 +9,7 @@ import ViewLoading from '../../../shared/view-loading'
 import { deleteMedia } from 'serverAPI/media'
 import { getUserMedia } from 'serverAPI/data'
 import { mediaSelect, mediaUnselect, mediaUnselectAll } from 'actions/media'
-import { scrollOn, scrollOff } from 'preventScroll'
+import { scrollBlockOn, scrollBlockOff } from 'preventScroll'
 import { getPageFactor } from 'utils'
 
 import locale from 'locale'
@@ -120,7 +120,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
         ...this.state.modals
       }
 
-      modals.singleDelete.isActive || modals.multipleDelete.isActive ? scrollOff() : scrollOn()
+      modals.singleDelete.isActive || modals.multipleDelete.isActive ? scrollBlockOff() : scrollBlockOn()
 
       if (!this.state.isSelecting || this.props.selectedMedia.length === 1) {
         // If we're not multiple-selecting or we're deleting just one item

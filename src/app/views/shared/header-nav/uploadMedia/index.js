@@ -1,6 +1,7 @@
 import { h, Component } from 'preact'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'preact-redux'
+import Ink from 'react-ink'
 
 import Button from '../../button'
 import Modal from '../../modal'
@@ -8,7 +9,7 @@ import Modal from '../../modal'
 import { isValidFormat } from 'utils'
 import { uploadMedia } from 'serverAPI/media'
 import {getUserMedia} from 'serverAPI/data'
-import {scrollOn, scrollOff} from 'preventScroll'
+import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 import locale from 'locale'
 
 import style from './styles.scss'
@@ -80,7 +81,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
         ...this.state.modals
       }
 
-      modals.upload.isActive ? scrollOff() : scrollOn()
+      modals.upload.isActive ? scrollBlockOff() : scrollBlockOn()
 
       modals.upload.isActive = !modals.upload.isActive
 
@@ -205,6 +206,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
                   )
                   : (
                     <label onDragOver={this.onDragOver} onDrop={this.handleFileDrop} for='fileInput' class='flex flex-full-center'>
+                      <Ink />
                       {this.state.modals.upload.selectedFiles.length === 0 ? viewStrings.input.text : viewStrings.input.files_text}
                       {/* SVG label dashed border */}
                       <svg>

@@ -7,7 +7,7 @@ const scrollKeys = [32, 33, 34, 35, 36, 37, 38, 39, 40]
 let pageXOffset,
   pageYOffset
 
-export function scrollOn () {
+export function scrollBlockOn () {
   // Save current scroll position so we can lock it later
   pageXOffset = window.pageXOffset
   pageYOffset = window.pageYOffset
@@ -19,7 +19,7 @@ export function scrollOn () {
   document.addEventListener('keydown', keydownHandler)
 }
 
-export function scrollOff () {
+export function scrollBlockOff () {
   document.removeEventListener('scroll', scrollHandler)
   document.removeEventListener('wheel', defaultHandler)
   document.removeEventListener('DOMMouseScroll', defaultHandler)

@@ -23,7 +23,8 @@ export default connect(mapStateToProps)(class App extends Component {
             component={asyncComponent(() => import(/* webpackChunkName: "home" */'./views/home').then(module => module.default))}
           />
 
-          {isAuthenticated ? <Redirect from='/login' to='/cp' />
+          {isAuthenticated
+            ? <Redirect from='/login' to='/cp' />
             : <Route
               exact
               path='/login'

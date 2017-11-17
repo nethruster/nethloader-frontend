@@ -14,13 +14,13 @@ export default class AsyncMedia extends Component {
   componentWillMount () {
     if (!this.state.mediaNode) {
       if (isValidVideoFormat(`video/${this.props.type}`)) {
-        const tempVideoComponent = document.createElement('video')
+        const tempVideoElement = document.createElement('video')
         const tempSourceElement = document.createElement('source')
         tempSourceElement.src = this.props.src
         tempSourceElement.type = `video/${this.props.type}`
-        tempVideoComponent.appendChild(tempSourceElement)
+        tempVideoElement.appendChild(tempSourceElement)
 
-        tempVideoComponent.oncanplay = () => {
+        tempVideoElement.oncanplay = () => {
           // If we get controls prop true, it means that we are on media-view, we won't play the video on the overview panel
           const mediaNode =
             (<video preload={this.props.controls ? 'auto' : 'metadata'} height={this.props.size} controls={this.props.controls}>
@@ -30,18 +30,18 @@ export default class AsyncMedia extends Component {
           this.setState({ mediaNode })
 
           tempSourceElement.remove()
-          tempVideoComponent.remove()
+          tempVideoElement.remove()
         }
       } else {
-        const tempImgComponent = new Image()
-        tempImgComponent.src = this.props.src
+        const tempImgElement = new Image()
+        tempImgElement.src = this.props.src
 
-        tempImgComponent.onload = () => {
+        tempImgElement.onload = () => {
           const mediaNode = <img src={this.props.src} alt={`${this.props.type} ${this.props.src}`} />
 
           this.setState({ mediaNode })
 
-          tempImgComponent.remove()
+          tempImgElement.remove()
         }
       }
     }

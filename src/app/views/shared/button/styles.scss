@@ -2,6 +2,7 @@
     .button {
         -webkit-appearance: none;
         width: 100%;
+        position: relative;
 
         background-color: var(--button-bg-color-default);
         color: var(--button-text-color-default);
