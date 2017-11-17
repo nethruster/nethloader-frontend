@@ -9,5 +9,15 @@
         }
 
         svg { width: 15px; }
+
+        &Content {
+            margin-top: calc(var(--base-pm) * 2);
+            font-size: .95em;
+            opacity: .7;
+            
+            p { margin: calc(var(--base-pm) * 2); }
+
+            svg { color: #1da1f3; }
+        }
     }
 }

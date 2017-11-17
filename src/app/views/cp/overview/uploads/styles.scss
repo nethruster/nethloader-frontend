@@ -1,16 +1,8 @@
 :local {
     .uploads {
         flex: 2;
-
-        margin: var(--base-pm) calc(var(--base-pm) * 2);
-
-        .nomedia {
-            opacity: .4;
-            
-            font-weight: 300;
-            font-size: 1.5em;
-            
-        }
+        
+        margin: 0 calc(var(--base-pm) * 2);
     }
 
     @media (max-width: 350px) {

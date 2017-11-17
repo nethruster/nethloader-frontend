@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import Icon from '../../../../../shared/icon'
 import Button from '../../../../../shared/button'
+import ViewLoading from '../../../../../shared/view-loading'
 import Ink from 'react-ink'
 import { getPageFactor } from 'utils'
 
@@ -85,15 +86,13 @@ export default connect(mapStateToProps)(class Pagination extends Component {
     let pagesArray = Array.from({ length: nPages }, (v, i) => i)
 
     return pagesArray.map((entry) => {
-      // Special case: page 0 loads on /cp/overview/0 but also on /cp/overview, here we make sure that it has an active class in both cases
-      
       return <Link exact to={`/cp/overview/${entry}`}><Button dropdown text={entry} class='flex flex-full-center' /></Link>
     })
   }
 
   render ({isFetchingMedia, mediaLimit, userMedia}) {
     const customPageListButton = (
-      <div class={`flex flex-full-center flex-dc ${style.paginationNavButton} ${style.paginationNavButtonCustom}`}>
+      <div class={`flex flex-dc ${style.paginationNavButton} ${style.paginationNavButtonCustom}`}>
         <Ink />
         <p><Icon iconName='chev-down' />&nbsp;Page</p>
         <b>{this.pageFactor}</b>
@@ -102,21 +101,24 @@ export default connect(mapStateToProps)(class Pagination extends Component {
 
     return (
       <div class={`flex flex-main-center flex-sb ${style.paginationNav}`}>
-        <div class={`${style.paginationNavButton} ${!isFetchingMedia && this.hasPrevPage() ? '' : style.paginationNavButtonDisabled}`} onClick={this.loadFirstPage}>
+        <div class={`${style.paginationNavButton} ${style.paginationNavButtonLeft} ${!isFetchingMedia && this.hasPrevPage() ? '' : style.paginationNavButtonDisabled}`} onClick={this.loadFirstPage}>
           <p>First page</p>
           <Icon iconName='skip-left' />
           <Ink />
         </div>
         <div class='flex'>
-          <div class={`${style.paginationNavButton} ${!isFetchingMedia && this.hasPrevPage() ? '' : style.paginationNavButtonDisabled}`} onClick={this.loadPrevPage}>
+          <div class={`${style.paginationNavButton} ${style.paginationNavButtonLeft} ${!isFetchingMedia && this.hasPrevPage() ? '' : style.paginationNavButtonDisabled}`} onClick={this.loadPrevPage}>
             <p>Prev Page</p>
             <Icon iconName='left-arrow' />
             <Ink />
           </div>
           <div class={`flex ${style.paginationList}`}>
-            <DropDownMenu centered noMinWidth customTrigger={customPageListButton}>
-              {this.computePageList()}
-            </DropDownMenu>
+            {isFetchingMedia
+              ? <ViewLoading />
+              : <DropDownMenu centered noMinWidth customTrigger={customPageListButton}>
+                {this.computePageList()}
+              </DropDownMenu>
+            }
           </div>
           <div class={`${style.paginationNavButton} ${style.paginationNavButtonRight} ${!isFetchingMedia && this.hasNextPage() ? '' : style.paginationNavButtonDisabled}`} onClick={this.loadNextPage}>
             <p>Next page</p>

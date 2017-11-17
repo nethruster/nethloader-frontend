@@ -12,6 +12,7 @@
 
                     opacity: .8;
                     border-radius: 4px 4px 0 0;
+                    text-align: center;
                     
                     cursor: pointer;
                     transition: background-color .2s ease-in-out;
@@ -37,6 +38,8 @@
 
                     &Right { text-align: right; }
 
+                    &Left { text-align: left; }
+
                     &Custom { width: 90px; }
 
                     &:hover {
@@ -49,6 +52,7 @@
             &List {
                 flex: 2;
                 align-items: flex-end;
+                min-width: 90px;
             }
         }
 }

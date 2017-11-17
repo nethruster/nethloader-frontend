@@ -5,8 +5,8 @@ import { connect } from 'preact-redux'
 import { checkUserSessionValidity } from 'utils'
 import { getUserData } from 'serverAPI/data'
 import { logoutUser } from 'serverAPI/authentication'
-
 import asyncComponent from 'asyncComponent'
+import Footer from '../footer'
 import HeaderNav from '../header-nav'
 
 import style from './styles.scss'
@@ -49,7 +49,13 @@ export default connect(mapStateToProps)(class Content extends Component {
             path='/:id([A-Za-z0-9_~]{10})'
             component={asyncComponent(() => import(/* webpackChunkName: "content_media-view" */'../../media-view')
               .then(module => module.default))} />
+
+          <Route
+            path=''
+            component={asyncComponent(() => import(/* webpackChunkName: "not-found" */'../not-found')
+              .then(module => module.default))} />
         </Switch>
+        <Footer contentFooter />
       </div>
     )
   }

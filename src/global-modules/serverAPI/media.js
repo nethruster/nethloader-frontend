@@ -104,16 +104,15 @@ const getMediaInfo = (mediaId) => {
       if (responseData.data.image) {
         // Dispatch the success action
         dispatch(receiveMediaInfo(responseData.data.image))
-      } else {
-        console.log('getMediaInfo - responseData: ', responseData)
-        dispatch(mediaInfoError(responseData.errors[0].message))
-        return Promise.reject(responseData.errors[0].message)
+        return responseData.data.image
       }
-    } else {
-      console.log('getMediaInfo - serverResponse: ', serverResponse)
-      dispatch(mediaInfoError(serverResponse.status))
-      return Promise.reject(serverResponse.status)
+      console.log('getMediaInfo - responseData: ', responseData)
+      dispatch(mediaInfoError(responseData.errors[0].message))
+      return Promise.reject(responseData.errors[0].message)
     }
+    console.log('getMediaInfo - serverResponse: ', serverResponse)
+    dispatch(mediaInfoError(serverResponse.status))
+    return Promise.reject(serverResponse.status)
   }
 }
 

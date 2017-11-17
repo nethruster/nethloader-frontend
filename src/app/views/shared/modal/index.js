@@ -11,7 +11,7 @@ const viewStrings = locale.shared.modal
 export default class Modal extends Component {
   render ({isActive, modalTitle, toggleModal, closeButtonText, acceptButtonText, onAcceptExecute, disabled, children}) {
     return (
-      <div class={`modal ${isActive ? 'active' : ''} flex flex-full-center`} style={{ top: Math.round(window.pageYOffset) }} onwheel={this.preventSroll} ontouchmove={this.preventSroll} onkeydown={this.preventSroll}>
+      <div class={`modal ${isActive ? 'active' : ''} flex flex-full-center`} style={{ top: Math.round(window.pageYOffset) }}>
         <div class='modal-content'>
           {modalTitle && <div class='modal-content-header'>{modalTitle}</div>}
           <div class='modal-content-body'>{children}</div>
