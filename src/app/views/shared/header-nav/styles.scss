@@ -23,15 +23,12 @@
                 height: var(--header-nav-logo-size);
             }
         }
-
-        &Links {
-            font-size: .9em;
-        }
     }
 
     @media(max-width: 600px) {
         .headerNav {
             padding: 0 calc(var(--base-pm) * 2);
+            
             &LogoTitle { display: none; }
         }
     }

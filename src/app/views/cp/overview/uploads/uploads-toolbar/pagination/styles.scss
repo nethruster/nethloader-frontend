@@ -4,8 +4,10 @@
                 margin: 0 8px;
 
                 font-size: .95em;
+                min-height: 60px;
 
                 &Button {
+                    position: relative;
                     padding: 8px 16px;
 
                     opacity: .8;
@@ -13,6 +15,19 @@
                     
                     cursor: pointer;
                     transition: background-color .2s ease-in-out;
+                    user-select: none;
+
+                    b { font-weight: 500; }
+
+                    p {
+                        font-size: .9em;
+
+                         svg {
+                            width: 20px;
+
+                            vertical-align: top;
+                        }
+                    }
 
                     &Disabled {
                         opacity: .2;
@@ -20,7 +35,9 @@
                         pointer-events: none;
                     }
 
-                    &:nth-child(2) { text-align: right; }
+                    &Right { text-align: right; }
+
+                    &Custom { width: 90px; }
 
                     &:hover {
                         opacity: 1;
@@ -31,16 +48,7 @@
 
             &List {
                 flex: 2;
-
-                span {
-                    width: 32px;
-                    height: 32px;
-
-                    margin: 4px;
-
-                    border-radius: 4px;
-                    cursor: pointer;
-                }
+                align-items: flex-end;
             }
         }
 }

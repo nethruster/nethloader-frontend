@@ -121,7 +121,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     } else if (filesToUpload.length > 0) {
       this.toggleIsUploading()
 
-      filesToUpload.forEach(async (file, index) => {
+      filesToUpload.forEach((file, index) => {
         this.props.dispatch(uploadMedia(file, this.props.token)).then((imageId) => {
           this.increaseUploadedFileCount()
 
@@ -149,12 +149,12 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
       ...this.state.modals
     }
 
-    for (let i = 0; i < event.target.files.length; i++) {
-      if (isValidFormat(event.target.files[i].type)) {
-        modals.upload.files.push(event.target.files[i])
-        modals.upload.selectedFiles.push(event.target.files[i].name)
+    for (let file of event.target.files) {
+      if (isValidFormat(file.type)) {
+        modals.upload.files.push(file)
+        modals.upload.selectedFiles.push(file.name)
       } else {
-        console.log(`${viewStrings.invalid_file_detected}: ` + event.target.files[i].name)
+        console.log(`${viewStrings.invalid_file_detected}: ` + file.name)
       }
     }
 
@@ -163,6 +163,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
 
   // Drag & drop methods
   onDragOver (event) {
+    // Prevent browser loading image
     event.preventDefault()
   }
 
@@ -173,9 +174,9 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
       ...this.state.modals
     }
 
-    for (let i = 0; i < event.dataTransfer.files.length; i++) {
-      modals.upload.files.push(event.dataTransfer.files[i])
-      modals.upload.selectedFiles.push(event.dataTransfer.files[i].name)
+    for (let file of event.dataTransfer.files) {
+      modals.upload.files.push(file)
+      modals.upload.selectedFiles.push(file.name)
     }
 
     this.setState({ modals })

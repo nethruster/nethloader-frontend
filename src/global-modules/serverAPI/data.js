@@ -59,7 +59,7 @@ const getUserMedia = (id, authToken, extension = '', limit = 10, offset = 0) => 
   }
 
   return async dispatch => {
-    dispatch(requestUserMedia(limit, offset))
+    dispatch(requestUserMedia(limit))
 
     let serverResponse = await fetch(apiBaseUrl, requestConfig)
 

@@ -1,5 +1,5 @@
 import { h, Component } from 'preact'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 import asyncComponent from 'asyncComponent'
 import Subheader from './subheader'
@@ -12,12 +12,9 @@ export default class ControlPanel extends Component {
       <div class={`${style.cp} flex flex-dc flex-cross-center`}>
         <Subheader />
         <Switch>
-          <Route
-            path='/cp/'
+          <Redirect exact from='/cp' to='/cp/overview' />
+          <Route path='/cp/overview/:pageFactor?'
             exact
-            component={asyncComponent(() => import(/* webpackChunkName: "content_cp_overview" */'./overview')
-              .then(module => module.default))} />
-          <Route path='/cp/p/:pageFactor?'
             component={asyncComponent(() => import(/* webpackChunkName: "content_cp_overview" */'./overview')
               .then(module => module.default))} />
           <Route

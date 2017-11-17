@@ -18,7 +18,8 @@ module.exports = {
       'preact',
       'preact-compat',
       'react-router-dom',
-      'preact-redux'
+      'preact-redux',
+      'react-ink'
     ]
   },
   output: {

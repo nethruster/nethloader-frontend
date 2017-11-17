@@ -4,6 +4,7 @@ import { connect } from 'preact-redux'
 import Upload from './upload'
 import UploadsToolbar from './uploads-toolbar'
 import Modal from '../../../shared/modal'
+import ViewLoading from '../../../shared/view-loading'
 
 import { deleteMedia } from 'serverAPI/media'
 import { getUserMedia } from 'serverAPI/data'
@@ -75,8 +76,14 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     this.setState({isDeleting: !this.state.isDeleting})
   }
 
+  sortByDate (imageA, imageB) {
+    return new Date(imageB.createdAt) - new Date(imageA.createdAt)
+  }
+
   computeMediaList () {
     let mediaList = this.props.userMedia.images
+    // Sort from most recent to oldest
+    mediaList.sort(this.sortByDate)
     if (mediaList && mediaList.length > 0) {
       return mediaList.map((entry, index) =>
         <Upload key={entry.id} data={entry} isSelected={this.props.selectedMedia.includes(entry.id)} selectMode={this.state.isSelecting} handleToggleSelect={this.handleToggleMedia} toggleDeleteConfirmModal={this.toggleDeleteConfirmModal} />
@@ -163,7 +170,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
       <div class={style.uploads}>
         <UploadsToolbar isSelecting={this.state.isSelecting} toggleIsSelecting={this.toggleIsSelecting} handleDeleteClick={this.toggleDeleteConfirmModal} updateUserMedia={this.updateUserMedia} />
         <ul>
-          {isFetchingMedia ? `${viewStrings.loading_media}...` : this.computeMediaList()}
+          {isFetchingMedia ? <ViewLoading /> : this.computeMediaList()}
         </ul>
         <Modal isActive={this.state.modals.singleDelete.isActive} toggleModal={this.toggleDeleteConfirmModal} closeButtonText='Wait, no' acceptButtonText='Yes, do it' onAcceptExecute={this.confirmSingleDelete}>
           <p class='flex flex-full-center'>Are you sure that you want to delete the selected item?</p>

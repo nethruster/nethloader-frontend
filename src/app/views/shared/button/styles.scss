@@ -19,6 +19,7 @@
         transition: .1s ease-in-out;
         transition-property: color, background-color, border-color;
         cursor: pointer;
+        user-select: none;
 
         &:disabled {
             opacity: .5;

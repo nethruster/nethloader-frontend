@@ -71,7 +71,7 @@
         }
       },
       "uploads": {
-        "no_media": "No media available",
+        "no_media": "No media found",
         "loading_media": "Loading media",
         "upload": {
           "type": "Type",

@@ -8,14 +8,14 @@
             font: inherit;
             cursor: pointer;
             
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
+            user-select: none;
         }
 
         .checkbox {
             width: calc(15px + calc(var(--base-pm) * 2));
             padding: var(--base-pm);
+            
+            pointer-events: none;
 
             &:before {
                 content: '';
@@ -44,8 +44,6 @@
            }
         }
 
-        p {
-            margin: calc(var(--base-pm) * 2) var(--base-pm);
-        }
+        p { margin: calc(var(--base-pm) * 2) var(--base-pm); }
     }
 }

@@ -2,8 +2,7 @@ import { h, Component } from 'preact'
 
 import Icon from '../icon/'
 import Spinner from '../spinner'
-
-import mdripple from 'mdripple'
+import Ink from 'react-ink'
 
 import style from './styles.scss'
 
@@ -13,10 +12,6 @@ export default class Button extends Component {
            (this.props.spinner !== nextProps.spinner) ||
            (this.props.icon !== nextProps.icon) ||
            (this.props.text !== nextProps.text)
-  }
-
-  componentDidMount () {
-    mdripple(this.buttonEl)
   }
 
   render ({dataId, round, contrast, big, small, transparent, navButton, dropdown, floating, iconButton, customClass, tabindex, type, onClickExecute, copyText, disabled, icon, iconColor, spinner, spinnerColor, spinnerSize, text}) {
@@ -48,6 +43,7 @@ export default class Button extends Component {
         disabled={disabled}
         ref={(el) => { this.buttonEl = el }}
         ripple='ripple'>
+        <Ink />
         {icon && !spinner ? <Icon iconName={icon} iconColor={iconColor} /> : null}&nbsp;
         {(spinner || text) && <p class='flex'>{spinner ? <Spinner color={spinnerColor} size={spinnerSize} /> : text}</p>}
       </button>

@@ -1,5 +1,7 @@
 import { h, Component } from 'preact'
 
+import Ink from 'react-ink'
+
 import style from './styles.scss'
 
 export default class Checkbox extends Component {
@@ -11,7 +13,11 @@ export default class Checkbox extends Component {
     return (
       <div class={`flex flex-full-center ${style.checkboxWrapper}`}>
         <input type='checkbox' id={dataId} data-id={dataId} onChange={onChangeHandler} checked={isSelected} />
-        <label for={dataId} class={`flex flex-full-center ${customClass || ''}`}><div class={`flex flex-full-center ${style.checkbox}`} />{text && <p>{text}</p>}</label>
+        <label for={dataId} class={`flex flex-full-center ${customClass || ''}`}>
+          <Ink />
+          <div class={`flex flex-full-center ${style.checkbox}`} />
+          {text && <p>{text}</p>}
+        </label>
       </div>
     )
   }

@@ -1,10 +1,6 @@
 :local {
     .dropdown {
-        &Wrapper {
-            position: relative;
-
-            margin-left: var(--base-pm);
-        }
+        &Wrapper { position: relative; }
 
         &Menu {
             position: absolute;
@@ -22,21 +18,25 @@
             pointer-events: none;
             transition: .3s ease-in-out;
             transition-property: max-height, opacity, box-shadow;
-
-            li {
-                &:not(:last-child) { border-bottom: 1px solid  var(--dropdown-item-border-color)}
-            }
-
+            
             &.active {
-                max-height: 200px;
+                max-height: 275px;
 
                 border-color: var(--button-border-color-default);
                 box-shadow: 0 2px 4px 0 rgba(78, 86, 95, 0.1);
                 opacity: 1;
                 
+                overflow-y: auto;
                 z-index: 3;
                 pointer-events: initial;
             }
+
+            &Centered {
+                left: 0!important;
+                right: 0;
+            }
+
+            &NoMinWidth { min-width: 90px; }
         }
 
         &Overlay {

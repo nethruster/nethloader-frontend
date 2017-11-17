@@ -1,0 +1,16 @@
+:local {
+    .selectButton {
+        min-height: 42px;
+        min-width: 42px;
+
+        margin-left: var(--base-pm);
+        
+        border-radius: 100%;
+        
+        cursor: pointer;
+
+        transition: background-color .3s;
+
+        &:hover { background-color: var(--icon-bg-color-action-button--hover) }
+    }
+}

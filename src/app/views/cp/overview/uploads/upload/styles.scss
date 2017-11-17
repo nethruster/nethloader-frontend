@@ -29,45 +29,5 @@
 
             img { border-radius: var(--base-br); }
         }
-
-        &DataSpec,
-        &DataDate {
-            flex: 2;
-
-            opacity: .95;
-
-            text-align: center;
-            font-size: .8em;
-
-            span { font-weight: 500; }
-
-            small { opacity: .8 }
-        }
-
-        &SelectButton {
-            min-height: 42px;
-            min-width: 42px;
-
-            margin-left: var(--base-pm);
-            
-            border-radius: 100%;
-            
-            cursor: pointer;
-
-            transition: background-color .3s;
-
-            &:hover { background-color: var(--icon-bg-color-action-button--hover) }
-        }
-    }
-
-    @media(max-width: 650px) {
-        .upload {
-            &DataSpec { display: none; }
-
-            &DataDate {
-                span,
-                small { display: none; }
-            }
-        }
     }
 }

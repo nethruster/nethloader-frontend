@@ -1,0 +1,30 @@
+:local {
+    .data {
+        flex: 1;
+
+        &Spec,
+        &Date {
+            flex: 2;
+
+            opacity: .95;
+
+            text-align: center;
+            font-size: .8em;
+
+            span { font-weight: 500; }
+
+            small { opacity: .8 }
+        }
+    }
+
+     @media(max-width: 650px) {
+        .data {
+            &Spec { display: none; }
+
+            &Date {
+                span,
+                small { display: none; }
+            }
+        }
+    }
+}

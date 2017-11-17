@@ -31,7 +31,7 @@
         stroke-dashoffset: 0;
         transform-origin: center;
         animation: spinner-dash 1.5s ease-in-out infinite;
-        stroke-width: 2;
+        stroke-width: 1;
         stroke-linecap: round;
         stroke: var(--loading-spinner-color);
     }

@@ -15,16 +15,26 @@ export default class DropDownMenu extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick () {
-    this.setState({isOpen: !this.state.isOpen})
+  componentWillMount () {
+    this.bindClickToCustomTrigger()
   }
 
-  render () {
+  handleClick () {
+    this.setState({ isOpen: !this.state.isOpen })
+  }
+
+  bindClickToCustomTrigger () {
+    if (this.props.customTrigger) {
+      this.props.customTrigger.attributes.onClick = this.handleClick
+    }
+  }
+
+  render ({ customIcon, customTrigger, centered, noMinWidth }) {
     return (
       <div class='flex flex-full-center'>
         <div class={style.dropdownWrapper}>
-          <Button iconButton icon='dots-menu' onClickExecute={this.handleClick} />
-          <div class={`${style.dropdownMenu} ${this.state.isOpen ? style.active : ''}`}>
+          {customTrigger || <Button iconButton icon={`${customIcon || 'dots-menu'}`} onClickExecute={this.handleClick} />}
+          <div class={`${style.dropdownMenu} ${centered ? style.dropdownMenuCentered : ''} ${noMinWidth ? style.dropdownMenuNoMinWidth : ''}  ${this.state.isOpen ? style.active : ''}`}>
             <ul>
               {this.props.children}
             </ul>

@@ -20,9 +20,10 @@ export default class AsyncMedia extends Component {
         tempSourceElement.type = `video/${this.props.type}`
         tempVideoComponent.appendChild(tempSourceElement)
 
-        tempVideoComponent.onloadeddata = () => {
+        tempVideoComponent.oncanplay = () => {
+          // If we get controls prop true, it means that we are on media-view, we won't play the video on the overview panel
           const mediaNode =
-            (<video preload='auto' height={this.props.size} controls={this.props.controls}>
+            (<video preload={this.props.controls ? 'auto' : 'metadata'} height={this.props.size} controls={this.props.controls}>
               <source src={this.props.src} type={`video/${this.props.type}`} />
             </video>)
 

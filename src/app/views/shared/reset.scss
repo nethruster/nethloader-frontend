@@ -55,10 +55,28 @@
         max-width: 100%;
         height: auto;
         vertical-align: middle;
+        object-fit: fill;
+    }
+
+    video {
+        object-fit: fill;
     }
 
     #nethloader {
         min-height: 100vh;
         min-width: 100%;
+    }
+
+    ::-webkit-scrollbar {
+        width: 6px!important;
+        height: 6px!important;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: var(--cp-overview-layoutborder-color);
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: transparent;
     }
 }
