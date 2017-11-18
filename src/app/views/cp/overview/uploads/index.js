@@ -47,15 +47,10 @@ export default connect(mapStateToProps)(class Uploads extends Component {
       isDeleting: false
     }
 
-    this.toggleIsSelecting = this.toggleIsSelecting.bind(this)
     this.toggleDeleteConfirmModal = this.toggleDeleteConfirmModal.bind(this)
     this.handleToggleMedia = this.handleToggleMedia.bind(this)
     this.confirmSingleDelete = this.confirmSingleDelete.bind(this)
     this.confirmMultipleDelete = this.confirmMultipleDelete.bind(this)
-  }
-
-  toggleIsSelecting () {
-    this.setState({isSelecting: !this.state.isSelecting})
   }
 
   toggleIsDeleting () {
@@ -72,7 +67,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     mediaList.sort(this.sortByDate)
     if (mediaList && mediaList.length > 0) {
       return mediaList.map((entry, index) =>
-        <Upload key={entry.id} data={entry} isSelected={this.props.selectedMedia.includes(entry.id)} selectMode={this.state.isSelecting} handleToggleSelect={this.handleToggleMedia} toggleDeleteConfirmModal={this.toggleDeleteConfirmModal} />
+        <Upload key={entry.id} data={entry} isSelected={this.props.selectedMedia.includes(entry.id)} handleToggleSelect={this.handleToggleMedia} toggleDeleteConfirmModal={this.toggleDeleteConfirmModal} />
       )
     }
     return (
@@ -154,7 +149,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
   render ({isFetchingMedia, userMedia, selectedMedia, updateUserMedia}) {
     return (
       <div class={style.uploads}>
-        {userMedia.totalCount === 0 ? null : <UploadsToolbar isSelecting={this.state.isSelecting} toggleIsSelecting={this.toggleIsSelecting} handleDeleteClick={this.toggleDeleteConfirmModal} updateUserMedia={updateUserMedia} />}
+        {userMedia.totalCount === 0 ? null : <UploadsToolbar handleDeleteClick={this.toggleDeleteConfirmModal} updateUserMedia={updateUserMedia} />}
         <ul class={style.uploadsList}>
           {this.props.isFetchingMedia ? <ViewLoading /> : this.computeMediaList()}
         </ul>

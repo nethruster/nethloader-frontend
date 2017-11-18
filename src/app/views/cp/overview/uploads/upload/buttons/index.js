@@ -44,23 +44,14 @@ export default class Upload extends Component {
     this.props.toggleDeleteConfirmModal()
   }
 
-  render ({ data, isSelected, handleToggleSelect, selectMode, mediaPath, mediaUrl }) {
+  render ({ data, isSelected, handleToggleSelect, mediaPath, mediaUrl }) {
     return (
       <div class='flex flex-full-center'>
-        {
-          this.props.selectMode
-            ? <Checkbox onChangeHandler={handleToggleSelect} isSelected={isSelected} dataId={data.id} customClass={style.selectButton} />
-            : (
-              <Link target='_blank' rel='noopener' to={mediaUrl} class='flex flex-full-center' title={viewStrings.click_open} tabindex='-2'>
-                <Button iconButton icon='open-in-new' />
-              </Link>
-            )
-        }
-
+        <Checkbox onChangeHandler={handleToggleSelect} isSelected={isSelected} dataId={data.id} customClass={style.selectButton} />
         <DropDownMenu>
           <li><a href={mediaPath} download><Button text={viewStrings.download} icon='download' dropdown /></a></li>
           <li><Button icon='copy' text={this.state.copy.valueCopied ? viewStrings.copied : viewStrings.copy_url} copyText={`${mediaUrl}`} onClickExecute={this.handleCopyClick} dropdown /></li>
-          <li><Button dataId={data.id} text='Delete' icon='delete' dropdown onClickExecute={this.handleDeleteClick} disabled={selectMode} /></li>
+          <li><Button dataId={data.id} text='Delete' icon='delete' dropdown onClickExecute={this.handleDeleteClick} /></li>
         </DropDownMenu>
       </div>
     )

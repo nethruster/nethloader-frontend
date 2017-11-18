@@ -2,19 +2,5 @@
     .select {
         flex: 1;
         margin: 0 var(--base-pm);
-        
-        &Buttons {
-            opacity: 0;
-
-            visibility: hidden;
-            pointer-events: none;
-            
-            &Active {
-                opacity: 1;
-
-                pointer-events: initial;
-                visibility: visible;
-            }
-        }
     }
 }

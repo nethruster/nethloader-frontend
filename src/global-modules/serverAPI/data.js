@@ -54,7 +54,7 @@ const getUserMedia = (id, authToken, extension = '', limit = 10, offset = 0) => 
       'authentication': authToken
     },
     body: JSON.stringify({
-      query: `query{ images(userId: "${id}", extension: "${extension}", limit: ${limit}, offset: ${offset}){totalCount, images {id, createdAt, extension}}}`
+      query: `query{ images(userId: "${id}", extension: "${extension}", limit: ${limit}, offset: ${offset}, orderBy: "createdAt", orderDirection: "DESC"){totalCount, images {id, createdAt, extension}}}`
     })
   }
 

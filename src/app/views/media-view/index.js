@@ -21,7 +21,9 @@ function mapStateToProps (state) {
 
 export default connect(mapStateToProps)(class MediaView extends Component {
   componentWillMount () {
-    this.props.dispatch(getMediaInfo(this.context.router.route.match.params.id))
+    this.props.dispatch(getMediaInfo(this.context.router.route.match.params.id)).then((response) => response).catch(() => {
+      this.context.router.history.push('/404')
+    })
   }
 
   render ({mediaInfo, isFetching}) {
