@@ -58,6 +58,9 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
         this.setState({smallNav: false})
       }
     }
+
+    document.addEventListener('dragover', this.onDragOver)
+    document.addEventListener('drop', this.handleFileDrop)
   }
 
   evalSmallNavBar () {
@@ -175,9 +178,17 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
       ...this.state.modals
     }
 
+    if (!modals.upload.isActive) {
+      this.toggleUploadModal()
+    }
+
     for (let file of event.dataTransfer.files) {
-      modals.upload.files.push(file)
-      modals.upload.selectedFiles.push(file.name)
+      if (isValidFormat(file.type)) {
+        modals.upload.files.push(file)
+        modals.upload.selectedFiles.push(file.name)
+      } else {
+        console.log(`${viewStrings.invalid_file_detected}: ` + file.name)
+      }
     }
 
     this.setState({ modals })
@@ -205,7 +216,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
                     </label>
                   )
                   : (
-                    <label onDragOver={this.onDragOver} onDrop={this.handleFileDrop} for='fileInput' class='flex flex-full-center'>
+                    <label for='fileInput' class='flex flex-full-center' ref={(el) => { this.uploadLabel = el }}>
                       <Ink />
                       {this.state.modals.upload.selectedFiles.length === 0 ? viewStrings.input.text : viewStrings.input.files_text}
                       {/* SVG label dashed border */}
