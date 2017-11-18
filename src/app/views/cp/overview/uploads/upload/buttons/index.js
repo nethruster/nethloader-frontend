@@ -1,17 +1,18 @@
 import { h, Component } from 'preact'
-import { Link } from 'react-router-dom'
+import {connect} from 'preact-redux'
 
 import DropDownMenu from '../../../../../shared/dropdown-menu'
 import Button from '../../../../../shared/button'
 import Checkbox from '../../../../../shared/checkbox'
 import locale from 'locale'
 import { copyToClipboard } from 'utils'
+import { mediaUnselectAll } from 'actions/media'
 
 import style from './styles.scss'
 
 const viewStrings = locale.cp.overview.uploads.upload
 
-export default class Upload extends Component {
+export default connect()(class Upload extends Component {
   constructor (props) {
     super(props)
 
@@ -40,11 +41,12 @@ export default class Upload extends Component {
   }
 
   handleDeleteClick (event) {
+    this.props.dispatch(mediaUnselectAll())
     if (!this.props.isSelected) { this.props.handleToggleSelect(event) }
     this.props.toggleDeleteConfirmModal()
   }
 
-  render ({ data, isSelected, handleToggleSelect, mediaPath, mediaUrl }) {
+  render ({ data, isSelected, handleToggleSelect, mediaPath, mediaUrl, dispatch }) {
     return (
       <div class='flex flex-full-center'>
         <Checkbox onChangeHandler={handleToggleSelect} isSelected={isSelected} dataId={data.id} customClass={style.selectButton} />
@@ -56,4 +58,4 @@ export default class Upload extends Component {
       </div>
     )
   }
-}
+})

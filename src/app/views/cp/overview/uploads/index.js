@@ -43,7 +43,6 @@ export default connect(mapStateToProps)(class Uploads extends Component {
           isActive: false
         }
       },
-      isSelecting: false,
       isDeleting: false
     }
 
@@ -103,7 +102,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
 
       modals.singleDelete.isActive || modals.multipleDelete.isActive ? scrollBlockOff() : scrollBlockOn()
 
-      if (!this.state.isSelecting || this.props.selectedMedia.length === 1) {
+      if (this.props.selectedMedia.length === 1) {
         // If we're not multiple-selecting or we're deleting just one item
         modals.singleDelete.isActive = !modals.singleDelete.isActive
       } else {
@@ -130,7 +129,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
 
     this.toggleIsDeleting()
 
-    selectedMedia.forEach((mediaId) => {
+    for (let mediaId of selectedMedia) {
       this.props.dispatch(deleteMedia(mediaId, this.props.token)).then(() => {
         deleteIndexCount++
 
@@ -143,7 +142,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
           this.toggleDeleteConfirmModal()
         }
       })
-    })
+    }
   }
   
   render ({isFetchingMedia, userMedia, selectedMedia, updateUserMedia}) {
