@@ -16,13 +16,12 @@ export default class Upload extends Component {
     
     return (
       <li class={`${style.upload} flex flex-cross-center flex-sb`} ref={(el) => { this.uploadEl = el }}>
-        <Link to={`/${data.id}`}>
+        <Link to={`/${data.id}`} class={`${style.uploadDataLink} flex`}>
           <div class={`${style.uploadMedia} flex flex-full-center`}>
             <AsyncMedia src={mediaPath} type={data.extension} size='74' id={data.id} />
           </div>
+          <UploadData data={data} />
         </Link>
-
-        <Link to={`/${data.id}`}><UploadData data={data} /></Link>
 
         <UploadButtons data={data} isSelected={isSelected} mediaPath={mediaPath} mediaUrl={mediaUrl} toggleDeleteConfirmModal={toggleDeleteConfirmModal} handleToggleSelect={handleToggleSelect} />
       </li>

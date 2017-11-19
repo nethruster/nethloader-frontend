@@ -43,7 +43,7 @@ export default connect(mapStateToProps)(class Pagination extends Component {
     let nextOffset = nextPageFactor * this.props.mediaLimit
     
     if (nextOffset >= 0) {
-      this.context.router.history.push(`/cp/overview/${nextPageFactor}`)
+      this.context.router.history.push(`/cp/overview/${nextPageFactor + 1}`)
     }
   }
 
@@ -52,17 +52,17 @@ export default connect(mapStateToProps)(class Pagination extends Component {
     let nextOffset = nextPageFactor * this.props.mediaLimit
 
     if (nextOffset <= this.props.userMedia.totalCount) {
-      this.context.router.history.push(`/cp/overview/${nextPageFactor}`)
+      this.context.router.history.push(`/cp/overview/${nextPageFactor + 1}`)
     }
   }
 
   loadFirstPage () {
-    this.context.router.history.push('/cp/overview/0')
+    this.context.router.history.push('/cp/overview/1')
   }
 
   loadLastPage () {
     let lastPage = Math.ceil(this.props.userMedia.totalCount / this.props.mediaLimit)
-    this.context.router.history.push(`/cp/overview/${lastPage - 1}`)
+    this.context.router.history.push(`/cp/overview/${lastPage}`)
   }
 
   hasPrevPage () {
@@ -86,7 +86,7 @@ export default connect(mapStateToProps)(class Pagination extends Component {
     let pagesArray = Array.from({ length: nPages }, (v, i) => i)
 
     return pagesArray.map((entry) => {
-      return <Link exact to={`/cp/overview/${entry}`}><Button dropdown text={entry} class='flex flex-full-center' /></Link>
+      return <Link exact to={`/cp/overview/${entry + 1}`}><Button dropdown text={entry + 1} class='flex flex-full-center' /></Link>
     })
   }
 
@@ -95,7 +95,7 @@ export default connect(mapStateToProps)(class Pagination extends Component {
       <div class={`flex flex-dc ${style.paginationNavButton} ${style.paginationNavButtonCustom}`}>
         <Ink />
         <p><Icon iconName='chev-down' />&nbsp;Page</p>
-        <b>{this.pageFactor}</b>
+        <b>{this.pageFactor + 1}</b>
       </div>
     )
 

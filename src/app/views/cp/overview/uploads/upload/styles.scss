@@ -14,6 +14,11 @@
 
         &:hover { border-left-color: var(--cp-overview-medialist-item-activeborder-color) }
 
+        
+        &DataLink {
+            flex: 1;
+        }
+
         &Media {
             flex: 2;
             max-width: var(--cp-overview-medialist-media-width);

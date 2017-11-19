@@ -136,7 +136,9 @@ const checkUserSessionValidity = async (token, tokenExp) => {
  * @return int
  */
 const getPageFactor = (router) => {
-  return Number(router.route.match.params.pageFactor) || 0
+  let pageFactor = router.route.match.params.pageFactor
+
+  return pageFactor > 0 ? (Number(router.route.match.params.pageFactor) - 1) : 0
 }
 
 export {
