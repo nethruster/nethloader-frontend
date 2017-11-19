@@ -50,7 +50,7 @@ export default connect(mapStateToProps)(class Overview extends Component {
               <div class='flex flex-cross-center flex-sa'>
                 <Link to='/cp/overview/'><Button text='Go to first page' /></Link>
                 &nbsp;&nbsp;
-                <Link to={`/cp/overview/${this.pageFactor - 1}`}><Button text='Go to previous page' /></Link>
+                <Link to={`/cp/overview/${this.pageFactor}`}><Button text='Go to previous page' /></Link>
               </div>
             </p>
             : <Uploads updateUserMedia={this.updateUserMedia} />

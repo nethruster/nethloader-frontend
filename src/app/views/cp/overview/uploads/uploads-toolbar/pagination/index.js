@@ -1,10 +1,9 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import Icon from '../../../../../shared/icon'
 import Button from '../../../../../shared/button'
-import ViewLoading from '../../../../../shared/view-loading'
 import Ink from 'react-ink'
 import { getPageFactor } from 'utils'
 
@@ -86,7 +85,7 @@ export default connect(mapStateToProps)(class Pagination extends Component {
     let pagesArray = Array.from({ length: nPages }, (v, i) => i)
 
     return pagesArray.map((entry) => {
-      return <Link exact to={`/cp/overview/${entry + 1}`}><Button dropdown text={entry + 1} class='flex flex-full-center' /></Link>
+      return <NavLink exact activeClassName='pagelist-active' to={`/cp/overview/${entry + 1}`}><Button dropdown text={entry + 1} class='flex flex-full-center' /></NavLink>
     })
   }
 
@@ -114,7 +113,7 @@ export default connect(mapStateToProps)(class Pagination extends Component {
           </div>
           <div class={`flex ${style.paginationList}`}>
             {isFetchingMedia
-              ? <ViewLoading />
+              ? null
               : <DropDownMenu centered noMinWidth customTrigger={customPageListButton}>
                 {this.computePageList()}
               </DropDownMenu>

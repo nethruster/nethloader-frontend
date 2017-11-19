@@ -125,7 +125,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     } else if (filesToUpload.length > 0) {
       this.toggleIsUploading()
 
-      filesToUpload.forEach((file, index) => {
+      for (let file of filesToUpload) {
         this.props.dispatch(uploadMedia(file, this.props.token)).then((imageId) => {
           this.increaseUploadedFileCount()
 
@@ -142,7 +142,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
             }
           }
         })
-      })
+      }
     } else {
       console.log(viewStrings.response.error)
     }

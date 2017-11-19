@@ -64,14 +64,15 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     let mediaList = this.props.userMedia.images
     // Sort from most recent to oldest
     mediaList.sort(this.sortByDate)
-    if (mediaList && mediaList.length > 0) {
+    if (!!mediaList && mediaList.length > 0) {
       return mediaList.map((entry, index) =>
         <Upload key={entry.id} data={entry} isSelected={this.props.selectedMedia.includes(entry.id)} handleToggleSelect={this.handleToggleMedia} toggleDeleteConfirmModal={this.toggleDeleteConfirmModal} />
       )
     }
     return (
-      <p class={`nomedia flex flex-full-center`}>
-        {viewStrings.no_media}
+      <p class={`nomedia flex flex-full-center flex-dc`}>
+        {viewStrings.no_media}<br />
+        <small class='flex flex-full-center'>Drop files anywhere or click the upload button to add media.</small>
       </p>
     )
   }
@@ -148,7 +149,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
   render ({isFetchingMedia, userMedia, selectedMedia, updateUserMedia}) {
     return (
       <div class={style.uploads}>
-        {userMedia.totalCount === 0 ? null : <UploadsToolbar handleDeleteClick={this.toggleDeleteConfirmModal} updateUserMedia={updateUserMedia} />}
+        {!!userMedia && userMedia.totalCount === 0 ? null : <UploadsToolbar handleDeleteClick={this.toggleDeleteConfirmModal} updateUserMedia={updateUserMedia} />}
         <ul class={style.uploadsList}>
           {this.props.isFetchingMedia ? <ViewLoading /> : this.computeMediaList()}
         </ul>

@@ -69,3 +69,11 @@
             }
         }
 }
+
+:global {
+    .pagelist-active {
+        button {
+            background-color: rgba(56, 61, 66, 0.075);
+        }
+    }
+}

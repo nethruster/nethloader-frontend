@@ -1,6 +1,7 @@
 :local {
     .content {
         min-height: 100vh;
+        min-width: 100%;
 
         background-image: var(--content-background-gradient);
     }

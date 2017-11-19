@@ -40,9 +40,9 @@ export default connect()(class Upload extends Component {
     }, 1500)
   }
 
-  handleDeleteClick (event) {
-    this.props.dispatch(mediaUnselectAll())
-    if (!this.props.isSelected) { this.props.handleToggleSelect(event) }
+  async handleDeleteClick (event) {
+    await this.props.dispatch(mediaUnselectAll())
+    this.props.handleToggleSelect(event)
     this.props.toggleDeleteConfirmModal()
   }
 
