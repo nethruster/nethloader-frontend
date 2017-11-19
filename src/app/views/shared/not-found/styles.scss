@@ -1,0 +1,21 @@
+:local {
+    .notFound {
+        flex: 1;
+
+        a {
+            color: transparentize(darken(#1e87f0, 20%), .1);
+
+            transition: color .3s ease-in-out;
+
+            &:hover { color: darken(#1e87f0, 5%); }
+        }
+
+        picture {
+            margin: var(--base-pm);
+
+            border-radius: 4px;
+            
+            overflow: hidden;
+        }
+    }
+}

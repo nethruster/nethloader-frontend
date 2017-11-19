@@ -61,14 +61,3 @@
          .overview { padding: 0; }
      }
 }
-
-:global {
-    .nomedia {
-        margin: var(--base-pm);
-
-        opacity: .55;
-        
-        font-weight: 300;
-        font-size: 1.5em;
-    }
-}
