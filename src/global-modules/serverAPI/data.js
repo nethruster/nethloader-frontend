@@ -1,7 +1,7 @@
-import { apiBaseUrl } from 'app.config'
+import {apiBaseUrl} from 'app.config'
 
-import { requestUserData, receiveUserData, userDataError,
-  requestUserMedia, receiveUserMedia, userMediaError } from 'actions/data'
+import {requestUserData, receiveUserData, userDataError,
+  requestUserMedia, receiveUserMedia, userMediaError} from 'actions/data'
 
 // User data
 const getUserData = (id, authToken) => {
@@ -45,7 +45,7 @@ const getUserData = (id, authToken) => {
 }
 
 // User media
-const getUserMedia = (id, authToken, extension = '', limit = 10, offset = 0) => {
+const getUserMedia = (id, authToken, params) => {
   let requestConfig = {
     method: 'POST',
     headers: {
@@ -54,12 +54,12 @@ const getUserMedia = (id, authToken, extension = '', limit = 10, offset = 0) => 
       'authentication': authToken
     },
     body: JSON.stringify({
-      query: `query{ images(userId: "${id}", extension: "${extension}", limit: ${limit}, offset: ${offset}, orderBy: "createdAt", orderDirection: "DESC"){totalCount, images {id, createdAt, extension}}}`
+      query: `query{ images(userId: "${id}", extension: "${params.type}", limit: ${params.mediaLimit}, offset: ${params.offset}, orderBy: "createdAt", orderDirection: "DESC", beforeDate: "${params.beforeDate}", afterDate: "${params.afterDate}"){totalCount, images {id, createdAt, extension}}}`
     })
   }
 
   return async dispatch => {
-    dispatch(requestUserMedia(limit))
+    dispatch(requestUserMedia(params))
 
     let serverResponse = await fetch(apiBaseUrl, requestConfig)
 

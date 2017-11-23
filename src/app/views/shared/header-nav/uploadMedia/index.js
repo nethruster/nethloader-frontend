@@ -1,13 +1,13 @@
-import { h, Component } from 'preact'
-import { withRouter } from 'react-router-dom'
-import { connect } from 'preact-redux'
+import {h, Component} from 'preact'
+import {withRouter} from 'react-router-dom'
+import {connect} from 'preact-redux'
 import Ink from 'react-ink'
 
 import Button from '../../button'
 import Modal from '../../modal'
 
-import { isValidFormat } from 'utils'
-import { uploadMedia } from 'serverAPI/media'
+import {isValidFormat, getPageFactor} from 'utils'
+import {uploadMedia} from 'serverAPI/media'
 import {getUserMedia} from 'serverAPI/data'
 import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 import locale from 'locale'
@@ -18,15 +18,17 @@ const viewStrings = locale.shared.upload_media
 
 function mapStateToProps (state) {
   const {token, sessionData} = state.authentication
+  const {params} = state.userMedia
 
   return {
     token,
-    sessionData
+    sessionData,
+    params
   }
 }
 
 export default withRouter(connect(mapStateToProps)(class UploadMedia extends Component {
-  constructor (props) {
+  constructor (props, context) {
     super(props)
 
     this.state = {
@@ -48,6 +50,8 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     this.handleFileChange = this.handleFileChange.bind(this)
     this.toggleIsUploading = this.toggleIsUploading.bind(this)
     this.handleFileDrop = this.handleFileDrop.bind(this)
+
+    this.pageFactor = this.pageFactor = getPageFactor(context.router)
   }
 
   componentDidMount () {
@@ -138,7 +142,11 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
             if (fileCount === 1) {
               this.props.history.push(`/${imageId}`)
             } else {
-              this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token))
+              let newParams = this.props.params
+
+              newParams.offset = this.pageFactor * newParams.mediaLimit
+
+              this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token, newParams))
             }
           }
         })
@@ -178,7 +186,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
       ...this.state.modals
     }
 
-    if (!modals.upload.isActive) {
+    if (!modals.upload.isActive && event.dataTransfer.files.length > 0) {
       this.toggleUploadModal()
     }
 
@@ -191,7 +199,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
       }
     }
 
-    this.setState({ modals })
+    this.setState({modals})
   }
 
   render ({dispatch, isAuthenticated, token}) {
@@ -239,7 +247,6 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
           </div>
         </Modal>
       </span>
-
     )
   }
 }))

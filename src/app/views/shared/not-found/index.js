@@ -1,7 +1,7 @@
-import { h, Component } from 'preact'
-import { Link } from 'react-router-dom'
+import {h, Component} from 'preact'
+import {Link} from 'react-router-dom'
 
-import { adminEmail } from 'app.config'
+import {adminEmail} from 'app.config'
 
 import style from './styles.scss'
 
@@ -10,10 +10,10 @@ export default class NotFound extends Component {
     return (
       <div class={`flex flex-full-center flex-dc ${style.notFound}`}>
         <p class='nomedia flex flex-full-center flex-dc'>
-          <picture>
-            <source src='./assets/img/sorry.webp' />
-            <source src='./assets/img/sorry.gif' />
-            <img src='./assets/img/sorry.gif' />
+          <picture height='275' width='500'>
+            <source src='./assets/img/sorry.webp' alt='Sorry gif' />
+            <source src='./assets/img/sorry.gif' alt='Sorry gif' />
+            <img height='275' width='500' src='./assets/img/sorry.gif' alt='Sorry gif' />
           </picture>
           <span class='flex flex-full-center'>Sorry, we couldn't find that...</span>
           <small>

@@ -1,6 +1,6 @@
-import { h, Component } from 'preact'
+import {h, Component} from 'preact'
 
-import style from './styles.scss'
+import './styles.scss'
 
 export default class FormInput extends Component {
   shouldComponentUpdate (nextProps, nextState) {
@@ -11,7 +11,7 @@ export default class FormInput extends Component {
     return (
       <div class='input-container flex flex-dc'>
         <input id={inputId}
-          class={`${style.inputClass} ${inputState}`}
+          class={`${inputState || ''}`}
           name={inputId}
           type={inputType}
           placeholder={inputLabel}

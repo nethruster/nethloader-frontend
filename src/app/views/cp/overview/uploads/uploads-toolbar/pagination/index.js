@@ -1,22 +1,22 @@
-import { h, Component } from 'preact'
-import { connect } from 'preact-redux'
-import { NavLink } from 'react-router-dom'
+import {h, Component} from 'preact'
+import {connect} from 'preact-redux'
+import {NavLink} from 'react-router-dom'
 
 import Icon from '../../../../../shared/icon'
 import Button from '../../../../../shared/button'
 import Ink from 'react-ink'
-import { getPageFactor } from 'utils'
+import {getPageFactor} from 'utils'
 
 import style from './styles.scss'
 import DropDownMenu from '../../../../../shared/dropdown-menu/index'
 
 const mapStateToProps = (state) => {
-  const {userMedia, mediaLimit, isFetchingMedia} = state.userMedia
+  const {userMedia, params, isFetchingMedia} = state.userMedia
 
   return {
     userMedia,
     isFetchingMedia,
-    mediaLimit
+    params
   }
 }
 
@@ -39,7 +39,7 @@ export default connect(mapStateToProps)(class Pagination extends Component {
   // Pagination
   loadPrevPage () {
     let nextPageFactor = this.pageFactor - 1
-    let nextOffset = nextPageFactor * this.props.mediaLimit
+    let nextOffset = nextPageFactor * this.props.params.mediaLimit
     
     if (nextOffset >= 0) {
       this.context.router.history.push(`/cp/overview/${nextPageFactor + 1}`)
@@ -48,7 +48,7 @@ export default connect(mapStateToProps)(class Pagination extends Component {
 
   loadNextPage () {
     let nextPageFactor = this.pageFactor + 1
-    let nextOffset = nextPageFactor * this.props.mediaLimit
+    let nextOffset = nextPageFactor * this.props.params.mediaLimit
 
     if (nextOffset <= this.props.userMedia.totalCount) {
       this.context.router.history.push(`/cp/overview/${nextPageFactor + 1}`)
@@ -60,27 +60,27 @@ export default connect(mapStateToProps)(class Pagination extends Component {
   }
 
   loadLastPage () {
-    let lastPage = Math.ceil(this.props.userMedia.totalCount / this.props.mediaLimit)
+    let lastPage = Math.ceil(this.props.userMedia.totalCount / this.props.params.mediaLimit)
     this.context.router.history.push(`/cp/overview/${lastPage}`)
   }
 
   hasPrevPage () {
     let nextPageFactor = this.pageFactor - 1
-    let nextOffset = nextPageFactor * this.props.mediaLimit
+    let nextOffset = nextPageFactor * this.props.params.mediaLimit
 
     return nextOffset >= 0
   }
 
   hasNextPage () {
     let nextPageFactor = this.pageFactor + 1
-    let nextOffset = nextPageFactor * this.props.mediaLimit
+    let nextOffset = nextPageFactor * this.props.params.mediaLimit
 
-    return nextOffset < this.props.userMedia.totalCount && !(this.props.userMedia.totalCount === this.props.mediaLimit)
+    return nextOffset < this.props.userMedia.totalCount && !(this.props.userMedia.totalCount === this.props.params.mediaLimit)
   }
 
   computePageList () {
     // Can be decimal, if that's the case round up to add another page for the remaining media
-    let nPages = Math.ceil(this.props.userMedia.totalCount / this.props.mediaLimit)
+    let nPages = Math.ceil(this.props.userMedia.totalCount / this.props.params.mediaLimit)
     // Create an array from a number, v (value) is empty (undefined) but it is the first argument of the array item so we cannot bypass it
     let pagesArray = Array.from({ length: nPages }, (v, i) => i)
 
@@ -89,7 +89,7 @@ export default connect(mapStateToProps)(class Pagination extends Component {
     })
   }
 
-  render ({isFetchingMedia, mediaLimit, userMedia}) {
+  render ({isFetchingMedia, userMedia}) {
     const customPageListButton = (
       <div class={`flex flex-dc ${style.paginationNavButton} ${style.paginationNavButtonCustom}`}>
         <Ink />

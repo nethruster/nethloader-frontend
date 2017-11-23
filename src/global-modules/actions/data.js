@@ -1,5 +1,6 @@
 import appConstants from '../constants'
 
+// User data
 const requestUserData = () => {
   return {
     type: appConstants.USER_DATA_REQUEST,
@@ -27,12 +28,13 @@ const userDataError = (errorMessage) => {
   }
 }
 
-const requestUserMedia = (mediaLimit) => {
+// User media
+const requestUserMedia = (params) => {
   return {
     type: appConstants.USER_MEDIA_REQUEST,
     isFetchingMedia: true,
     userMedia: {},
-    mediaLimit,
+    params,
     errorMessage: ''
   }
 }
@@ -51,8 +53,13 @@ const userMediaError = (errorMessage) => {
     type: appConstants.USER_MEDIA_FAILURE,
     isFetchingMedia: false,
     userMedia: {},
-    mediaLimit: 10,
-    indexOffset: 0,
+    params: {
+      mediaLimit: 10,
+      type: '',
+      afterDate: '',
+      beforeDate: '',
+      offset: 0
+    },
     errorMessage
   }
 }

@@ -19,7 +19,7 @@
 }
 
 :local {
-    .inputClass {
+    input {
         -webkit-appearance: none;
         display: inline-block;
         max-width: 100%;
@@ -37,16 +37,27 @@
         transition: .2s ease-in-out;
         transition-property: color, background-color, border;
 
-        & + label {
-            min-height: 20px;
-
-            font-size: .8em;
-        }
-
         &:focus {
             outline: none;
 
             border-color: var(--input-border-color-default--focus);
+        }
+
+        &[type="text"],
+        &[type="password"],
+        &[type="email"] {
+            & + label {
+                min-height: 20px;
+
+                font-size: .8em;
+            }
+        }
+
+        &[type="date"] {
+            border: 1px solid #1e87f0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            height: auto;
         }
     }
 }

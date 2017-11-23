@@ -1,24 +1,25 @@
-import { h, Component } from 'preact'
+import {h, Component} from 'preact'
 import {Link} from 'react-router-dom'
 import {connect} from 'preact-redux'
 
 import Uploads from './uploads'
 import Button from '../../shared/button'
-import { getUserMedia } from 'serverAPI/data'
-import { getPageFactor } from 'utils'
+import {getUserMedia} from 'serverAPI/data'
+import {getPageFactor} from 'utils'
 
 import style from './styles.scss'
 
 const mapStateToProps = (state) => {
-  const { userMedia, isFetchingMedia, mediaLimit } = state.userMedia
-  const { token, sessionData } = state.authentication
+  const {userMedia, isFetchingMedia, params} = state.userMedia
+  const {token, sessionData, isAuthenticated} = state.authentication
 
   return {
     userMedia,
     isFetchingMedia,
     token,
     sessionData,
-    mediaLimit
+    isAuthenticated,
+    params
   }
 }
 
@@ -31,20 +32,25 @@ export default connect(mapStateToProps)(class Overview extends Component {
     this.updateUserMedia = this.updateUserMedia.bind(this)
   }
 
-  componentWillMount () {
-    this.updateUserMedia()
+  componentDidMount () {
+    if (this.props.isAuthenticated) {
+      this.updateUserMedia(this.props.params)
+    }
   }
 
-  updateUserMedia () {
-    let offset = this.pageFactor * this.props.mediaLimit
-    this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token, '', this.props.mediaLimit, offset))
+  updateUserMedia (params) {
+    let newParams = params
+
+    newParams.offset = this.pageFactor * params.mediaLimit
+
+    this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token, newParams))
   }
   
-  render ({ isFetchingMedia, userMedia, mediaLimit }) {
+  render ({isFetchingMedia, userMedia, params}) {
     return (
       <div class={`${style.overview} flex flex-main-center`}>
         {
-          this.pageFactor && this.pageFactor >= userMedia.totalCount / mediaLimit
+          this.pageFactor && this.pageFactor >= userMedia.totalCount / params.mediaLimit
             ? <p class='nomedia flex flex-dc flex-full-center'>
               <span>This page doesn't exist</span>
               <div class='flex flex-cross-center flex-sa'>

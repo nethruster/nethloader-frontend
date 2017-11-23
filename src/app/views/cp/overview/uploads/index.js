@@ -1,14 +1,14 @@
-import { h, Component } from 'preact'
-import { connect } from 'preact-redux'
+import {h, Component} from 'preact'
+import {connect} from 'preact-redux'
 
 import Upload from './upload'
 import UploadsToolbar from './uploads-toolbar'
 import Modal from '../../../shared/modal'
 import ViewLoading from '../../../shared/view-loading'
 
-import { deleteMedia } from 'serverAPI/media'
-import { mediaSelect, mediaUnselect, mediaUnselectAll } from 'actions/media'
-import { scrollBlockOn, scrollBlockOff } from 'preventScroll'
+import {deleteMedia} from 'serverAPI/media'
+import {mediaSelect, mediaUnselect, mediaUnselectAll} from 'actions/media'
+import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 
 import locale from 'locale'
 
@@ -17,7 +17,7 @@ import style from './styles.scss'
 const viewStrings = locale.cp.overview.uploads
 
 const mapStateToProps = (state) => {
-  const {isFetchingMedia, userMedia} = state.userMedia
+  const {isFetchingMedia, userMedia, params} = state.userMedia
   const {sessionData, token} = state.authentication
   const {selectedMedia} = state.mediaSelect
 
@@ -26,7 +26,8 @@ const mapStateToProps = (state) => {
     userMedia,
     selectedMedia,
     sessionData,
-    token
+    token,
+    params
   }
 }
 
@@ -119,7 +120,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
       // Reset selected items list
       this.props.dispatch(mediaUnselectAll())
       // Refresh data
-      this.props.updateUserMedia()
+      this.props.updateUserMedia(this.props.params)
       this.toggleDeleteConfirmModal()
     })
   }
@@ -139,7 +140,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
           // Reset selected items list
           this.props.dispatch(mediaUnselectAll())
           // Refresh data
-          this.props.updateUserMedia()
+          this.props.updateUserMedia(this.props.params)
           this.toggleDeleteConfirmModal()
         }
       })
@@ -151,7 +152,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
       <div class={style.uploads}>
         {!!userMedia && userMedia.totalCount === 0 ? null : <UploadsToolbar handleDeleteClick={this.toggleDeleteConfirmModal} updateUserMedia={updateUserMedia} />}
         <ul class={style.uploadsList}>
-          {this.props.isFetchingMedia ? <ViewLoading /> : this.computeMediaList()}
+          {!userMedia && this.props.isFetchingMedia ? <ViewLoading /> : this.computeMediaList()}
         </ul>
         <Modal isActive={this.state.modals.singleDelete.isActive} toggleModal={this.toggleDeleteConfirmModal} closeButtonText='Wait, no' acceptButtonText='Yes, do it' onAcceptExecute={this.confirmSingleDelete}>
           <p class='flex flex-full-center'>Are you sure that you want to delete the selected item?</p>

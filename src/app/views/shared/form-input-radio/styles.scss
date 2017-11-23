@@ -1,0 +1,55 @@
+:local {
+    .formInputRadio {
+        position: relative;
+
+        input[type="radio"] {
+            display: none;
+
+            &:checked + label:before { border-color: var(--input-radio-checked-color-default); }
+            &:checked + label:after { transform: scale(1); }
+        }
+        
+        label {
+            display: inline-block;
+            height: var(--input-radio-size-default);
+            position: relative;
+
+            padding: 0 calc(var(--input-radio-size-default) + 10px);
+            margin-bottom: 0;
+
+            cursor: pointer;
+            vertical-align: bottom;
+
+            &:before, &:after {
+                position: absolute;
+                content: '';
+
+                border-radius: 50%;
+
+                transition: all .2s ease-in-out;
+                transition-property: transform, border-color;
+            }
+
+            &:before {
+                left: 0;
+                top: 0;
+                width: var(--input-radio-size-default);
+                height: var(--input-radio-size-default);
+
+                border: 1px solid var(--input-radio-border-color-default);
+            }
+
+            &:after {
+                top: calc(calc(var(--input-radio-size-default) / 2) - calc(var(--input-radio-checked-size-default) / 2));
+                left: calc(calc(var(--input-radio-size-default) / 2) - calc(var(--input-radio-checked-size-default) / 2));
+                width: var(--input-radio-checked-size-default);
+                height: var(--input-radio-checked-size-default);
+
+                background: var(--input-radio-checked-color-default);
+
+                transform: scale(0);
+                
+            }
+        }
+    }
+}

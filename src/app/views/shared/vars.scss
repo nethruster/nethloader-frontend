@@ -50,6 +50,11 @@
         --input-border-color-default--focus: #1e87f0;
         --input-border-color-default--valid: #00c853;
         --input-border-color-default--invalid: #D50000;
+        --input-radio-checked-color-default: #1e87f0;
+        --input-radio-border-color-default: lighten(#222, 70%);
+        --input-radio-size-default: 20px;
+        --input-radio-checked-size-default: 10px; 
+        --input-radio-ripple-size-default: 15px;
         
         --media-view-card-background-color: transparentize(#f8f8f8, .25);
 

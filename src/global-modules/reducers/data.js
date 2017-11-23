@@ -30,17 +30,30 @@ const userData = (state = {
   }
 }
 
+// Media reducer
 const userMedia = (state = {
   isFetchingMedia: true,
   userMedia: JSON.parse(window.localStorage.getItem('neth-userMedia')),
-  mediaLimit: 10,
+  params: {
+    mediaLimit: 10,
+    type: '',
+    afterDate: '',
+    beforeDate: '',
+    offset: 0
+  },
   errorMessage: ''
 }, action) => {
   switch (action.type) {
     case appConstants.USER_MEDIA_REQUEST:
       return Object.assign({}, state, {
         isFetchingMedia: true,
-        mediaLimit: action.mediaLimit,
+        params: {
+          mediaLimit: action.params.mediaLimit || 10,
+          type: action.params.type || '',
+          afterDate: action.params.afterDate || '',
+          beforeDate: action.params.beforeDate || '',
+          offset: action.params.offset || 0
+        },
         errorMessage: ''
       })
     case appConstants.USER_MEDIA_SUCCESS:
@@ -53,7 +66,13 @@ const userMedia = (state = {
       return Object.assign({}, state, {
         isFetchingMedia: false,
         userMedia: {},
-        mediaLimit: 10,
+        params: {
+          mediaLimit: 10,
+          type: '',
+          afterDate: '',
+          beforeDate: '',
+          offset: 0
+        },
         errorMessage: action.errorMessage
       })
     default:
