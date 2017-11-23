@@ -8,11 +8,12 @@ import './styles.scss'
 
 const mapStateToProps = (state) => {
   const {userMedia} = state.userMedia
-  const {allToggled} = state.mediaSelect
+  const {allToggled, selectedMedia} = state.mediaSelect
 
   return {
     userMedia,
-    allToggled
+    allToggled,
+    selectedMedia
   }
 }
 
@@ -34,13 +35,11 @@ export default connect(mapStateToProps)(class SelectControls extends Component {
     }
   }
 
-  render ({handleDeleteClick, userMedia, updateUserMedia}) {
+  render ({handleDeleteClick, userMedia, updateUserMedia, selectedMedia}) {
     return (
-      <div class='flex flex-cross-center flex-sb'>
-        <div class={`flex flex-cross-center flex-sb`}>
-          <Button iconButton icon='selectall' onClickExecute={this.handleToggleAllMedia} />
-          <Button iconButton icon='delete' onClickExecute={handleDeleteClick} iconColor='#e53935' />
-        </div>
+      <div class={`flex flex-cross-center flex-sb`}>
+        <Button iconButton icon='selectall' onClickExecute={this.handleToggleAllMedia} />
+        <Button iconButton icon='delete' onClickExecute={handleDeleteClick} iconColor='#e53935' />
       </div>
     )
   }

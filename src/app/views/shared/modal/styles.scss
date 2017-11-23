@@ -31,11 +31,12 @@
         &-content {
             width: 100%;
             max-width: 500px;
+            max-height: 100vh;
             z-index: 10;
             border-radius: var(--base-br);
-            border: 1px solid var(--modal-content-border-color);
+            border: 1px solid var(--default-border-color);
 
-            background-color: var(--modal-content-background-color);
+            background-color: var(--default-bg);
             opacity: 0;
 
             padding: calc(var(--base-pm) * 2.5);
@@ -53,7 +54,7 @@
             }
 
             &-body {
-                color: var(--modal-body-text-color);
+                color: var(--default-color);
                 font-size: .95em;
             }
 
@@ -90,14 +91,22 @@
 
         &-close-button {
             &:hover svg{
-                color: red;
+                color: var(--warning-color);
             }
         }
 
         &-accept-button {
             &:hover svg { 
-                color: green;
+                color: var(--valid-color);
                 
+            }
+        }
+    }
+
+    @media(max-width: 500px) {
+        .modal {
+            &-content {
+                border-radius: 0;
             }
         }
     }

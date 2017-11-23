@@ -1,17 +1,18 @@
 :local {
     .pagination {
             &Nav {
-                margin: 0 8px;
+                margin: 0 var(--base-pm);
 
                 font-size: .95em;
                 min-height: 60px;
 
                 &Button {
                     position: relative;
-                    padding: 8px 16px;
+                    height: 60px;
+                    padding: var(--base-pm) calc(var(--base-pm) * 2);
 
                     opacity: .8;
-                    border-radius: 4px 4px 0 0;
+                    border-radius: var(--base-br) var(--base-br) 0 0;
                     text-align: center;
                     
                     cursor: pointer;
@@ -44,7 +45,7 @@
 
                     &:hover {
                         opacity: 1;
-                        background-color: var(--cp-overview-layoutborder-color)
+                        background-color: var(--default-border-color)
                     }
                 }
             }
@@ -60,11 +61,37 @@
                 }
 
                 ::-webkit-scrollbar-thumb {
-                    background-color: var(--cp-overview-layoutborder-color);
+                    background-color: var(--default-border-color);
                 }
 
                 ::-webkit-scrollbar-track {
                     background-color: transparent;
+                }
+            }
+        }
+
+        @media(max-width: 600px) {
+            .pagination {
+                &Nav {
+                    &Button {
+                        font-size: .9em;
+                    }
+                }
+            }
+        }
+
+        @media(max-width: 525px) {
+             .pagination {
+                &Nav {
+                    &Button {
+                        p {
+                            display: none;
+                        }
+
+                        &Custom {
+                            flex-direction: column-reverse;
+                        }
+                    }
                 }
             }
         }

@@ -91,9 +91,9 @@ export default connect(mapStateToProps)(class Pagination extends Component {
 
   render ({isFetchingMedia, userMedia}) {
     const customPageListButton = (
-      <div class={`flex flex-dc ${style.paginationNavButton} ${style.paginationNavButtonCustom}`}>
+      <div class={`flex flex-cross-center flex-dc ${style.paginationNavButton} ${style.paginationNavButtonCustom}`}>
         <Ink />
-        <p><Icon iconName='chev-down' />&nbsp;Page</p>
+        <span class='flex'><Icon iconName='chev-down' /><p>Page</p></span>
         <b>{this.pageFactor + 1}</b>
       </div>
     )

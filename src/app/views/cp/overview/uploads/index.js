@@ -146,13 +146,13 @@ export default connect(mapStateToProps)(class Uploads extends Component {
       })
     }
   }
-  
+
   render ({isFetchingMedia, userMedia, selectedMedia, updateUserMedia}) {
     return (
       <div class={style.uploads}>
         {!!userMedia && userMedia.totalCount === 0 ? null : <UploadsToolbar handleDeleteClick={this.toggleDeleteConfirmModal} updateUserMedia={updateUserMedia} />}
         <ul class={style.uploadsList}>
-          {!userMedia && this.props.isFetchingMedia ? <ViewLoading /> : this.computeMediaList()}
+          {isFetchingMedia ? <ViewLoading /> : this.computeMediaList()}
         </ul>
         <Modal isActive={this.state.modals.singleDelete.isActive} toggleModal={this.toggleDeleteConfirmModal} closeButtonText='Wait, no' acceptButtonText='Yes, do it' onAcceptExecute={this.confirmSingleDelete}>
           <p class='flex flex-full-center'>Are you sure that you want to delete the selected item?</p>

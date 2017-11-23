@@ -2,7 +2,7 @@
     .cpsubheader {
         width: 100%;
 
-        border-bottom: 1px solid var(--cp-overview-layoutborder-color);
+        border-bottom: 1px solid var( --default-border-color);
 
         &Wrapper {
             width: 100%;
@@ -13,7 +13,7 @@
     
         &UserStats { font-size: .85em; }
     }
-    @media(max-width: 400px) {
+    @media(max-width: 550px) {
         .cpsubheader {
             &UserStats { display: none; }
         }

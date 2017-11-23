@@ -5,15 +5,15 @@
         margin-top: var(--base-pm);
         
         .valid:not([noValidationStyle]) { 
-            border-color: var(--input-border-color-default--valid);
+            border-color: var(--valid-color);
 
-            & + label { color: var(--input-border-color-default--valid); }
+            & + label { color: var(--valid-color); }
         }
         
         .invalid:not([noValidationStyle]) { 
-            border-color: var(--input-border-color-default--invalid);
+            border-color: var(--warning-color);
 
-            & + label { color: var(--input-border-color-default--invalid); }
+            & + label { color: var(--warning-color); }
         }
     }
 }
@@ -29,9 +29,9 @@
 
         padding: 0 var(--base-pm);
 
-        background-color: var(--input-bg-color--default);
-        color: var(--input-text-color-default);
-        border: 1px solid var(--input-border-color-default);
+        background-color: var(--default-bg);
+        color: var(--default-color);
+        border: 1px solid var(--default-bg-hover);
         border-radius: var(--base-br);
 
         transition: .2s ease-in-out;
@@ -40,7 +40,7 @@
         &:focus {
             outline: none;
 
-            border-color: var(--input-border-color-default--focus);
+            border-color: var(--contrast-bg);
         }
 
         &[type="text"],
@@ -54,9 +54,9 @@
         }
 
         &[type="date"] {
-            border: 1px solid #1e87f0;
-            padding: 4px 8px;
-            border-radius: 4px;
+            border: 1px solid var(--contrast-bg);
+            padding: calc(var(--base-pm) / 2) var(--base-pm);
+            border-radius: var(--base-br);
             height: auto;
         }
     }

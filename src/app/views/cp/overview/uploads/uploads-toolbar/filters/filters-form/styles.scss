@@ -6,16 +6,16 @@
         }
 
         &Section {
-            padding-bottom: 16px;
-            margin: 16px 0;
+            padding-bottom: calc(var(--base-pm) * 2);
+            margin: calc(var(--base-pm) * 2) 0;
 
             select {
                 min-width: 100px;
 
-                padding: 4px 8px;
+                padding: calc(var(--base-pm) / 2) var(--base-pm);
 
-                border-radius: 4px;
-                border-color: #1e87f0;
+                border-radius: var(--base-br);
+                border-color: var(--contrast-bg);
             }
         }
 
@@ -23,12 +23,20 @@
             text-align: right;
 
             a {
-                margin: 0 8px;
+                margin: 0 var(--base-pm);
 
                 cursor: pointer;
             }
         }
 
         &LimitSelect { min-width: 200px; }
+    }
+
+    @media(max-width: 600px) {
+        .filtersForm {
+            &Section {
+                padding: calc(var(--base-pm) / 2) 0;
+            }
+        }
     }
 }

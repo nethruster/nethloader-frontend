@@ -205,13 +205,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
   render ({dispatch, isAuthenticated, token}) {
     return (
       <span>
-        {
-          // Switch bewteen floating button and normal nav button
-          this.state.smallNav
-            ? <Button icon='upload' floating onClickExecute={this.toggleUploadModal} />
-            : <Button text={viewStrings.modal_button} icon='upload' navButton onClickExecute={this.toggleUploadModal} />
-        }
-
+        <Button text={viewStrings.modal_button} icon='upload' navButton onClickExecute={this.toggleUploadModal} />
         <Modal isActive={this.state.modals.upload.isActive} toggleModal={this.toggleUploadModal} disabled={this.state.modals.upload.isUploading}>
           <div>
             <form onSubmit={this.handleUploadSubmit} class={`${style.uploadForm} flex flex-dc flex-full-center`}>

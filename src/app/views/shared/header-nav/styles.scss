@@ -2,7 +2,7 @@
     .headerNav {
         height: var(--header-nav-height);
 
-        background: var(--bg-blue-gradient);
+        background: var(--contrast-gradient);
         
         padding: 0 calc(var(--base-pm) * 5);
 
@@ -10,7 +10,7 @@
             margin: 0;
 
             &Title {
-                color: var(--header-nav-logo-color);
+                color: var(--contrast-color);
 
                 margin: 0 var(--base-pm);
 
@@ -25,11 +25,13 @@
         }
     }
 
-    @media(max-width: 600px) {
+    @media(max-width: 620px) {
         .headerNav {
             padding: 0 calc(var(--base-pm) * 2);
             
-            &LogoTitle { display: none; }
+            &Logo {
+                &Title { display: none!important; }
+            }
         }
     }
 }

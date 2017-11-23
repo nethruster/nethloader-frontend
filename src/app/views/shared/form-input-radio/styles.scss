@@ -5,16 +5,16 @@
         input[type="radio"] {
             display: none;
 
-            &:checked + label:before { border-color: var(--input-radio-checked-color-default); }
+            &:checked + label:before { border-color: var(--contrast-bg); }
             &:checked + label:after { transform: scale(1); }
         }
         
         label {
             display: inline-block;
-            height: var(--input-radio-size-default);
+            height: var( --input-radio-size);
             position: relative;
 
-            padding: 0 calc(var(--input-radio-size-default) + 10px);
+            padding: 0 calc(var( --input-radio-size) + 10px);
             margin-bottom: 0;
 
             cursor: pointer;
@@ -33,19 +33,19 @@
             &:before {
                 left: 0;
                 top: 0;
-                width: var(--input-radio-size-default);
-                height: var(--input-radio-size-default);
+                width: var( --input-radio-size);
+                height: var( --input-radio-size);
 
-                border: 1px solid var(--input-radio-border-color-default);
+                border: 1px solid var(--contrast-bg);
             }
 
             &:after {
-                top: calc(calc(var(--input-radio-size-default) / 2) - calc(var(--input-radio-checked-size-default) / 2));
-                left: calc(calc(var(--input-radio-size-default) / 2) - calc(var(--input-radio-checked-size-default) / 2));
-                width: var(--input-radio-checked-size-default);
-                height: var(--input-radio-checked-size-default);
+                top: calc(calc(var( --input-radio-size) / 2) - calc(var(--input-radio-size-checked) / 2));
+                left: calc(calc(var( --input-radio-size) / 2) - calc(var(--input-radio-size-checked) / 2));
+                width: var(--input-radio-size-checked);
+                height: var(--input-radio-size-checked);
 
-                background: var(--input-radio-checked-color-default);
+                background: var(--contrast-bg);
 
                 transform: scale(0);
                 

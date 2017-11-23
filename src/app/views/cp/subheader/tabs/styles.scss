@@ -18,11 +18,12 @@
 
             cursor: pointer;
             user-select: none;
+            white-space: nowrap;
 
             svg {
                 width: 20px;
 
-                color: var(--cp-subheader-tab-color-default);
+                color: var(--default-color-hover);
 
                 transition: color .2s;
             }
@@ -31,12 +32,36 @@
                 svg {
                     opacity: 1;
 
-                    color: var(--cp-subheader-tab-color-active);
+                    color: var(--contrast-bg);
                 }
 
                 &[data-adminbutton] {
-                    svg { color: var(--cp-subheader-tab-color-admin); }
+                    svg { color: var(--warning-color); }
                 }
+            }
+        }
+    }
+
+    @media (max-width: 550px) {
+        .tabs {
+            width: 100%;
+            
+            nav {
+                width: 100%
+            }
+
+            a {
+                padding: calc(var(--base-pm) * 2) 0;
+            }
+        }
+    }
+
+    @media (max-width: 400px) {
+        .tabs {
+            a {
+                flex-direction: column;
+                font-size: .9em;
+                padding: var(--base-pm) 0;
             }
         }
     }
@@ -44,16 +69,16 @@
 
 :global {
     a.tab-active {
-        border-bottom: 2px solid var(--cp-subheader-active-tab-border-color); 
+        border-bottom: 2px solid var(--contrast-bg); 
     
         svg {
             opacity: 1;
 
-            color: var(--cp-subheader-tab-color-active);
+            color: var(--contrast-bg);
         }
 
         &[data-adminbutton] {
-            svg { color: var(--cp-subheader-tab-color-admin); }
+            svg { color: var(--warning-color); }
         }
     }
 }

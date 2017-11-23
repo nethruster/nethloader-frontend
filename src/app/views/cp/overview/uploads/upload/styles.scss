@@ -1,7 +1,17 @@
 :local {
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+    
     .upload {
-        min-height: var(--cp-overview-medialist-height);
-        max-height: var(--cp-overview-medialist-height);
+        min-height: var(--medialist-item-height);
+        max-height: var(--medialist-item-height);
 
         padding: var(--base-pm);
 
@@ -10,9 +20,13 @@
 
         transition: border .15s;
 
-        &:not(:last-child) { border-bottom: 1px solid var(--cp-overview-layoutborder-color); }
+        &:not(:last-child) { border-bottom: 1px solid var(--default-border-color); }
 
-        &:hover { border-left-color: var(--cp-overview-medialist-item-activeborder-color) }
+        &:hover { border-left-color: var(--contrast-bg) }
+
+        animation-name: fadeIn;
+        animation-duration: 1s;
+        animation-fill-mode: both;
 
         
         &DataLink {
@@ -21,8 +35,8 @@
 
         &Media {
             flex: 2;
-            max-width: var(--cp-overview-medialist-media-width);
-            max-height: var(--cp-overview-medialist-media-height);
+            max-width: var(--medialist-item-media-width);
+            max-height: var(--medialist-item-media-height);
 
             margin-right: calc(var(--base-pm) * 2);
 
@@ -36,3 +50,4 @@
         }
     }
 }
+

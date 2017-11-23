@@ -67,7 +67,7 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
 
   resetFilters () {
     let filters = {
-      mediaLimit: 5,
+      mediaLimit: this.props.params.mediaLimit,
       type: '',
       afterDate: '',
       beforeDate: ''

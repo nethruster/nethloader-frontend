@@ -5,6 +5,8 @@ import {connect} from 'preact-redux'
 import asyncComponent from 'asyncComponent'
 import Content from '../app/views/shared/content'
 
+// Global CSS custom properties
+import 'style-vars.scss'
 import './styles.scss'
 
 function mapStateToProps (state) {

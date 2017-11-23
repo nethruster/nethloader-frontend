@@ -1,0 +1,38 @@
+:global {
+    $default-color: #24292e;
+    :root {
+        --base-pm: 8px;
+        --base-br: 4px;
+
+        --shapes-layer: url(../assets/img/section-background.svg) 50% 17vh no-repeat;
+
+        --contrast-gradient: linear-gradient(to left top, #28a5f5, #1e87f0) 0 0 no-repeat;
+        --contrast-bg: #1e87f0;
+        --contrast-color:  rgba(255, 255, 255, 0.9);
+        --contrast-bg-hover: lighten(#1e87f0, 5%);
+
+        --default-gradient: linear-gradient(to left top, #f2f2f2, #ffffff);
+        --default-bg: #fff;
+        --default-color: $default-color;
+        --default-bg-hover: transparentize($default-color, .9);
+        --default-color-hover: lighten($default-color, 30%);
+        --default-border-color: lighten($default-color, 70%);
+
+        --valid-color: #00c853;
+        --warning-color:  #D50000;
+
+        --content-max-width: 1300px;
+
+        --header-nav-logo-size: 34px;
+        --header-nav-height: 50px;
+
+        --input-radio-size: 20px;
+        --input-radio-size-checked: 10px;
+
+        --medialist-item-height: 90px;
+        --medialist-item-media-width: 100px;
+        --medialist-item-media-height: 74px;
+
+
+    }
+}

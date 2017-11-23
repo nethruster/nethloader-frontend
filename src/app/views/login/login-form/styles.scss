@@ -4,7 +4,7 @@
         
         &ValidationText {
             font-size: .8em;
-            color: var(--form-validation-text-error-color);
+            color: var(--warning-color);
             min-height: 20px;
         }
     }

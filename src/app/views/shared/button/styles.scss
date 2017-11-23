@@ -4,9 +4,9 @@
         width: 100%;
         position: relative;
 
-        background-color: var(--button-bg-color-default);
-        color: var(--button-text-color-default);
-        border: 1px solid var(--button-border-color-default);
+        background-color: transparent;
+        color: var(--default-color);
+        border: 1px solid var(--default-border-color);
         border-radius: var(--base-br);
         outline: none;
 
@@ -32,16 +32,20 @@
         &Round { border-radius: 500px; }
 
         &Contrast {
-            background-color: var(--button-bg-color-contrast);
-            color: var(--button-text-color-contrast);
+            background-color: var(--contrast-bg);
+            color: var(--contrast-color);
             border: 0;
+
+            &:hover {
+                background-color: var(--contrast-bg-hover);
+            }
         }
 
         &Big {
             padding: 0 calc(var(--base-pm) * 5);
 
-            background-color: var(--button-bg-color-big);
-            color: var(--button-text-color-big);
+            background-color: var(--default-bg);
+            color: var(--contrast-bg);
             border: 0;
 
             line-height: 38px;
@@ -58,15 +62,15 @@
         }
 
         &Transparent {
-            border: 1px solid var(--button-border-color-transparent);
+            border: 1px solid #e5e5e5;
 
-            color: var(--button-text-color-transparent);
+            color: rgba(255, 255, 255, 0.8);
             background-color: transparent;
 
             &:hover {
                 box-shadow: none;
-                color: var(--button-text-color-transparent--hover);
-                border-color: var(--button-border-color-transparent--hover);
+                color: #fff;
+                border-color: #fff;
             }
         }
 
@@ -80,7 +84,7 @@
             outline: none;
             border: 0;
             border-radius: 0;
-            color: var(--button-text-color-nav--default);
+            color: var(--contrast-color);
 
             font-size: 1.05em;
             font: inherit;
@@ -90,8 +94,8 @@
             text-transform: none;
             
             &:hover {
-                color: var(--button-text-color-nav--hover);
-                background-color: var(--button-bg-color-nav--hover);
+                color: var(--default-bg);
+                background-color: rgba(255, 255, 255, 0.1);
             }
         }
 
@@ -111,7 +115,7 @@
 
             svg { width: 17px; }
 
-            &:hover { background-color: rgba(56, 61, 66, 0.075) }
+            &:hover { background-color: var(--default-bg-hover) }
         }
 
         &Floating {
@@ -126,8 +130,8 @@
             border: none;
             border-radius: 100%;
             box-shadow: 5px 0 20px 5px rgba(17, 23, 27, 0.1);
-            background-color: var(--button-bg-color-floating--default);
-            color: var(--button-text-color-floating--default);
+            background-color: var(--contrast-bg);
+            color: var(--contrast-color);
 
             z-index: 5;
             
@@ -140,7 +144,7 @@
                 transform: translateX(-50%);
             }
             
-            &:hover { background-color: var(--button-bg-color-floating--hover); }
+            &:hover { background-color: var(--contrast-bg-hover); }
         }
 
         &Icon {
@@ -166,11 +170,20 @@
                 transform: translateX(-50%);
             }
             
-            &:hover { background-color: rgba(0,0,0,.1); }
+            &:hover { background-color: var(--default-bg-hover); }
         }
     }
 
-    @media(max-width: 600px) {
+    @media(max-width: 620px) {
+        .button {
+            &Nav {
+                p { font-size: .8em; }
+                display: inline!important;
+            }
+        }
+    }
+
+     @media(max-width: 350px) {
         .button {
             &Nav {
                 p { display: none; }
@@ -182,10 +195,10 @@
 :global {
     a.nav-active {
        button {
-            color: var(--button-text-color-nav--hover);
-            background-color: var(--button-bg-color-nav--hover);
+            color: var(--default-bg);
+            background-color: rgba(255, 255, 255, 0.1);
 
-            svg { color: var(--button-text-color-nav--hover); }
+            svg { color: var(--default-bg); }
        }
     }
 

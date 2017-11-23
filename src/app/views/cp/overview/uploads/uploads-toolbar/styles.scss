@@ -1,7 +1,7 @@
 :local {
     .uploadsToolbar {
             justify-content: flex-end;
-            border-bottom: 1px solid var(--cp-overview-layoutborder-color);
+            border-bottom: 1px solid var(--default-border-color);
 
             &Select { margin-bottom: var(--base-pm); }
         }

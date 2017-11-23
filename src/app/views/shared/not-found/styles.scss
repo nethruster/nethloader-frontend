@@ -3,11 +3,9 @@
         flex: 1;
 
         a {
-            color: transparentize(darken(#1e87f0, 20%), .1);
+            color: var(--contrast-bg);
 
             transition: color .3s ease-in-out;
-
-            &:hover { color: darken(#1e87f0, 5%); }
         }
 
         picture {
