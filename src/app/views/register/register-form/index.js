@@ -1,11 +1,11 @@
-import { h, Component } from 'preact'
-import { connect } from 'preact-redux'
+import {h, Component} from 'preact'
+import {connect} from 'preact-redux'
 
 import FormInput from './../../shared/form-input'
 import Button from '../../shared/button'
 
-import { validateEmpty, validateEmail, validateName } from 'utils'
-import { registerUser } from 'serverAPI/authentication'
+import {validateEmpty, validateEmail, validateName} from 'utils'
+import {registerUser} from 'serverAPI/authentication'
 
 import style from './styles.scss'
 
@@ -51,15 +51,6 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  shouldComponentUpdate (nextProps, nextState) {
-    return (this.state.data.username.value !== nextState.data.username.value) ||
-      (this.state.data.password.value !== nextState.data.password.value) ||
-      (this.state.data.email.value !== nextState.data.email.value) ||
-      (this.state.data.cpassword.value !== nextState.data.cpassword.value) ||
-      (this.state.data.formValidationText !== nextState.formValidationText) ||
-      (this.props.isFetching !== nextProps.isFetching)
   }
 
   handleChange (event) {

@@ -1,8 +1,8 @@
-import { apiBaseUrl } from 'app.config'
+import {apiBaseUrl} from 'app.config'
 
-import { requestMediaUpload, receiveMediaUpload, mediaUploadError,
+import {requestMediaUpload, receiveMediaUpload, mediaUploadError,
   requestMediaDelete, receiveMediaDelete, mediaDeleteError,
-  requestMediaInfo, mediaInfoError, receiveMediaInfo } from 'actions/media'
+  requestMediaInfo, mediaInfoError, receiveMediaInfo} from 'actions/media'
 
 // Upload
 const uploadMedia = (media, authToken) => {

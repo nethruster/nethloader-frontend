@@ -1,9 +1,9 @@
-import { h, Component } from 'preact'
+import {h, Component} from 'preact'
 
 import Button from '../../shared/button'
 
 import locale from 'locale'
-import { computeDateFormat, computeDate, computeTime } from 'utils'
+import {computeDateFormat, computeDate, computeTime} from 'utils'
 
 import style from './styles.scss'
 import '../../shared/paper/paper.scss'

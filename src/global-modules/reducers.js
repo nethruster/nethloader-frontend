@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux'
 
 import authentication from 'reducers/authentication'
 import {userData, userMedia} from 'reducers/data'
-import { mediaUpload, mediaInfo, mediaDelete, mediaSelect } from 'reducers/media'
+import {mediaUpload, mediaInfo, mediaDelete, mediaSelect} from 'reducers/media'
 
 const reducers = combineReducers({
   authentication,

@@ -18,7 +18,7 @@
                 opacity: 1;
 
                 pointer-events: initial;
-                transform: scale(1) translateY(-35px);
+                transform: scale(1);
             }
 
             .modal-overlay {
@@ -41,7 +41,7 @@
             padding: calc(var(--base-pm) * 2.5);
 
             pointer-events: none;
-            transform: scale(.8) translateY(35px);
+            transform: scale(.8);
             transition-delay: .3s;
             transition: opacity .2s, transform .2s;
 

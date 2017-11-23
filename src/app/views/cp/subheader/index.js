@@ -1,5 +1,5 @@
-import { h, Component } from 'preact'
-import { connect } from 'preact-redux'
+import {h, Component} from 'preact'
+import {connect} from 'preact-redux'
 
 import SubheaderTabs from './tabs'
 

@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import {h, Component} from 'preact'
 
 import Ink from 'react-ink'
 
@@ -9,7 +9,7 @@ export default class Checkbox extends Component {
     return this.props.isSelected !== nextProps.isSelected
   }
   
-  render ({ onChangeHandler, isSelected, text, dataId, customClass }) {
+  render ({onChangeHandler, isSelected, text, dataId, customClass}) {
     return (
       <div class={`flex flex-full-center ${style.checkboxWrapper}`}>
         <input type='checkbox' id={dataId} data-id={dataId} onChange={onChangeHandler} checked={isSelected} />

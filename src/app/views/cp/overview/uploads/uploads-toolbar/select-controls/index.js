@@ -1,14 +1,14 @@
-import { h, Component } from 'preact'
-import { connect } from 'preact-redux'
+import {h, Component} from 'preact'
+import {connect} from 'preact-redux'
 
 import Button from '../../../../../shared/button'
-import { mediaSelectAll, mediaUnselectAll } from 'actions/media'
+import {mediaSelectAll, mediaUnselectAll} from 'actions/media'
 
-import style from './styles.scss'
+import './styles.scss'
 
 const mapStateToProps = (state) => {
-  const { userMedia } = state.userMedia
-  const { allToggled } = state.mediaSelect
+  const {userMedia} = state.userMedia
+  const {allToggled} = state.mediaSelect
 
   return {
     userMedia,
@@ -34,7 +34,7 @@ export default connect(mapStateToProps)(class SelectControls extends Component {
     }
   }
 
-  render ({ handleDeleteClick, userMedia, updateUserMedia }) {
+  render ({handleDeleteClick, userMedia, updateUserMedia}) {
     return (
       <div class='flex flex-cross-center flex-sb'>
         <div class={`flex flex-cross-center flex-sb`}>

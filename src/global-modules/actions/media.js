@@ -1,5 +1,6 @@
 import appConstants from '../constants'
 
+// Upload media
 const requestMediaUpload = () => {
   return {
     type: appConstants.MEDIA_UPLOAD_REQUEST,
@@ -21,6 +22,7 @@ const mediaUploadError = (errorMessage) => {
   }
 }
 
+// Delete media
 const requestMediaDelete = () => {
   return {
     type: appConstants.MEDIA_DELETE_REQUEST,
@@ -42,6 +44,7 @@ const mediaDeleteError = () => {
   }
 }
 
+// Media info
 const requestMediaInfo = () => {
   return {
     type: appConstants.MEDIA_INFO_REQUEST,
@@ -67,6 +70,7 @@ const mediaInfoError = (errorMessage) => {
   }
 }
 
+// Select media
 const mediaSelect = (selectedMedia) => {
   return {
     type: appConstants.MEDIA_SELECT,

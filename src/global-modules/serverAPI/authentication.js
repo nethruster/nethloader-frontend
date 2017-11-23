@@ -1,4 +1,4 @@
-import { apiBaseUrl } from 'app.config'
+import {apiBaseUrl} from 'app.config'
 import jwtDecode from 'jwt-decode'
 
 import {

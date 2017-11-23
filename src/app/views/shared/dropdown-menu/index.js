@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import {h, Component} from 'preact'
 
 import Button from '../button'
 
@@ -20,7 +20,7 @@ export default class DropDownMenu extends Component {
   }
 
   handleClick () {
-    this.setState({ isOpen: !this.state.isOpen })
+    this.setState({isOpen: !this.state.isOpen})
   }
 
   bindClickToCustomTrigger () {
@@ -29,7 +29,7 @@ export default class DropDownMenu extends Component {
     }
   }
 
-  render ({ customIcon, customTrigger, centered, noMinWidth }) {
+  render ({customIcon, customTrigger, centered, noMinWidth}) {
     return (
       <div class='flex flex-full-center'>
         <div class={style.dropdownWrapper}>

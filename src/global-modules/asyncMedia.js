@@ -1,8 +1,8 @@
-import { h, Component } from 'preact'
+import {h, Component} from 'preact'
 
 import ViewLoading from '../app/views/shared/view-loading'
 
-import { isValidVideoFormat } from 'utils'
+import {isValidVideoFormat} from 'utils'
 
 export default class AsyncMedia extends Component {
   constructor (props) {
@@ -27,7 +27,7 @@ export default class AsyncMedia extends Component {
               <source src={this.props.src} type={`video/${this.props.type}`} />
             </video>)
 
-          this.setState({ mediaNode })
+          this.setState({mediaNode})
 
           tempSourceElement.remove()
           tempVideoElement.remove()
@@ -39,7 +39,7 @@ export default class AsyncMedia extends Component {
         tempImgElement.onload = () => {
           const mediaNode = <img src={this.props.src} alt={`${this.props.type} ${this.props.src}`} />
 
-          this.setState({ mediaNode })
+          this.setState({mediaNode})
 
           tempImgElement.remove()
         }

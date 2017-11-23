@@ -1,6 +1,6 @@
-import { h, Component } from 'preact'
+import {h, Component} from 'preact'
 
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import RegisterForm from './register-form'
 import Footer from '../shared/footer'

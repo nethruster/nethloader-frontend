@@ -1,5 +1,4 @@
-
-import { checkCurrentSessionToken } from 'serverAPI/authentication'
+import {checkCurrentSessionToken} from 'serverAPI/authentication'
 
 const supportedVideoFormats = ['video/mp4', 'video/webm', 'video/ogg']
 const supportedMimeTypes = [...supportedVideoFormats, 'image/png', 'image/jpeg', 'image/jpg', 'image/png', 'image/gif']

@@ -1,11 +1,11 @@
-import { h, Component } from 'preact'
-import { connect } from 'preact-redux'
+import {h, Component} from 'preact'
+import {connect} from 'preact-redux'
 
 import FormInput from './../../shared/form-input'
 import Button from '../../shared/button'
 
 import locale from 'locale'
-import { loginUser } from 'serverAPI/authentication'
+import {loginUser} from 'serverAPI/authentication'
 
 import style from './styles.scss'
 

@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import {h, Component} from 'preact'
 
 import Icon from '../icon/'
 import Spinner from '../spinner'

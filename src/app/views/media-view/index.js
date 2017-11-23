@@ -1,12 +1,12 @@
-import { h, Component } from 'preact'
-import { connect } from 'preact-redux'
+import {h, Component} from 'preact'
+import {connect} from 'preact-redux'
 
 import MediaItem from './media-item'
 import MediaInfo from './media-info'
 import ViewLoading from '../shared/view-loading'
 
-import { baseMediaPath } from 'app.config'
-import { getMediaInfo } from 'serverAPI/media'
+import {baseMediaPath} from 'app.config'
+import {getMediaInfo} from 'serverAPI/media'
 
 import style from './styles.scss'
 

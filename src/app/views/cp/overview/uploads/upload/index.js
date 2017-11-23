@@ -1,11 +1,11 @@
-import { h, Component } from 'preact'
+import {h, Component} from 'preact'
 import {Link} from 'react-router-dom'
 
 import UploadData from './data'
 import UploadButtons from './buttons'
 import AsyncMedia from 'asyncMedia'
 
-import { baseMediaPath } from 'app.config'
+import {baseMediaPath} from 'app.config'
 
 import style from './styles.scss'
 

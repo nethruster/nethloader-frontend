@@ -1,6 +1,6 @@
-import { h, render } from 'preact'
-import { createStore, applyMiddleware } from 'redux'
-import { Provider } from 'preact-redux'
+import {h, render} from 'preact'
+import {createStore, applyMiddleware} from 'redux'
+import {Provider} from 'preact-redux'
 import thunkMiddleware from 'redux-thunk'
 
 import asyncComponent from 'asyncComponent'
@@ -21,7 +21,7 @@ if (module.hot) {
 const mountPoint = document.getElementById('nethloader')
 
 // Simple feature check to prevent some browsers from hurting themselves and others around them
-if (typeof Promise !== 'undefined' && Promise.toString().indexOf('[native code]') !== -1) {
+if (Promise && window.Promise) {
   render(<Provider store={store}><App /></Provider>, mountPoint, mountPoint.lastChild)
 } else {
   window.alert('Please, use an updated browser like Google Chrome or Firefox if you want to use this website properly.')

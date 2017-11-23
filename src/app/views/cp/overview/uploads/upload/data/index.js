@@ -1,14 +1,14 @@
-import { h, Component } from 'preact'
+import {h, Component} from 'preact'
 
 import locale from 'locale'
-import { computeDateFormat, computeDate, computeTime } from 'utils'
+import {computeDateFormat, computeDate, computeTime} from 'utils'
 
 import style from './styles.scss'
 
 const viewStrings = locale.cp.overview.uploads.upload
 
 export default class UploadData extends Component {
-  render ({ data }) {
+  render ({data}) {
     return (
       <div class={`${style.data} flex flex-cross-center flex-sa`}>
         <div class={`${style.dataSpec} flex flex-dc`}>

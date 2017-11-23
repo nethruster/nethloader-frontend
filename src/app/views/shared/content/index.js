@@ -1,18 +1,20 @@
-import { h, Component } from 'preact'
-import { Switch, Route, Redirect } from 'react-router-dom'
-import { connect } from 'preact-redux'
+import {h, Component} from 'preact'
+import {Switch, Route, Redirect} from 'react-router-dom'
+import {connect} from 'preact-redux'
 
-import { checkUserSessionValidity } from 'utils'
-import { getUserData } from 'serverAPI/data'
-import { logoutUser } from 'serverAPI/authentication'
+import {checkUserSessionValidity} from 'utils'
+import {getUserData} from 'serverAPI/data'
+import {logoutUser} from 'serverAPI/authentication'
 import asyncComponent from 'asyncComponent'
 import Footer from '../footer'
 import HeaderNav from '../header-nav'
+import NotFound from '../not-found'
+import MediaView from '../../media-view'
 
 import style from './styles.scss'
 
 function mapStateToProps (state) {
-  const { isAuthenticated, token, sessionData } = state.authentication
+  const {isAuthenticated, token, sessionData} = state.authentication
 
   return {
     isAuthenticated,
@@ -47,13 +49,11 @@ export default connect(mapStateToProps)(class Content extends Component {
 
           <Route
             path='/:id([A-Za-z0-9_~]{10})'
-            component={asyncComponent(() => import(/* webpackChunkName: "content_media-view" */'../../media-view')
-              .then(module => module.default))} />
+            component={MediaView} />
 
           <Route
             path=''
-            component={asyncComponent(() => import(/* webpackChunkName: "not-found" */'../not-found')
-              .then(module => module.default))} />
+            component={NotFound} />
         </Switch>
         <Footer contentFooter />
       </div>

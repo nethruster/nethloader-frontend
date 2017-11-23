@@ -1,5 +1,5 @@
-import { h, Component } from 'preact'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import {h, Component} from 'preact'
+import {Switch, Route, Redirect} from 'react-router-dom'
 
 import asyncComponent from 'asyncComponent'
 import Subheader from './subheader'

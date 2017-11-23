@@ -3,6 +3,7 @@
  * spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
  * left: 37, up: 38, right: 39, down: 40,
  */
+
 const scrollKeys = [32, 33, 34, 35, 36, 37, 38, 39, 40]
 let pageXOffset,
   pageYOffset

@@ -1,6 +1,6 @@
-import { h, Component } from 'preact'
-import { NavLink } from 'react-router-dom'
-import { connect } from 'preact-redux'
+import {h, Component} from 'preact'
+import {NavLink} from 'react-router-dom'
+import {connect} from 'preact-redux'
 
 import Icon from '../../../shared/icon'
 
@@ -11,7 +11,7 @@ import style from './styles.scss'
 const viewStrings = locale.cp.subheader
 
 function mapStateToProps (state) {
-  const { isFetchingUser, userData } = state.userData
+  const {isFetchingUser, userData} = state.userData
 
   return {
     isFetchingUser,
@@ -20,7 +20,7 @@ function mapStateToProps (state) {
 }
 
 export default connect(mapStateToProps)(class SubheaderTabs extends Component {
-  render ({ isFetchingUser, userData }) {
+  render ({isFetchingUser, userData}) {
     return (
       <div class={`${style.tabs} flex flex-cross-center`}>
         <nav class='flex flex-cross-center flex-sa'>

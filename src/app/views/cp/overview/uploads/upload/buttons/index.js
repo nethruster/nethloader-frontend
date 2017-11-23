@@ -1,12 +1,12 @@
-import { h, Component } from 'preact'
+import {h, Component} from 'preact'
 import {connect} from 'preact-redux'
 
 import DropDownMenu from '../../../../../shared/dropdown-menu'
 import Button from '../../../../../shared/button'
 import Checkbox from '../../../../../shared/checkbox'
 import locale from 'locale'
-import { copyToClipboard } from 'utils'
-import { mediaUnselectAll } from 'actions/media'
+import {copyToClipboard} from 'utils'
+import {mediaUnselectAll} from 'actions/media'
 
 import style from './styles.scss'
 
@@ -17,7 +17,7 @@ export default connect()(class Upload extends Component {
     super(props)
 
     this.state = {
-      copy: { valueCopied: false }
+      copy: {valueCopied: false}
     }
 
     this.handleCopyClick = this.handleCopyClick.bind(this)
@@ -27,16 +27,14 @@ export default connect()(class Upload extends Component {
   handleCopyClick (event) {
     copyToClipboard(event)
 
-    let copy = {
-      ...this.state.copy
-    }
+    let copy = {...this.state.copy}
 
     copy.valueCopied = true
-    this.setState({ copy })
+    this.setState({copy})
 
     setTimeout(() => {
       copy.valueCopied = false
-      this.setState({ copy })
+      this.setState({copy})
     }, 1500)
   }
 

@@ -1,8 +1,9 @@
-import { h, Component } from 'preact'
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
-import { connect } from 'preact-redux'
+import {h, Component} from 'preact'
+import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
+import {connect} from 'preact-redux'
 
 import asyncComponent from 'asyncComponent'
+import Content from '../app/views/shared/content'
 
 import './styles.scss'
 
@@ -40,7 +41,7 @@ export default connect(mapStateToProps)(class App extends Component {
 
           <Route
             path='/:content'
-            component={asyncComponent(() => import(/* webpackChunkName: "content" */'./views/shared/content').then(module => module.default))}
+            component={Content}
           />
         </Switch>
       </BrowserRouter>

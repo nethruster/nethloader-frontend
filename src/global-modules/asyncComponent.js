@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import {h, Component} from 'preact'
 
 import ViewLoading from '../app/views/shared/view-loading'
 
@@ -15,7 +15,7 @@ export default (loader, collection) => (
     async componentWillMount () {
       if (!this.state.component) {
         const component = await loader()
-        this.setState({ component })
+        this.setState({component})
       }
     }
 

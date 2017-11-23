@@ -1,5 +1,5 @@
-import { h, Component } from 'preact'
-import { Link } from 'react-router-dom'
+import {h, Component} from 'preact'
+import {Link} from 'react-router-dom'
 
 import LoginForm from './login-form'
 import Footer from '../shared/footer'

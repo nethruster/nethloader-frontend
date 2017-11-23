@@ -1,5 +1,5 @@
-import { h, Component } from 'preact'
-import { NavLink } from 'react-router-dom'
+import {h, Component} from 'preact'
+import {NavLink} from 'react-router-dom'
 
 import Icon from '../icon'
 

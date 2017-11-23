@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import {h, Component} from 'preact'
 
 import Button from '../shared/button'
 import Logo from '../shared/logo'
