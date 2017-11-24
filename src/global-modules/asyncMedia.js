@@ -37,7 +37,7 @@ export default class AsyncMedia extends Component {
         tempImgElement.src = this.props.src
 
         tempImgElement.onload = () => {
-          const mediaNode = <img src={this.props.src} alt={`${this.props.type} ${this.props.src}`} />
+          const mediaNode = <img src={this.props.src} height={tempImgElement.height} width={tempImgElement.width} alt={`${this.props.type} ${this.props.src}`} />
 
           this.setState({mediaNode})
 

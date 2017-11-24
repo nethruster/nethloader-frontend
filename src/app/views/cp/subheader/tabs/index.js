@@ -26,7 +26,7 @@ export default connect(mapStateToProps)(class SubheaderTabs extends Component {
         <nav class='flex flex-cross-center flex-sa'>
           <NavLink to='/cp/overview' activeClassName='tab-active'><Icon iconName='overview' />&nbsp;{viewStrings.tabs.overview}</NavLink>
           <NavLink exact to='/cp/settings' activeClassName='tab-active'><Icon iconName='settings' />&nbsp;{viewStrings.tabs.settings}</NavLink>
-          {!isFetchingUser && (userData.isAdmin && <NavLink exact to='/cp/neth-admin' data-adminbutton activeClassName='tab-active'><Icon iconName='admin-settings' />&nbsp;{viewStrings.tabs.admin_settings}</NavLink>)}
+          {userData.isAdmin && <NavLink exact to='/cp/neth-admin' data-adminbutton activeClassName='tab-active'><Icon iconName='admin-settings' />&nbsp;{viewStrings.tabs.admin_settings}</NavLink>}
         </nav>
       </div>
 

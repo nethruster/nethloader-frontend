@@ -60,7 +60,8 @@ module.exports = {
     historyApiFallback: true,
     stats: 'minimal',
     hot: true,
-    inline: true
+    inline: true,
+    disableHostCheck: true // Hack for cloudflare warp purposes, the internet says it's not as secure but I'm Batman so I use it anyway
   },
   resolve: {
     alias: {

@@ -1,7 +1,18 @@
 import {checkCurrentSessionToken} from 'serverAPI/authentication'
 
-const supportedVideoFormats = ['video/mp4', 'video/webm', 'video/ogg']
-const supportedMimeTypes = [...supportedVideoFormats, 'image/png', 'image/jpeg', 'image/jpg', 'image/png', 'image/gif']
+const supportedVideoFormats = ['video/mp4', 'video/webm', 'video/ogg', 'application/ogg']
+const supportedMimeTypes = [...supportedVideoFormats, 'image/png', 'image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/svg+xml', 'image/webp']
+const imageExtensions = ['"png"', '"jpg"', '"jpeg"', '"gif"', '"svg"', '"webp"']
+const videoExtensions = ['"mp4"', '"webm"', '"ogg"']
+
+const mediaExtensions = {
+  'image': [
+    ...imageExtensions
+  ],
+  'video': [
+    ...videoExtensions
+  ]
+}
 
 /**
  * Returns true if a string is empty or just spaces
@@ -125,7 +136,7 @@ const checkUserSessionValidity = async (token, tokenExp) => {
   if (await checkCurrentSessionToken(token)) {
     return !!checkTokenExpiryDate(tokenExp)
   }
-  
+
   return false
 }
 
@@ -153,5 +164,6 @@ export {
   isValidVideoFormat,
   isValidFormat,
   checkUserSessionValidity,
-  getPageFactor
+  getPageFactor,
+  mediaExtensions
 }

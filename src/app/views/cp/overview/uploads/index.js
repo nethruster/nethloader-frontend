@@ -70,6 +70,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
         <Upload key={entry.id} data={entry} isSelected={this.props.selectedMedia.includes(entry.id)} handleToggleSelect={this.handleToggleMedia} toggleDeleteConfirmModal={this.toggleDeleteConfirmModal} />
       )
     }
+
     return (
       <p class={`nomedia flex flex-full-center flex-dc`}>
         {viewStrings.no_media}<br />

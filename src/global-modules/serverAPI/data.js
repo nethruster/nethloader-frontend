@@ -3,6 +3,8 @@ import {apiBaseUrl} from 'app.config'
 import {requestUserData, receiveUserData, userDataError,
   requestUserMedia, receiveUserMedia, userMediaError} from 'actions/data'
 
+import {mediaExtensions} from 'utils'
+
 // User data
 const getUserData = (id, authToken) => {
   let requestConfig = {
@@ -46,6 +48,8 @@ const getUserData = (id, authToken) => {
 
 // User media
 const getUserMedia = (id, authToken, params) => {
+  let extensionsFilter = params.type ? `extensions: [${[...mediaExtensions[params.type]]}],` : ''
+
   let requestConfig = {
     method: 'POST',
     headers: {
@@ -53,8 +57,9 @@ const getUserMedia = (id, authToken, params) => {
       'content-type': 'application/json',
       'authentication': authToken
     },
+
     body: JSON.stringify({
-      query: `query{ images(userId: "${id}", extension: "${params.type}", limit: ${params.mediaLimit}, offset: ${params.offset}, orderBy: "createdAt", orderDirection: "DESC", beforeDate: "${params.beforeDate}", afterDate: "${params.afterDate}"){totalCount, images {id, createdAt, extension}}}`
+      query: `query{ images(userId: "${id}", ${extensionsFilter} limit: ${params.mediaLimit}, offset: ${params.offset}, orderBy: "createdAt", orderDirection: "DESC", beforeDate: "${params.beforeDate}", afterDate: "${params.afterDate}"){totalCount, images {id, createdAt, extension}}}`
     })
   }
 

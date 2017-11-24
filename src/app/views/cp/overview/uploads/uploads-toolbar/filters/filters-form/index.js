@@ -4,7 +4,6 @@ import {connect} from 'preact-redux'
 import Button from '../../../../../../shared/button'
 import FormInput from '../../../../../../shared/form-input'
 import FormInputRadio from '../../../../../../shared/form-input-radio'
-import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 
 import style from './styles.scss'
 
@@ -19,10 +18,10 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
 
     this.state = {
       filters: {
-        mediaLimit: 10,
-        type: '',
-        afterDate: '',
-        beforeDate: ''
+        mediaLimit: this.props.params.mediaLimit,
+        type: this.props.params.type,
+        afterDate: this.props.params.afterDate,
+        beforeDate: this.props.params.beforeDate
       }
     }
 
@@ -34,35 +33,14 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
     this.resetFilters = this.resetFilters.bind(this)
   }
 
-  toggleFilterModal () {
-    let modals = this.state.modals
-
-    modals.filter.isActive ? scrollBlockOff() : scrollBlockOn()
-
-    modals.filter.isActive = !modals.filter.isActive
-
-    this.setState({modals})
-  }
-
   handleSubmitFilters (event) {
     event.preventDefault()
-    // let extensionFilter = ''
-    // switch (params.type) {
-    //   case 'image':
-    //     extensionFilter = ''
-    //     break
-    //   case 'video':
-    //     extensionFilter = ''
-    //     break
-    //   default:
-    //     break
-    // }
 
+    this.context.router.history.push('/cp/overview')
     this.props.updateUserMedia(this.state.filters)
+    this.props.toggleFilterModal()
 
     // TODO: Store filter settings in local storage
-
-    this.toggleFilterModal()
   }
 
   resetFilters () {
@@ -72,7 +50,7 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
       afterDate: '',
       beforeDate: ''
     }
-    
+
     this.form.reset()
     this.setState({filters})
   }
