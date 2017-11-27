@@ -2,31 +2,28 @@ import {h, Component} from 'preact'
 import {connect} from 'preact-redux'
 
 import SubheaderTabs from './tabs'
-import ViewLoading from '../../shared/view-loading'
 
 import style from './styles.scss'
 
 function mapStateToProps (state) {
   const {isFetchingUser, userData} = state.userData
+  const {totalCount} = state.userMedia
 
   return {
     isFetchingUser,
-    userData
+    userData,
+    totalCount
   }
 }
 
 export default connect(mapStateToProps)(class Subheader extends Component {
-  shouldComponentUpdate (nextProps, nextState) {
-    return this.props.isFetchingUser !== nextProps.isFetchingUser
-  }
-
-  render ({isFetchingUser, userData}) {
+  render ({isFetchingUser, userData, totalCount}) {
     return (
       <div class={`${style.cpsubheader} flex flex-main-center`}>
         <div class={`${style.cpsubheaderWrapper} flex flex-cross-center flex-sb`}>
           <div class={style.cpsubheaderUserStats}>
             <p>{userData.name}</p>
-            <p>{userData.email}</p>
+            <p>{`${totalCount} media items`}</p>
           </div>
           <SubheaderTabs />
         </div>

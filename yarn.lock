@@ -4529,6 +4529,12 @@ react-router@^4.2.0:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
+react-virtual-list@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/react-virtual-list/-/react-virtual-list-2.2.2.tgz#6398fdb8bdf8beb3198e8c15450d25b116af4822"
+  dependencies:
+    prop-types "^15.5.10"
+
 read-pkg-up@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-1.0.1.tgz#9d63c13276c065918d57f002a57f40a1b643fb02"

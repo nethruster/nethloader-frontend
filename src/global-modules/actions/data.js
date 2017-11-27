@@ -39,11 +39,12 @@ const requestUserMedia = (params) => {
   }
 }
 
-const receiveUserMedia = (userMedia) => {
+const receiveUserMedia = (userMedia, totalCount) => {
   return {
     type: appConstants.USER_MEDIA_SUCCESS,
     isFetchingMedia: false,
     userMedia,
+    totalCount,
     errorMesage: ''
   }
 }

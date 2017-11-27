@@ -1,6 +1,9 @@
 import {h, Component} from 'preact'
 
 import Button from '../button'
+import Ink from 'react-ink'
+import Icon from '../icon'
+import {getPageFactor} from 'utils'
 
 import style from './styles.scss'
 
@@ -16,24 +19,24 @@ export default class DropDownMenu extends Component {
   }
 
   componentWillMount () {
-    this.bindClickToCustomTrigger()
+    this.pageFactor = getPageFactor(this.context.router)
   }
 
   handleClick () {
     this.setState({isOpen: !this.state.isOpen})
   }
 
-  bindClickToCustomTrigger () {
-    if (this.props.customTrigger) {
-      this.props.customTrigger.attributes.onClick = this.handleClick
-    }
-  }
-
-  render ({customIcon, customTrigger, centered, noMinWidth}) {
+  render ({customIcon, navTrigger, centered, noMinWidth}) {
     return (
       <div class='flex flex-full-center'>
         <div class={style.dropdownWrapper}>
-          {customTrigger || <Button iconButton icon={`${customIcon || 'dots-menu'}`} onClickExecute={this.handleClick} />}
+          {navTrigger ? (
+            <div class={`flex flex-cross-center flex-dc ${style.dropdownMenuNavButton} ${style.dropdownMenuNavButtonCustom}`} onClick={this.handleClick}>
+              <Ink />
+              <span class='flex'><Icon iconName='chev-down' /><p>Page</p></span>
+              <b>{this.pageFactor + 1}</b>
+            </div>
+          ) : <Button iconButton icon={`${customIcon || 'dots-menu'}`} onClickExecute={this.handleClick} />}
           <div class={`${style.dropdownMenu} ${centered ? style.dropdownMenuCentered : ''} ${noMinWidth ? style.dropdownMenuNoMinWidth : ''} ${this.state.isOpen ? style.active : ''}`}>
             <ul>
               {this.props.children}

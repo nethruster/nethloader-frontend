@@ -12,7 +12,13 @@ import style from './styles.scss'
 
 const viewStrings = locale.cp.overview.uploads.upload
 
-export default connect()(class Upload extends Component {
+const mapStateToProps = (state) => {
+  const {selectedMedia} = state.mediaSelect
+
+  return {selectedMedia}
+}
+
+export default connect(mapStateToProps)(class Upload extends Component {
   constructor (props) {
     super(props)
 
@@ -44,10 +50,10 @@ export default connect()(class Upload extends Component {
     this.props.toggleDeleteConfirmModal()
   }
 
-  render ({ data, isSelected, handleToggleSelect, mediaPath, mediaUrl, dispatch }) {
+  render ({data, handleToggleSelect, mediaPath, mediaUrl, dispatch, selectedMedia}) {
     return (
       <div class='flex flex-full-center'>
-        <Checkbox onChangeHandler={handleToggleSelect} isSelected={isSelected} dataId={data.id} customClass={style.selectButton} />
+        <Checkbox onChangeHandler={handleToggleSelect} isSelected={selectedMedia.includes(data.id)} dataId={data.id} customClass={style.selectButton} />
         <DropDownMenu>
           <li><a href={mediaPath} download><Button text={viewStrings.download} icon='download' dropdown /></a></li>
           <li><Button icon='copy' text={this.state.copy.valueCopied ? viewStrings.copied : viewStrings.copy_url} copyText={`${mediaUrl}`} onClickExecute={this.handleCopyClick} dropdown /></li>

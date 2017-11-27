@@ -23,7 +23,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(class Pagination extends Component {
   constructor (props, context) {
     super(props)
-  
+
     this.loadPrevPage = this.loadPrevPage.bind(this)
     this.loadNextPage = this.loadNextPage.bind(this)
     this.hasPrevPage = this.hasPrevPage.bind(this)
@@ -40,7 +40,7 @@ export default connect(mapStateToProps)(class Pagination extends Component {
   loadPrevPage () {
     let nextPageFactor = this.pageFactor - 1
     let nextOffset = nextPageFactor * this.props.params.mediaLimit
-    
+
     if (nextOffset >= 0) {
       this.context.router.history.push(`/cp/overview/${nextPageFactor + 1}`)
     }
@@ -90,14 +90,6 @@ export default connect(mapStateToProps)(class Pagination extends Component {
   }
 
   render ({isFetchingMedia, userMedia}) {
-    const customPageListButton = (
-      <div class={`flex flex-cross-center flex-dc ${style.paginationNavButton} ${style.paginationNavButtonCustom}`}>
-        <Ink />
-        <span class='flex'><Icon iconName='chev-down' /><p>Page</p></span>
-        <b>{this.pageFactor + 1}</b>
-      </div>
-    )
-
     return (
       <div class={`flex flex-main-center flex-sb ${style.paginationNav}`}>
         <div class={`${style.paginationNavButton} ${style.paginationNavButtonLeft} ${!isFetchingMedia && this.hasPrevPage() ? '' : style.paginationNavButtonDisabled}`} onClick={this.loadFirstPage}>
@@ -112,12 +104,9 @@ export default connect(mapStateToProps)(class Pagination extends Component {
             <Ink />
           </div>
           <div class={`flex ${style.paginationList}`}>
-            {isFetchingMedia
-              ? null
-              : <DropDownMenu centered noMinWidth customTrigger={customPageListButton}>
-                {this.computePageList()}
-              </DropDownMenu>
-            }
+            <DropDownMenu centered noMinWidth navTrigger>
+              {this.computePageList()}
+            </DropDownMenu>
           </div>
           <div class={`${style.paginationNavButton} ${style.paginationNavButtonRight} ${!isFetchingMedia && this.hasNextPage() ? '' : style.paginationNavButtonDisabled}`} onClick={this.loadNextPage}>
             <p>Next page</p>

@@ -45,7 +45,7 @@ export default connect(mapStateToProps)(class Overview extends Component {
 
     this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token, newParams))
   }
-  
+
   render ({isFetchingMedia, userMedia, params}) {
     return (
       <div class={`${style.overview} flex flex-main-center`}>

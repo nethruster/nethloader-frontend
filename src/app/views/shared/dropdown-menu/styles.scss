@@ -37,6 +37,46 @@
             }
 
             &NoMinWidth { min-width: 90px; }
+
+            &Nav {
+                margin: 0 var(--base-pm);
+
+                font-size: .95em;
+                min-height: 60px;
+
+                &Button {
+                    position: relative;
+                    height: 60px;
+                    padding: var(--base-pm) calc(var(--base-pm) * 2);
+
+                    opacity: .8;
+                    border-radius: var(--base-br) var(--base-br) 0 0;
+                    text-align: center;
+                    
+                    cursor: pointer;
+                    transition: background-color .2s ease-in-out;
+                    user-select: none;
+
+                    b { font-weight: 500; }
+
+                    p {
+                        font-size: .9em;
+
+                         svg {
+                            width: 20px;
+
+                            vertical-align: top;
+                        }
+                    }
+
+                    &Custom { width: 90px; }
+
+                    &:hover {
+                        opacity: 1;
+                        background-color: var(--default-border-color)
+                    }
+                }
+            }
         }
 
         &Overlay {

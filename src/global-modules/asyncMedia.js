@@ -11,7 +11,11 @@ export default class AsyncMedia extends Component {
     this.state = {mediaNode: null}
   }
 
-  componentWillMount () {
+  shouldComponentUpdate (nextProps, nextState) {
+    return this.state.mediaNode !== nextState.mediaNode
+  }
+
+  async componentWillMount () {
     if (!this.state.mediaNode) {
       if (isValidVideoFormat(`video/${this.props.type}`)) {
         const tempVideoElement = document.createElement('video')

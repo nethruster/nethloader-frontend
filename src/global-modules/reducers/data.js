@@ -3,7 +3,7 @@ import appConstants from '../constants'
 // Data reducer
 const userData = (state = {
   isFetchingUser: true,
-  userData: JSON.parse(window.sessionStorage.getItem('neth-userData')),
+  userData: JSON.parse(window.sessionStorage.getItem('neth-userData')) || {},
   errorMessage: ''
 }, action) => {
   switch (action.type) {
@@ -33,7 +33,8 @@ const userData = (state = {
 // Media reducer
 const userMedia = (state = {
   isFetchingMedia: true,
-  userMedia: JSON.parse(window.localStorage.getItem('neth-userMedia')),
+  userMedia: JSON.parse(window.localStorage.getItem('neth-userMedia')) || {},
+  totalCount: JSON.parse(window.localStorage.getItem('neth-totalCount')) || 0,
   params: {
     mediaLimit: 10,
     type: '',
@@ -60,6 +61,7 @@ const userMedia = (state = {
       return Object.assign({}, state, {
         isFetchingMedia: false,
         userMedia: action.userMedia,
+        totalCount: action.totalCount,
         errorMessage: ''
       })
     case appConstants.USER_MEDIA_FAILURE:
@@ -73,6 +75,7 @@ const userMedia = (state = {
           beforeDate: '',
           offset: 0
         },
+        totalCount: 0,
         errorMessage: action.errorMessage
       })
     default:

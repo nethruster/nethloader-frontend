@@ -66,6 +66,8 @@ const getUserMedia = (id, authToken, params) => {
   return async dispatch => {
     dispatch(requestUserMedia(params))
 
+    let totalCount = await getUserMediaCount(id, authToken)
+
     let serverResponse = await fetch(apiBaseUrl, requestConfig)
 
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
@@ -75,7 +77,7 @@ const getUserMedia = (id, authToken, params) => {
         // Set the data in local storage
         window.localStorage.setItem('neth-userMedia', JSON.stringify(responseData.data.images))
         // Dispatch the success action
-        dispatch(receiveUserMedia(responseData.data.images))
+        dispatch(receiveUserMedia(responseData.data.images, totalCount))
       } else {
         console.log('getUserData - responseData: ', responseData)
         dispatch(userMediaError(responseData.errors[0].message))
@@ -88,7 +90,41 @@ const getUserMedia = (id, authToken, params) => {
     }
   }
 }
+
+// Get total count of user images
+const getUserMediaCount = async (id, authToken) => {
+  let requestConfig = {
+    method: 'POST',
+    headers: {
+      'accept': 'application/json',
+      'content-type': 'application/json',
+      'authentication': authToken
+    },
+    body: JSON.stringify({
+      query: `query{ countImages(userId: "${id}")}`
+    })
+  }
+
+  let serverResponse = await fetch(apiBaseUrl, requestConfig)
+
+  if (serverResponse.status >= 200 && serverResponse.status < 300) {
+    let responseData = await serverResponse.json()
+
+    if (!isNaN(responseData.data.countImages) && responseData.data.countImages >= 0) {
+      // Set the data in local storage
+      window.localStorage.setItem('neth-totalCount', JSON.stringify(responseData.data.countImages))
+
+      return JSON.stringify(responseData.data.countImages)
+    }
+    console.log('getUserMediaCount - responseData: ', responseData)
+    return Promise.reject(responseData.errors[0].message)
+  }
+  console.log('getUserMediaCount - serverResponse: ', serverResponse)
+  return Promise.reject(serverResponse.status)
+}
+
 export {
   getUserData,
-  getUserMedia
+  getUserMedia,
+  getUserMediaCount
 }

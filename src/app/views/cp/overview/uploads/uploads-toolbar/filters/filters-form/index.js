@@ -8,8 +8,12 @@ import FormInputRadio from '../../../../../../shared/form-input-radio'
 import style from './styles.scss'
 
 const mapStateToProps = (state) => {
-  const {params} = state.userMedia
-  return {params}
+  const {params, userMedia, isFetchingMedia} = state.userMedia
+  return {
+    params,
+    userMedia,
+    isFetchingMedia
+  }
 }
 
 export default connect(mapStateToProps)(class UploadsToolbar extends Component {
@@ -18,7 +22,7 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
 
     this.state = {
       filters: {
-        mediaLimit: this.props.params.mediaLimit,
+        mediaLimit: this.props.params.mediaLimit || 10,
         type: this.props.params.type,
         afterDate: this.props.params.afterDate,
         beforeDate: this.props.params.beforeDate
@@ -39,13 +43,11 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
     this.context.router.history.push('/cp/overview')
     this.props.updateUserMedia(this.state.filters)
     this.props.toggleFilterModal()
-
-    // TODO: Store filter settings in local storage
   }
 
   resetFilters () {
     let filters = {
-      mediaLimit: this.props.params.mediaLimit,
+      mediaLimit: 10,
       type: '',
       afterDate: '',
       beforeDate: ''
@@ -63,23 +65,23 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
 
   handleBeforeDateChange (e) {
     let filters = this.state.filters
-    filters.beforeDate = e.target.value ? new Date(e.target.value) : ''
+    filters.beforeDate = e.target.value ? new Date(e.target.value).getTime() : ''
     this.setState({filters})
   }
 
   handleAfterDateChange (e) {
     let filters = this.state.filters
-    filters.afterDate = e.target.value ? new Date(e.target.value) : ''
+    filters.afterDate = e.target.value ? new Date(e.target.value).getTime() : ''
     this.setState({filters})
   }
 
   handleMediaLimitChange (e) {
     let filters = this.state.filters
-    e.target.value === 'All' ? filters.mediaLimit = 0 : filters.mediaLimit = e.target.value
+    e.target.value === 'All' ? filters.mediaLimit = this.props.userMedia.totalCount : filters.mediaLimit = e.target.value
     this.setState({filters})
   }
 
-  render ({updateUserMedia, params, dispatch}) {
+  render ({updateUserMedia, params, dispatch, userMedia, isFetchingMedia}) {
     return (
       <form onSubmit={this.handleSubmitFilters} class={style.filtersForm} ref={(el) => { this.form = el }}>
         <div>
@@ -104,13 +106,13 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
           <h5>Results per page:</h5>
           <div class={`${style.filtersFormSection} flex flex-cross-center flex-dc`}>
             <select class={style.filtersFormLimitSelect} onChange={this.handleMediaLimitChange}>
-              <option selected={params.mediaLimit === 5}>5</option>
-              <option selected={params.mediaLimit === 10}>10</option>
-              <option selected={params.mediaLimit === 20}>20</option>
-              <option selected={params.mediaLimit === 50}>50</option>
-              <option selected={params.mediaLimit === 100}>100</option>
-              <option selected={params.mediaLimit === 200}>200</option>
-              <option disabled selected={params.mediaLimit === 0}>All</option>
+              <option selected={this.state.filters.mediaLimit === 5}>5</option>
+              <option selected={this.state.filters.mediaLimit === 10}>10</option>
+              <option selected={this.state.filters.mediaLimit === 20}>20</option>
+              <option selected={this.state.filters.mediaLimit === 50}>50</option>
+              <option selected={this.state.filters.mediaLimit === 100}>100</option>
+              <option selected={this.state.filters.mediaLimit === 200}>200</option>
+              {!isFetchingMedia && <option selected={this.state.filters.mediaLimit === userMedia.totalCount}>All</option>}
             </select>
           </div>
         </div>

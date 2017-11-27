@@ -13,7 +13,7 @@ export default class Upload extends Component {
   render ({data, isSelected, handleToggleSelect, toggleDeleteConfirmModal}) {
     const mediaPath = `${baseMediaPath}${data.id}.${data.extension}`
     const mediaUrl = `${document.location.origin}/${data.id}`
-    
+
     return (
       <li class={`${style.upload} flex flex-cross-center flex-sb`} ref={(el) => { this.uploadEl = el }}>
         <Link to={`/${data.id}`} class={`${style.uploadDataLink} flex`}>
@@ -23,7 +23,7 @@ export default class Upload extends Component {
           <UploadData data={data} />
         </Link>
 
-        <UploadButtons data={data} isSelected={isSelected} mediaPath={mediaPath} mediaUrl={mediaUrl} toggleDeleteConfirmModal={toggleDeleteConfirmModal} handleToggleSelect={handleToggleSelect} />
+        <UploadButtons data={data} mediaPath={mediaPath} mediaUrl={mediaUrl} toggleDeleteConfirmModal={toggleDeleteConfirmModal} handleToggleSelect={handleToggleSelect} />
       </li>
     )
   }

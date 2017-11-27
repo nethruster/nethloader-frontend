@@ -1,5 +1,6 @@
 import {h, Component} from 'preact'
 import {connect} from 'preact-redux'
+import VirtualList from 'react-virtual-list'
 
 import Upload from './upload'
 import UploadsToolbar from './uploads-toolbar'
@@ -17,7 +18,8 @@ import style from './styles.scss'
 const viewStrings = locale.cp.overview.uploads
 
 const mapStateToProps = (state) => {
-  const {isFetchingMedia, userMedia, params} = state.userMedia
+  const {isFetchingMedia, userMedia, params, totalCount} = state.userMedia
+  const {isFetchingUser} = state.userData
   const {sessionData, token} = state.authentication
   const {selectedMedia} = state.mediaSelect
 
@@ -27,7 +29,9 @@ const mapStateToProps = (state) => {
     selectedMedia,
     sessionData,
     token,
-    params
+    params,
+    totalCount,
+    isFetchingUser
   }
 }
 
@@ -53,28 +57,40 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     this.confirmMultipleDelete = this.confirmMultipleDelete.bind(this)
   }
 
-  toggleIsDeleting () {
-    this.setState({isDeleting: !this.state.isDeleting})
+  componentWillMount () {
+    const list = ({
+      virtual,
+      itemHeight
+    }) => (
+      <ul style={virtual.style}>
+        {virtual.items.map(item => (
+          <Upload style={style} key={item.id} data={item} handleToggleSelect={this.handleToggleMedia} toggleDeleteConfirmModal={this.toggleDeleteConfirmModal} />
+        ))}
+      </ul>
+    )
+    this.myVirtualList = VirtualList()(list)
   }
 
-  sortByDate (imageA, imageB) {
-    return new Date(imageB.createdAt) - new Date(imageA.createdAt)
+  toggleIsDeleting () {
+    this.setState({isDeleting: !this.state.isDeleting})
   }
 
   computeMediaList () {
     let mediaList = this.props.userMedia.images
     // Sort from most recent to oldest
-    mediaList.sort(this.sortByDate)
+    // mediaList.sort(this.sortByDate)
     if (!!mediaList && mediaList.length > 0) {
-      return mediaList.map((entry, index) =>
-        <Upload key={entry.id} data={entry} isSelected={this.props.selectedMedia.includes(entry.id)} handleToggleSelect={this.handleToggleMedia} toggleDeleteConfirmModal={this.toggleDeleteConfirmModal} />
-      )
+      return <this.myVirtualList
+        items={mediaList}
+        itemHeight={90}
+        itemBuffer={10}
+      />
     }
 
     return (
       <p class={`nomedia flex flex-full-center flex-dc`}>
         {viewStrings.no_media}<br />
-        <small class='flex flex-full-center'>Drop files anywhere or click the upload button to add media.</small>
+        <small class='flex flex-full-center'>{this.props.totalCount > 0 ? 'The filters didn\'t produce any results' : 'Drop files anywhere or click the upload button to add media.'}</small>
       </p>
     )
   }
@@ -148,13 +164,11 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     }
   }
 
-  render ({isFetchingMedia, userMedia, selectedMedia, updateUserMedia}) {
+  render ({isFetchingMedia, userMedia, selectedMedia, updateUserMedia, totalCount}) {
     return (
       <div class={style.uploads}>
-        {!!userMedia && userMedia.totalCount === 0 ? null : <UploadsToolbar handleDeleteClick={this.toggleDeleteConfirmModal} updateUserMedia={updateUserMedia} />}
-        <ul class={style.uploadsList}>
-          {isFetchingMedia ? <ViewLoading /> : this.computeMediaList()}
-        </ul>
+        {(!!userMedia && totalCount <= 0 && userMedia.totalCount === 0) ? null : <UploadsToolbar handleDeleteClick={this.toggleDeleteConfirmModal} updateUserMedia={updateUserMedia} />}
+        {isFetchingMedia ? <ViewLoading /> : this.computeMediaList()}
         <Modal isActive={this.state.modals.singleDelete.isActive} toggleModal={this.toggleDeleteConfirmModal} closeButtonText='Wait, no' acceptButtonText='Yes, do it' onAcceptExecute={this.confirmSingleDelete}>
           <p class='flex flex-full-center'>Are you sure that you want to delete the selected item?</p>
         </Modal>

@@ -2,7 +2,7 @@ import {checkCurrentSessionToken} from 'serverAPI/authentication'
 
 const supportedVideoFormats = ['video/mp4', 'video/webm', 'video/ogg', 'application/ogg']
 const supportedMimeTypes = [...supportedVideoFormats, 'image/png', 'image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/svg+xml', 'image/webp']
-const imageExtensions = ['"png"', '"jpg"', '"jpeg"', '"gif"', '"svg"', '"webp"']
+const imageExtensions = ['"png"', '"jpg"', '"jpeg"', '"gif"', '"svg"', '"webp"', '"image/svg+xml"']
 const videoExtensions = ['"mp4"', '"webm"', '"ogg"']
 
 const mediaExtensions = {
