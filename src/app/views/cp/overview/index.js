@@ -39,7 +39,7 @@ export default connect(mapStateToProps)(class Overview extends Component {
   }
 
   updateUserMedia (params) {
-    let newParams = params
+    let newParams = params || ''
 
     newParams.offset = this.pageFactor * params.mediaLimit
 

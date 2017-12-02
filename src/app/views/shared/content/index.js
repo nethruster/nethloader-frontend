@@ -25,7 +25,6 @@ function mapStateToProps (state) {
 
 export default connect(mapStateToProps)(class Content extends Component {
   async componentWillMount () {
-    document.body.scrollIntoView() // Hack to fix scroll issue when using pragmatic routing (extra document length)
     if (this.props.isAuthenticated) {
       if (await checkUserSessionValidity(this.props.token, this.props.sessionData.exp)) {
         this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token))

@@ -59,7 +59,7 @@ const getUserMedia = (id, authToken, params) => {
     },
 
     body: JSON.stringify({
-      query: `query{ images(userId: "${id}", ${extensionsFilter} limit: ${params.mediaLimit}, offset: ${params.offset}, orderBy: "createdAt", orderDirection: "DESC", beforeDate: "${params.beforeDate}", afterDate: "${params.afterDate}"){totalCount, images {id, createdAt, extension}}}`
+      query: `query{ images(userId: "${id}", ${extensionsFilter} limit: ${params.mediaLimit || 10}, offset: ${params.offset || 0}, orderBy: "createdAt", orderDirection: "DESC", beforeDate: "${params.beforeDate || ''}", afterDate: "${params.afterDate || ''}"){totalCount, images {id, createdAt, extension}}}`
     })
   }
 

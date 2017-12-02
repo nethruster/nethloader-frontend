@@ -23,9 +23,9 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
     this.state = {
       filters: {
         mediaLimit: this.props.params.mediaLimit || 10,
-        type: this.props.params.type,
-        afterDate: this.props.params.afterDate,
-        beforeDate: this.props.params.beforeDate
+        type: this.props.params.type || '',
+        afterDate: this.props.params.afterDate || '',
+        beforeDate: this.props.params.beforeDate || ''
       }
     }
 
@@ -53,7 +53,6 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
       beforeDate: ''
     }
 
-    this.form.reset()
     this.setState({filters})
   }
 

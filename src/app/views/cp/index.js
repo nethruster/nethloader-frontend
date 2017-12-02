@@ -5,6 +5,7 @@ import {connect} from 'preact-redux'
 import asyncComponent from 'asyncComponent'
 import Subheader from './subheader'
 import ViewLoading from '../shared/view-loading'
+import NotFound from '../shared/not-found'
 
 import style from './styles.scss'
 
@@ -25,7 +26,7 @@ export default connect(mapStateToProps)(class ControlPanel extends Component {
           <Subheader />
           <Switch>
             <Redirect exact from='/cp' to='/cp/overview' />
-            <Route path='/cp/overview/:pageFactor?'
+            <Route path='/cp/overview/:pageFactor([0-9]*)?'
               exact
               component={asyncComponent(() => import(/* webpackChunkName: "content_cp_overview" */'./overview')
                 .then(module => module.default))} />
@@ -39,6 +40,9 @@ export default connect(mapStateToProps)(class ControlPanel extends Component {
               exact
               component={asyncComponent(() => import(/* webpackChunkName: "content_cp_admin" */'./admin')
                 .then(module => module.default))} />
+            <Route
+              path=''
+              component={NotFound} />
           </Switch>
         </div>
     )

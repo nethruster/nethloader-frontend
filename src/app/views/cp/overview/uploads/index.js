@@ -68,7 +68,8 @@ export default connect(mapStateToProps)(class Uploads extends Component {
         ))}
       </ul>
     )
-    this.myVirtualList = VirtualList()(list)
+
+    this.mediaVirtualList = VirtualList()(list)
   }
 
   toggleIsDeleting () {
@@ -77,13 +78,11 @@ export default connect(mapStateToProps)(class Uploads extends Component {
 
   computeMediaList () {
     let mediaList = this.props.userMedia.images
-    // Sort from most recent to oldest
-    // mediaList.sort(this.sortByDate)
     if (!!mediaList && mediaList.length > 0) {
-      return <this.myVirtualList
+      return <this.mediaVirtualList
         items={mediaList}
         itemHeight={90}
-        itemBuffer={10}
+        itemBuffer={5}
       />
     }
 
