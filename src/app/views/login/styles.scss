@@ -23,4 +23,10 @@
 
         h1 { font-size: 2em; }
     }
+
+    @media (max-width: 550px) {
+        .login { 
+            &AltLinks { width: 100%;  }
+        }
+    }
 }

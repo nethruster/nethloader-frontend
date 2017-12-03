@@ -8,4 +8,8 @@
             min-height: 20px;
         }
     }
+
+    @media (max-width: 550px) {
+        .form { width: 100%; }
+    }
 }

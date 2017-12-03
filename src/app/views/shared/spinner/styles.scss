@@ -17,7 +17,8 @@
     }
 
     .spinner { 
-        transform: translate(0, 0); 
+        transform: translate(0, 0);
+        will-change: transform;
         margin: calc(var(--base-pm) * 2);
     }
 

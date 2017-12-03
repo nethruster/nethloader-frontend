@@ -11,7 +11,7 @@ export default class Footer extends Component {
   render ({contentFooter}) {
     return (
       <footer class={`${style.footer} ${contentFooter ? style.footerContent : ''}`}>
-        <p class='flex flex-full-center'><a href='https://github.com/nethruster/nethloader' target='_blank' rel='noopener'>Powered by Nethloader v{version}</a> &nbsp;&nbsp;&nbsp;&nbsp;<Icon iconName='twitter' />&nbsp;<a href='https://twitter.com/nethruster' rel='noopener' target='_blank'>@nethruster</a>&nbsp;&nbsp;&nbsp;&nbsp;<NavLink to='/cp' activeClassName='dom-hidden'>Login/CP</NavLink></p>
+        <p class='flex flex-full-center'><a href='https://github.com/nethruster/nethloader' target='_blank' rel='noopener'>Powered by Nethloader v{version}</a> &nbsp;&nbsp;&nbsp;&nbsp;<span><Icon iconName='twitter' />&nbsp;<a href='https://twitter.com/nethruster' rel='noopener' target='_blank'>@nethruster</a></span>&nbsp;&nbsp;&nbsp;&nbsp;<NavLink to='/cp' activeClassName='dom-hidden'>Login/CP</NavLink></p>
       </footer>
     )
   }

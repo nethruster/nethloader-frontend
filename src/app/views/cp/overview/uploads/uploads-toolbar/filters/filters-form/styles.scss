@@ -16,6 +16,8 @@
 
                 border-radius: var(--base-br);
                 border-color: var(--contrast-bg);
+                border-style: solid;
+                border-width: 1px;
             }
         }
 
@@ -34,9 +36,7 @@
 
     @media(max-width: 600px) {
         .filtersForm {
-            &Section {
-                padding: calc(var(--base-pm) / 2) 0;
-            }
+            &Section { padding: calc(var(--base-pm) / 2) 0; }
         }
     }
 }

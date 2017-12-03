@@ -1,13 +1,21 @@
 import {h, Component} from 'preact'
+import {connect} from 'preact-redux'
 
 import Modal from '../../../../../shared/modal'
 import Button from '../../../../../shared/button'
 import FiltersForm from './filters-form'
 import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
+import {isFiltered} from 'utils'
 
 import './styles.scss'
 
-export default class UploadsToolbar extends Component {
+const mapStateToProps = (state) => {
+  const {params} = state.userMedia
+
+  return {params}
+}
+
+export default connect(mapStateToProps)(class UploadsToolbar extends Component {
   constructor (props) {
     super(props)
 
@@ -32,14 +40,14 @@ export default class UploadsToolbar extends Component {
     this.setState({modals})
   }
 
-  render ({updateUserMedia, params, dispatch}) {
+  render ({updateUserMedia, params}) {
     return (
       <div class='flex flex-full-center'>
-        <Button iconButton icon='filter' onClickExecute={this.toggleFilterModal} />
+        <Button iconButton icon='filter' onClickExecute={this.toggleFilterModal} badge={isFiltered(params)} />
         <Modal modalTitle='Filter Media' isActive={this.state.modals.filter.isActive} toggleModal={this.toggleFilterModal}>
           <FiltersForm updateUserMedia={updateUserMedia} toggleFilterModal={this.toggleFilterModal} />
         </Modal>
       </div>
     )
   }
-}
+})

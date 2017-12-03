@@ -73,9 +73,7 @@
         @media(max-width: 600px) {
             .pagination {
                 &Nav {
-                    &Button {
-                        font-size: .9em;
-                    }
+                    &Button { font-size: .9em; }
                 }
             }
         }
@@ -84,13 +82,9 @@
              .pagination {
                 &Nav {
                     &Button {
-                        p {
-                            display: none;
-                        }
+                        p { display: none; }
 
-                        &Custom {
-                            flex-direction: column-reverse;
-                        }
+                        &Custom { flex-direction: column-reverse; }
                     }
                 }
             }
@@ -99,8 +93,6 @@
 
 :global {
     .pagelist-active {
-        button {
-            background-color: rgba(56, 61, 66, 0.075);
-        }
+        button { background-color: rgba(56, 61, 66, 0.075); }
     }
 }

@@ -3,9 +3,9 @@ import appConstants from '../constants'
 // Auth reducer
 const auth = (state = {
   isFetching: false,
-  isAuthenticated: !!window.localStorage.getItem('neth-jwtToken'),
-  sessionData: JSON.parse(window.localStorage.getItem('neth-sessionData')),
-  token: window.localStorage.getItem('neth-jwtToken')
+  isAuthenticated: !!window.localStorage.getItem('neth-jwtToken') || false,
+  sessionData: JSON.parse(window.localStorage.getItem('neth-sessionData')) || {},
+  token: window.localStorage.getItem('neth-jwtToken') || ''
 }, action) => {
   switch (action.type) {
     case appConstants.LOGIN_REQUEST:

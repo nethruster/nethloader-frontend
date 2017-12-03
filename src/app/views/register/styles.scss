@@ -27,4 +27,10 @@
             font-size: 2em;
         }
     }
+
+    @media (max-width: 550px) {
+        .register { 
+            &AltLinks { width: 100%;  }
+        }
+    }
 }

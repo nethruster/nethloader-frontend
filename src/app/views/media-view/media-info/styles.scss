@@ -18,9 +18,7 @@
                 margin: var(--base-pm);
             }
 
-            button {
-                margin: 0;
-            }
+            button { margin: 0; }
         }
         
     }
@@ -38,16 +36,12 @@
 
         small { opacity: .8 }
 
-        &:hover {
-            opacity: 1
-        }
+        &:hover { opacity: 1 }
     }
 
     @media(max-width: 440px) {
         .mediaInfo {
-            &Buttons {
-                flex-direction: column;
-            }
+            &Buttons { flex-direction: column; }
         }
     }
 }

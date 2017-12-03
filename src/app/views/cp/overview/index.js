@@ -52,7 +52,7 @@ export default connect(mapStateToProps)(class Overview extends Component {
         {
           this.pageFactor && this.pageFactor >= userMedia.totalCount / params.mediaLimit
             ? <p class='nomedia flex flex-dc flex-full-center'>
-              <span>This page doesn't exist</span>
+              <span>Page {this.pageFactor} doesn't exist</span>
               <div class='flex flex-cross-center flex-sa'>
                 <Link to='/cp/overview/'><Button text='Go to first page' /></Link>
                 &nbsp;&nbsp;

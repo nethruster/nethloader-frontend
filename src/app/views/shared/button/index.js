@@ -14,7 +14,7 @@ export default class Button extends Component {
            (this.props.text !== nextProps.text)
   }
 
-  render ({dataId, round, contrast, big, small, transparent, navButton, dropdown, floating, iconButton, customClass, tabindex, type, onClickExecute, copyText, disabled, icon, iconColor, spinner, spinnerColor, spinnerSize, text}) {
+  render ({dataId, round, contrast, big, small, transparent, navButton, dropdown, floating, iconButton, badge, customClass, tabindex, type, onClickExecute, copyText, disabled, icon, iconColor, spinner, spinnerColor, spinnerSize, text}) {
     /* eslint-disable no-lone-blocks */
     {
       /* You'll probably wonder why the fuck did I lay out the following class attribute like
@@ -35,6 +35,7 @@ export default class Button extends Component {
           dropdown ? style.buttonDropdown : ''} ${
           floating ? style.buttonFloating : ''} ${
           iconButton ? style.buttonIcon : ''} ${
+          badge ? style.buttonBadge : ''} ${
           customClass || ''}`}
         tabindex={tabindex}
         type={type}

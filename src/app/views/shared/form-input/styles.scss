@@ -54,10 +54,13 @@
         }
 
         &[type="date"] {
-            border: 1px solid var(--contrast-bg);
-            padding: calc(var(--base-pm) / 2) var(--base-pm);
-            border-radius: var(--base-br);
             height: auto;
+            padding: calc(var(--base-pm) / 2) var(--base-pm);
+
+            border: 1px solid var(--contrast-bg);
+            border-radius: var(--base-br);
+            
+            font-family: inherit;
         }
     }
 }

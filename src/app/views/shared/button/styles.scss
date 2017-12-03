@@ -172,6 +172,21 @@
             
             &:hover { background-color: var(--default-bg-hover); }
         }
+
+        &Badge {
+            &::before {
+                content: '';
+                position: absolute;
+                top: 8px;
+                right: 8px;
+
+                width: 5px;
+                height: 5px;
+                
+                background-color: var(--warning-color);
+                border-radius: 50%;
+            }
+        }
     }
 
     @media(max-width: 620px) {

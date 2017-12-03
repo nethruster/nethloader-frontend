@@ -14,4 +14,8 @@
 
         &-transparent { background-color: transparent; }
     }
+
+    @media(max-width: 650px) {
+        .paper-small { border-radius: 0; }
+    }
 }

@@ -146,7 +146,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
 
               newParams.offset = this.pageFactor * newParams.mediaLimit
 
-              this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token, newParams))
+              this.props.history.push('/cp/overview')
             }
           }
         })

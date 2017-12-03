@@ -14,6 +14,13 @@ const mediaExtensions = {
   ]
 }
 
+const baseParams = {
+  mediaLimit: 10,
+  type: '',
+  afterDate: '',
+  beforeDate: ''
+}
+
 /**
  * Returns true if a string is empty or just spaces
  * @param string str
@@ -75,8 +82,8 @@ const checkTokenExpiryDate = (tokenExpDate) => {
 }
 
 /**
- * Return formated date (DD/MM/YYY) from a given unix time value
- * @param int date
+ * Return formated date (DD-MM-YYY) from a given unix time value
+ * @param string date
  * @return string
  */
 const computeDate = (date) => {
@@ -88,7 +95,7 @@ const computeDate = (date) => {
 
 /**
  * Return formated time (HH:mm) from a given unix time value
- * @param int date
+ * @param string date
  * @return string
  */
 const computeTime = (date) => {
@@ -99,7 +106,7 @@ const computeTime = (date) => {
 
 /**
  * Return the time zone offset from a given unix time value
- * @param int date
+ * @param string date
  * @return string
  */
 const computeDateFormat = (date) => {
@@ -151,6 +158,43 @@ const getPageFactor = (router) => {
   return pageFactor > 0 ? (Number(pageFactor) - 1) : 0
 }
 
+/**
+ * Compare a default params object towards a given params
+ * object and return true if they are different.
+ * @param object params
+ * @return boolean
+ */
+const isFiltered = (params) => {
+  for (let key in baseParams) {
+    if (baseParams[key] != params[key]) { // It's important to allow coercion here, values may have been transformed to other types
+      return true
+    }
+  }
+
+  return false
+}
+
+// Simple feature check to prevent some browsers from hurting themselves and others around them
+const checkBrowserIntegrity = () => {
+  // Private mode (localstorage, sessionStorage... access) detect
+  try {
+    let securityTest = window.localStorage
+  } catch (err) {
+    window.alert('Nethloader relies heavily on browser data APIs, please enable them to enjoy the app properly.')
+    console.log('Nethloader relies heavily on browser data APIs (localStorage, sessionStorage), please enable them to enjoy the app.')
+    throw Error('Private mode detected')
+  }
+
+  // Promise API detect
+  try {
+    let promiseTest = Promise
+  } catch (err) {
+    window.alert('Please, use an updated browser like Google Chrome or Firefox if you want to use this website properly.')
+    console.error('This browser doesn\'t support necessary web technology for this site to work, please, use an updated browser like Google Chrome or Firefox if you want to use this website properly.')
+    throw Error('Unsuported browser')
+  }
+}
+
 export {
   validateEmpty,
   validateEmail,
@@ -165,5 +209,7 @@ export {
   isValidFormat,
   checkUserSessionValidity,
   getPageFactor,
-  mediaExtensions
+  mediaExtensions,
+  isFiltered,
+  checkBrowserIntegrity
 }

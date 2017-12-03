@@ -21,6 +21,8 @@
     /* HTML5 display-role reset for older browsers */
     footer, header, menu, nav { display: block; }
 
+    input, select, textarea, button { font: inherit; }
+
     a, button, input, label, select, textarea { touch-action: manipulation; }
 
     a {
@@ -29,11 +31,6 @@
     }
 
     html {
-        font-family: sans-serif;
-        -ms-text-size-adjust: 100%;
-        -webkit-text-size-adjust: 100%;
-        text-rendering: optimizeLegibility;
-        font-feature-settings: "kern";
         box-sizing: border-box;
         overflow-x: hidden;
     }
@@ -42,6 +39,11 @@
         line-height: 1.5;
         color: var(--default-color);
         font-family: Roboto, 'Noto Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        text-size-adjust: 100%;
+        font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        font-feature-settings: "kern";
     }
 
     ol, ul { list-style: none; }
@@ -55,11 +57,12 @@
         max-width: 100%;
         height: auto;
         vertical-align: middle;
-        object-fit: fill;
+        object-fit: cover;
     }
 
     video {
-        object-fit: fill;
+        object-fit: cover;
+        max-width: 100%;
     }
 
     #nethloader {
@@ -85,9 +88,4 @@
             opacity: .9;
         }
     }
-
-    // // react-ink tweak
-    // .ink {
-    //     z-index: 1;
-    // }
 }

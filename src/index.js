@@ -4,8 +4,12 @@ import {Provider} from 'preact-redux'
 import thunkMiddleware from 'redux-thunk'
 
 import asyncComponent from 'asyncComponent'
+import {checkBrowserIntegrity} from 'utils'
 
 import reducers from 'reducers'
+
+// Simple feature check to prevent some browsers from hurting themselves and others around them
+checkBrowserIntegrity()
 
 let createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore)
 
@@ -20,10 +24,4 @@ if (module.hot) {
 
 const mountPoint = document.getElementById('nethloader')
 
-// Simple feature check to prevent some browsers from hurting themselves and others around them
-if (Promise && window.Promise) {
-  render(<Provider store={store}><App /></Provider>, mountPoint, mountPoint.lastChild)
-} else {
-  window.alert('Please, use an updated browser like Google Chrome or Firefox if you want to use this website properly.')
-  console.error('This browser doesn\'t support necessary web technology for this site to work, please, use an updated browser like Google Chrome or Firefox if you want to use this website properly.')
-}
+render(<Provider store={store}><App /></Provider>, mountPoint, mountPoint.lastChild)
