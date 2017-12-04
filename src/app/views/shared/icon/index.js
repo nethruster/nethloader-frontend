@@ -9,7 +9,7 @@ export default class Button extends Component {
   shouldComponentUpdate (nextProps, nextState) {
     return this.props.iconName !== nextProps.iconName
   }
-  
+
   render ({iconName}) {
     const iconStyle = {
       fill: this.props.iconColor

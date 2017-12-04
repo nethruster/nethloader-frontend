@@ -102,11 +102,11 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
       email: this.state.data.email.value,
       password: this.state.data.password.value
     }
-    this.props.dispatch(registerUser(data, this.context.router.history, this.registerForm))
+    this.props.dispatch(registerUser(data, this.context.router.history, event.target))
   }
   render ({isFetching}) {
     return (
-      <form class={`${style.form} flex flex-full-center flex-dc`} onSubmit={this.handleSubmit} ref={(el) => { this.registerForm = el }}>
+      <form class={`${style.form} flex flex-full-center flex-dc`} onSubmit={this.handleSubmit}>
         <FormInput inputId='username' inputType='text' inputLabel='Username' changeHandler={this.handleChange} required inputState={this.state.data.username.inputState} validationMessage={this.state.data.username.validationMessage} />
         <FormInput inputId='email' inputType='email' inputLabel={viewStrings.email} changeHandler={this.handleChange} required inputState={this.state.data.email.inputState} validationMessage={this.state.data.email.validationMessage} />
         <FormInput inputId='password' inputType='password' inputLabel={viewStrings.password} changeHandler={this.handleChange} required inputState={this.state.data.password.inputState} validationMessage={this.state.data.password.validationMessage} />

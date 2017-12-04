@@ -15,7 +15,7 @@ export default class Upload extends Component {
     const mediaUrl = `${document.location.origin}/${data.id}`
 
     return (
-      <li class={`${style.upload} flex flex-cross-center flex-sb`} ref={(el) => { this.uploadEl = el }}>
+      <li class={`${style.upload} flex flex-cross-center flex-sb`}>
         <Link to={`/${data.id}`} class={`${style.uploadDataLink} flex`}>
           <div class={`${style.uploadMedia} flex flex-full-center`}>
             <AsyncMedia src={mediaPath} type={data.extension} size='74' id={data.id} />

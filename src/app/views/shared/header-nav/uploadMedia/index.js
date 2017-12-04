@@ -8,7 +8,6 @@ import Modal from '../../modal'
 
 import {isValidFormat, getPageFactor} from 'utils'
 import {uploadMedia} from 'serverAPI/media'
-import {getUserMedia} from 'serverAPI/data'
 import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 import locale from 'locale'
 

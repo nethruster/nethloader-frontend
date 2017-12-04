@@ -41,8 +41,7 @@ export default class Button extends Component {
         type={type}
         onClick={onClickExecute}
         data-copytext={copyText}
-        disabled={disabled}
-        ref={(el) => { this.buttonEl = el }}>
+        disabled={disabled}>
         <Ink />
         {icon && !spinner ? <Icon iconName={icon} iconColor={iconColor} /> : null}&nbsp;
         {(spinner || text) && <p class='flex'>{spinner ? <Spinner color={spinnerColor} size={spinnerSize} /> : text}</p>}

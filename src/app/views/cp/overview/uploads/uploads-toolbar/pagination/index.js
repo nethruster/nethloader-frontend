@@ -85,7 +85,7 @@ export default connect(mapStateToProps)(class Pagination extends Component {
     let pagesArray = Array.from({ length: nPages }, (v, i) => i)
 
     return pagesArray.map((entry) => {
-      return <NavLink exact activeClassName='pagelist-active' to={`/cp/overview/${entry + 1}`}><Button dropdown text={entry + 1} class='flex flex-full-center' /></NavLink>
+      return <NavLink exact activeClassName='pagelist-active' to={entry === 0 ? '/cp/overview/' : `/cp/overview/${entry + 1}`}><Button dropdown text={entry + 1} class='flex flex-full-center' /></NavLink>
     })
   }
 

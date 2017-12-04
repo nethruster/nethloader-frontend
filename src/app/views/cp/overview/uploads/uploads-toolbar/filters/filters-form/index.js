@@ -31,8 +31,7 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
 
     this.handleSubmitFilters = this.handleSubmitFilters.bind(this)
     this.handleTypeChange = this.handleTypeChange.bind(this)
-    this.handleBeforeDateChange = this.handleBeforeDateChange.bind(this)
-    this.handleAfterDateChange = this.handleAfterDateChange.bind(this)
+    this.handleDateChange = this.handleDateChange.bind(this)
     this.handleMediaLimitChange = this.handleMediaLimitChange.bind(this)
     this.resetFilters = this.resetFilters.bind(this)
   }
@@ -62,15 +61,9 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
     this.setState({filters})
   }
 
-  handleBeforeDateChange (e) {
+  handleDateChange (e) {
     let filters = this.state.filters
-    filters.beforeDate = e.target.value ? new Date(e.target.value).getTime() : ''
-    this.setState({filters})
-  }
-
-  handleAfterDateChange (e) {
-    let filters = this.state.filters
-    filters.afterDate = e.target.value ? new Date(e.target.value).getTime() : ''
+    filters[e.target.id] = e.target.value ? new Date(e.target.value).getTime() : ''
     this.setState({filters})
   }
 
@@ -82,7 +75,7 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
 
   render ({updateUserMedia, params, dispatch, userMedia, isFetchingMedia}) {
     return (
-      <form onSubmit={this.handleSubmitFilters} class={style.filtersForm} ref={(el) => { this.form = el }}>
+      <form onSubmit={this.handleSubmitFilters} class={style.filtersForm}>
         <div>
           <h5>Type:</h5>
           <div class={`${style.filtersFormSection} flex flex-sa`}>
@@ -94,12 +87,12 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
           <div class={`${style.filtersFormSection} flex flex-sa`}>
             <label>
               <p>After</p>
-              <FormInput inputType='date' inputId='afterDate' changeHandler={this.handleAfterDateChange} />
+              <FormInput inputType='date' inputId='afterDate' changeHandler={this.handleDateChange} />
             </label>
 
             <label>
               <p>Before</p>
-              <FormInput inputType='date' inputId='beforeDate' changeHandler={this.handleBeforeDateChange} />
+              <FormInput inputType='date' inputId='beforeDate' changeHandler={this.handleDateChange} />
             </label>
           </div>
           <h5>Results per page:</h5>

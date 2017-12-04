@@ -21,9 +21,7 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
 
     this.state = {
       modals: {
-        filter: {
-          isActive: false
-        }
+        filter: { isActive: false }
       }
     }
 
