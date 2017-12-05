@@ -1,4 +1,4 @@
-import {h, Component} from 'preact'
+import {h} from 'preact'
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 import {connect} from 'preact-redux'
 

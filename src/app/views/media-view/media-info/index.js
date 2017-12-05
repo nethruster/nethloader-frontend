@@ -1,4 +1,4 @@
-import {h, Component} from 'preact'
+import {h} from 'preact'
 
 import Button from '../../shared/button'
 
@@ -10,23 +10,17 @@ import '../../shared/paper/paper.scss'
 
 const viewStrings = locale.media_view.info
 
-export default class MediaInfo extends Component {
-  shouldComponentUpdate () {
-    return false
-  }
-
-  render ({data, mediaSrc}) {
-    return (
-      <div class={`paper paper-small paper-transparent ${style.mediaInfo} flex flex-dc`}>
-        <div class={`${style.mediaInfoButtons} flex flex-sa`}>
-          <a href={mediaSrc} target='_blank' rel='noopener' title='Open original image in a new tab'><Button text={viewStrings.buttons.view_original} small tabindex='-1' icon='fullscreen' /></a>
-          <a href={mediaSrc} download rel='noopener' title='Download image'><Button text={viewStrings.buttons.download} small tabindex='-1' icon='download' /></a>
-        </div>
-        <div class='flex flex-full-center'>
-          <div class={`${style.dataSpec} flex flex-dc`}><p><span>ID:</span> {data.id}</p> <p><span>{viewStrings.type}:</span> {data.extension}</p></div>
-          <div class={`${style.dataDate} flex flex-dc`} title={computeDateFormat(data.createdAt)}><p><span>{viewStrings.uploaded}:</span> {computeDate(data.createdAt)}</p> <p><span>{viewStrings.at}:</span> {computeTime(data.createdAt)}</p></div>
-        </div>
+export default function MediaInfo ({data, mediaSrc}) {
+  return (
+    <div class={`paper paper-small paper-transparent ${style.mediaInfo} flex flex-dc`}>
+      <div class={`${style.mediaInfoButtons} flex flex-sa`}>
+        <a href={mediaSrc} target='_blank' rel='noopener' title='Open original image in a new tab'><Button text={viewStrings.buttons.view_original} small tabindex='-1' icon='fullscreen' /></a>
+        <a href={mediaSrc} download rel='noopener' title='Download image'><Button text={viewStrings.buttons.download} small tabindex='-1' icon='download' /></a>
       </div>
-    )
-  }
+      <div class='flex flex-full-center'>
+        <div class={`${style.dataSpec} flex flex-dc`}><p><span>ID:</span> {data.id}</p> <p><span>{viewStrings.type}:</span> {data.extension}</p></div>
+        <div class={`${style.dataDate} flex flex-dc`} title={computeDateFormat(data.createdAt)}><p><span>{viewStrings.uploaded}:</span> {computeDate(data.createdAt)}</p> <p><span>{viewStrings.at}:</span> {computeTime(data.createdAt)}</p></div>
+      </div>
+    </div>
+  )
 }

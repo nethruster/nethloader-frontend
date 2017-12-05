@@ -180,18 +180,16 @@ const checkBrowserIntegrity = () => {
   try {
     let securityTest = window.localStorage // eslint-disable-line no-unused-vars
   } catch (err) {
-    window.alert('Nethloader relies heavily on browser data APIs, please enable them to enjoy the app properly.')
-    console.log('Nethloader relies heavily on browser data APIs (localStorage, sessionStorage), please enable them to enjoy the app.')
-    throw Error('Private mode detected')
+    console.warn('Nethloader relies heavily on browser data APIs like localStorage, sessionStorage, please enable them to use the app.')
+    throw Error('Nethloader relies heavily on browser data APIs, please enable cookies and browser data to enjoy the app properly.')
   }
 
   // Promise API detect
   try {
     let promiseTest = Promise // eslint-disable-line no-unused-vars
   } catch (err) {
-    window.alert('Please, use an updated browser like Google Chrome or Firefox if you want to use this website properly.')
-    console.error('This browser doesn\'t support necessary web technology for this site to work, please, use an updated browser like Google Chrome or Firefox if you want to use this website properly.')
-    throw Error('Unsuported browser')
+    console.error('This browser doesn\'t support Promises or any ES6 new syntax and features. Consider upgrading.')
+    throw Error('this browser doesn\'t support required web technology. Consider upgrading to a newer browser like Google Chrome, Firefox or MS Edge.')
   }
 }
 
