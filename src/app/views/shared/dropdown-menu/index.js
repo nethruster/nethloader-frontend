@@ -11,9 +11,7 @@ export default class DropDownMenu extends Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      isOpen: false
-    }
+    this.state = {isOpen: false}
 
     this.handleClick = this.handleClick.bind(this)
   }

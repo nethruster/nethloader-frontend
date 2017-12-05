@@ -1,4 +1,4 @@
-import {h, Component} from 'preact'
+import {h} from 'preact'
 import {connect} from 'preact-redux'
 
 import SubheaderTabs from './tabs'
@@ -16,18 +16,16 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps)(class Subheader extends Component {
-  render ({isFetchingUser, userData, totalCount}) {
-    return (
-      <div class={`${style.cpsubheader} flex flex-main-center`}>
-        <div class={`${style.cpsubheaderWrapper} flex flex-cross-center flex-sb`}>
-          <div class={style.cpsubheaderUserStats}>
-            <p>{userData.name}</p>
-            <p>{`${totalCount} media items`}</p>
-          </div>
-          <SubheaderTabs />
+export default connect(mapStateToProps)(({isFetchingUser, userData, totalCount}) => {
+  return (
+    <div class={`${style.cpsubheader} flex flex-main-center`}>
+      <div class={`${style.cpsubheaderWrapper} flex flex-cross-center flex-sb`}>
+        <div class={style.cpsubheaderUserStats}>
+          <p>{userData.name}</p>
+          <p>{`${totalCount} media items`}</p>
         </div>
+        <SubheaderTabs />
       </div>
-    )
-  }
+    </div>
+  )
 })

@@ -8,7 +8,7 @@ export default class Checkbox extends Component {
   shouldComponentUpdate (nextProps, nextState) {
     return this.props.isSelected !== nextProps.isSelected
   }
-  
+
   render ({onChangeHandler, isSelected, text, dataId, customClass}) {
     return (
       <div class={`flex flex-full-center ${style.checkboxWrapper}`}>

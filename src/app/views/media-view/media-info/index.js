@@ -14,7 +14,7 @@ export default class MediaInfo extends Component {
   shouldComponentUpdate () {
     return false
   }
-  
+
   render ({data, mediaSrc}) {
     return (
       <div class={`paper paper-small paper-transparent ${style.mediaInfo} flex flex-dc`}>

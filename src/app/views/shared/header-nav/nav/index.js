@@ -21,24 +21,23 @@ export default withRouter(connect(mapStateToProps)(class HeaderNav extends Compo
   constructor (props) {
     super(props)
 
-    this.state = {
-      UploadMedia: null
-    }
+    this.state = {UploadMedia: null}
 
     this.handleLogout = this.handleLogout.bind(this)
     this.loadUploadMediaComponent = this.loadUploadMediaComponent.bind(this)
   }
 
+  // Load component asyncrously because it is larger than usual
   async loadUploadMediaComponent () {
     let UploadMedia = (await import(/* webpackChunkName: "shared_header-nav_uploadmedia" */'../uploadMedia')).default
-    this.setState({ UploadMedia })
+    this.setState({UploadMedia})
   }
 
   handleLogout () {
     this.props.dispatch(logoutUser())
   }
 
-  render ({ isAuthenticated }) {
+  render ({isAuthenticated}) {
     return (
       <nav class={`${style.links} flex flex-full-center`}>
         {isAuthenticated && (this.state.UploadMedia ? <this.state.UploadMedia /> : this.loadUploadMediaComponent())}

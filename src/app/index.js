@@ -15,38 +15,36 @@ function mapStateToProps (state) {
   return {isAuthenticated}
 }
 
-export default connect(mapStateToProps)(class App extends Component {
-  render ({isAuthenticated}) {
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route
+export default connect(mapStateToProps)(({isAuthenticated}) => {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route
+          exact
+          path='/'
+          component={asyncComponent(() => import(/* webpackChunkName: "home" */'./views/home').then(module => module.default))}
+        />
+
+        {isAuthenticated
+          ? <Redirect from='/login' to='/cp' />
+          : <Route
             exact
-            path='/'
-            component={asyncComponent(() => import(/* webpackChunkName: "home" */'./views/home').then(module => module.default))}
+            path='/login'
+            component={asyncComponent(() => import(/* webpackChunkName: "login" */'./views/login').then(module => module.default))}
           />
+        }
 
-          {isAuthenticated
-            ? <Redirect from='/login' to='/cp' />
-            : <Route
-              exact
-              path='/login'
-              component={asyncComponent(() => import(/* webpackChunkName: "login" */'./views/login').then(module => module.default))}
-            />
-          }
+        <Route
+          exact
+          path='/register'
+          component={asyncComponent(() => import(/* webpackChunkName: "register" */'./views/register').then(module => module.default))}
+        />
 
-          <Route
-            exact
-            path='/register'
-            component={asyncComponent(() => import(/* webpackChunkName: "register" */'./views/register').then(module => module.default))}
-          />
-
-          <Route
-            path='/:content'
-            component={Content}
-          />
-        </Switch>
-      </BrowserRouter>
-    )
-  }
+        <Route
+          path='/:content'
+          component={Content}
+        />
+      </Switch>
+    </BrowserRouter>
+  )
 })

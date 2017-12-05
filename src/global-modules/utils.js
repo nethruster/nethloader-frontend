@@ -178,7 +178,7 @@ const isFiltered = (params) => {
 const checkBrowserIntegrity = () => {
   // Private mode (localstorage, sessionStorage... access) detect
   try {
-    let securityTest = window.localStorage
+    let securityTest = window.localStorage // eslint-disable-line no-unused-vars
   } catch (err) {
     window.alert('Nethloader relies heavily on browser data APIs, please enable them to enjoy the app properly.')
     console.log('Nethloader relies heavily on browser data APIs (localStorage, sessionStorage), please enable them to enjoy the app.')
@@ -187,7 +187,7 @@ const checkBrowserIntegrity = () => {
 
   // Promise API detect
   try {
-    let promiseTest = Promise
+    let promiseTest = Promise // eslint-disable-line no-unused-vars
   } catch (err) {
     window.alert('Please, use an updated browser like Google Chrome or Firefox if you want to use this website properly.')
     console.error('This browser doesn\'t support necessary web technology for this site to work, please, use an updated browser like Google Chrome or Firefox if you want to use this website properly.')
