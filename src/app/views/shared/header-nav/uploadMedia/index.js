@@ -7,7 +7,7 @@ import Button from '../../button'
 import Modal from '../../modal'
 
 import {isValidFormat, getPageFactor} from 'utils'
-import {uploadMedia} from 'serverAPI/media'
+import {uploadMedia, getMediaInfo} from 'serverAPI/media'
 import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 import locale from 'locale'
 
@@ -139,7 +139,11 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
             this.toggleUploadModal()
 
             if (fileCount === 1) {
-              this.props.history.push(`/${imageId}`)
+              this.props.dispatch(getMediaInfo(imageId)).then(response => {
+                this.props.history.push(`/${response.id}`)
+              }).catch(() => {
+                this.context.router.history.push('/404')
+              })
             } else {
               let newParams = this.props.params
 

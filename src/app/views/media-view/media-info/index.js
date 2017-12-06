@@ -4,13 +4,15 @@ import Button from '../../shared/button'
 
 import locale from 'locale'
 import {computeDateFormat, computeDate, computeTime} from 'utils'
+import {baseMediaPath} from 'app.config'
 
 import style from './styles.scss'
 import '../../shared/paper/paper.scss'
 
 const viewStrings = locale.media_view.info
 
-export default function MediaInfo ({data, mediaSrc}) {
+export default function MediaInfo ({data}) {
+  const mediaSrc = `${baseMediaPath}${data.id}.${data.extension}`
   return (
     <div class={`paper paper-small paper-transparent ${style.mediaInfo} flex flex-dc`}>
       <div class={`${style.mediaInfoButtons} flex flex-sa`}>

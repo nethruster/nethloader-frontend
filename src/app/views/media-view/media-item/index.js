@@ -4,10 +4,10 @@ import AsyncMedia from 'asyncMedia'
 
 import style from './styles.scss'
 
-export default function MediaItem ({mediaSrc, type, id}) {
+export default function MediaItem ({type, id}) {
   return (
     <div class={`${style.mediaItem}`}>
-      <AsyncMedia src={mediaSrc} type={type} id={id} controls />
+      <AsyncMedia type={type} id={id} controls />
     </div>
   )
 }

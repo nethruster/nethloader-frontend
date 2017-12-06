@@ -7,9 +7,10 @@
                 "modules": false,
                 "targets": {
                     "browsers": [
-                        "last 2 versions"
+                        "last 4 versions"
                     ]
-                }
+                },
+                "useBuiltIns": true
             }
         ]
     ],
@@ -18,7 +19,7 @@
             "pragma": "h"
         }],
         ["transform-runtime", {
-            "polyfill": false,
+            "polyfill": true,
             "regenerator": true
         }]
     ]

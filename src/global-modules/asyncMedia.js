@@ -3,6 +3,7 @@ import {h, Component} from 'preact'
 import ViewLoading from '../app/views/shared/view-loading'
 
 import {isValidVideoFormat} from 'utils'
+import {baseMediaPath} from 'app.config'
 
 export default class AsyncMedia extends Component {
   constructor (props) {
@@ -11,24 +12,22 @@ export default class AsyncMedia extends Component {
     this.state = {mediaNode: null}
   }
 
-  shouldComponentUpdate (nextProps, nextState) {
-    return this.state.mediaNode !== nextState.mediaNode
-  }
-
-  async componentWillMount () {
+  componentDidMount () {
     if (!this.state.mediaNode) {
+      let mediaSrc = `${baseMediaPath}${this.props.id}.${this.props.type}`
+
       if (isValidVideoFormat(`video/${this.props.type}`)) {
-        const tempVideoElement = document.createElement('video')
-        const tempSourceElement = document.createElement('source')
-        tempSourceElement.src = this.props.src
+        let tempVideoElement = document.createElement('video')
+        let tempSourceElement = document.createElement('source')
+        tempSourceElement.src = mediaSrc
         tempSourceElement.type = `video/${this.props.type}`
         tempVideoElement.appendChild(tempSourceElement)
 
         tempVideoElement.oncanplay = () => {
           // If we get controls prop true, it means that we are on media-view, we won't play the video on the overview panel
-          const mediaNode =
+          let mediaNode =
             (<video preload={this.props.controls ? 'auto' : 'metadata'} height={this.props.size} controls={this.props.controls}>
-              <source src={this.props.src} type={`video/${this.props.type}`} />
+              <source src={mediaSrc} type={`video/${this.props.type}`} />
             </video>)
 
           this.setState({mediaNode})
@@ -37,11 +36,11 @@ export default class AsyncMedia extends Component {
           tempVideoElement.remove()
         }
       } else {
-        const tempImgElement = new Image()
-        tempImgElement.src = this.props.src
+        let tempImgElement = new Image()
+        tempImgElement.src = mediaSrc
 
         tempImgElement.onload = () => {
-          const mediaNode = <img src={this.props.src} height={tempImgElement.height} width={tempImgElement.width} alt={`${this.props.type} ${this.props.src}`} />
+          let mediaNode = <img src={mediaSrc} height={tempImgElement.height} width={tempImgElement.width} alt={`${this.props.type} ${mediaSrc}`} />
 
           this.setState({mediaNode})
 

@@ -98,13 +98,13 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
           <h5>Results per page:</h5>
           <div class={`${style.filtersFormSection} flex flex-cross-center flex-dc`}>
             <select class={style.filtersFormLimitSelect} onChange={this.handleMediaLimitChange}>
-              <option selected={this.state.filters.mediaLimit === 5}>5</option>
-              <option selected={this.state.filters.mediaLimit === 10}>10</option>
-              <option selected={this.state.filters.mediaLimit === 20}>20</option>
-              <option selected={this.state.filters.mediaLimit === 50}>50</option>
-              <option selected={this.state.filters.mediaLimit === 100}>100</option>
-              <option selected={this.state.filters.mediaLimit === 200}>200</option>
-              {!isFetchingMedia && <option selected={this.state.filters.mediaLimit === userMedia.totalCount}>All</option>}
+              {!isFetchingMedia && <option selected={Number(this.state.filters.mediaLimit) === Number(userMedia.totalCount)}>All</option>}
+              <option selected={Number(this.state.filters.mediaLimit) === 5}>5</option>
+              <option selected={Number(this.state.filters.mediaLimit) === 10}>10</option>
+              <option selected={Number(this.state.filters.mediaLimit) === 20}>20</option>
+              <option selected={Number(this.state.filters.mediaLimit) === 50}>50</option>
+              <option selected={Number(this.state.filters.mediaLimit) === 100}>100</option>
+              <option selected={Number(this.state.filters.mediaLimit) === 200}>200</option>
             </select>
           </div>
         </div>

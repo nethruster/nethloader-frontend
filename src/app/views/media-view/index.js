@@ -22,7 +22,7 @@ function mapStateToProps (state) {
 export default connect(mapStateToProps)(class MediaView extends Component {
   componentWillMount () {
     window.scrollTo(0, 0) // Quick hack to fix react-routing scroll issue
-    this.props.dispatch(getMediaInfo(this.context.router.route.match.params.id)).then((response) => response).catch(() => {
+    this.props.dispatch(getMediaInfo(this.context.router.route.match.params.id)).catch(() => {
       this.context.router.history.push('/404')
     })
   }
