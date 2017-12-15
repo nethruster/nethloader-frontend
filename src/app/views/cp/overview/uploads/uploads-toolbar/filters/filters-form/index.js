@@ -7,6 +7,9 @@ import FormInputRadio from '../../../../../../shared/form-input-radio'
 
 import style from './styles.scss'
 
+import locale from 'locale'
+const viewStrings = locale.cp.overview.filters.form
+
 const mapStateToProps = (state) => {
   const {params, userMedia, isFetchingMedia} = state.userMedia
   return {
@@ -69,7 +72,7 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
 
   handleMediaLimitChange (e) {
     let filters = this.state.filters
-    e.target.value === 'All' ? filters.mediaLimit = this.props.userMedia.totalCount : filters.mediaLimit = e.target.value
+    e.target.value === viewStrings.all ? filters.mediaLimit = this.props.userMedia.totalCount : filters.mediaLimit = e.target.value
     this.setState({filters})
   }
 
@@ -77,28 +80,28 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
     return (
       <form onSubmit={this.handleSubmitFilters} class={style.filtersForm}>
         <div>
-          <h5>Type:</h5>
+          <h5>{viewStrings.type}:</h5>
           <div class={`${style.filtersFormSection} flex flex-sa`}>
-            <FormInputRadio inputName='filterType' inputValue='' inputId='all' isChecked={this.state.filters.type === ''} changeHandler={this.handleTypeChange} inputLabel='Both' />
-            <FormInputRadio inputName='filterType' inputValue='image' inputId='image' isChecked={this.state.filters.type === 'image'} changeHandler={this.handleTypeChange} inputLabel='Image/gif' />
-            <FormInputRadio inputName='filterType' inputValue='video' inputId='video' isChecked={this.state.filters.type === 'video'} changeHandler={this.handleTypeChange} inputLabel='Video' />
+            <FormInputRadio inputName='filterType' inputValue='' inputId='all' isChecked={this.state.filters.type === ''} changeHandler={this.handleTypeChange} inputLabel={viewStrings.both} />
+            <FormInputRadio inputName='filterType' inputValue='image' inputId='image' isChecked={this.state.filters.type === 'image'} changeHandler={this.handleTypeChange} inputLabel={viewStrings.image_gif} />
+            <FormInputRadio inputName='filterType' inputValue='video' inputId='video' isChecked={this.state.filters.type === 'video'} changeHandler={this.handleTypeChange} inputLabel={viewStrings.video} />
           </div>
-          <h5>Date interval:</h5>
+          <h5>{viewStrings.date_interval}:</h5>
           <div class={`${style.filtersFormSection} flex flex-sa`}>
             <label>
-              <p>After</p>
+              <p>{viewStrings.after}</p>
               <FormInput inputType='date' inputId='afterDate' changeHandler={this.handleDateChange} />
             </label>
 
             <label>
-              <p>Before</p>
+              <p>{viewStrings.before}</p>
               <FormInput inputType='date' inputId='beforeDate' changeHandler={this.handleDateChange} />
             </label>
           </div>
-          <h5>Results per page:</h5>
+          <h5>{viewStrings.results_per_page}:</h5>
           <div class={`${style.filtersFormSection} flex flex-cross-center flex-dc`}>
             <select class={style.filtersFormLimitSelect} onChange={this.handleMediaLimitChange}>
-              {!isFetchingMedia && <option selected={Number(this.state.filters.mediaLimit) === Number(userMedia.totalCount)}>All</option>}
+              {!isFetchingMedia && <option selected={Number(this.state.filters.mediaLimit) === Number(userMedia.totalCount)}>{viewStrings.all}</option>}
               <option selected={Number(this.state.filters.mediaLimit) === 5}>5</option>
               <option selected={Number(this.state.filters.mediaLimit) === 10}>10</option>
               <option selected={Number(this.state.filters.mediaLimit) === 20}>20</option>
@@ -110,8 +113,8 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
         </div>
 
         <div class={`${style.filtersFormSubmit}`}>
-          <a onClick={this.resetFilters}><small>Reset Fields</small></a>
-          <Button type='submit' text='Filter!' contrast />
+          <a onClick={this.resetFilters}><small>{viewStrings.reset_fields}</small></a>
+          <Button type='submit' text={viewStrings.submit} contrast />
         </div>
       </form>
     )

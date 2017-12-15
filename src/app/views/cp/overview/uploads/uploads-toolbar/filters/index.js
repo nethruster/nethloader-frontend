@@ -9,6 +9,9 @@ import {isFiltered} from 'utils'
 
 import './styles.scss'
 
+import locale from 'locale'
+const viewStrings = locale.cp.overview.filters
+
 const mapStateToProps = (state) => {
   const {params} = state.userMedia
 
@@ -42,7 +45,7 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
     return (
       <div class='flex flex-full-center'>
         <Button iconButton icon='filter' onClickExecute={this.toggleFilterModal} badge={isFiltered(params)} />
-        <Modal modalTitle='Filter Media' isActive={this.state.modals.filter.isActive} toggleModal={this.toggleFilterModal}>
+        <Modal modalTitle={viewStrings.title} isActive={this.state.modals.filter.isActive} toggleModal={this.toggleFilterModal}>
           <FiltersForm updateUserMedia={updateUserMedia} toggleFilterModal={this.toggleFilterModal} />
         </Modal>
       </div>

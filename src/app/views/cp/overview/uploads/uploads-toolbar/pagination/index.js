@@ -4,11 +4,14 @@ import {NavLink} from 'react-router-dom'
 
 import Icon from '../../../../../shared/icon'
 import Button from '../../../../../shared/button'
+import DropDownMenu from '../../../../../shared/dropdown-menu'
 import Ink from 'react-ink'
 import {getPageFactor} from 'utils'
 
 import style from './styles.scss'
-import DropDownMenu from '../../../../../shared/dropdown-menu/index'
+
+import locale from 'locale'
+const viewStrings = locale.cp.overview.uploads.pagination
 
 const mapStateToProps = (state) => {
   const {userMedia, params, isFetchingMedia} = state.userMedia
@@ -93,13 +96,13 @@ export default connect(mapStateToProps)(class Pagination extends Component {
     return (
       <div class={`flex flex-main-center flex-sb ${style.paginationNav}`}>
         <div class={`${style.paginationNavButton} ${style.paginationNavButtonLeft} ${!isFetchingMedia && this.hasPrevPage() ? '' : style.paginationNavButtonDisabled}`} onClick={this.loadFirstPage}>
-          <p>First page</p>
+          <p>{viewStrings.first_page}</p>
           <Icon iconName='skip-left' />
           <Ink />
         </div>
         <div class='flex'>
           <div class={`${style.paginationNavButton} ${style.paginationNavButtonLeft} ${!isFetchingMedia && this.hasPrevPage() ? '' : style.paginationNavButtonDisabled}`} onClick={this.loadPrevPage}>
-            <p>Prev Page</p>
+            <p>{viewStrings.previous_page}</p>
             <Icon iconName='left-arrow' />
             <Ink />
           </div>
@@ -109,13 +112,13 @@ export default connect(mapStateToProps)(class Pagination extends Component {
             </DropDownMenu>
           </div>
           <div class={`${style.paginationNavButton} ${style.paginationNavButtonRight} ${!isFetchingMedia && this.hasNextPage() ? '' : style.paginationNavButtonDisabled}`} onClick={this.loadNextPage}>
-            <p>Next page</p>
+            <p>{viewStrings.next_page}</p>
             <Icon iconName='right-arrow' />
             <Ink />
           </div>
         </div>
         <div class={`${style.paginationNavButton} ${style.paginationNavButtonRight} ${!isFetchingMedia && this.hasNextPage() ? '' : style.paginationNavButtonDisabled}`} onClick={this.loadLastPage}>
-          <p>Last page</p>
+          <p>{viewStrings.last_page}</p>
           <Icon iconName='skip-right' />
           <Ink />
         </div>

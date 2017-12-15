@@ -11,10 +11,9 @@ import {deleteMedia} from 'serverAPI/media'
 import {mediaSelect, mediaUnselect, mediaUnselectAll} from 'actions/media'
 import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 
-import locale from 'locale'
-
 import style from './styles.scss'
 
+import locale from 'locale'
 const viewStrings = locale.cp.overview.uploads
 
 const mapStateToProps = (state) => {
@@ -89,7 +88,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     return (
       <p class={`nomedia flex flex-full-center flex-dc`}>
         {viewStrings.no_media}<br />
-        <small class='flex flex-full-center'>{this.props.totalCount > 0 ? 'The filters didn\'t produce any results' : 'Drop files anywhere or click the upload button to add media.'}</small>
+        <small class='flex flex-full-center'>{this.props.totalCount > 0 ? viewStrings.no_filtered_media : viewStrings.add_media_description}</small>
       </p>
     )
   }
@@ -168,12 +167,12 @@ export default connect(mapStateToProps)(class Uploads extends Component {
       <div class={style.uploads}>
         {(!!userMedia && totalCount <= 0 && userMedia.totalCount === 0) ? null : <UploadsToolbar handleDeleteClick={this.toggleDeleteConfirmModal} updateUserMedia={updateUserMedia} />}
         {isFetchingMedia ? <ViewLoading /> : this.computeMediaList()}
-        <Modal isActive={this.state.modals.singleDelete.isActive} toggleModal={this.toggleDeleteConfirmModal} closeButtonText='Wait, no' acceptButtonText='Yes, do it' onAcceptExecute={this.confirmSingleDelete}>
-          <p class='flex flex-full-center'>Are you sure that you want to delete the selected item?</p>
+        <Modal isActive={this.state.modals.singleDelete.isActive} toggleModal={this.toggleDeleteConfirmModal} closeButtonText={viewStrings.modals.deny} acceptButtonText={viewStrings.modals.confirm} onAcceptExecute={this.confirmSingleDelete}>
+          <p class='flex flex-full-center'>{viewStrings.modals.confirm_single_delete}</p>
         </Modal>
-        <Modal isActive={this.state.modals.multipleDelete.isActive} toggleModal={this.toggleDeleteConfirmModal} closeButtonText='Wait, no' acceptButtonText='Yes, do it' onAcceptExecute={this.confirmMultipleDelete} disabled={this.state.isDeleting}>
+        <Modal isActive={this.state.modals.multipleDelete.isActive} toggleModal={this.toggleDeleteConfirmModal} closeButtonText={viewStrings.modals.deny} acceptButtonText={viewStrings.modals.confirm} onAcceptExecute={this.confirmMultipleDelete} disabled={this.state.isDeleting}>
           <p class='flex flex-full-center'>
-            You are about to delete {selectedMedia.length} items, are you sure that you want to proceed?
+            {selectedMedia.length} {viewStrings.modals.confirm_multiple_delete}
           </p>
         </Modal>
       </div>

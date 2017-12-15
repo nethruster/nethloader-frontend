@@ -58,7 +58,7 @@
             padding: calc(var(--base-pm) / 2) calc(var(--base-pm) * 2);
             font-size: 12px;
 
-            svg { width: 17px; }
+            svg { width: 18px; }
         }
 
         &Transparent {
@@ -113,7 +113,7 @@
             font-size: .9em;
             text-transform: capitalize;            
 
-            svg { width: 17px; }
+            svg { width: 18px; }
 
             &:hover { background-color: var(--default-bg-hover) }
         }
@@ -160,14 +160,18 @@
             border-radius: 100%;
 
             cursor: pointer;
+            transition: background-color .2s ease-in-out;
             
             svg {
                 width: 24px;
+
+                color: rgba(42, 67, 90, 0.9);
 
                 // Workaround to center svg icon
                 position: relative;
                 left: 50%;
                 transform: translateX(-50%);
+                
             }
             
             &:hover { background-color: var(--default-bg-hover); }

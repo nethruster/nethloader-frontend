@@ -41,19 +41,14 @@
     "has_account": "I already have an account"
   },
   "media_view": {
-    "info": {
-      "type": "Type",
-      "uploaded": "Uploaded",
-      "at": "At",
       "buttons": {
-        "download": "Download",
-        "view_original": "View original"
-      }
+        "download": "Download media",
+        "view_original": "Open original image in a new tab"
     }
   },
   "cp": {
     "subheader": {
-      "uploads": "uploads",
+      "media_items": "media items",
       "tabs": {
         "overview": "Overview",
         "settings": "Settings",
@@ -61,18 +56,29 @@
       }
     },
     "overview": {
-      "search": {
-        "search_title": "Filter uploads",
-        "video": "Videos",
-        "image": "Images/Gif",
-        "dates": {
-          "between": "between",
-          "and": "and"
+      "no_page": "This page doesn't exist",
+      "go_to_first_page": "Go to first page",
+      "go_to_previous_page": "Go to previous page",
+      "filters": {
+        "title": "Filter media",
+        "form": {
+          "type": "Type",
+          "date_interval": "Date interval",
+          "after": "After",
+          "before": "Before",
+          "both": "Both",
+          "image_gif": "Image/gif",
+          "video": "Video",
+          "results_per_page": "Results per page",
+          "all": "All",
+          "reset_fields": "Reset fields",
+          "submit": "Filter!"
         }
       },
       "uploads": {
         "no_media": "No media found",
-        "loading_media": "Loading media",
+        "no_filtered_media": "The filters didn't produce any results",
+        "add_media_description": "Drop files anywhere or click the upload button to add media.",
         "upload": {
           "type": "Type",
           "uploaded": "Uploaded",
@@ -81,6 +87,18 @@
           "copy_url": "Copy URL",
           "click_open": "Click to open",
           "copied": "Copied!"
+        },
+        "modals": {
+          "confirm_single_delete": "Are you sure that you want to delete the selected item?",
+          "confirm_multiple_delete": "items are about to be deleted, are you sure that you want to proceed?",
+          "confirm": "Yes, do it",
+          "deny": "Wait, no"
+        },
+        "pagination": {
+          "first_page": "First page",
+          "last_page": "Last page",
+          "previous_page": "Prev page",
+          "next_page": "Next page"
         }
       }
     }
@@ -94,6 +112,8 @@
       "close": "Close"
     },
     "upload_media": {
+      "trigger_button": "Upload",
+      "invalid_file_detected": "Detected invalid file type",
       "response": {
         "no_files": "No files selected",
         "error": "Something went wrong"
@@ -104,9 +124,11 @@
         "uploading_file": "Uploading file",
         "files_selected": "files selected",
         "upload_submit": "Upload"
-      },
-      "modal_button": "Upload",
-      "invalid_file_detected": "Detected invalid file type"
+      }      
+    },
+    "not_found": {
+      "title": "Sorry, we couldn't find that...",
+      "contact_admin": "If something should be here, contact with an administrator."
     }
   }
 }

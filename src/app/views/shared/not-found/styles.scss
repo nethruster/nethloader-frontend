@@ -3,9 +3,11 @@
         flex: 1;
 
         a {
-            color: var(--contrast-bg);
+            font-size: .85em;
 
             transition: color .3s ease-in-out;
+
+            &:hover { color: var(--contrast-bg); }
         }
 
         img {

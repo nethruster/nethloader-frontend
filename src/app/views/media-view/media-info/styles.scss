@@ -1,47 +1,41 @@
 :local {
     .mediaInfo {
-        margin: calc(var(--base-pm) * 2) 0;
+        padding: var(--base-pm);
+        background-color: var(--default-bg);
+        border-radius: 0 0 4px 4px;
+        align-self: flex-end;
+        margin-top: -1px;
+        border: 1px solid rgba(0,0,0,.08);
+
+        div {
+            height: 100%;
+            padding: 0 8px;
+        }
 
         p {
-            margin: var(--base-pm);
+            font-size: .9em;
+            font-weight: 300;
 
-            text-align: center;
+            svg { width: 18px; }
         }
-
-        &Buttons {
-            flex: 1;
-
-            a {
-                flex: 1;
-                display: block;
-                
-                margin: var(--base-pm);
-            }
-
-            button { margin: 0; }
-        }
-        
     }
 
-    .dataSpec,
-    .dataDate {
-        flex: 2;
-
-        opacity: .7;
-
-        text-align: center;
-        font-size: .8em;
-
-        span { font-weight: 500; }
-
-        small { opacity: .8 }
-
-        &:hover { opacity: 1 }
+    .shareButton {
+        margin: 0 8px;
+        svg {
+            width: 22px;
+        }
     }
 
-    @media(max-width: 440px) {
-        .mediaInfo {
-            &Buttons { flex-direction: column; }
+    .twitter {
+        &:hover {
+            svg { color: var(--twitter-color); }
+        }
+    }
+
+    .facebook {
+        &:hover {
+            svg { color: var(--facebook-color); }
         }
     }
 }

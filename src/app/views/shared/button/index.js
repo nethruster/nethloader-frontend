@@ -26,16 +26,16 @@ export default class Button extends Component {
       <button
         data-id={dataId}
         class={`flex flex-full-center ${style.button} ${
-          round ? style.buttonRound : ''} ${
-          contrast ? style.buttonContrast : ''} ${
-          big ? style.buttonBig : ''} ${
-          small ? style.buttonSmall : ''} ${
-          transparent ? style.buttonTransparent : ''} ${
           navButton ? style.buttonNav : ''} ${
           dropdown ? style.buttonDropdown : ''} ${
           floating ? style.buttonFloating : ''} ${
           iconButton ? style.buttonIcon : ''} ${
           badge ? style.buttonBadge : ''} ${
+          round ? style.buttonRound : ''} ${
+          contrast ? style.buttonContrast : ''} ${
+          big ? style.buttonBig : ''} ${
+          small ? style.buttonSmall : ''} ${
+          transparent ? style.buttonTransparent : ''} ${
           customClass || ''}`}
         tabindex={tabindex}
         type={type}

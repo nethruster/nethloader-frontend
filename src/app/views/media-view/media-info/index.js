@@ -1,27 +1,35 @@
 import {h} from 'preact'
 
 import Button from '../../shared/button'
+import Icon from '../../shared/icon'
 
-import locale from 'locale'
 import {computeDateFormat, computeDate, computeTime} from 'utils'
 import {baseMediaPath} from 'app.config'
 
 import style from './styles.scss'
 import '../../shared/paper/paper.scss'
 
-const viewStrings = locale.media_view.info
+import locale from 'locale'
+const viewStrings = locale.media_view.buttons
 
 export default function MediaInfo ({data}) {
   const mediaSrc = `${baseMediaPath}${data.id}.${data.extension}`
+  const mediaUrl = `${document.location.origin}/${data.id}`
+
   return (
-    <div class={`paper paper-small paper-transparent ${style.mediaInfo} flex flex-dc`}>
-      <div class={`${style.mediaInfoButtons} flex flex-sa`}>
-        <a href={mediaSrc} target='_blank' rel='noopener' title='Open original image in a new tab'><Button text={viewStrings.buttons.view_original} small tabindex='-1' icon='fullscreen' /></a>
-        <a href={mediaSrc} download rel='noopener' title='Download image'><Button text={viewStrings.buttons.download} small tabindex='-1' icon='download' /></a>
+    <div class={`${style.mediaInfo} flex flex-cross-center`}>
+      <div title={computeDateFormat(data.createdAt)}>
+        <p><Icon iconName='calendar-clock' />&nbsp;{computeDate(data.createdAt)} - {computeTime(data.createdAt)}</p>
       </div>
-      <div class='flex flex-full-center'>
-        <div class={`${style.dataSpec} flex flex-dc`}><p><span>ID:</span> {data.id}</p> <p><span>{viewStrings.type}:</span> {data.extension}</p></div>
-        <div class={`${style.dataDate} flex flex-dc`} title={computeDateFormat(data.createdAt)}><p><span>{viewStrings.uploaded}:</span> {computeDate(data.createdAt)}</p> <p><span>{viewStrings.at}:</span> {computeTime(data.createdAt)}</p></div>
+      <div class='flex'>
+        <a href={mediaSrc} download rel='noopener' title={viewStrings.download}><Button iconButton icon='download' /></a>
+        <a href={mediaSrc} target='_blank' rel='noopener' title={viewStrings.view_original}><Button iconButton icon='fullscreen' /></a>
+      </div>
+      <div class='flex'>
+        <a class={`${style.shareButton} ${style.twitter}`} title='Twitter' rel='noopener' target='_blank'
+          href={`https://twitter.com/intent/tweet?url=${mediaUrl};text=${data.extension}media;related=Nethruster`}>
+          <Icon iconName='twitter' /></a>
+        <a class={style.facebook} title='Facebook' href={`http://www.facebook.com/dialog/share?app_id=732538520272338&amp;href=${mediaUrl}&amp;display=popup`}><Icon iconName='facebook' /></a>
       </div>
     </div>
   )
