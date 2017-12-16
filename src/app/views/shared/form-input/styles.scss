@@ -46,6 +46,7 @@
         &[type="text"],
         &[type="password"],
         &[type="email"] {
+            font-size: .9em;
             & + label {
                 min-height: 20px;
 

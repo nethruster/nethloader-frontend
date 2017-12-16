@@ -55,6 +55,8 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
       beforeDate: ''
     }
 
+    this.filtersForm.reset()
+
     this.setState({filters})
   }
 
@@ -78,7 +80,7 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
 
   render ({updateUserMedia, params, dispatch, userMedia, isFetchingMedia}) {
     return (
-      <form onSubmit={this.handleSubmitFilters} class={style.filtersForm}>
+      <form onSubmit={this.handleSubmitFilters} class={style.filtersForm} ref={(el) => { this.filtersForm = el }}>
         <div>
           <h5>{viewStrings.type}:</h5>
           <div class={`${style.filtersFormSection} flex flex-sa`}>
@@ -101,13 +103,12 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
           <h5>{viewStrings.results_per_page}:</h5>
           <div class={`${style.filtersFormSection} flex flex-cross-center flex-dc`}>
             <select class={style.filtersFormLimitSelect} onChange={this.handleMediaLimitChange}>
-              {!isFetchingMedia && <option selected={Number(this.state.filters.mediaLimit) === Number(userMedia.totalCount)}>{viewStrings.all}</option>}
-              <option selected={Number(this.state.filters.mediaLimit) === 5}>5</option>
               <option selected={Number(this.state.filters.mediaLimit) === 10}>10</option>
               <option selected={Number(this.state.filters.mediaLimit) === 20}>20</option>
               <option selected={Number(this.state.filters.mediaLimit) === 50}>50</option>
               <option selected={Number(this.state.filters.mediaLimit) === 100}>100</option>
               <option selected={Number(this.state.filters.mediaLimit) === 200}>200</option>
+              {!isFetchingMedia && <option selected={Number(this.state.filters.mediaLimit) === Number(userMedia.totalCount)}>{viewStrings.all}</option>}
             </select>
           </div>
         </div>

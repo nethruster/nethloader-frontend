@@ -2,12 +2,13 @@
   "header_nav": {
     "about_nethloader": "Acerca de Nethloader",
     "login": "Iniciar sesión",
-    "logout": "Cerrar sesión"
+    "logout": "Cerrar sesión",
+    "cp": "Panel de Control"
   },
   "home": {
     "intro": "Este dominio usa Nethloader, un servicio personal para compartir contenido multimedia.",
     "buttons": {
-      "more_info": "Más información",
+      "more_info": "Más info.",
       "source_code": "GitHub"
     }
   },
@@ -40,72 +41,96 @@
     "has_account": "Ya tengo una cuenta"
   },
   "media_view": {
-    "info": {
-      "type": "Tipo",
-      "uploaded": "Subido el",
-      "at": "A las",
-      "buttons": {
-        "download": "Descargar",
-        "view_original": "Ver original"
-      }
+    "buttons": {
+      "download": "Descargar archivo",
+      "view_original": "Abrir imagen original en una pestaña nueva"
     }
   },
   "cp": {
     "subheader": {
-      "uploads": "archivos",
+      "media_items": "archivos",
       "tabs": {
         "overview": "Resumen",
         "settings": "Ajustes",
-        "admin_settings": "Ajustes de admin."
+        "admin_settings": "Admin"
       }
     },
     "overview": {
-      "search": {
-        "search_title": "Buscar archivos",
-        "gifs": "Gifs",
-        "images": "Imágenes",
-        "dates": {
-          "between": "entre",
-          "and": "y"
+      "no_page": "Esta página no existe",
+      "go_to_first_page": "Ir a la primera página",
+      "go_to_previous_page": "Ir a la página anterior",
+      "filters": {
+        "title": "Filtrar archivos",
+        "form": {
+          "type": "Tipo",
+          "date_interval": "Intervalo de fechas",
+          "after": "Después",
+          "before": "Antes",
+          "both": "Ambos",
+          "image_gif": "Imagen/gif",
+          "video": "Video",
+          "results_per_page": "Resultados por página",
+          "all": "Todo",
+          "reset_fields": "Filtros por defecto",
+          "submit": "Filtrar"
         }
       },
       "uploads": {
-        "no_media": "No hay archivos",
-        "loading_media": "Cargando elementos",
+        "no_media": "No se han encontrado archivos",
+        "no_filtered_media": "Los filtros no han producido resultados",
+        "add_media_description": "Arrastra archivos aquí o haz clic en el boton 'Subir' para añadir archivos.",
         "upload": {
           "type": "Tipo",
-          "uploaded": "Subido el",
-          "at": "A las",
+          "uploaded": "Subido",
+          "at": "El",
           "download": "Descargar",
-          "copy_url": "Copiar url",
-          "click_open": "Haz click para abrir",
-          "copied": "COPIADO!"
+          "copy_url": "Copiar URL",
+          "delete": "Eliminar",
+          "copied": "Copiada!"
+        },
+        "modals": {
+          "confirm_single_delete": "¿Estás seguro de que quieres eliminar el elemento selecconado?",
+          "confirm_multiple_delete": "elementos van a ser eliminados, estás seguro de que deseas proceder?",
+          "confirm": "Si, hazlo",
+          "deny": "No, espera"
+        },
+        "pagination": {
+          "page": "Pág.",
+          "first_page": "Primera pág.",
+          "last_page": "Última pág.",
+          "previous_page": "Pág. anterior",
+          "next_page": "Pág. siguiente"
         }
       }
     }
   },
   "footer": {
     "version": "Version",
-    "login": "Iniciar Sesión"
+    "login": "Iniciar Sesión",
+    "powered_by": "Con tecnologia de"
   },
   "shared": {
     "modal": {
       "close": "Cerrar"
     },
     "upload_media": {
+      "trigger_button": "Subir",
+      "invalid_file_detected": "Archivo inválido detectado",
       "response": {
-        "no_files": "No se han seleccionado archivos",
+        "no_files": "No se han seleccionado elementos",
         "error": "Algo ha ido mal"
       },
       "input": {
-        "text": "Haz click para añadir archivos o arrástralos aqui",
-        "files_text": "Haz click para añadir más archivos o arrástralos aqui",
+        "text": "Haz clic para añadir archivos o arrastralos aquí",
+        "files_text": "Haz clic para añadir más archivos o arrastralos aquí",
         "uploading_file": "Subiendo archivo",
         "files_selected": "archivos seleccionados",
         "upload_submit": "Subir"
-      },
-      "modal_button": "Subir",
-      "invalid_file_detected": "Archivo inválido detectado"
+      }
+    },
+    "not_found": {
+      "title": "Lo sentimos, no hemos podido encontrar eso...",
+      "contact_admin": "Si algo deberia estar aquí, contacta con un administrador."
     }
   }
 }

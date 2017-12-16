@@ -12,7 +12,7 @@ export default class Button extends Component {
 
   render ({iconName}) {
     const iconStyle = {
-      fill: this.props.iconColor
+      fill: this.props.iconColor || ''
     }
 
     return (

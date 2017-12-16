@@ -107,7 +107,7 @@ export default connect(mapStateToProps)(class Pagination extends Component {
             <Ink />
           </div>
           <div class={`flex ${style.paginationList}`}>
-            <DropDownMenu centered noMinWidth navTrigger>
+            <DropDownMenu centered noMinWidth navTrigger localePageString={viewStrings.page}>
               {this.computePageList()}
             </DropDownMenu>
           </div>

@@ -193,7 +193,7 @@
         }
     }
 
-    @media(max-width: 620px) {
+    @media(max-width: 650px) {
         .button {
             &Nav {
                 p { font-size: .8em; }
@@ -202,7 +202,7 @@
         }
     }
 
-     @media(max-width: 350px) {
+     @media(max-width: 400px) {
         .button {
             &Nav {
                 p { display: none; }

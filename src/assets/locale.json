@@ -41,9 +41,9 @@
     "has_account": "I already have an account"
   },
   "media_view": {
-      "buttons": {
-        "download": "Download media",
-        "view_original": "Open original image in a new tab"
+    "buttons": {
+      "download": "Download media",
+      "view_original": "Open original image in a new tab"
     }
   },
   "cp": {
@@ -52,7 +52,7 @@
       "tabs": {
         "overview": "Overview",
         "settings": "Settings",
-        "admin_settings": "Admin settings"
+        "admin_settings": "Admin"
       }
     },
     "overview": {
@@ -71,21 +71,21 @@
           "video": "Video",
           "results_per_page": "Results per page",
           "all": "All",
-          "reset_fields": "Reset fields",
-          "submit": "Filter!"
+          "reset_fields": "Default filters",
+          "submit": "Filter"
         }
       },
       "uploads": {
         "no_media": "No media found",
         "no_filtered_media": "The filters didn't produce any results",
-        "add_media_description": "Drop files anywhere or click the upload button to add media.",
+        "add_media_description": "Drop files anywhere or click the 'Upload' button to add media.",
         "upload": {
           "type": "Type",
           "uploaded": "Uploaded",
           "at": "At",
           "download": "Download",
           "copy_url": "Copy URL",
-          "click_open": "Click to open",
+          "delete": "Delete",
           "copied": "Copied!"
         },
         "modals": {
@@ -95,6 +95,7 @@
           "deny": "Wait, no"
         },
         "pagination": {
+          "page": "Page",
           "first_page": "First page",
           "last_page": "Last page",
           "previous_page": "Prev page",
@@ -105,7 +106,8 @@
   },
   "footer": {
     "version": "Version",
-    "login": "Login"
+    "login": "Login",
+    "powered_by": "Powered by"
   },
   "shared": {
     "modal": {
@@ -124,7 +126,7 @@
         "uploading_file": "Uploading file",
         "files_selected": "files selected",
         "upload_submit": "Upload"
-      }      
+      }
     },
     "not_found": {
       "title": "Sorry, we couldn't find that...",

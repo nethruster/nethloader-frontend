@@ -57,7 +57,7 @@ export default connect(mapStateToProps)(class Upload extends Component {
         <DropDownMenu>
           <li><a href={mediaPath} download><Button text={viewStrings.download} icon='download' dropdown /></a></li>
           <li><Button icon='copy' text={this.state.copy.valueCopied ? viewStrings.copied : viewStrings.copy_url} copyText={`${mediaUrl}`} onClickExecute={this.handleCopyClick} dropdown /></li>
-          <li><Button dataId={data.id} text='Delete' icon='delete' dropdown onClickExecute={this.handleDeleteClick} /></li>
+          <li><Button dataId={data.id} text={viewStrings.delete} icon='delete' dropdown onClickExecute={this.handleDeleteClick} /></li>
         </DropDownMenu>
       </div>
     )

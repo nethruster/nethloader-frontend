@@ -24,14 +24,14 @@ export default class DropDownMenu extends Component {
     this.setState({isOpen: !this.state.isOpen})
   }
 
-  render ({customIcon, navTrigger, centered, noMinWidth}) {
+  render ({customIcon, navTrigger, centered, noMinWidth, localePageString}) {
     return (
       <div class='flex flex-full-center'>
         <div class={style.dropdownWrapper}>
           {navTrigger ? (
             <div class={`flex flex-cross-center flex-dc ${style.dropdownMenuNavButton} ${style.dropdownMenuNavButtonCustom}`} onClick={this.handleClick}>
               <Ink />
-              <span class='flex'><Icon iconName='chev-down' /><p>Page</p></span>
+              <span class='flex'><Icon iconName='chev-down' /><p>{localePageString}</p></span>
               <b>{this.pageFactor + 1}</b>
             </div>
           ) : <Button iconButton icon={`${customIcon || 'dots-menu'}`} onClickExecute={this.handleClick} />}
