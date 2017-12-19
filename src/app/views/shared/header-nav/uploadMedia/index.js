@@ -152,7 +152,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     }
 
     for (let file of event.target.files) {
-      if (isValidFormat(file.type)) {
+      if (isValidFormat(file.name.split('.').pop())) { // Get the extension part from the mimeType
         modals.upload.files.push(file)
         modals.upload.selectedFiles.push(file.name)
       } else {
@@ -181,7 +181,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     }
 
     for (let file of event.dataTransfer.files) {
-      if (isValidFormat(file.type)) {
+      if (isValidFormat(file.file.name.split('.').pop())) {
         modals.upload.files.push(file)
         modals.upload.selectedFiles.push(file.name)
       } else {
@@ -199,7 +199,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
         <Modal isActive={this.state.modals.upload.isActive} toggleModal={this.toggleUploadModal} disabled={this.state.modals.upload.isUploading}>
           <div>
             <form onSubmit={this.handleUploadSubmit} class={`${style.uploadForm} flex flex-dc flex-full-center`}>
-              <input type='file' id='fileInput' name='file' accept='image/*, video/*' onChange={this.handleFileChange} multiple />
+              <input type='file' id='fileInput' name='file' accept='image/*, video/*' onChange={this.handleFileChange} multiple /> {/* use extensions from utils */}
               {
                 this.state.modals.upload.isUploading
                   ? (

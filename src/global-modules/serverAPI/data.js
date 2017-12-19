@@ -3,7 +3,7 @@ import {apiBaseUrl} from 'app.config'
 import {requestUserData, receiveUserData, userDataError,
   requestUserMedia, receiveUserMedia, userMediaError} from 'actions/data'
 
-import {mediaExtensions} from 'utils'
+import {filterExtensions} from 'utils'
 
 // User data
 const getUserData = (id, authToken) => {
@@ -48,7 +48,7 @@ const getUserData = (id, authToken) => {
 
 // User media
 const getUserMedia = (id, authToken, params) => {
-  let extensionsFilter = params.type ? `extensions: [${[...mediaExtensions[params.type]]}],` : ''
+  let extensionsFilter = params.type ? `extensions: [${filterExtensions[params.type]}],` : ''
 
   let requestConfig = {
     method: 'POST',

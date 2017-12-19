@@ -1,17 +1,14 @@
 import {checkCurrentSessionToken} from 'serverAPI/authentication'
 
-const supportedVideoFormats = ['video/mp4', 'video/webm', 'video/ogg', 'application/ogg']
-const supportedMimeTypes = [...supportedVideoFormats, 'image/png', 'image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/svg+xml', 'image/webp']
-const imageExtensions = ['"png"', '"jpg"', '"jpeg"', '"gif"', '"svg"', '"webp"', '"image/svg+xml"']
-const videoExtensions = ['"mp4"', '"webm"', '"ogg"']
+const imageExtensions = ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp']
+const videoExtensions = ['mp4', 'ogg', 'webm']
+const supportedExtensions = [...imageExtensions, ...videoExtensions]
+const unprocessableExtensions = ['webp', 'webm', 'svg'] // List of extensions we can't process to create a thumbnail
 
-const mediaExtensions = {
-  'image': [
-    ...imageExtensions
-  ],
-  'video': [
-    ...videoExtensions
-  ]
+// Useful lists to filter media by type, must contain quoted items
+const filterExtensions = {
+  'image': imageExtensions.map(ext => `"${ext}"`),
+  'video': videoExtensions.map(ext => `"${ext}"`)
 }
 
 const baseParams = {
@@ -121,7 +118,7 @@ const computeDateFormat = (date) => {
  * @return boolean
  */
 const isValidVideoFormat = (type) => {
-  return supportedVideoFormats.includes(type)
+  return videoExtensions.includes(type)
 }
 
 /**
@@ -130,7 +127,7 @@ const isValidVideoFormat = (type) => {
  * @return boolean
  */
 const isValidFormat = (type) => {
-  return supportedMimeTypes.includes(type)
+  return supportedExtensions.includes(type)
 }
 
 /**
@@ -178,7 +175,8 @@ const isFiltered = (params) => {
 const checkBrowserIntegrity = () => {
   // Private mode (localstorage, sessionStorage... access) detection
   try {
-    let securityTest = window.localStorage // eslint-disable-line no-unused-vars
+    let localStTest = window.localStorage // eslint-disable-line no-unused-vars
+    let sessionStTest = window.sessionStorage // eslint-disable-line no-unused-vars
   } catch (err) {
     console.warn('Nethloader relies heavily on browser data APIs like localStorage, sessionStorage, please enable them to use the app.')
     throw Error('Nethloader relies heavily on browser data APIs, please enable cookies and browser data to enjoy the app properly.')
@@ -208,7 +206,8 @@ export {
   isValidFormat,
   checkUserSessionValidity,
   getPageFactor,
-  mediaExtensions,
+  filterExtensions,
+  unprocessableExtensions,
   isFiltered,
   checkBrowserIntegrity
 }

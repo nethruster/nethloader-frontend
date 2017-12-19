@@ -2,7 +2,7 @@ import {h, Component} from 'preact'
 
 import ViewLoading from '../app/views/shared/view-loading'
 
-import {isValidVideoFormat} from 'utils'
+import {isValidVideoFormat, unprocessableExtensions} from 'utils'
 import {baseMediaPath} from 'app.config'
 
 export default class AsyncMedia extends Component {
@@ -10,13 +10,27 @@ export default class AsyncMedia extends Component {
     super(props)
 
     this.state = {mediaNode: null}
+
+    this.computeMediaSrc = this.computeMediaSrc.bind(this)
+    this.hasThumbnail = this.hasThumbnail.bind(this)
+  }
+
+  hasThumbnail () {
+    return !unprocessableExtensions.includes(this.props.type)
+  }
+
+  computeMediaSrc () {
+    if (this.props.thumbnail && this.hasThumbnail()) {
+      return `${baseMediaPath}${this.props.id}_thumb.jpg`
+    }
+    return `${baseMediaPath}${this.props.id}.${this.props.type}`
   }
 
   componentDidMount () {
     if (!this.state.mediaNode) {
-      let mediaSrc = `${baseMediaPath}${this.props.id}.${this.props.type}`
+      let mediaSrc = this.computeMediaSrc()
 
-      if (isValidVideoFormat(`video/${this.props.type}`)) {
+      if ((!this.props.thumbnail && isValidVideoFormat(this.props.type)) || (this.props.thumbnail && !this.hasThumbnail() && isValidVideoFormat(this.props.type))) {
         let tempVideoElement = document.createElement('video')
         let tempSourceElement = document.createElement('source')
         tempSourceElement.src = mediaSrc
@@ -24,9 +38,8 @@ export default class AsyncMedia extends Component {
         tempVideoElement.appendChild(tempSourceElement)
 
         tempVideoElement.oncanplay = () => {
-          // If we get controls prop true, it means that we are on media-view, we won't play the video on the overview panel
           let mediaNode =
-            (<video preload={this.props.controls ? 'auto' : 'metadata'} height={this.props.size} controls={this.props.controls}>
+            (<video preload='auto' height={this.props.size} controls={this.props.controls}>
               <source src={mediaSrc} type={`video/${this.props.type}`} />
             </video>)
 

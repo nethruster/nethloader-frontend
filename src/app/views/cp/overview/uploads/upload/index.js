@@ -17,7 +17,7 @@ export default function Upload ({data, isSelected, handleToggleSelect, toggleDel
     <li class={`${style.upload} flex flex-cross-center flex-sb`}>
       <Link to={`/${data.id}`} class={`${style.uploadDataLink} flex`}>
         <div class={`${style.uploadMedia} flex flex-full-center`}>
-          <AsyncMedia src={mediaPath} type={data.extension} size='74' id={data.id} />
+          <AsyncMedia type={data.extension} thumbnail id={data.id} />
         </div>
         <UploadData data={data} />
       </Link>
