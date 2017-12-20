@@ -181,7 +181,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     }
 
     for (let file of event.dataTransfer.files) {
-      if (isValidFormat(file.file.name.split('.').pop())) {
+      if (isValidFormat(file.name.split('.').pop())) {
         modals.upload.files.push(file)
         modals.upload.selectedFiles.push(file.name)
       } else {
