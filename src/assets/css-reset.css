@@ -22,6 +22,8 @@ footer, header, menu, nav { display: block; }
 
 input, select, textarea, button { font: inherit; }
 
+small { font-size: inherit; }
+
 a, button, input, label, select, textarea { 
     -ms-touch-action: manipulation; 
     touch-action: manipulation; 

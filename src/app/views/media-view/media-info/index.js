@@ -18,14 +18,14 @@ export default function MediaInfo ({data}) {
 
   return (
     <div class={`${style.mediaInfo} flex flex-cross-center`}>
-      <div title={computeDateFormat(data.createdAt)}>
+      <div title={computeDateFormat(data.createdAt)} class='flex flex-cross-center'>
         <p class={style.mediaInfoDate}><Icon iconName='calendar-clock' />&nbsp;{computeDate(data.createdAt)} - {computeTime(data.createdAt)}</p>
       </div>
-      <div class='flex'>
+      <div class='flex flex-cross-center'>
         <a href={mediaSrc} download rel='noopener' title={viewStrings.download}><Button iconButton icon='download' /></a>
         <a href={mediaSrc} target='_blank' rel='noopener' title={viewStrings.view_original}><Button iconButton icon='fullscreen' /></a>
       </div>
-      <div class='flex'>
+      <div class='flex flex-cross-center'>
         <a class={`${style.shareButton} ${style.twitter}`} title='Share on Twitter' rel='noopener' target='_blank'
           href={`https://twitter.com/intent/tweet?url=${mediaUrl};text=${data.extension}media;related=Nethruster`}>
           <Icon iconName='twitter' /></a>

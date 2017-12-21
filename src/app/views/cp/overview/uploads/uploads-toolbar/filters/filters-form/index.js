@@ -108,7 +108,7 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
               <option selected={Number(this.state.filters.mediaLimit) === 50}>50</option>
               <option selected={Number(this.state.filters.mediaLimit) === 100}>100</option>
               <option selected={Number(this.state.filters.mediaLimit) === 200}>200</option>
-              {!isFetchingMedia && <option selected={Number(this.state.filters.mediaLimit) === Number(userMedia.totalCount)}>{viewStrings.all}</option>}
+              {!isFetchingMedia && <option selected={Number(this.state.filters.mediaLimit) >= Number(userMedia.totalCount)}>{viewStrings.all}</option>}
             </select>
           </div>
         </div>

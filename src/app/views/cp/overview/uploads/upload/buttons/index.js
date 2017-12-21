@@ -7,6 +7,7 @@ import Checkbox from '../../../../../shared/checkbox'
 import locale from 'locale'
 import {copyToClipboard} from 'utils'
 import {mediaUnselectAll} from 'actions/media'
+import {baseMediaPath} from 'app.config'
 
 import style from './styles.scss'
 
@@ -50,7 +51,10 @@ export default connect(mapStateToProps)(class Upload extends Component {
     this.props.toggleDeleteConfirmModal()
   }
 
-  render ({data, handleToggleSelect, mediaPath, mediaUrl, dispatch, selectedMedia}) {
+  render ({data, handleToggleSelect, dispatch, selectedMedia}) {
+    const mediaPath = `${baseMediaPath}${data.id}.${data.extension}`
+    const mediaUrl = `${document.location.origin}/${data.id}`
+
     return (
       <div class='flex flex-full-center'>
         <Checkbox onChangeHandler={handleToggleSelect} isSelected={selectedMedia.includes(data.id)} dataId={data.id} customClass={style.selectButton} />

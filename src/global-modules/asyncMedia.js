@@ -53,7 +53,9 @@ export default class AsyncMedia extends Component {
         tempImgElement.src = mediaSrc
 
         tempImgElement.onload = () => {
-          let mediaNode = <img src={mediaSrc} height={tempImgElement.height} width={tempImgElement.width} alt={`${this.props.type} ${mediaSrc}`} />
+          let elementHeight = tempImgElement.height <= 0 ? 'auto' : tempImgElement.height
+          let elementWidth = tempImgElement.width <= 0 ? '500' : tempImgElement.width
+          let mediaNode = <img src={mediaSrc} height={elementHeight} width={elementWidth} alt={`${this.props.type} ${mediaSrc}`} />
 
           this.setState({mediaNode})
 

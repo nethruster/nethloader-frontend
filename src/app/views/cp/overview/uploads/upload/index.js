@@ -5,14 +5,9 @@ import UploadData from './data'
 import UploadButtons from './buttons'
 import AsyncMedia from 'asyncMedia'
 
-import {baseMediaPath} from 'app.config'
-
 import style from './styles.scss'
 
 export default function Upload ({data, isSelected, handleToggleSelect, toggleDeleteConfirmModal}) {
-  const mediaPath = `${baseMediaPath}${data.id}.${data.extension}`
-  const mediaUrl = `${document.location.origin}/${data.id}`
-
   return (
     <li class={`${style.upload} flex flex-cross-center flex-sb`}>
       <Link to={`/${data.id}`} class={`${style.uploadDataLink} flex`}>
@@ -22,7 +17,7 @@ export default function Upload ({data, isSelected, handleToggleSelect, toggleDel
         <UploadData data={data} />
       </Link>
 
-      <UploadButtons data={data} mediaPath={mediaPath} mediaUrl={mediaUrl} toggleDeleteConfirmModal={toggleDeleteConfirmModal} handleToggleSelect={handleToggleSelect} />
+      <UploadButtons data={data} toggleDeleteConfirmModal={toggleDeleteConfirmModal} handleToggleSelect={handleToggleSelect} />
     </li>
   )
 }
