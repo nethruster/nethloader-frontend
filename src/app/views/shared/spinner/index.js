@@ -4,9 +4,9 @@ import './styles.scss'
 
 export default function Spinner ({size, color}) {
   return (
-    <div class='spinner'>
-      <svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30' style={{ maxWidth: size }}>
-        <circle style={{ stroke: color }} fill='none' cx='15' cy='15' r='14' />
+    <div class='loader'>
+      <svg class='circular' viewBox='25 25 50 50' style={{ width: size }}>
+        <circle style={{ stroke: color }} class='path' cx='50' cy='50' r='20' fill='none' stroke-width='2' stroke-miterlimit='10' />
       </svg>
     </div>
   )

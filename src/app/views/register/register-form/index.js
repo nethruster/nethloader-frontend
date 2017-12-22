@@ -112,7 +112,7 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
         <FormInput inputId='password' inputType='password' inputLabel={viewStrings.password} changeHandler={this.handleChange} required inputState={this.state.data.password.inputState} validationMessage={this.state.data.password.validationMessage} />
         <FormInput inputId='cpassword' inputType='password' inputLabel={viewStrings.password_confirm} changeHandler={this.handleChange} required inputState={this.state.data.cpassword.inputState} validationMessage={this.state.data.cpassword.validationMessage} />
         <p class={style.formValidationText}>{this.state.formValidationText}</p>
-        <Button contrast text={viewStrings.register} spinner={isFetching} spinnerColor='#fff' spinnerSize='14' disabled={isFetching} />
+        <Button contrast text={viewStrings.register} spinner={isFetching} spinnerColor='#fff' spinnerSize='24' disabled={isFetching} />
       </form>
     )
   }

@@ -1,39 +1,60 @@
 :global {
-    @keyframes spinner-rotate {
-        0% { transform:rotate(0deg); }
-        100% { transform:rotate(270deg); }
+   .loader {
+        max-width: 40px;
+       
+        margin: 0 auto;
+
+        &:before {
+            content: '';
+            display: block;
+
+            padding-top: 100%;
+        }
+
+        svg { width: auto; }
     }
 
-    @keyframes spinner-dash {
-        0% { stroke-dashoffset: 88px; }
+    .circular {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+
+        margin: auto;
+
+        animation: rotate 2s linear infinite;        
+        transform-origin: center center;
+        
+        
+    }
+
+    .path {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+        animation: dash 1.5s ease-in-out infinite;
+        stroke: var(--contrast-bg);
+        stroke-linecap: round;
+    }
+
+    @keyframes rotate {
+        100% { transform: rotate(360deg); }
+    }
+
+    @keyframes dash {
+        0% {
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+        }
         50% {
-            stroke-dashoffset: 22px;
-            transform: rotate(135deg);
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -35px;
         }
         100% {
-            stroke-dashoffset: 88px;
-            transform: rotate(450deg);
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -124px;
         }
-    }
-
-    .spinner { 
-        transform: translate(0, 0);
-        will-change: transform;
-        margin: calc(var(--base-pm) * 2);
-    }
-
-    .spinner > svg {
-        animation: spinner-rotate 1.5s linear infinite;
-        width: auto;
-    }
-
-    .spinner circle {
-        stroke-dasharray: 88px;
-        stroke-dashoffset: 0;
-        transform-origin: center;
-        animation: spinner-dash 1.5s ease-in-out infinite;
-        stroke-width: 1;
-        stroke-linecap: round;
-        stroke: var(--contrast-bg);
     }
 }

@@ -3,7 +3,7 @@ import {h} from 'preact'
 import Button from '../../shared/button'
 import Icon from '../../shared/icon'
 
-import {computeDateFormat, computeDate, computeTime} from 'utils'
+import {computeDateFormat, computeDate, computeTime, isValidVideoFormat} from 'utils'
 import {baseMediaPath} from 'app.config'
 
 import style from './styles.scss'
@@ -23,7 +23,8 @@ export default function MediaInfo ({data}) {
       </div>
       <div class='flex flex-cross-center'>
         <a href={mediaSrc} download rel='noopener' title={viewStrings.download}><Button iconButton icon='download' /></a>
-        <a href={mediaSrc} target='_blank' rel='noopener' title={viewStrings.view_original}><Button iconButton icon='fullscreen' /></a>
+        <a href={mediaSrc} target='_blank' rel='noopener' title={viewStrings.view_original}><Button iconButton icon='open-in-new' /></a>
+        {isValidVideoFormat(data.extension) && <a title='Show controls'><Button iconButton icon='ray-end' /></a>}
       </div>
       <div class='flex flex-cross-center'>
         <a class={`${style.shareButton} ${style.twitter}`} title='Share on Twitter' rel='noopener' target='_blank'

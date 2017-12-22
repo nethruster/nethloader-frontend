@@ -9,6 +9,13 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        flex: 5;
+        flex: 1;
+
+            div:first-child {
+                width: 32px;
+                position: relative;
+                
+                margin: calc(var(--base-pm) * 2)
+            }
+        }
     }
-}

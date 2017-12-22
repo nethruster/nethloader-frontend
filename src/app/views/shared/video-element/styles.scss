@@ -1,0 +1,35 @@
+:local {
+    .videoContainer {
+        cursor: pointer;
+        position: relative;       
+
+        &::after {
+            background: rgba(0,0,0,.5) url(../../../../assets/img/play-circle.svg) no-repeat center center;
+            background-size: 72px 72px;
+            bottom: 0;
+            content: '';
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: opacity .2s cubic-bezier(.4,0,.2,1);
+            border-radius: 4px;
+        }
+
+         &Playing {
+            &::after {
+                background-image: url(../../../../assets/img/pause-circle.svg);
+                opacity: 0;
+                transition: opacity .2s cubic-bezier(.4,0,.2,1), background 0 ease .2s;
+            }
+        }
+
+        &Hover{
+                
+               &::after {
+                    opacity: 1;
+               }
+            }
+        
+    }
+}

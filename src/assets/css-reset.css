@@ -22,8 +22,6 @@ footer, header, menu, nav { display: block; }
 
 input, select, textarea, button { font: inherit; }
 
-small { font-size: inherit; }
-
 a, button, input, label, select, textarea { 
     -ms-touch-action: manipulation; 
     touch-action: manipulation; 
@@ -37,7 +35,6 @@ a {
 html {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    overflow-x: hidden;
 }
 
 body {
@@ -74,8 +71,6 @@ img {
 }
 
 video {
-    -o-object-fit: cover;
-       object-fit: cover;
     max-width: 100%;
 }
 

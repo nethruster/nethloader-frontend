@@ -1,6 +1,7 @@
 import {h, Component} from 'preact'
 
 import ViewLoading from '../app/views/shared/view-loading'
+import VideoElement from '../app/views/shared/video-element'
 
 import {isValidVideoFormat, unprocessableExtensions} from 'utils'
 import {baseMediaPath} from 'app.config'
@@ -38,10 +39,7 @@ export default class AsyncMedia extends Component {
         tempVideoElement.appendChild(tempSourceElement)
 
         tempVideoElement.oncanplay = () => {
-          let mediaNode =
-            (<video preload='auto' height={this.props.size} controls={this.props.controls}>
-              <source src={mediaSrc} type={`video/${this.props.type}`} />
-            </video>)
+          let mediaNode = <VideoElement src={mediaSrc} height={this.props.size} type={this.props.type} controls={this.props.controls} id={this.props.id} />
 
           this.setState({mediaNode})
 
