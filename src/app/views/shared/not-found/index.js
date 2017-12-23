@@ -1,10 +1,10 @@
 import {h} from 'preact'
 
 import {adminEmail} from 'app.config'
+import locale from 'locale'
 
 import style from './styles.scss'
 
-import locale from 'locale'
 const viewStrings = locale.shared.not_found
 
 export default function NotFound () {

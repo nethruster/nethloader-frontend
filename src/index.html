@@ -15,17 +15,82 @@
     <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
     <meta name="theme-color" content="#1e87f0">
 
-    <link rel="stylesheet" async href="/assets/css-reset.css">
-    <link rel="stylesheet" async href="/assets/css-utils.css">
+    <link rel="stylesheet" async href="/assets/css/css-reset.css">
+    <link rel="stylesheet" async href="/assets/css/css-utils.css">
 </head>
 <body>
     <div id="nethloader" role="main" class='flex'>
-        <div class="loading">
+        <div class="loading flex flex-full-center">
             <!-- View-loading styles -->
-            <style>body{margin:0}.loading{width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;position:absolute}@keyframes spinner-rotate{0%{transform:rotate(0deg)}100%{transform:rotate(270deg)}}@keyframes spinner-dash{0%{stroke-dashoffset:88px}50%{stroke-dashoffset:22px;transform:rotate(135deg)}100%{stroke-dashoffset:88px;transform:rotate(450deg)}}.spinner{transform:translate(0,0);will-change:transform;}.spinner>svg{animation:spinner-rotate 1.4s linear infinite;width:auto}.spinner circle{stroke-dasharray:88px;stroke-dashoffset:0;transform-origin:center;animation:spinner-dash 1.4s ease-in-out infinite;stroke-width:1;stroke-linecap:round;stroke:#1e87f0}</style>
-            <div class="spinner">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" ratio="1">
-                    <circle fill="none" cx="15" cy="15" r="14"></circle>
+            <style>
+                .loading {
+                    flex: 1;
+                }
+
+                .loader {
+                    position: relative;
+                    max-width: 40px;
+                    width: 34px;
+                    flex: 5;
+
+                    margin: 0 auto;
+                }
+
+                .loader:before {
+                    content: '';
+                    display: block;
+
+                    padding-top: 100%;
+                }
+
+                .loader svg { width: auto; }
+
+                .circular {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    width: 100%;
+                    height: 100%;
+
+                    margin: auto;
+
+                    animation: rotate 2s linear infinite;        
+                    transform-origin: center center;
+                }
+
+                .path {
+                    stroke-dasharray: 1, 200;
+                    stroke-dashoffset: 0;
+                    animation: dash 1.5s ease-in-out infinite;
+                    stroke: #1e87f0;
+                    stroke-linecap: round;
+                }
+
+                @keyframes rotate {
+                    100% { transform: rotate(360deg); }
+                }
+
+                @keyframes dash {
+                    0% {
+                        stroke-dasharray: 1, 200;
+                        stroke-dashoffset: 0;
+                    }
+                    50% {
+                        stroke-dasharray: 89, 200;
+                        stroke-dashoffset: -35px;
+                    }
+                    100% {
+                        stroke-dasharray: 89, 200;
+                        stroke-dashoffset: -124px;
+                    }
+                }
+            </style>
+            <div class='loader flex flex-full-center'>
+                <svg class='circular' viewBox='25 25 50 50'>
+                    <circle class='path' cx='50' cy='50' r='20' fill='none' stroke-width='2' stroke-miterlimit='10'
+                    />
                 </svg>
             </div>
         </div>

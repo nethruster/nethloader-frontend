@@ -51,17 +51,49 @@ export default connect(mapStateToProps)(class Upload extends Component {
     this.props.toggleDeleteConfirmModal()
   }
 
-  render ({data, handleToggleSelect, dispatch, selectedMedia}) {
+  render ({data, handleToggleSelect, selectedMedia}) {
     const mediaPath = `${baseMediaPath}${data.id}.${data.extension}`
     const mediaUrl = `${document.location.origin}/${data.id}`
 
     return (
       <div class='flex flex-full-center'>
-        <Checkbox onChangeHandler={handleToggleSelect} isSelected={selectedMedia.includes(data.id)} dataId={data.id} customClass={style.selectButton} />
+        <Checkbox
+          onChangeHandler={handleToggleSelect}
+          isSelected={selectedMedia.includes(data.id)}
+          dataId={data.id}
+          customClass={style.selectButton}
+        />
         <DropDownMenu>
-          <li><a href={mediaPath} download><Button text={viewStrings.download} icon='download' dropdown /></a></li>
-          <li><Button icon='copy' text={this.state.copy.valueCopied ? viewStrings.copied : viewStrings.copy_url} copyText={`${mediaUrl}`} onClickExecute={this.handleCopyClick} dropdown /></li>
-          <li><Button dataId={data.id} text={viewStrings.delete} icon='delete' dropdown onClickExecute={this.handleDeleteClick} /></li>
+          <li>
+            <a href={mediaPath}
+              download>
+              <Button
+                text={viewStrings.download}
+                icon='download'
+                dropdown
+              />
+            </a>
+          </li>
+          <li>
+            <Button
+              icon='copy'
+              text={this.state.copy.valueCopied
+                ? viewStrings.copied
+                : viewStrings.copy_url}
+              copyText={`${mediaUrl}`}
+              onClickExecute={this.handleCopyClick}
+              dropdown
+            />
+          </li>
+          <li>
+            <Button
+              dataId={data.id}
+              text={viewStrings.delete}
+              icon='delete'
+              dropdown
+              onClickExecute={this.handleDeleteClick}
+            />
+          </li>
         </DropDownMenu>
       </div>
     )

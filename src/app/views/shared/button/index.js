@@ -14,7 +14,31 @@ export default class Button extends Component {
            (this.props.text !== nextProps.text)
   }
 
-  render ({dataId, round, contrast, big, small, transparent, navButton, dropdown, floating, iconButton, badge, customClass, tabindex, type, onClickExecute, copyText, disabled, icon, iconColor, spinner, spinnerColor, spinnerSize, text}) {
+  render ({
+    round,
+    contrast,
+    big,
+    small,
+    transparent,
+    navButton,
+    dropdown,
+    floating,
+    iconButton,
+    badge,
+    customClass,
+    dataId,
+    tabindex,
+    type,
+    onClickExecute,
+    copyText,
+    disabled,
+    icon,
+    iconColor,
+    spinner,
+    spinnerColor,
+    spinnerSize,
+    text
+  }) {
     /* eslint-disable no-lone-blocks */
     {
       /* You'll probably wonder why the fuck did I lay out the following class attribute like
@@ -43,8 +67,21 @@ export default class Button extends Component {
         data-copytext={copyText}
         disabled={disabled}>
         <Ink />
-        {icon && !spinner ? <Icon iconName={icon} iconColor={iconColor} /> : null}&nbsp;
-        {(spinner || text) && <p class='flex'>{spinner ? <Spinner color={spinnerColor} size={spinnerSize} /> : text}</p>}
+        {
+          icon && !spinner
+            ? <Icon iconName={icon} iconColor={iconColor} />
+            : null
+        }&nbsp;
+        {
+          (spinner || text) &&
+          <p class='flex'>
+            {
+              spinner
+                ? <Spinner color={spinnerColor} size={spinnerSize} />
+                : text
+            }
+          </p>
+        }
       </button>
     )
   }

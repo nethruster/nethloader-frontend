@@ -1,10 +1,9 @@
-import {h, Component} from 'preact'
+import {h} from 'preact'
 
 import {Link} from 'react-router-dom'
 
 import RegisterForm from './register-form'
 import Footer from '../shared/footer'
-
 import locale from 'locale'
 
 import style from './styles.scss'

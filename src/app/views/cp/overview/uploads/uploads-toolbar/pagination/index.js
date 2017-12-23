@@ -1,16 +1,16 @@
 import {h, Component} from 'preact'
 import {connect} from 'preact-redux'
 import {NavLink} from 'react-router-dom'
+import Ink from 'react-ink'
 
 import Icon from '../../../../../shared/icon'
 import Button from '../../../../../shared/button'
 import DropDownMenu from '../../../../../shared/dropdown-menu'
-import Ink from 'react-ink'
+import locale from 'locale'
 import {getPageFactor} from 'utils'
 
 import style from './styles.scss'
 
-import locale from 'locale'
 const viewStrings = locale.cp.overview.uploads.pagination
 
 const mapStateToProps = (state) => {
@@ -88,20 +88,39 @@ export default connect(mapStateToProps)(class Pagination extends Component {
     let pagesArray = Array.from({ length: nPages }, (v, i) => i)
 
     return pagesArray.map((entry) => {
-      return <NavLink exact activeClassName='pagelist-active' to={entry === 0 ? '/cp/overview/' : `/cp/overview/${entry + 1}`}><Button dropdown text={entry + 1} class='flex flex-full-center' /></NavLink>
+      return (
+        <NavLink
+          exact
+          activeClassName='pagelist-active'
+          to={entry === 0 ? '/cp/overview/' : `/cp/overview/${entry + 1}`}>
+          <Button
+            class='flex flex-full-center'
+            dropdown
+            text={entry + 1}
+          />
+        </NavLink>
+      )
     })
   }
 
   render ({isFetchingMedia, userMedia}) {
     return (
       <div class={`flex flex-main-center flex-sb ${style.paginationNav}`}>
-        <div class={`${style.paginationNavButton} ${style.paginationNavButtonLeft} ${!isFetchingMedia && this.hasPrevPage() ? '' : style.paginationNavButtonDisabled}`} onClick={this.loadFirstPage}>
+        <div
+          class={`${style.paginationNavButton} ${style.paginationNavButtonLeft} ${!isFetchingMedia && this.hasPrevPage()
+            ? ''
+            : style.paginationNavButtonDisabled}`}
+          onClick={this.loadFirstPage}>
           <p>{viewStrings.first_page}</p>
           <Icon iconName='skip-left' />
           <Ink />
         </div>
         <div class='flex'>
-          <div class={`${style.paginationNavButton} ${style.paginationNavButtonLeft} ${!isFetchingMedia && this.hasPrevPage() ? '' : style.paginationNavButtonDisabled}`} onClick={this.loadPrevPage}>
+          <div
+            class={`${style.paginationNavButton} ${style.paginationNavButtonLeft} ${!isFetchingMedia && this.hasPrevPage()
+              ? ''
+              : style.paginationNavButtonDisabled}`}
+            onClick={this.loadPrevPage}>
             <p>{viewStrings.previous_page}</p>
             <Icon iconName='left-arrow' />
             <Ink />
@@ -111,13 +130,21 @@ export default connect(mapStateToProps)(class Pagination extends Component {
               {this.computePageList()}
             </DropDownMenu>
           </div>
-          <div class={`${style.paginationNavButton} ${style.paginationNavButtonRight} ${!isFetchingMedia && this.hasNextPage() ? '' : style.paginationNavButtonDisabled}`} onClick={this.loadNextPage}>
+          <div
+            class={`${style.paginationNavButton} ${style.paginationNavButtonRight} ${!isFetchingMedia && this.hasNextPage()
+              ? ''
+              : style.paginationNavButtonDisabled}`}
+            onClick={this.loadNextPage}>
             <p>{viewStrings.next_page}</p>
             <Icon iconName='right-arrow' />
             <Ink />
           </div>
         </div>
-        <div class={`${style.paginationNavButton} ${style.paginationNavButtonRight} ${!isFetchingMedia && this.hasNextPage() ? '' : style.paginationNavButtonDisabled}`} onClick={this.loadLastPage}>
+        <div
+          class={`${style.paginationNavButton} ${style.paginationNavButtonRight} ${!isFetchingMedia && this.hasNextPage()
+            ? ''
+            : style.paginationNavButtonDisabled}`}
+          onClick={this.loadLastPage}>
           <p>{viewStrings.last_page}</p>
           <Icon iconName='skip-right' />
           <Ink />

@@ -39,13 +39,15 @@ export default connect(mapStateToProps)(class Content extends Component {
       <div class={`${style.content} flex flex-dc`} role='main'>
         <HeaderNav />
         <Switch>
-          {isAuthenticated
-            ? <Route
-              path='/cp'
-              component={asyncComponent(() => import(/* webpackChunkName: "content_cp" */'../../cp')
-                .then(module => module.default))} />
+          {
+            isAuthenticated
+              ? <Route
+                path='/cp'
+                component={asyncComponent(() => import(/* webpackChunkName: "content_cp" */'../../cp')
+                  .then(module => module.default))} />
 
-            : <Redirect from='/cp' to='/login' />}
+              : <Redirect from='/cp' to='/login' />
+          }
 
           <Route
             path='/:id([A-Za-z0-9_~]{10})'

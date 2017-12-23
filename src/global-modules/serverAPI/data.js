@@ -123,8 +123,42 @@ const getUserMediaCount = async (id, authToken) => {
   return Promise.reject(serverResponse.status)
 }
 
+const getStorageParams = async (authToken) => {
+  let requestConfig = {
+    method: 'POST',
+    headers: {
+      'accept': 'application/json',
+      'content-type': 'application/json',
+      'authentication': authToken
+    },
+    body: JSON.stringify({
+      query: `query{unprocessableExtensions,
+                supportedVideoExtensions,
+                supportedImageExtensions}`
+    })
+  }
+
+  let serverResponse = await fetch(apiBaseUrl, requestConfig)
+
+  if (serverResponse.status >= 200 && serverResponse.status < 300) {
+    let responseData = await serverResponse.json()
+    console.log(responseData)
+    if (responseData.data) {
+      // Set the data in local storage
+      window.localStorage.setItem('neth-strData', JSON.stringify(responseData.data))
+
+      return JSON.stringify(responseData.data)
+    }
+    console.log('getStorageParams - responseData: ', responseData)
+    return Promise.reject(responseData.errors[0].message)
+  }
+  console.log('getStorageParams - serverResponse: ', serverResponse)
+  return Promise.reject(serverResponse.status)
+}
+
 export {
   getUserData,
   getUserMedia,
-  getUserMediaCount
+  getUserMediaCount,
+  getStorageParams
 }

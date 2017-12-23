@@ -22,7 +22,8 @@ export default connect(mapStateToProps)(({isAuthenticated}) => {
         <Route
           exact
           path='/'
-          component={asyncComponent(() => import(/* webpackChunkName: "home" */'./views/home').then(module => module.default))}
+          component={asyncComponent(() => import(/* webpackChunkName: "home" */'./views/home')
+            .then(module => module.default))}
         />
 
         {isAuthenticated
@@ -30,14 +31,16 @@ export default connect(mapStateToProps)(({isAuthenticated}) => {
           : <Route
             exact
             path='/login'
-            component={asyncComponent(() => import(/* webpackChunkName: "login" */'./views/login').then(module => module.default))}
+            component={asyncComponent(() => import(/* webpackChunkName: "login" */'./views/login')
+              .then(module => module.default))}
           />
         }
 
         <Route
           exact
           path='/register'
-          component={asyncComponent(() => import(/* webpackChunkName: "register" */'./views/register').then(module => module.default))}
+          component={asyncComponent(() => import(/* webpackChunkName: "register" */'./views/register')
+            .then(module => module.default))}
         />
 
         <Route

@@ -4,12 +4,12 @@ import {connect} from 'preact-redux'
 
 import Uploads from './uploads'
 import Button from '../../shared/button'
+import locale from 'locale'
 import {getUserMedia} from 'serverAPI/data'
 import {getPageFactor} from 'utils'
 
 import style from './styles.scss'
 
-import locale from 'locale'
 const viewStrings = locale.cp.overview
 
 const mapStateToProps = (state) => {
@@ -42,7 +42,7 @@ export default connect(mapStateToProps)(class Overview extends Component {
   }
 
   updateUserMedia (params) {
-    let newParams = params || ''
+    let newParams = params || {}
 
     newParams.offset = this.pageFactor * params.mediaLimit
 
@@ -54,14 +54,20 @@ export default connect(mapStateToProps)(class Overview extends Component {
       <div class={`${style.overview} flex flex-main-center`}>
         {
           this.pageFactor && this.pageFactor >= userMedia.totalCount / params.mediaLimit
-            ? <p class='nomedia flex flex-dc flex-full-center'>
-              <span>{viewStrings.no_page}</span>
-              <div class='flex flex-cross-center flex-sa'>
-                <Link to='/cp/overview/'><Button text={viewStrings.go_to_first_page} /></Link>
+            ? (
+              <p class='nomedia flex flex-dc flex-full-center'>
+                <span>{viewStrings.no_page}</span>
+                <div class='flex flex-cross-center flex-sa'>
+                  <Link to='/cp/overview/'>
+                    <Button text={viewStrings.go_to_first_page} />
+                  </Link>
                 &nbsp;&nbsp;
-                <Link to={`/cp/overview/${this.pageFactor}`}><Button text={viewStrings.go_to_previous_page} /></Link>
-              </div>
-            </p>
+                  <Link to={`/cp/overview/${this.pageFactor}`}>
+                    <Button text={viewStrings.go_to_previous_page} />
+                  </Link>
+                </div>
+              </p>
+            )
             : <Uploads updateUserMedia={this.updateUserMedia} />
         }
       </div>

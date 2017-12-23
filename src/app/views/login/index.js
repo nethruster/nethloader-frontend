@@ -3,11 +3,10 @@ import {Link} from 'react-router-dom'
 
 import LoginForm from './login-form'
 import Footer from '../shared/footer'
+import locale from 'locale'
 
 import style from './styles.scss'
 import '../shared/paper/paper.scss'
-
-import locale from 'locale'
 
 const viewStrings = locale.login
 

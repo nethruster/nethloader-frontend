@@ -5,7 +5,6 @@ import Ink from 'react-ink'
 
 import Button from '../../button'
 import Modal from '../../modal'
-
 import {isValidFormat, getPageFactor} from 'utils'
 import {uploadMedia, getMediaInfo} from 'serverAPI/media'
 import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
@@ -195,11 +194,27 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
   render ({dispatch, isAuthenticated, token}) {
     return (
       <span>
-        <Button text={viewStrings.trigger_button} icon='upload' navButton onClickExecute={this.toggleUploadModal} />
-        <Modal isActive={this.state.modals.upload.isActive} toggleModal={this.toggleUploadModal} disabled={this.state.modals.upload.isUploading}>
+        <Button
+          text={viewStrings.trigger_button}
+          icon='upload'
+          navButton
+          onClickExecute={this.toggleUploadModal}
+        />
+        <Modal
+          isActive={this.state.modals.upload.isActive}
+          toggleModal={this.toggleUploadModal}
+          disabled={this.state.modals.upload.isUploading}>
           <div>
-            <form onSubmit={this.handleUploadSubmit} class={`${style.uploadForm} flex flex-dc flex-full-center`}>
-              <input type='file' id='fileInput' name='file' accept='image/*, video/*' onChange={this.handleFileChange} multiple /> {/* use extensions from utils */}
+            <form
+              onSubmit={this.handleUploadSubmit}
+              class={`${style.uploadForm} flex flex-dc flex-full-center`}>
+              <input
+                type='file'
+                id='fileInput'
+                name='file'
+                accept='image/*, video/*'
+                onChange={this.handleFileChange}
+                multiple /> {/* TODO: use extensions from utils */}
               {
                 this.state.modals.upload.isUploading
                   ? (
@@ -208,25 +223,40 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
                     </label>
                   )
                   : (
-                    <label for='fileInput' class='flex flex-full-center' ref={(el) => { this.uploadLabel = el }}>
+                    <label
+                      for='fileInput'
+                      class='flex flex-full-center'
+                      ref={(el) => { this.uploadLabel = el }}>
                       <Ink />
-                      {this.state.modals.upload.selectedFiles.length === 0 ? viewStrings.input.text : viewStrings.input.files_text}
-                      {/* SVG label dashed border */}
-                      <svg>
+                      {
+                        this.state.modals.upload.selectedFiles.length === 0
+                          ? viewStrings.input.text
+                          : viewStrings.input.files_text
+                      }
+                      <svg> {/* SVG label dashed border */}
                         <rect width='100%' height='100%' />
                       </svg>
                     </label>
                   )
               }
-              {this.state.modals.upload.isUploading
-                ? null
-                : (
-                  <p title={this.state.modals.upload.selectedFiles.join(', ')}>
-                    {this.state.modals.upload.selectedFiles.length} {viewStrings.input.files_selected}
-                  </p>
-                )
+              {
+                this.state.modals.upload.isUploading
+                  ? null
+                  : (
+                    <p title={this.state.modals.upload.selectedFiles.join(', ')}>
+                      {this.state.modals.upload.selectedFiles.length} {viewStrings.input.files_selected}
+                    </p>
+                  )
               }
-              <Button type='submit' text={viewStrings.input.upload_submit} disabled={this.state.modals.upload.isUploading} spinner={this.state.modals.upload.isUploading} spinnerColor='#fff' spinnerSize='14' contrast tabindex='-1' />
+              <Button
+                type='submit'
+                text={viewStrings.input.upload_submit}
+                disabled={this.state.modals.upload.isUploading}
+                spinner={this.state.modals.upload.isUploading}
+                spinnerColor='#fff'
+                spinnerSize='14'
+                contrast
+                tabindex='-1' />
             </form>
           </div>
         </Modal>

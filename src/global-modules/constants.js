@@ -44,5 +44,10 @@ export default keymirror({
   MEDIA_SELECT: null,
   MEDIA_UNSELECT: null,
   MEDIA_SELECT_ALL: null,
-  MEDIA_UNSELECT_ALL: null
+  MEDIA_UNSELECT_ALL: null,
+
+  // Hmlt5video
+  CHANGE_VOLUME: null,
+  TOGGLE_CONTROLS: null,
+  TOGGLE_PLAYBACK: null
 })

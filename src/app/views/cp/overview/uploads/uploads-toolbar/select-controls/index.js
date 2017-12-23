@@ -38,8 +38,17 @@ export default connect(mapStateToProps)(class SelectControls extends Component {
   render ({handleDeleteClick, userMedia, updateUserMedia, selectedMedia}) {
     return (
       <div class={`flex flex-cross-center flex-sb`}>
-        <Button iconButton icon='selectall' onClickExecute={this.handleToggleAllMedia} />
-        <Button iconButton icon='delete' onClickExecute={handleDeleteClick} iconColor='#e53935' />
+        <Button
+          iconButton
+          icon='selectall'
+          onClickExecute={this.handleToggleAllMedia}
+        />
+        <Button
+          iconButton
+          icon='delete'
+          onClickExecute={handleDeleteClick}
+          iconColor='#e53935'
+        />
       </div>
     )
   }

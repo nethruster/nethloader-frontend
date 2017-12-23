@@ -1,9 +1,14 @@
 import {checkCurrentSessionToken} from 'serverAPI/authentication'
 
-const imageExtensions = ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp']
-const videoExtensions = ['mp4', 'ogg', 'webm']
+const storageParams = JSON.parse(window.localStorage.getItem('neth-strData')) // Storage data
+
+const imageExtensions = storageParams.supportedImageExtensions || ['png', 'jpg', 'jpeg', 'svg', 'webp']
+const videoExtensions = storageParams.supportedVideoExtensions || ['mp4', 'ogg', 'webm', 'gif']
+
+// List of extensions we can't process to create a thumbnail
+const unprocessableExtensions = storageParams.unprocessableExtensions || ['webp', 'webm', 'svg']
+
 const supportedExtensions = [...imageExtensions, ...videoExtensions]
-const unprocessableExtensions = ['webp', 'webm', 'svg'] // List of extensions we can't process to create a thumbnail
 
 // Useful lists to filter media by type, must contain quoted items
 const filterExtensions = {

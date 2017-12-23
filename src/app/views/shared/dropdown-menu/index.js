@@ -28,20 +28,38 @@ export default class DropDownMenu extends Component {
     return (
       <div class='flex flex-full-center'>
         <div class={style.dropdownWrapper}>
-          {navTrigger ? (
-            <div class={`flex flex-cross-center flex-dc ${style.dropdownMenuNavButton} ${style.dropdownMenuNavButtonCustom}`} onClick={this.handleClick}>
-              <Ink />
-              <span class='flex'><Icon iconName='chev-down' /><p>{localePageString}</p></span>
-              <b>{this.pageFactor + 1}</b>
-            </div>
-          ) : <Button iconButton icon={`${customIcon || 'dots-menu'}`} onClickExecute={this.handleClick} />}
-          <div class={`${style.dropdownMenu} ${centered ? style.dropdownMenuCentered : ''} ${noMinWidth ? style.dropdownMenuNoMinWidth : ''} ${this.state.isOpen ? style.active : ''}`}>
+          {
+            navTrigger
+              ? (
+                <div
+                  class={`flex flex-cross-center flex-dc ${style.dropdownMenuNavButton} ${style.dropdownMenuNavButtonCustom}`}
+                  onClick={this.handleClick}>
+                  <Ink />
+                  <span class='flex'>
+                    <Icon iconName='chev-down' />
+                    <p>{localePageString}</p>
+                  </span>
+                  <b>{this.pageFactor + 1}</b>
+                </div>
+              )
+              : <Button
+                iconButton
+                icon={`${customIcon || 'dots-menu'}`}
+                onClickExecute={this.handleClick}
+              />
+          }
+          <div
+            class={`${style.dropdownMenu} ${centered ? style.dropdownMenuCentered : ''} ${noMinWidth ? style.dropdownMenuNoMinWidth : ''} ${this.state.isOpen ? style.active : ''}`}>
             <ul>
               {this.props.children}
             </ul>
           </div>
         </div>
-        <div class={`${style.dropdownOverlay} ${this.state.isOpen ? style.active : ''}`} onClick={this.handleClick} style={{ top: Math.round(window.pageYOffset) }} />
+        <div
+          class={`${style.dropdownOverlay} ${this.state.isOpen ? style.active : ''}`}
+          onClick={this.handleClick}
+          style={{ top: Math.round(window.pageYOffset) }}
+        />
       </div>
     )
   }

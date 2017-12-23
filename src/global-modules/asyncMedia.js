@@ -2,7 +2,6 @@ import {h, Component} from 'preact'
 
 import ViewLoading from '../app/views/shared/view-loading'
 import VideoElement from '../app/views/shared/video-element'
-
 import {isValidVideoFormat, unprocessableExtensions} from 'utils'
 import {baseMediaPath} from 'app.config'
 
@@ -31,7 +30,17 @@ export default class AsyncMedia extends Component {
     if (!this.state.mediaNode) {
       let mediaSrc = this.computeMediaSrc()
 
-      if ((!this.props.thumbnail && isValidVideoFormat(this.props.type)) || (this.props.thumbnail && !this.hasThumbnail() && isValidVideoFormat(this.props.type))) {
+      if (
+        (
+          !this.props.thumbnail &&
+          isValidVideoFormat(this.props.type)
+        ) ||
+        (
+          this.props.thumbnail &&
+          !this.hasThumbnail() &&
+          isValidVideoFormat(this.props.type)
+        )
+      ) {
         let tempVideoElement = document.createElement('video')
         let tempSourceElement = document.createElement('source')
         tempSourceElement.src = mediaSrc
@@ -39,7 +48,15 @@ export default class AsyncMedia extends Component {
         tempVideoElement.appendChild(tempSourceElement)
 
         tempVideoElement.oncanplay = () => {
-          let mediaNode = <VideoElement src={mediaSrc} height={this.props.size} type={this.props.type} controls={this.props.controls} id={this.props.id} />
+          let mediaNode = (
+            <VideoElement
+              id={this.props.id}
+              src={mediaSrc}
+              height={this.props.size}
+              type={this.props.type}
+              willPlayback={this.props.willPlayback}
+            />
+          )
 
           this.setState({mediaNode})
 
@@ -51,9 +68,20 @@ export default class AsyncMedia extends Component {
         tempImgElement.src = mediaSrc
 
         tempImgElement.onload = () => {
-          let elementHeight = tempImgElement.height <= 0 ? 'auto' : tempImgElement.height
-          let elementWidth = tempImgElement.width <= 0 ? '500' : tempImgElement.width
-          let mediaNode = <img src={mediaSrc} height={elementHeight} width={elementWidth} alt={`${this.props.type} ${mediaSrc}`} />
+          let elementHeight = tempImgElement.height <= 0
+            ? 'auto'
+            : tempImgElement.height
+          let elementWidth = tempImgElement.width <= 0
+            ? '500'
+            : tempImgElement.width
+          let mediaNode = (
+            <img
+              src={mediaSrc}
+              height={elementHeight}
+              width={elementWidth}
+              alt={`${this.props.type} ${mediaSrc}`}
+            />
+          )
 
           this.setState({mediaNode})
 
@@ -64,6 +92,8 @@ export default class AsyncMedia extends Component {
   }
 
   render () {
-    return this.state.mediaNode ? this.state.mediaNode : <ViewLoading />
+    return this.state.mediaNode
+      ? this.state.mediaNode
+      : <ViewLoading />
   }
 }

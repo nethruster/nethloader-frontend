@@ -3,9 +3,9 @@ import {connect} from 'preact-redux'
 
 import FormInput from './../../shared/form-input'
 import Button from '../../shared/button'
-
 import locale from 'locale'
 import {loginUser} from 'serverAPI/authentication'
+import {getStorageParams} from 'serverAPI/data'
 
 import style from './styles.scss'
 
@@ -52,18 +52,41 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
     })
   }
 
-  handleSubmit (event) {
+  async handleSubmit (event) {
     event.preventDefault()
-    this.props.dispatch(loginUser(this.state.credentials, this.context.router.history, event.target))
+    await this.props.dispatch(loginUser(this.state.credentials, this.context.router.history, event.target))
+    getStorageParams(this.props.token)
   }
 
   render ({isFetching}) {
     return (
       <form class={`${style.form} flex flex-full-center flex-dc`} onSubmit={this.handleSubmit}>
-        <FormInput inputId='email' inputType='email' inputLabel={viewStrings.email} changeHandler={this.handleChange} required noValidationStyle autofocus />
-        <FormInput inputId='password' inputType='password' inputLabel={viewStrings.password} changeHandler={this.handleChange} required noValidationStyle />
+        <FormInput
+          inputId='email'
+          inputType='email'
+          inputLabel={viewStrings.email}
+          changeHandler={this.handleChange}
+          required
+          noValidationStyle
+          autofocus
+        />
+        <FormInput
+          inputId='password'
+          inputType='password'
+          inputLabel={viewStrings.password}
+          changeHandler={this.handleChange}
+          required
+          noValidationStyle
+        />
         <p class={style.formValidationText}>{this.state.formValidationText}</p>
-        <Button contrast text={viewStrings.login} spinner={isFetching} spinnerColor='#fff' spinnerSize='24' disabled={isFetching} />
+        <Button
+          contrast
+          text={viewStrings.login}
+          spinner={isFetching}
+          spinnerColor='#fff'
+          spinnerSize='24'
+          disabled={isFetching}
+        />
       </form>
     )
   }

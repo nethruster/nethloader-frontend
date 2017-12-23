@@ -12,12 +12,20 @@ export default function Upload ({data, isSelected, handleToggleSelect, toggleDel
     <li class={`${style.upload} flex flex-cross-center flex-sb`}>
       <Link to={`/${data.id}`} class={`${style.uploadDataLink} flex`}>
         <div class={`${style.uploadMedia} flex flex-full-center`}>
-          <AsyncMedia type={data.extension} thumbnail id={data.id} />
+          <AsyncMedia
+            id={data.id}
+            type={data.extension}
+            thumbnail
+          />
         </div>
         <UploadData data={data} />
       </Link>
 
-      <UploadButtons data={data} toggleDeleteConfirmModal={toggleDeleteConfirmModal} handleToggleSelect={handleToggleSelect} />
+      <UploadButtons
+        data={data}
+        toggleDeleteConfirmModal={toggleDeleteConfirmModal}
+        handleToggleSelect={handleToggleSelect}
+      />
     </li>
   )
 }

@@ -6,14 +6,13 @@ import Upload from './upload'
 import UploadsToolbar from './uploads-toolbar'
 import Modal from '../../../shared/modal'
 import ViewLoading from '../../../shared/view-loading'
-
+import locale from 'locale'
 import {deleteMedia} from 'serverAPI/media'
 import {mediaSelect, mediaUnselect, mediaUnselectAll} from 'actions/media'
 import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 
 import style from './styles.scss'
 
-import locale from 'locale'
 const viewStrings = locale.cp.overview.uploads
 
 const mapStateToProps = (state) => {
@@ -40,12 +39,8 @@ export default connect(mapStateToProps)(class Uploads extends Component {
 
     this.state = {
       modals: {
-        singleDelete: {
-          isActive: false
-        },
-        multipleDelete: {
-          isActive: false
-        }
+        singleDelete: {isActive: false},
+        multipleDelete: {isActive: false}
       },
       isDeleting: false
     }
@@ -63,7 +58,13 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     }) => (
       <ul style={virtual.style}>
         {virtual.items.map(item => (
-          <Upload style={style} key={item.id} data={item} handleToggleSelect={this.handleToggleMedia} toggleDeleteConfirmModal={this.toggleDeleteConfirmModal} />
+          <Upload
+            style={style}
+            key={item.id}
+            data={item}
+            handleToggleSelect={this.handleToggleMedia}
+            toggleDeleteConfirmModal={this.toggleDeleteConfirmModal}
+          />
         ))}
       </ul>
     )
@@ -78,17 +79,21 @@ export default connect(mapStateToProps)(class Uploads extends Component {
   computeMediaList () {
     let mediaList = this.props.userMedia.images
     if (!!mediaList && mediaList.length > 0) {
-      return <this.mediaVirtualList
-        items={mediaList}
-        itemHeight={90}
-        itemBuffer={5}
-      />
+      return (
+        <this.mediaVirtualList
+          items={mediaList}
+          itemHeight={90}
+          itemBuffer={5}
+        />
+      )
     }
 
     return (
       <p class={`nomedia flex flex-full-center flex-dc`}>
         {viewStrings.no_media}<br />
-        <small class='flex flex-full-center'>{this.props.totalCount > 0 ? viewStrings.no_filtered_media : viewStrings.add_media_description}</small>
+        <small class='flex flex-full-center'>
+          {this.props.totalCount > 0 ? viewStrings.no_filtered_media : viewStrings.add_media_description}
+        </small>
       </p>
     )
   }
@@ -165,12 +170,36 @@ export default connect(mapStateToProps)(class Uploads extends Component {
   render ({isFetchingMedia, userMedia, selectedMedia, updateUserMedia, totalCount}) {
     return (
       <div class={style.uploads}>
-        {(!!userMedia && totalCount <= 0 && userMedia.totalCount === 0) ? null : <UploadsToolbar handleDeleteClick={this.toggleDeleteConfirmModal} updateUserMedia={updateUserMedia} />}
-        {isFetchingMedia ? <ViewLoading /> : this.computeMediaList()}
-        <Modal isActive={this.state.modals.singleDelete.isActive} toggleModal={this.toggleDeleteConfirmModal} closeButtonText={viewStrings.modals.deny} acceptButtonText={viewStrings.modals.confirm} onAcceptExecute={this.confirmSingleDelete}>
+        {
+          (!!userMedia && totalCount <= 0 && userMedia.totalCount === 0)
+            ? null
+            : <UploadsToolbar
+              handleDeleteClick={this.toggleDeleteConfirmModal}
+              updateUserMedia={updateUserMedia}
+            />
+        }
+        {
+          isFetchingMedia
+            ? <ViewLoading />
+            : this.computeMediaList()
+        }
+        {/* Single Delete Modal */}
+        <Modal
+          isActive={this.state.modals.singleDelete.isActive}
+          toggleModal={this.toggleDeleteConfirmModal}
+          closeButtonText={viewStrings.modals.deny}
+          acceptButtonText={viewStrings.modals.confirm}
+          onAcceptExecute={this.confirmSingleDelete}>
           <p class='flex flex-full-center'>{viewStrings.modals.confirm_single_delete}</p>
         </Modal>
-        <Modal isActive={this.state.modals.multipleDelete.isActive} toggleModal={this.toggleDeleteConfirmModal} closeButtonText={viewStrings.modals.deny} acceptButtonText={viewStrings.modals.confirm} onAcceptExecute={this.confirmMultipleDelete} disabled={this.state.isDeleting}>
+        {/* Multiple Delete Modal */}
+        <Modal
+          isActive={this.state.modals.multipleDelete.isActive}
+          toggleModal={this.toggleDeleteConfirmModal}
+          closeButtonText={viewStrings.modals.deny}
+          acceptButtonText={viewStrings.modals.confirm}
+          onAcceptExecute={this.confirmMultipleDelete}
+          disabled={this.state.isDeleting}>
           <p class='flex flex-full-center'>
             {selectedMedia.length} {viewStrings.modals.confirm_multiple_delete}
           </p>

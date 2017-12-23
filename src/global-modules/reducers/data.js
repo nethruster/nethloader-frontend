@@ -4,6 +4,7 @@ import appConstants from '../constants'
 const userData = (state = {
   isFetchingUser: true,
   userData: JSON.parse(window.sessionStorage.getItem('neth-userData')) || {},
+  strData: JSON.parse(window.localStorage.getItem('neth-strData')) || {},
   errorMessage: ''
 }, action) => {
   switch (action.type) {

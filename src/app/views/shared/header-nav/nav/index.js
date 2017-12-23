@@ -1,23 +1,22 @@
-import { h, Component } from 'preact'
-import { NavLink, withRouter } from 'react-router-dom'
-import { connect } from 'preact-redux'
+import {h, Component} from 'preact'
+import {NavLink} from 'react-router-dom'
+import {connect} from 'preact-redux'
 
 import Button from '../../button'
-
 import locale from 'locale'
-import { logoutUser } from 'serverAPI/authentication'
+import {logoutUser} from 'serverAPI/authentication'
 
 import style from './styles.scss'
 
 const viewStrings = locale.header_nav
 
 function mapStateToProps (state) {
-  const { isAuthenticated } = state.authentication
+  const {isAuthenticated} = state.authentication
 
-  return { isAuthenticated }
+  return {isAuthenticated}
 }
 
-export default withRouter(connect(mapStateToProps)(class HeaderNav extends Component {
+export default connect(mapStateToProps)(class HeaderNav extends Component {
   constructor (props) {
     super(props)
 
@@ -40,11 +39,39 @@ export default withRouter(connect(mapStateToProps)(class HeaderNav extends Compo
   render ({isAuthenticated}) {
     return (
       <nav class={`${style.links} flex flex-full-center`}>
-        {isAuthenticated && (this.state.UploadMedia ? <this.state.UploadMedia /> : this.loadUploadMediaComponent())}
-        {isAuthenticated && <NavLink to='/cp' activeClassName='nav-active'><Button text={viewStrings.cp} icon='cp' navButton /></NavLink>}
-        {isAuthenticated ? <Button text={viewStrings.logout} icon='logout' navButton onClickExecute={this.handleLogout} /> : <NavLink to='/login'><Button text={viewStrings.login} icon='login' navButton /></NavLink>}
+        {
+          isAuthenticated &&
+          (
+            this.state.UploadMedia
+              ? <this.state.UploadMedia />
+              : this.loadUploadMediaComponent()
+          )
+        }
+        {
+          isAuthenticated &&
+          <NavLink to='/cp' activeClassName='nav-active'>
+            <Button text={viewStrings.cp} icon='cp' navButton />
+          </NavLink>}
+        {
+          isAuthenticated
+            ? (
+              <Button
+                text={viewStrings.logout}
+                icon='logout'
+                navButton
+                onClickExecute={this.handleLogout}
+              />
+            )
+            : (
+              <NavLink to='/login'>
+                <Button text={viewStrings.login}
+                  icon='login'
+                  navButton
+                />
+              </NavLink>
+            )
+        }
       </nav>
-        
     )
   }
-}))
+})

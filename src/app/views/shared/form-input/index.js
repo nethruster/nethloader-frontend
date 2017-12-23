@@ -7,10 +7,21 @@ export default class FormInput extends Component {
     return this.props.validationMessage !== nextProps.validationMessage
   }
 
-  render ({inputId, inputType, inputState, inputLabel, required, changeHandler, noValidationStyle, autofocus, validationMessage}) {
+  render ({
+    inputId,
+    inputType,
+    inputState,
+    inputLabel,
+    required,
+    changeHandler,
+    noValidationStyle,
+    autofocus,
+    validationMessage
+  }) {
     return (
       <div class='input-container flex flex-dc'>
-        <input id={inputId}
+        <input
+          id={inputId}
           class={`${inputState || ''}`}
           name={inputId}
           type={inputType}
@@ -19,7 +30,8 @@ export default class FormInput extends Component {
           onInput={changeHandler}
           noValidationStyle={noValidationStyle}
           title={inputLabel}
-          autofocus={autofocus} />
+          autofocus={autofocus}
+        />
         <label for={inputId}>{validationMessage}</label>
       </div>
     )

@@ -4,12 +4,12 @@ import {connect} from 'preact-redux'
 import Modal from '../../../../../shared/modal'
 import Button from '../../../../../shared/button'
 import FiltersForm from './filters-form'
+import locale from 'locale'
 import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 import {isFiltered} from 'utils'
 
 import './styles.scss'
 
-import locale from 'locale'
 const viewStrings = locale.cp.overview.filters
 
 const mapStateToProps = (state) => {
@@ -24,7 +24,7 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
 
     this.state = {
       modals: {
-        filter: { isActive: false }
+        filter: {isActive: false}
       }
     }
 
@@ -44,9 +44,20 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
   render ({updateUserMedia, params}) {
     return (
       <div class='flex flex-full-center'>
-        <Button iconButton icon='filter' onClickExecute={this.toggleFilterModal} badge={isFiltered(params)} />
-        <Modal modalTitle={viewStrings.title} isActive={this.state.modals.filter.isActive} toggleModal={this.toggleFilterModal}>
-          <FiltersForm updateUserMedia={updateUserMedia} toggleFilterModal={this.toggleFilterModal} />
+        <Button
+          iconButton
+          icon='filter'
+          onClickExecute={this.toggleFilterModal}
+          badge={isFiltered(params)}
+        />
+        <Modal
+          modalTitle={viewStrings.title}
+          isActive={this.state.modals.filter.isActive}
+          toggleModal={this.toggleFilterModal}>
+          <FiltersForm
+            updateUserMedia={updateUserMedia}
+            toggleFilterModal={this.toggleFilterModal}
+          />
         </Modal>
       </div>
     )

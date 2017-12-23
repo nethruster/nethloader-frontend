@@ -4,7 +4,6 @@ import {connect} from 'preact-redux'
 import MediaItem from './media-item'
 import MediaInfo from './media-info'
 import ViewLoading from '../shared/view-loading'
-
 import {baseMediaPath} from 'app.config'
 import {getMediaInfo} from 'serverAPI/media'
 
@@ -31,10 +30,21 @@ export default connect(mapStateToProps)(class MediaView extends Component {
     const mediaSrc = `${baseMediaPath}${mediaInfo.id}.${mediaInfo.extension}`
     return (
       <div class={`${style.mediaView} flex flex-full-center`}>
-        {isFetching ? <ViewLoading /> : <div class={`${style.mediaViewWrapper} flex flex-dc flex-full-center`}>
-          <MediaItem mediaSrc={mediaSrc} type={mediaInfo.extension} id={mediaInfo.id} />
-          <MediaInfo mediaSrc={mediaSrc} data={mediaInfo} />
-        </div>}
+        {
+          isFetching
+            ? <ViewLoading />
+            : (
+              <div class={`${style.mediaViewWrapper} flex flex-dc flex-full-center`}>
+                <MediaItem
+                  mediaSrc={mediaSrc}
+                  type={mediaInfo.extension}
+                  id={mediaInfo.id} />
+                <MediaInfo
+                  mediaSrc={mediaSrc}
+                  data={mediaInfo} />
+              </div>
+            )
+        }
       </div>
     )
   }
