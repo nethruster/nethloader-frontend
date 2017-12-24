@@ -7,9 +7,12 @@ import {toggleControls} from 'actions/html5video'
 import Button from '../../button'
 
 const mapStateToProps = (state) => {
-  const {showControls} = state.html5video
+  const {showControls, isTouchDevice} = state.html5video
 
-  return {showControls}
+  return {
+    showControls,
+    isTouchDevice
+  }
 }
 
 export default connect(mapStateToProps)(class VideoElement extends Component {
@@ -23,7 +26,8 @@ export default connect(mapStateToProps)(class VideoElement extends Component {
     this.props.dispatch(toggleControls(this.props.showControls))
   }
 
-  render ({showControls}) {
+  render ({showControls, isTouchDevice}) {
+    if (isTouchDevice) return {}
     return (
       <a
         title={

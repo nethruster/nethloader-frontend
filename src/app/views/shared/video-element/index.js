@@ -6,11 +6,12 @@ import {togglePlayback} from 'actions/html5video'
 import style from './styles.scss'
 
 const mapStateToProps = (state) => {
-  const {isPlaying, showControls} = state.html5video
+  const {isPlaying, showControls, isTouchDevice} = state.html5video
 
   return {
     isPlaying,
-    showControls
+    showControls,
+    isTouchDevice
   }
 }
 
@@ -23,6 +24,8 @@ export default connect(mapStateToProps)(class VideoElement extends Component {
     this.handleVideoMouseOut = this.handleVideoMouseOut.bind(this)
     this.handleVideoMouseOver = this.handleVideoMouseOver.bind(this)
     this.togglePlayback = this.togglePlayback.bind(this)
+    this.evalCustomControls = this.evalCustomControls.bind(this)
+    this.evalVideoControls = this.evalVideoControls.bind(this)
   }
 
   componentDidMount () {
@@ -41,6 +44,9 @@ export default connect(mapStateToProps)(class VideoElement extends Component {
 
   togglePlayback () {
     if (this.props.willPlayback) {
+      this.video.paused && !this.props.isPlaying
+        ? this.video.play()
+        : this.video.pause()
       this.props.dispatch(togglePlayback(this.video, this.props.isPlaying))
     }
   }
@@ -53,6 +59,20 @@ export default connect(mapStateToProps)(class VideoElement extends Component {
     event.target.classList.remove(style.videoContainerHover)
   }
 
+  evalCustomControls () {
+    if (this.props.willPlayback) {
+      return !this.props.isTouchDevice && !this.props.showControls
+    }
+    return false
+  }
+
+  evalVideoControls () {
+    if (this.props.willPlayback) {
+      return this.props.isTouchDevice || this.props.showControls
+    }
+    return false
+  }
+
   render ({
     src,
     height,
@@ -60,13 +80,14 @@ export default connect(mapStateToProps)(class VideoElement extends Component {
     id,
     isPlaying,
     willPlayback,
-    showControls
+    showControls,
+    isTouchDevice
   }) {
     return (
       <div
         class={
           `flex flex-full-center ${ // See button shared component as to why I break this computed classes like this
-            willPlayback && !showControls ? style.videoContainer : ''} ${
+            this.evalCustomControls() ? style.videoContainer : ''} ${
             (isPlaying || (this.video && !this.video.paused)) && !showControls ? style.videoContainerPlaying : ''}`
         }
         role='button'
@@ -79,7 +100,7 @@ export default connect(mapStateToProps)(class VideoElement extends Component {
           key={src}
           id={id}
           height={height}
-          controls={showControls}
+          controls={this.evalVideoControls()}
           ref={(el) => { this.video = el }}>
           <source src={src} type={`video/${type}`} />
         </video>

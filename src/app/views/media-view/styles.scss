@@ -9,4 +9,10 @@
             overflow: hidden;
         }
     }
+
+     @media(max-width: 370px) {
+        .mediaView {
+            &Wrapper { width: 100%; }
+        }
+     }
 }

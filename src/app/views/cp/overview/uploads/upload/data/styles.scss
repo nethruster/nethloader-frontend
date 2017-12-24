@@ -17,9 +17,9 @@
         }
     }
 
-     @media(max-width: 650px) {
+    @media(max-width: 570px) {
         .data {
-            &Spec { display: none; }
+            &Spec { display: none!important; }
 
             &Date {
                 span,

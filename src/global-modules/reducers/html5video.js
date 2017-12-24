@@ -4,7 +4,8 @@ import appConstants from '../constants'
 const html5video = (state = {
   isPlaying: false,
   volume: 50,
-  showControls: false
+  showControls: false,
+  isTouchDevice: 'ontouchstart' in document.documentElement // Detect if we are in a touchscreen device
 }, action) => {
   switch (action.type) {
     case appConstants.CHANGE_VOLUME:

@@ -1,5 +1,5 @@
 import {h, Component} from 'preact'
-import {NavLink} from 'react-router-dom'
+import {NavLink, withRouter} from 'react-router-dom'
 import {connect} from 'preact-redux'
 
 import Button from '../../button'
@@ -16,7 +16,7 @@ function mapStateToProps (state) {
   return {isAuthenticated}
 }
 
-export default connect(mapStateToProps)(class HeaderNav extends Component {
+export default withRouter(connect(mapStateToProps)(class HeaderNav extends Component {
   constructor (props) {
     super(props)
 
@@ -49,7 +49,7 @@ export default connect(mapStateToProps)(class HeaderNav extends Component {
         }
         {
           isAuthenticated &&
-          <NavLink to='/cp' activeClassName='nav-active'>
+          <NavLink to='/cp/overview' activeClassName='nav-active'>
             <Button text={viewStrings.cp} icon='cp' navButton />
           </NavLink>}
         {
@@ -74,4 +74,4 @@ export default connect(mapStateToProps)(class HeaderNav extends Component {
       </nav>
     )
   }
-})
+}))

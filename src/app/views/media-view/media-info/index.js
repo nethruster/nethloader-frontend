@@ -24,14 +24,14 @@ export default function MediaInfo ({data}) {
         </p>
       </div>
       <div class='flex flex-cross-center'>
-        <a href={mediaSrc} download rel='noopener' title={viewStrings.download}>
+        <a href={mediaSrc} download={data.id} rel='noopener' title={viewStrings.download}>
           <Button iconButton icon='download' />
         </a>
         <a href={mediaSrc} target='_blank' rel='noopener' title={viewStrings.view_original}>
           <Button iconButton icon='open-in-new' />
         </a>
         {
-          isValidVideoFormat(data.extension) && <VideoToolbar /> // If the element is a video, show video tools
+          isValidVideoFormat(data.extension) && data.extension !== 'gif' && <VideoToolbar /> // If the element is a video, show video tools
         }
       </div>
       <div class='flex flex-cross-center'>

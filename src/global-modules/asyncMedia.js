@@ -33,6 +33,7 @@ export default class AsyncMedia extends Component {
       if (
         (
           !this.props.thumbnail &&
+          this.props.type !== 'gif' &&
           isValidVideoFormat(this.props.type)
         ) ||
         (
@@ -54,7 +55,7 @@ export default class AsyncMedia extends Component {
               src={mediaSrc}
               height={this.props.size}
               type={this.props.type}
-              willPlayback={this.props.willPlayback}
+              willPlayback={this.props.willPlayback && !this.props.thumbnail}
             />
           )
 
@@ -68,6 +69,7 @@ export default class AsyncMedia extends Component {
         tempImgElement.src = mediaSrc
 
         tempImgElement.onload = () => {
+          // For svgs to have size
           let elementHeight = tempImgElement.height <= 0
             ? 'auto'
             : tempImgElement.height

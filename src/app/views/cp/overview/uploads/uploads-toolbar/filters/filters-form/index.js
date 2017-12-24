@@ -58,7 +58,7 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
 
     this.filtersForm.reset()
 
-    this.setState({defaultFilters})
+    this.setState({filters: defaultFilters})
   }
 
   handleTypeChange (e) {
@@ -124,6 +124,7 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
               <FormInput
                 inputType='date'
                 inputId='afterDate'
+                inputLabel='dd/mm/yyyy'
                 changeHandler={this.handleDateChange}
               />
             </label>
@@ -133,6 +134,7 @@ export default connect(mapStateToProps)(class UploadsToolbar extends Component {
               <FormInput
                 inputType='date'
                 inputId='beforeDate'
+                inputLabel='dd/mm/yyyy'
                 changeHandler={this.handleDateChange}
               />
             </label>

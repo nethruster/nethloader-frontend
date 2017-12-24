@@ -1,8 +1,6 @@
 import appConstants from '../constants'
 
-const togglePlayback = (video, isPlaying) => {
-  video.paused && !isPlaying ? video.play() : video.pause()
-
+const togglePlayback = (isPlaying) => {
   return {
     type: appConstants.TOGGLE_PLAYBACK,
     isPlaying: !isPlaying

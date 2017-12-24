@@ -1,12 +1,14 @@
 import {checkCurrentSessionToken} from 'serverAPI/authentication'
 
-const storageParams = JSON.parse(window.localStorage.getItem('neth-strData')) // Storage data
+const fallbackStorageParams = { 'unprocessableExtensions': ['webp', 'webm', 'svg'], 'supportedVideoExtensions': ['mp4', 'ogg', 'webm', 'gif'], 'supportedImageExtensions': ['png', 'jpg', 'jpeg', 'svg', 'webp'] }
 
-const imageExtensions = storageParams.supportedImageExtensions || ['png', 'jpg', 'jpeg', 'svg', 'webp']
-const videoExtensions = storageParams.supportedVideoExtensions || ['mp4', 'ogg', 'webm', 'gif']
+const storageParams = JSON.parse(window.localStorage.getItem('neth-strData')) || fallbackStorageParams // Storage data
+
+const imageExtensions = storageParams.supportedImageExtensions
+const videoExtensions = storageParams.supportedVideoExtensions
 
 // List of extensions we can't process to create a thumbnail
-const unprocessableExtensions = storageParams.unprocessableExtensions || ['webp', 'webm', 'svg']
+const unprocessableExtensions = storageParams.unprocessableExtensions
 
 const supportedExtensions = [...imageExtensions, ...videoExtensions]
 
