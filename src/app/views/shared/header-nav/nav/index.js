@@ -49,7 +49,7 @@ export default withRouter(connect(mapStateToProps)(class HeaderNav extends Compo
         }
         {
           isAuthenticated &&
-          <NavLink to='/cp/overview' activeClassName='nav-active'>
+          <NavLink to='/cp' activeClassName='nav-active'>
             <Button text={viewStrings.cp} icon='cp' navButton />
           </NavLink>}
         {

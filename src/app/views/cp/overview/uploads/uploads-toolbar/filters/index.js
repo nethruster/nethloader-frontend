@@ -18,7 +18,7 @@ const mapStateToProps = (state) => {
   return {params}
 }
 
-export default connect(mapStateToProps)(class UploadsToolbar extends Component {
+export default connect(mapStateToProps)(class Filters extends Component {
   constructor (props) {
     super(props)
 

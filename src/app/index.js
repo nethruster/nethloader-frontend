@@ -19,15 +19,18 @@ export default connect(mapStateToProps)(({isAuthenticated}) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route
-          exact
-          path='/'
-          component={asyncComponent(() => import(/* webpackChunkName: "home" */'./views/home')
-            .then(module => module.default))}
-        />
+        {isAuthenticated
+          ? <Redirect exact from='/' to='/cp' />
+          : <Route
+            exact
+            path='/'
+            component={asyncComponent(() => import(/* webpackChunkName: "home" */'./views/home')
+              .then(module => module.default))}
+          />
+        }
 
         {isAuthenticated
-          ? <Redirect from='/login' to='/cp' />
+          ? <Redirect exact from='/login' to='/cp' />
           : <Route
             exact
             path='/login'

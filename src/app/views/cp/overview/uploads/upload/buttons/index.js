@@ -19,7 +19,7 @@ const mapStateToProps = (state) => {
   return {selectedMedia}
 }
 
-export default connect(mapStateToProps)(class Upload extends Component {
+export default connect(mapStateToProps)(class UploadButtons extends Component {
   constructor (props) {
     super(props)
 
