@@ -178,27 +178,6 @@ const isFiltered = (params) => {
   return false
 }
 
-// Simple feature check to prevent some browsers from hurting themselves and others around them
-const checkBrowserIntegrity = () => {
-  // Private mode (localstorage, sessionStorage... access) detection
-  try {
-    let localStTest = window.localStorage // eslint-disable-line no-unused-vars
-    let sessionStTest = window.sessionStorage // eslint-disable-line no-unused-vars
-  } catch (err) {
-    console.warn('Nethloader relies heavily on browser data APIs like localStorage, sessionStorage, please enable them to use the app.')
-    throw Error('Nethloader relies heavily on browser data APIs, please enable cookies and browser data to enjoy the app properly.')
-  }
-
-  // Required ES6 API detection
-  try {
-    let promiseTest = Promise // eslint-disable-line no-unused-vars
-    let fetchTest = fetch // eslint-disable-line no-unused-vars
-  } catch (err) {
-    console.error('This browser doesn\'t support Promises or any ES6 new syntax and features. Consider upgrading.')
-    throw Error('this browser doesn\'t support required web technology. Consider upgrading to a newer browser like Google Chrome, Firefox or MS Edge.')
-  }
-}
-
 export {
   validateEmpty,
   validateEmail,
@@ -215,6 +194,5 @@ export {
   getPageFactor,
   filterExtensions,
   unprocessableExtensions,
-  isFiltered,
-  checkBrowserIntegrity
+  isFiltered
 }

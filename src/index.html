@@ -94,5 +94,35 @@
     </div>
     <link rel="stylesheet" href="/assets/css/css-reset.css">
     <link rel="stylesheet" href="/assets/css/css-utils.css">
+        <script>
+            // Simple feature check to prevent some browsers from hurting themselves and others around them
+            var checkBrowserIntegrity = function () {
+                // Required ES6 API detection
+                try {
+                    var promiseTest = Promise
+                    var fetchTest = fetch
+                } catch (err) {
+                    console.error('This browser doesn\'t support Promises or any ES6 new syntax and features. Consider upgrading.')
+                    throw Error('this browser doesn\'t support required web technology. Consider upgrading to a newer browser like Google Chrome, Firefox or MS Edge.')
+                }
+
+                // Private mode (localstorage, sessionStorage... access) detection
+                try {
+                    var localStTest = window.localStorage
+                    var sessionStTest = window.sessionStorage
+                } catch (err) {
+                    console.warn('Nethloader relies heavily on browser data APIs like localStorage, sessionStorage, please enable them to use the app.')
+                    throw Error('Nethloader relies heavily on browser data APIs, please enable cookies and browser data to enjoy the app properly.')
+                }
+            }
+
+            // Simple feature check to prevent some browsers from hurting themselves and others around them
+            try {
+                checkBrowserIntegrity()
+            } catch (err) {
+                // I don't use template string to maximize compatibility
+                document.body.firstChild.innerHTML = '<div id="wtf-gtfo" class="wtf-gtfo flex flex-full-center flex-dc" style="width:100vw;height:100vh;"><a href="https://github.com/nethruster/nethloader"><img alt="Nethloader Logo" width="150" src="/assets/img/logo.svg" /></a><p>This domain is using <a href="https://github.com/nethruster/nethloader">Nethloader</a>, a self hosted media sharing service.</p><span>Unfortunately, ' + err.message + '</span></div>'
+            }
+        </script>
 </body>
 </html>

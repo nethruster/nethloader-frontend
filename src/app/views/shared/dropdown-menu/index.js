@@ -32,7 +32,9 @@ export default class DropDownMenu extends Component {
             navTrigger
               ? (
                 <div
-                  class={`flex flex-cross-center flex-dc ${style.dropdownMenuNavButton} ${style.dropdownMenuNavButtonCustom}`}
+                  class={`flex flex-cross-center flex-dc ${
+                    style.dropdownMenuNavButton} ${
+                    style.dropdownMenuNavButtonCustom}`}
                   onClick={this.handleClick}>
                   <Ink />
                   <span class='flex'>
@@ -49,7 +51,16 @@ export default class DropDownMenu extends Component {
               />
           }
           <div
-            class={`${style.dropdownMenu} ${centered ? style.dropdownMenuCentered : ''} ${noMinWidth ? style.dropdownMenuNoMinWidth : ''} ${this.state.isOpen ? style.active : ''}`}>
+            class={`${style.dropdownMenu} ${
+              centered
+                ? style.dropdownMenuCentered
+                : ''} ${
+              noMinWidth
+                ? style.dropdownMenuNoMinWidth
+                : ''} ${
+              this.state.isOpen
+                ? style.active
+                : ''}`}>
             <ul>
               {this.props.children}
             </ul>

@@ -39,13 +39,13 @@ export default function MediaInfo ({data}) {
           title='Share on Twitter'
           rel='noopener'
           target='_blank'
-          href={`https://twitter.com/intent/tweet?url=${mediaUrl};text=${data.extension}media;related=Nethruster`}>
+          href={`https://twitter.com/intent/tweet?url=${mediaUrl};text=Uploaded media ;related=Nethruster`}>
           <Icon iconName='twitter' />
         </a>
         <a
           class={style.facebook}
           title='Share on Facebook'
-          href={`http://www.facebook.com/dialog/share?app_id=732538520272338&amp;href=${mediaUrl}&amp;display=popup`}>
+          href={`http://www.facebook.com/dialog/share?app_id=732538520272338&href=${mediaUrl}&display=popup`}>
           <Icon iconName='facebook' />
         </a>
       </div>

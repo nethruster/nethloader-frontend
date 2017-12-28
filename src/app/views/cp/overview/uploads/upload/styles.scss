@@ -44,7 +44,8 @@
             overflow: hidden;
             user-select: none;
 
-            img { border-radius: var(--base-br); }
+            img, 
+            video { border-radius: var(--base-br); }
         }
     }
 }

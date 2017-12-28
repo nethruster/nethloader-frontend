@@ -151,7 +151,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     }
 
     for (let file of event.target.files) {
-      if (isValidFormat(file.name.split('.').pop())) { // Get the extension part from the mimeType
+      if (isValidFormat(file.name.split('.').pop())) { // Get the extension part from the name
         modals.upload.files.push(file)
         modals.upload.selectedFiles.push(file.name)
       } else {
