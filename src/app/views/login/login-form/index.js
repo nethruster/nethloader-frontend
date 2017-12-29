@@ -3,6 +3,7 @@ import {connect} from 'preact-redux'
 
 import FormInput from './../../shared/form-input'
 import Button from '../../shared/button'
+import Checkbox from '../../shared/checkbox'
 import locale from 'locale'
 import {loginUser} from 'serverAPI/authentication'
 import {getStorageParams} from 'serverAPI/data'
@@ -26,17 +27,25 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
         email: '',
         password: ''
       },
+      maintainSession: false,
       formValidationText: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+
+    this.handleMaintainSessionCheckboxToggle = this.handleMaintainSessionCheckboxToggle.bind(this)
   }
 
   shouldComponentUpdate (nextProps, nextState) {
     return (this.state.credentials.email !== nextState.credentials.email) ||
       (this.state.credentials.password !== nextState.credentials.password) ||
-      (this.props.isFetching !== nextProps.isFetching)
+      (this.props.isFetching !== nextProps.isFetching) ||
+      (this.state.maintainSession !== nextState.maintainSession)
+  }
+
+  handleMaintainSessionCheckboxToggle () {
+    this.setState({maintainSession: !this.state.maintainSession})
   }
 
   handleChange (event) {
@@ -54,7 +63,7 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
 
   async handleSubmit (event) {
     event.preventDefault()
-    await this.props.dispatch(loginUser(this.state.credentials, this.context.router.history, event.target))
+    await this.props.dispatch(loginUser(this.state.credentials, this.state.maintainSession, this.context.router.history, event.target))
     getStorageParams(this.props.token)
   }
 
@@ -79,6 +88,14 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
           noValidationStyle
         />
         <p class={style.formValidationText}>{this.state.formValidationText}</p>
+        <div class={style.maintainSessionCheckbox}>
+          <Checkbox
+            text='Keep me logged in'
+            dataId='maintainSession'
+            isSelected={this.state.maintainSession}
+            onChangeHandler={this.handleMaintainSessionCheckboxToggle}
+          />
+        </div>
         <Button
           contrast
           text={viewStrings.login}

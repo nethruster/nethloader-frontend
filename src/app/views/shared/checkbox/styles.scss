@@ -5,6 +5,8 @@
         input[type="checkbox"] + label {
             position: relative;
 
+            border-radius: var(--base-br);
+
             font: inherit;
             cursor: pointer;
             
@@ -44,6 +46,9 @@
            }
         }
 
-        p { margin: calc(var(--base-pm) * 2) var(--base-pm); }
+        p { 
+            padding: var(--base-pm);
+            font-size: .95em;
+        }
     }
 }

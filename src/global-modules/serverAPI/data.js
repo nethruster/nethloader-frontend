@@ -142,7 +142,6 @@ const getStorageParams = async (authToken) => {
 
   if (serverResponse.status >= 200 && serverResponse.status < 300) {
     let responseData = await serverResponse.json()
-    console.log(responseData)
     if (responseData.data) {
       // Set the data in local storage
       window.localStorage.setItem('neth-strData', JSON.stringify(responseData.data))

@@ -145,7 +145,7 @@ const isValidFormat = (type) => {
  */
 const checkUserSessionValidity = async (token, tokenExp) => {
   if (await checkCurrentSessionToken(token)) {
-    return !!checkTokenExpiryDate(tokenExp)
+    return !tokenExp || !!checkTokenExpiryDate(tokenExp)
   }
 
   return false

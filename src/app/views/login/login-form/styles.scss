@@ -9,6 +9,8 @@
         }
     }
 
+    .maintainSessionCheckbox { align-self: flex-end; }
+
     @media (max-width: 550px) {
         .form { width: 100%; }
     }

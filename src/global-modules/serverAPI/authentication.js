@@ -7,14 +7,14 @@ import {
   requestLogout, receiveLogout } from 'actions/authentication'
 
 // Login
-const loginUser = (credentials, history, loginFormElement) => {
+const loginUser = (credentials, maintainSession, history, loginFormElement) => {
   let requestConfig = {
     method: 'POST',
     headers: {
       'accept': 'application/json',
       'content-type': 'application/json'},
     body: JSON.stringify({
-      query: `mutation{ login(email: "${credentials.email}", password: "${credentials.password}") }`
+      query: `mutation{ login(email: "${credentials.email}", password: "${credentials.password}", preventSessionExpire: ${maintainSession}) }`
     })
   }
 
