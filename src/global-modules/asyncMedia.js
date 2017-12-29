@@ -51,7 +51,6 @@ export default class AsyncMedia extends Component {
         tempVideoElement.oncanplay = () => {
           let mediaNode = (
             <VideoElement
-              id={this.props.id}
               src={mediaSrc}
               height={this.props.size}
               type={this.props.type}

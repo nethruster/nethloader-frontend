@@ -94,11 +94,11 @@ export default connect(mapStateToProps)(class VideoElement extends Component {
         onMouseLeave={this.handleVideoMouseOut}
         onMouseOver={this.handleVideoMouseOver}
         onClick={this.togglePlayback}>
-        <video preload='auto'
+        <video
+          preload='auto'
           loop
           tabindex='0'
           key={src}
-          id={id}
           height={height}
           controls={this.evalVideoControls()}
           ref={(el) => { this.video = el }}>
