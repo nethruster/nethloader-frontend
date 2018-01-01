@@ -12,6 +12,7 @@ import NotFound from '../not-found'
 import MediaView from '../../media-view'
 
 import style from './styles.scss'
+import ToastContainer from '../toast/toastContainer'
 
 function mapStateToProps (state) {
   const {isAuthenticated, token, sessionData} = state.authentication
@@ -58,6 +59,7 @@ export default connect(mapStateToProps)(class Content extends Component {
             component={NotFound} />
         </Switch>
         <Footer contentFooter />
+        <ToastContainer />
       </div>
     )
   }

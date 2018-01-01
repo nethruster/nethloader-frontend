@@ -49,5 +49,14 @@ export default keymirror({
   // Hmlt5video
   CHANGE_VOLUME: null,
   TOGGLE_CONTROLS: null,
-  TOGGLE_PLAYBACK: null
+  TOGGLE_PLAYBACK: null,
+
+  // Toast
+  SHOW_TOAST: null,
+  HIDE_TOAST: null,
+
+  // Settings
+  CHANGE_SETTING_REQUEST: null,
+  CHANGE_SETTING_RECIEVE: null,
+  ERROR_CHANGE_SETTING: null
 })

@@ -5,7 +5,7 @@
         margin-top: calc(var(--base-pm) * 4);
 
         &Wrapper {
-            max-width: var(--content-max-width);
+            max-width: calc(100% - calc(var(--base-pm) * 4));
             overflow: hidden;
         }
     }

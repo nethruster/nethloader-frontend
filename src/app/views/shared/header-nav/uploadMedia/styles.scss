@@ -48,6 +48,23 @@
         }
     }
 
+    .format {
+        &Info {
+            h6 { font-size: .9em; }
+
+            p {
+                font-size: .95em;
+                font-weight: 500;
+                margin: var(--base-pm);
+
+                span {
+                    font-weight: 400;
+                    opacity: .9;
+                }
+            }
+        }
+    }
+
     @media(max-width: 420px) {
         .uploadForm {
             label {

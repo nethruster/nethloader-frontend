@@ -17,10 +17,10 @@
         --default-color: $default-color;
         --default-bg-hover: transparentize($default-color, .9);
         --default-color-hover: lighten($default-color, 30%);
-        --default-border-color: lighten($default-color, 70%);
+        --default-border-color: lighten($default-color, 68%);
 
-        --valid-color: #00c853;
-        --warning-color:  #D50000;
+        --valid-color: #00C853;
+        --warning-color:  #DD2C00;
 
         --twitter-color: #1da1f3;
         --facebook-color: #3b5998;

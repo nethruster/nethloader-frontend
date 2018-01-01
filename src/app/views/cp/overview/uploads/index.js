@@ -78,7 +78,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
 
   computeMediaList () {
     let mediaList = this.props.userMedia.images
-    if (!!mediaList && mediaList.length > 0) {
+    if (this.props.totalCount > 0 && mediaList.length > 0) {
       return (
         <this.mediaVirtualList
           items={mediaList}
@@ -183,9 +183,11 @@ export default connect(mapStateToProps)(class Uploads extends Component {
             ? <ViewLoading />
             : this.computeMediaList()
         }
+
         {/* Single Delete Modal */}
         <Modal
           isActive={this.state.modals.singleDelete.isActive}
+          modalTitle='Delete item'
           toggleModal={this.toggleDeleteConfirmModal}
           closeButtonText={viewStrings.modals.deny}
           acceptButtonText={viewStrings.modals.confirm}
@@ -195,6 +197,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
         {/* Multiple Delete Modal */}
         <Modal
           isActive={this.state.modals.multipleDelete.isActive}
+          modalTitle='Delete items'
           toggleModal={this.toggleDeleteConfirmModal}
           closeButtonText={viewStrings.modals.deny}
           acceptButtonText={viewStrings.modals.confirm}

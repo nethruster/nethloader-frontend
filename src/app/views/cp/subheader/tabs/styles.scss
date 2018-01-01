@@ -36,7 +36,7 @@
                     color: var(--contrast-bg);
                 }
 
-                &[data-adminbutton] {
+                &[data-dangerbutton] {
                     svg { color: var(--warning-color); }
                 }
             }
@@ -78,7 +78,7 @@
             color: var(--contrast-bg);
         }
 
-        &[data-adminbutton] {
+        &[data-dangerbutton] {
             svg { color: var(--warning-color); }
         }
     }

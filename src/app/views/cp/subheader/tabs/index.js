@@ -20,17 +20,17 @@ export default connect(mapStateToProps)(({userData}) => {
     <div class={`${style.tabs} flex flex-cross-center`}>
       <nav class='flex flex-cross-center flex-sa'>
         <NavLink to='/cp/overview' activeClassName='tab-active'>
-          <Icon iconName='overview' />
+          <Icon iconName='overview' />&nbsp;
           {viewStrings.tabs.overview}
         </NavLink>
         <NavLink exact to='/cp/settings' activeClassName='tab-active'>
-          <Icon iconName='settings' />
+          <Icon iconName='settings' />&nbsp;
           {viewStrings.tabs.settings}
         </NavLink>
         {
           userData.isAdmin &&
-          <NavLink exact to='/cp/neth-admin' activeClassName='tab-active' data-adminbutton>
-            <Icon iconName='admin-settings' />
+          <NavLink exact to='/cp/neth-admin' activeClassName='tab-active' data-dangerbutton>
+            <Icon iconName='admin-settings' />&nbsp;
             {viewStrings.tabs.admin_settings}
           </NavLink>
         }

@@ -15,7 +15,7 @@ const getUserData = (id, authToken) => {
       'authentication': authToken
     },
     body: JSON.stringify({
-      query: `query{ user(id: "${id}") { name, email, apiKey, isAdmin}}`
+      query: `query{ user(id: "${id}") {name, email, apiKey, isAdmin}}`
     })
   }
 
@@ -26,7 +26,6 @@ const getUserData = (id, authToken) => {
 
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
       let responseData = await serverResponse.json()
-
       if (responseData.data.user) {
         // TODO Check if we already have the latest data
         // Set the data in local storage
@@ -79,12 +78,12 @@ const getUserMedia = (id, authToken, params) => {
         // Dispatch the success action
         dispatch(receiveUserMedia(responseData.data.images, totalCount))
       } else {
-        console.log('getUserData - responseData: ', responseData)
+        console.log('getUserMedia - responseData: ', responseData)
         dispatch(userMediaError(responseData.errors[0].message))
         return Promise.reject(responseData.errors[0].message)
       }
     } else {
-      console.log('getUserData - serverResponse: ', serverResponse)
+      console.log('getUserMedia - serverResponse: ', serverResponse)
       dispatch(userMediaError(serverResponse.status))
       return Promise.reject(serverResponse.status)
     }

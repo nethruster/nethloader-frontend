@@ -8,7 +8,7 @@ import {requestMediaUpload, receiveMediaUpload, mediaUploadError,
 const uploadMedia = (media, authToken) => {
   let formData = new FormData()
 
-  formData.append('files', media, media.name)
+  formData.append('file', media, media.name)
   formData.append('query', `mutation{uploadImage{id, extension, createdAt}}`)
 
   let requestConfig = {

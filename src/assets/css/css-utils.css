@@ -64,6 +64,8 @@
     color: rgba(255, 255, 255, 0.9);
 }
 
+.danger-text { color: var(--warning-color); }
+
 .wtf-gtfo img { margin: 16px; }
 
 .wtf-gtfo p,
@@ -78,6 +80,4 @@
     text-align: center;
 }
 
-.wtf-gtfo span {
-    font-size: 1.2em;
-}
+.wtf-gtfo span { font-size: 1.2em; }

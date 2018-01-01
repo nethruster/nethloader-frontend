@@ -5,6 +5,7 @@ import Ink from 'react-ink'
 
 import Button from '../../button'
 import Modal from '../../modal'
+import Icon from '../../icon'
 import {isValidFormat, getPageFactor} from 'utils'
 import {uploadMedia, getMediaInfo} from 'serverAPI/media'
 import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
@@ -17,11 +18,14 @@ const viewStrings = locale.shared.upload_media
 function mapStateToProps (state) {
   const {token, sessionData} = state.authentication
   const {params} = state.userMedia
+  const {isFetchingUser, strData} = state.userData
 
   return {
     token,
     sessionData,
-    params
+    params,
+    isFetchingUser,
+    strData
   }
 }
 
@@ -191,7 +195,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     this.setState({modals})
   }
 
-  render ({dispatch, isAuthenticated, token}) {
+  render ({dispatch, isAuthenticated, token, isFetchingUser, strData}) {
     return (
       <span>
         <Button
@@ -258,6 +262,13 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
                 contrast
                 tabindex='-1' />
             </form>
+            <div class={`flex flex-dc flex-cross-center ${style.formatInfo}`}>
+              <h6>Supported files:</h6>
+              <div class='flex flex-cross-center flex-sa'>
+                <p><Icon iconName='file-video' />&nbsp;<span>{strData.supportedVideoExtensions.join(', ')}</span></p>
+                <p><Icon iconName='file-image' />&nbsp;<span>{strData.supportedImageExtensions.join(', ')}</span></p>
+              </div>
+            </div>
           </div>
         </Modal>
       </span>

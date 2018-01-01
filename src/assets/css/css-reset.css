@@ -17,6 +17,8 @@ menu, nav {
     vertical-align: baseline;
 }
 
+b { font-weight: 500; }
+
 /* HTML5 display-role reset for older browsers */
 footer, header, menu, nav { display: block; }
 
@@ -45,8 +47,9 @@ body {
        -moz-text-size-adjust: 100%;
         -ms-text-size-adjust: 100%;
             text-size-adjust: 100%;
-    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     -webkit-font-feature-settings: "kern";
             font-feature-settings: "kern";

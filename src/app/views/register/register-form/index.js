@@ -6,6 +6,7 @@ import Button from '../../shared/button'
 import locale from 'locale'
 import {validateEmpty, validateEmail, validateName} from 'utils'
 import {registerUser} from 'serverAPI/authentication'
+import {getStorageParams} from 'serverAPI/data'
 
 import style from './styles.scss'
 
@@ -93,15 +94,18 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
     })
   }
 
-  handleSubmit (event) {
+  async handleSubmit (event) {
     event.preventDefault()
     let data = {
       username: this.state.data.username.value,
       email: this.state.data.email.value,
       password: this.state.data.password.value
     }
-    this.props.dispatch(registerUser(data, this.context.router.history, event.target))
+
+    await this.props.dispatch(registerUser(data, this.context.router.history, event.target))
+    getStorageParams(this.props.token)
   }
+
   render ({isFetching}) {
     return (
       <form class={`${style.form} flex flex-full-center flex-dc`} onSubmit={this.handleSubmit}>

@@ -47,9 +47,9 @@
             transition: opacity .2s, transform .2s;
 
             &-header {
-                margin-bottom: calc(var(--base-pm) * 4);
+                margin-bottom: calc(var(--base-pm) * 2);
 
-                font-size: 1.6em;
+                font-size: 1.4em;
                 font-weight: 300;
             }
 
@@ -58,9 +58,7 @@
                 font-size: .95em;
             }
 
-            &-footer {
-                justify-content: flex-end
-            }
+            &-footer { justify-content: flex-end; }
         }
 
         &-overlay {
@@ -109,5 +107,9 @@
                 border-radius: 0;
             }
         }
+    }
+
+    @media(max-width: 400px) {
+        .modal-content-footer { flex-direction: column; }
     }
 }
