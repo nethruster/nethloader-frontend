@@ -15,9 +15,8 @@
         }
     
         &UserStats { font-size: .85em; }
-    }
-    @media(max-width: 550px) {
-        .cpsubheader {
+
+        @media(max-width: 550px) {
             &UserStats { display: none; }
         }
     }

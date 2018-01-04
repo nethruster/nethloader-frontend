@@ -6,6 +6,10 @@
             font-weight: 300;
             font-size: .9em;
 
+            @media(max-width: 420px) {
+                flex-direction: column;
+                margin: calc(var(--base-pm) * 2);
+            }
         }
 
         svg { width: 15px; }
@@ -18,15 +22,6 @@
             p { margin: calc(var(--base-pm) * 2); }
 
             svg { color: #1da1f3; }
-        }
-    }
-
-    @media(max-width: 420px) {
-        .footer {
-            p {
-                flex-direction: column;
-                margin: calc(var(--base-pm) * 2);
-            }
         }
     }
 }

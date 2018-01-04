@@ -2,7 +2,7 @@ import appConstants from '../constants'
 
 // Data reducer
 const userData = (state = {
-  isFetchingUser: true,
+  isFetchingUser: false,
   userData: JSON.parse(window.sessionStorage.getItem('neth-userData')) || {},
   strData: JSON.parse(window.localStorage.getItem('neth-strData')) || {},
   errorMessage: ''
@@ -11,7 +11,6 @@ const userData = (state = {
     case appConstants.USER_DATA_REQUEST:
       return Object.assign({}, state, {
         isFetchingUser: true,
-        userData: {},
         errorMessage: ''
       })
     case appConstants.USER_DATA_SUCCESS:
@@ -33,7 +32,7 @@ const userData = (state = {
 
 // Media reducer
 const userMedia = (state = {
-  isFetchingMedia: true,
+  isFetchingMedia: false,
   userMedia: JSON.parse(window.localStorage.getItem('neth-userMedia')) || {},
   totalCount: JSON.parse(window.localStorage.getItem('neth-totalCount')) || 0,
   params: {

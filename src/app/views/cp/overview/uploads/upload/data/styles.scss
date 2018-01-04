@@ -15,10 +15,8 @@
 
             small { opacity: .8 }
         }
-    }
 
-    @media(max-width: 570px) {
-        .data {
+        @media(max-width: 570px) {
             &Spec { display: none!important; }
 
             &Date {

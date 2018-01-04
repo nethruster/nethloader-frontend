@@ -1,85 +1,61 @@
 :local {
     .pagination {
-            &Nav {
-                margin: 0 var(--base-pm);
+        &Nav {
+            margin: 0 var(--base-pm);
 
-                font-size: .95em;
-                min-height: 60px;
+            font-size: .95em;
+            min-height: 60px;
 
-                &Button {
-                    position: relative;
-                    height: 60px;
-                    padding: var(--base-pm) calc(var(--base-pm) * 2);
+            &Button {
+                position: relative;
+                height: 60px;
+                padding: var(--base-pm) calc(var(--base-pm) * 2);
 
-                    opacity: .8;
-                    border-radius: var(--base-br) var(--base-br) 0 0;
-                    text-align: center;
-                    
-                    cursor: pointer;
-                    transition: background-color .2s ease-in-out;
-                    user-select: none;
+                opacity: .8;
+                border-radius: var(--base-br) var(--base-br) 0 0;
+                text-align: center;
+                
+                cursor: pointer;
+                transition: background-color .2s ease-in-out;
+                user-select: none;
 
-                    b { font-weight: 500; }
+                b { font-weight: 500; }
 
-                    p {
-                        font-size: .9em;
+                p {
+                    font-size: .9em;
 
-                         svg {
-                            width: 20px;
+                        svg {
+                        width: 20px;
 
-                            vertical-align: top;
-                        }
-                    }
-
-                    &Disabled {
-                        opacity: .2;
-
-                        pointer-events: none;
-                    }
-
-                    &Right { text-align: right; }
-
-                    &Left { text-align: left; }
-
-                    &Custom { width: 90px; }
-
-                    &:hover {
-                        opacity: 1;
-                        background-color: var(--default-border-color)
+                        vertical-align: top;
                     }
                 }
-            }
 
-            &List {
-                flex: 2;
-                align-items: flex-end;
-                min-width: 90px;
+                &Disabled {
+                    opacity: .2;
 
-                ::-webkit-scrollbar {
-                    width: 8px!important;
-                    height: 8px!important;
+                    pointer-events: none;
                 }
 
-                ::-webkit-scrollbar-thumb { background-color: var(--default-border-color); }
+                &Right { text-align: right; }
 
-                ::-webkit-scrollbar-track { background-color: transparent; }
-            }
-        }
+                &Left { text-align: left; }
 
-        @media(max-width: 650px) {
-            .pagination {
-                &Nav {
+                &Custom { width: 90px; }
+
+                &:hover {
+                    opacity: 1;
+                    background-color: var(--default-border-color)
+                }
+
+                @media(max-width: 650px) {
                     &Button { 
                         font-size: .9em;
                         white-space: nowrap;
                     }
                 }
-            }
-        }
 
-        @media(max-width: 525px) {
-             .pagination {
-                &Nav {
+                @media(max-width: 525px) {
                     &Button {
                         p { display: none; }
 
@@ -88,6 +64,22 @@
                 }
             }
         }
+    }
+
+    &List {
+        flex: 2;
+        align-items: flex-end;
+        min-width: 90px;
+
+        ::-webkit-scrollbar {
+            width: 8px!important;
+            height: 8px!important;
+        }
+
+        ::-webkit-scrollbar-thumb { background-color: var(--default-border-color); }
+
+        ::-webkit-scrollbar-track { background-color: transparent; }
+    }
 }
 
 :global {

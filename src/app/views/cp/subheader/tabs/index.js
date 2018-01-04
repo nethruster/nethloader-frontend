@@ -23,7 +23,7 @@ export default connect(mapStateToProps)(({userData}) => {
           <Icon iconName='overview' />&nbsp;
           {viewStrings.tabs.overview}
         </NavLink>
-        <NavLink exact to='/cp/settings' activeClassName='tab-active'>
+        <NavLink to='/cp/settings' activeClassName='tab-active'>
           <Icon iconName='settings' />&nbsp;
           {viewStrings.tabs.settings}
         </NavLink>

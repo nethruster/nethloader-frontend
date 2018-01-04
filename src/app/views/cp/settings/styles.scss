@@ -1,26 +1,8 @@
-:local  {
+:local {
     .settings {
         max-width: var(--content-max-width);
-        width: 100%;        
+        width: 100%;
 
-        &GridContainer {
-            flex: 1;
-            display: grid;
-            grid-template-rows: repeat(auto, 1fr);
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
-    @media (max-width: 1050px) {
-        .settings {
-            &GridContainer {
-                grid-template-rows: repeat(auto, 1fr);
-                grid-template-columns: repeat(1, 1fr);
-            }
-        }
-    }
-
-    @media (max-width: 700px) {
-        .settings { flex-direction: column; }
+        @media (max-width: 700px) { flex-direction: column; }
     }
 }

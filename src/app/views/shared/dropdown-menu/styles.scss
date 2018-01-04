@@ -77,6 +77,11 @@
                     }
                 }
             }
+
+            @media (max-width: 1460px) {
+                left: auto;
+                right: 0;
+            }
         }
 
         &Overlay {
@@ -92,13 +97,6 @@
                 z-index: 2;
                 pointer-events: initial;
             }
-        }
-    }
-
-    @media (max-width: 1460px) {
-        .dropdownMenu {
-            left: auto;
-            right: 0;
         }
     }
 }

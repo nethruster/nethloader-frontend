@@ -121,8 +121,8 @@
         "error": "Something went wrong"
       },
       "input": {
-        "text": "Click to add files or drop them here",
-        "files_text": "Click to add more files or drop them here",
+        "text": "Click to add files or drop them anywhere",
+        "files_text": "Click to add more files or drop them anywhere",
         "uploading_file": "Uploading file",
         "files_selected": "files selected",
         "upload_submit": "Upload"

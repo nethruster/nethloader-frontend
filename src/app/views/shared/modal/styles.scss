@@ -58,7 +58,15 @@
                 font-size: .95em;
             }
 
-            &-footer { justify-content: flex-end; }
+            &-footer { 
+                justify-content: flex-end;
+
+                @media(max-width: 400px) { flex-direction: column; }
+            }
+
+            @media(max-width: 500px) {
+                border-radius: 0;
+            }
         }
 
         &-overlay {
@@ -99,17 +107,5 @@
                 
             }
         }
-    }
-
-    @media(max-width: 500px) {
-        .modal {
-            &-content {
-                border-radius: 0;
-            }
-        }
-    }
-
-    @media(max-width: 400px) {
-        .modal-content-footer { flex-direction: column; }
     }
 }

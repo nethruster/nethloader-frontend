@@ -55,7 +55,11 @@
         }
 
         &Small {
+            width: auto;
+
             padding: calc(var(--base-pm) / 2) calc(var(--base-pm) * 2);
+            margin: 0 8px;
+
             font-size: 12px;
 
             svg { width: 18px; }
@@ -88,7 +92,7 @@
 
             font-size: 1.05em;
             font: inherit;
-            font-weight: 300;
+            // font-weight: 300;
             white-space: nowrap;
            
             text-transform: none;
@@ -96,6 +100,16 @@
             &:hover {
                 color: var(--default-bg);
                 background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            @media(max-width: 650px) {
+                display: inline!important;
+
+                p { font-size: .8em; }
+            }
+
+            @media(max-width: 400px) {
+                p { display: none; }
             }
         }
 
@@ -189,23 +203,6 @@
                 
                 background-color: var(--warning-color);
                 border-radius: 50%;
-            }
-        }
-    }
-
-    @media(max-width: 650px) {
-        .button {
-            &Nav {
-                p { font-size: .8em; }
-                display: inline!important;
-            }
-        }
-    }
-
-     @media(max-width: 400px) {
-        .button {
-            &Nav {
-                p { display: none; }
             }
         }
     }

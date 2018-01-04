@@ -121,8 +121,8 @@
         "error": "Algo ha ido mal"
       },
       "input": {
-        "text": "Haz clic para añadir archivos o arrastralos aquí",
-        "files_text": "Haz clic para añadir más archivos o arrastralos aquí",
+        "text": "Haz clic para añadir archivos o arrastralos aqui",
+        "files_text": "Haz clic para añadir más archivos o arrastralos aqui",
         "uploading_file": "Subiendo archivo",
         "files_selected": "archivos seleccionados",
         "upload_submit": "Subir"

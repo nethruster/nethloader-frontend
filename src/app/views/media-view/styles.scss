@@ -8,11 +8,9 @@
             max-width: calc(100% - calc(var(--base-pm) * 4));
             overflow: hidden;
         }
-    }
 
-     @media(max-width: 370px) {
-        .mediaView {
+        @media(max-width: 370px) {
             &Wrapper { width: 100%; }
         }
-     }
+    }
 }

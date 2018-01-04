@@ -1,4 +1,4 @@
-import { apiBaseUrl } from 'app.config'
+import {apiBaseUrl} from 'app.config'
 
 import {
   requestSettingChange, receiveSettingChange, settingChangeError

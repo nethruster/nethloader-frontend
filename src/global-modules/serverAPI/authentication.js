@@ -1,6 +1,7 @@
 import {apiBaseUrl} from 'app.config'
 import jwtDecode from 'jwt-decode'
 
+import {getStorageParams} from 'serverAPI/data'
 import {
   requestLogin, receiveLogin, loginError,
   requestRegister, receiveRegister, registerError,
@@ -32,6 +33,10 @@ const loginUser = (credentials, maintainSession, history, loginFormElement) => {
 
         window.localStorage.setItem('neth-jwtToken', responseData.data.login)
         window.localStorage.setItem('neth-sessionData', JSON.stringify(decodedData))
+
+        // Get storage data
+        getStorageParams(responseData.data.login)
+
         // Dispatch the success action
         dispatch(receiveLogin(responseData.data.login, decodedData))
         loginFormElement.reset()
@@ -76,6 +81,9 @@ const registerUser = (data, history, registerFormElement) => {
         // If register was successful, set the token in local storage
         window.localStorage.setItem('neth-jwtToken', responseData.data.register)
         window.localStorage.setItem('neth-sessionData', JSON.stringify(decodedData))
+
+        // Get storage data
+        getStorageParams(responseData.data.register)
 
         // Dispatch the success action
         dispatch(receiveRegister(responseData.data.register, decodedData))

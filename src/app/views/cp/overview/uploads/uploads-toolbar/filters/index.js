@@ -8,8 +8,6 @@ import locale from 'locale'
 import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 import {isFiltered} from 'utils'
 
-import './styles.scss'
-
 const viewStrings = locale.cp.overview.filters
 
 const mapStateToProps = (state) => {

@@ -5,6 +5,8 @@
         max-width: var(--content-max-width);
 
         padding: 0 calc(var(--base-pm) * 2);
+
+        @media(max-width: 400px) { padding: 0;  }
     }
 
     .sidebar {
@@ -15,7 +17,5 @@
         margin: 0 calc(var(--base-pm) * 2);
      }
 
-    @media(max-width: 400px) {
-        .overview { padding: 0; }
-    }
+
 }

@@ -1,0 +1,31 @@
+:local {
+    .section {
+        padding: 0 32px;
+
+        h3 {
+            font-size: 1.4em;
+        }
+
+        &Info {
+            ol {
+            margin-left: 32px;
+            }
+
+            p {
+                margin: 16px 0;
+            }
+        }
+
+        code {
+            background-color: rgba(0,0,0, .05);
+
+            margin: 16px;
+            padding: 4px;
+            border-radius: var(--base-br);
+
+            &:hover {
+                background-color: rgba(0,0,0, .1);
+            }
+        }
+    }
+}

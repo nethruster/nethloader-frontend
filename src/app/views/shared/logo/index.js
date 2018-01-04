@@ -8,7 +8,7 @@ import '../../../../assets/img/logo.svg'
 export default function Logo ({customClass}) {
   return (
     <div class={`logo ${customClass || ''}`}>
-      <img src='../../../../assets/img/logo.svg' alt='Nethloader Logo' />
+      <img src='../../../../assets/img/logo.svg' alt='Nethloader Logo' title='Nethloader Logo' />
     </div>
   )
 }

@@ -7,11 +7,11 @@
             color: var(--warning-color);
             min-height: 20px;
         }
+
+        @media (max-width: 550px) { width: 100%;  }
     }
 
     .maintainSessionCheckbox { align-self: flex-end; }
 
-    @media (max-width: 550px) {
-        .form { width: 100%; }
-    }
+
 }

@@ -7,7 +7,7 @@ import style from './styles.scss'
 
 const viewStrings = locale.cp.overview.uploads.upload
 
-export default function UploadData ({ data }) {
+export default function UploadData ({data}) {
   return (
     <div class={`${style.data} flex flex-cross-center flex-sa`}>
       <div class={`${style.dataSpec} flex flex-dc`}>

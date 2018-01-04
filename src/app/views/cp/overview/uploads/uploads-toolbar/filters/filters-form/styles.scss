@@ -32,11 +32,11 @@
         }
 
         &LimitSelect { min-width: 200px; }
-    }
-
-    @media(max-width: 600px) {
-        .filtersForm {
+         
+        @media(max-width: 600px) {
             &Section { padding: calc(var(--base-pm) / 2) 0; }
         }
     }
+
+   
 }

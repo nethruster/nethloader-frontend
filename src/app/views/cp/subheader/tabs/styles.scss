@@ -41,10 +41,8 @@
                 }
             }
         }
-    }
-
-    @media (max-width: 550px) {
-        .tabs {
+        
+        @media (max-width: 550px) {
             width: 100%;
             
             nav {
@@ -55,17 +53,15 @@
                 padding: calc(var(--base-pm) * 2) 0;
             }
         }
-    }
 
-    @media (max-width: 400px) {
-        .tabs {
-            a {
-                flex-direction: column;
-                font-size: .9em;
-                padding: var(--base-pm) 0;
+        @media (max-width: 400px) {
+                a {
+                    flex-direction: column;
+                    font-size: .9em;
+                    padding: var(--base-pm) 0;
+                }
             }
         }
-    }
 }
 
 :global {

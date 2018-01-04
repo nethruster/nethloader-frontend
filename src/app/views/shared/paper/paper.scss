@@ -8,12 +8,12 @@
 
         border-radius: var(--base-br);
 
-        &-small { max-width: 650px; }
+        &-small { 
+            max-width: 650px;
+            
+            @media(max-width: 650px) { border-radius: 0; }
+        }
 
         &-padding { padding: calc(var(--base-pm) * 4) calc(var(--base-pm) * 4); }
-    }
-
-    @media(max-width: 650px) {
-        .paper-small { border-radius: 0; }
     }
 }

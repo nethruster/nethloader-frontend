@@ -3,9 +3,7 @@
         flex: 2;
         
         margin: 0 calc(var(--base-pm) * 2);
-    }
 
-    @media (max-width: 520px) {
-        .uploads { margin: 0; }
+        @media (max-width: 520px) { margin: 0;  }
     }
 }

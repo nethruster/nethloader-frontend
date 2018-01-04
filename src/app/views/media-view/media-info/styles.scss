@@ -22,6 +22,18 @@
 
             svg { width: 18px; }
         }
+
+        @media (max-width: 500px) {
+            width: 100%;
+            justify-content: flex-end;
+        }
+
+        @media (max-width: 370px) {
+            flex-direction: column;
+            align-items: center;
+
+            div { margin: var(--base-pm) 0; }
+        }
     }
 
     .shareButton {
@@ -36,21 +48,5 @@
 
     .facebook {
             svg { color: var(--facebook-color); }
-    }
-
-    @media (max-width: 500px) {
-        .mediaInfo {
-            width: 100%;
-            justify-content: flex-end;
-        }
-    }
-
-     @media (max-width: 370px) {
-        .mediaInfo {
-            flex-direction: column;
-            align-items: center;
-
-            div { margin: var(--base-pm) 0; }
-        }
     }
 }

@@ -6,7 +6,6 @@ import Button from '../../shared/button'
 import Checkbox from '../../shared/checkbox'
 import locale from 'locale'
 import {loginUser} from 'serverAPI/authentication'
-import {getStorageParams} from 'serverAPI/data'
 
 import style from './styles.scss'
 
@@ -64,7 +63,6 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
   async handleSubmit (event) {
     event.preventDefault()
     await this.props.dispatch(loginUser(this.state.credentials, this.state.maintainSession, this.context.router.history, event.target))
-    getStorageParams(this.props.token)
   }
 
   render ({isFetching}) {

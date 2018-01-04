@@ -23,10 +23,8 @@
                 height: var(--header-nav-logo-size);
             }
         }
-    }
 
-    @media(max-width: 620px) {
-        .headerNav {
+        @media(max-width: 620px) {
             padding: 0 calc(var(--base-pm) * 2);
             
             &Logo {
