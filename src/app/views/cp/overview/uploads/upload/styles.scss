@@ -1,14 +1,4 @@
-:local {
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
-    }
-    
+:local {    
     .upload {
         min-height: var(--medialist-item-height);
         max-height: var(--medialist-item-height);
@@ -24,9 +14,7 @@
 
         &:hover { border-left-color: var(--contrast-bg) }
 
-        animation-name: fadeIn;
-        animation-duration: 1s;
-        animation-fill-mode: both;
+       
 
         
         &DataLink { flex: 1; }

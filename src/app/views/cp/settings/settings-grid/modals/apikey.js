@@ -1,7 +1,7 @@
 import {h, Component} from 'preact'
 import {connect} from 'preact-redux'
 
-import Modal from '../../../shared/modal'
+import Modal from '../../../../shared/modal'
 import {renewUserApiKey} from 'serverAPI/settings'
 import {getUserData} from 'serverAPI/data'
 

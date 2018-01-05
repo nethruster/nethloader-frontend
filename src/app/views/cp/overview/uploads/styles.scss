@@ -1,9 +1,21 @@
 :local {
+    @keyframes :local(fadeIn) {
+        from { opacity: 0; }
+
+        to { opacity: 1; }
+    }
+
     .uploads {
         flex: 2;
         
         margin: 0 calc(var(--base-pm) * 2);
 
-        @media (max-width: 520px) { margin: 0;  }
+        ul { // Virtual list animation
+            animation-name: fadeIn;
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+
+        @media (max-width: 520px) { margin: 0; }
     }
 }

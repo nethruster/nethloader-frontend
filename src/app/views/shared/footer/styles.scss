@@ -1,10 +1,10 @@
 :local {
     .footer {
-        p {
+        span {
             margin: calc(var(--base-pm) * 4) calc(var(--base-pm) * 2);
 
             font-weight: 300;
-            font-size: .9em;
+            font-size: .95em;
 
             @media(max-width: 420px) {
                 flex-direction: column;
@@ -12,16 +12,19 @@
             }
         }
 
-        svg { width: 15px; }
+        svg { width: 18px; }
 
         &Content {
             margin-top: calc(var(--base-pm) * 2);
-            font-size: .95em;
             opacity: .7;
             
-            p { margin: calc(var(--base-pm) * 2); }
+            span { margin: calc(var(--base-pm) * 2); }
 
-            svg { color: #1da1f3; }
+            svg{ color: #000; }
         }
+    }
+    
+    .twitter {
+        svg { color: #1da1f3; }
     }
 }

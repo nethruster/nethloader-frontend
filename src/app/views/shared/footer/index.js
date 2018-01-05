@@ -12,16 +12,15 @@ const viewStrings = locale.footer
 export default function Footer ({contentFooter}) {
   return (
     <footer class={`${style.footer} ${contentFooter ? style.footerContent : ''}`}>
-      <p class='flex flex-full-center'>
-        <a href='https://github.com/nethruster/nethloader' target='_blank' rel='noopener'>
-          {viewStrings.powered_by} Nethloader v{version}
+      <span class='flex flex-full-center'>
+        <a class='flex flex-full-center' href='https://github.com/nethruster/nethloader' target='_blank' rel='noopener'>
+          <Icon iconName='github' />&nbsp;<p>{viewStrings.powered_by}&nbsp;Nethloader v{version}</p>
         </a>&nbsp;&nbsp;&nbsp;&nbsp;
-        <span>
-          <Icon iconName='twitter' />&nbsp;
-          <a href='https://twitter.com/nethruster' rel='noopener' target='_blank'>@nethruster</a>
-        </span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class={`flex flex-full-center ${style.twitter}`} href='https://twitter.com/nethruster' rel='noopener' target='_blank'>
+          <Icon iconName='twitter' />&nbsp;<p>nethruster</p>
+        </a>&nbsp;&nbsp;&nbsp;&nbsp;
         <NavLink to='/cp' activeClassName='dom-hidden'>Login/CP</NavLink>
-      </p>
+      </span>
     </footer>
   )
 }

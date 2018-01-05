@@ -36,7 +36,8 @@
             color: var(--contrast-color);
             border: 0;
 
-            &:hover {
+            &:hover,
+            &:focus {
                 background-color: var(--contrast-bg-hover);
             }
         }
@@ -51,7 +52,8 @@
             line-height: 38px;
             text-transform: uppercase;
 
-            &:hover { box-shadow: 0 10px 40px currentColor; }
+            &:hover,
+            &:focus { box-shadow: 0 10px 40px currentColor; }
         }
 
         &Small {
@@ -71,7 +73,8 @@
             color: rgba(255, 255, 255, 0.8);
             background-color: transparent;
 
-            &:hover {
+            &:hover,
+            &:focus {
                 box-shadow: none;
                 color: #fff;
                 border-color: #fff;
@@ -97,7 +100,8 @@
            
             text-transform: none;
             
-            &:hover {
+            &:hover,
+            &:focus {
                 color: var(--default-bg);
                 background-color: rgba(255, 255, 255, 0.1);
             }
@@ -125,11 +129,12 @@
             border-radius: 0;
 
             font-size: .9em;
-            text-transform: capitalize;            
+            text-transform: capitalize;
 
             svg { width: 18px; }
 
-            &:hover { background-color: var(--default-bg-hover) }
+            &:hover,
+            &:focus { background-color: var(--default-bg-hover) }
         }
 
         &Floating {
@@ -158,7 +163,8 @@
                 transform: translateX(-50%);
             }
             
-            &:hover { background-color: var(--contrast-bg-hover); }
+            &:hover,
+            &:focus { background-color: var(--contrast-bg-hover); }
         }
 
         &Icon {
@@ -188,7 +194,8 @@
                 
             }
             
-            &:hover { background-color: var(--default-bg-hover); }
+            &:hover,
+            &:focus { background-color: var(--default-bg-hover); }
         }
 
         &Badge {

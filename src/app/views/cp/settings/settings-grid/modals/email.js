@@ -1,8 +1,9 @@
 import {h, Component} from 'preact'
 import {connect} from 'preact-redux'
+import {showSnack} from 'react-redux-snackbar'
 
-import Modal from '../../../shared/modal'
-import FormInput from '../../../shared/form-input'
+import Modal from '../../../../shared/modal'
+import FormInput from '../../../../shared/form-input'
 import {validateEmpty, validateEmail} from 'utils'
 import {changeUserEmail} from 'serverAPI/settings'
 import {getUserData} from 'serverAPI/data'
@@ -67,6 +68,12 @@ export default connect(mapStateToProps)(class EmailModal extends Component {
         this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token))
         this.form.reset()
       })
+    } else {
+      this.props.dispatch(showSnack('emptyEmailSettings', {
+        label: this.state.newEmail.validationMessage || 'That\'s not a valid email',
+        timeout: 3000,
+        button: { label: 'OK' }
+      }))
     }
   }
 

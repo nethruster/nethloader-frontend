@@ -193,10 +193,49 @@ const deleteAllUserImages = (userId, authToken) => {
   }
 }
 
+// Delete user
+const deleteUser = (userId, authToken) => {
+  let requestConfig = {
+    method: 'POST',
+    headers: {
+      'accept': 'application/json',
+      'content-type': 'application/json',
+      'authentication': authToken
+    },
+    body: JSON.stringify({
+      query: `mutation{ deleteUser(userId: "${userId}")}`
+    })
+  }
+
+  return async dispatch => {
+    dispatch(requestSettingChange())
+
+    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+
+    if (serverResponse.status >= 200 && serverResponse.status < 300) {
+      let responseData = await serverResponse.json()
+
+      if (responseData.data.deleteUser) {
+        // Dispatch the success action
+        dispatch(receiveSettingChange())
+      } else {
+        console.log('deleteUser - responseData: ', responseData)
+        dispatch(settingChangeError(responseData.errors[0].message))
+        return Promise.reject(responseData.errors[0].message)
+      }
+    } else {
+      console.log('deleteUser - serverResponse: ', serverResponse)
+      dispatch(settingChangeError(serverResponse.status))
+      return Promise.reject(serverResponse.status)
+    }
+  }
+}
+
 export {
   changeUserName,
   changeUserEmail,
   changeUserPassword,
   renewUserApiKey,
-  deleteAllUserImages
+  deleteAllUserImages,
+  deleteUser
 }

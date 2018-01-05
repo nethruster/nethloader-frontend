@@ -1,5 +1,6 @@
 import {h, Component} from 'preact'
 import {connect} from 'preact-redux'
+import {showSnack} from 'react-redux-snackbar'
 
 import FormInput from './../../shared/form-input'
 import Button from '../../shared/button'
@@ -102,8 +103,16 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
       password: this.state.data.password.value
     }
 
-    await this.props.dispatch(registerUser(data, this.context.router.history, event.target))
-    getStorageParams(this.props.token)
+    if (this.state.data.username.inputState === 'valid') {
+      await this.props.dispatch(registerUser(data, this.context.router.history, event.target))
+      getStorageParams(this.props.token)
+    } else {
+      this.props.dispatch(showSnack('invalidUsername', {
+        label: this.state.data.username.validationMessage || 'Check the errors and try again',
+        timeout: 3000,
+        button: { label: 'OK' }
+      }))
+    }
   }
 
   render ({isFetching}) {

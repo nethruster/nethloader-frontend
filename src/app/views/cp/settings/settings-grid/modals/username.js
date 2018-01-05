@@ -1,8 +1,9 @@
 import {h, Component} from 'preact'
 import {connect} from 'preact-redux'
+import {showSnack} from 'react-redux-snackbar'
 
-import Modal from '../../../shared/modal'
-import FormInput from '../../../shared/form-input'
+import Modal from '../../../../shared/modal'
+import FormInput from '../../../../shared/form-input'
 import {validateEmpty, validateName} from 'utils'
 import {changeUserName} from 'serverAPI/settings'
 import {getUserData} from 'serverAPI/data'
@@ -67,6 +68,12 @@ export default connect(mapStateToProps)(class UsernameModal extends Component {
         this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token))
         this.form.reset()
       })
+    } else {
+      this.props.dispatch(showSnack('emptyPasswordSettings', {
+        label: this.state.newUsername.validationMessage || 'That\'s not a valid username',
+        timeout: 3000,
+        button: { label: 'OK' }
+      }))
     }
   }
 

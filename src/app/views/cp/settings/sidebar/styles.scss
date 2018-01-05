@@ -1,35 +1,61 @@
 :local {
     .sidebar {
-        padding: 0 16px;
+        padding: 0 calc(var(--base-pm) * 2);
+        max-width: 330px;
+        width: 100%;
 
         border-right: 1px solid var(--default-border-color);
 
-        h6 {
-            margin-top: 24px;
-            margin-bottom: 8px;
+        h6,
+        h5 {
+            margin-bottom: var(--base-pm);
 
-            font-size: 1.2em;
+            font-size: 1em;
             font-weight: 300;
-
-            svg {
-                width: 20px;
-
-                opacity: .8;
-            }
         }
 
-        &Info {
-            p {
-                margin: 8px 0;
-                
-                font-size: .9em;
-                font-weight: 500;
+        h5 {
+            font-size: 1.15em;
+            font-weight: 400;
+        }
 
-                span {
-                    font-weight: 400;
-                    opacity: .85;
-                }
+        h6 { color: var(--contrast-bg) }
+
+        p { font-size: .85em; }
+
+        &Links {
+            margin-top: calc(var(--base-pm) * 2);
+            
+            a {
+                display: block;
+
+                padding: var(--base-pm);
+                margin: var(--base-pm);
+
+                border-radius: var(--base-br);
+                transition: background-color .2s ease;
+                
+                &:hover,
+                &.activeSection { background-color: rgba(0,0,0,.08); }
+            }
+
+            @media (max-width: 480px) { flex-direction: column; }
+        }
+
+        @media (max-width: 800px) {
+            max-width: none;
+
+            margin-bottom: calc(var(--base-pm) * 2);
+
+            border-right: none;
+
+            &Links {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
     }
+    
 }

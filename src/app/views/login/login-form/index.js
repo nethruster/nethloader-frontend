@@ -74,6 +74,7 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
           inputLabel={viewStrings.email}
           changeHandler={this.handleChange}
           required
+          tabindex='1'
           noValidationStyle
           autofocus
         />
@@ -83,6 +84,7 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
           inputLabel={viewStrings.password}
           changeHandler={this.handleChange}
           required
+          tabindex='2'
           noValidationStyle
         />
         <p class={style.formValidationText}>{this.state.formValidationText}</p>
@@ -90,6 +92,7 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
           <Checkbox
             text='Keep me logged in'
             dataId='maintainSession'
+            tabindex='-1'
             isSelected={this.state.maintainSession}
             onChangeHandler={this.handleMaintainSessionCheckboxToggle}
           />
@@ -99,6 +102,7 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
           text={viewStrings.login}
           spinner={isFetching}
           spinnerColor='#fff'
+          tabindex='4'
           spinnerSize='24'
           disabled={isFetching}
         />

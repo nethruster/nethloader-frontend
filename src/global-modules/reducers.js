@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux'
+import {snackbarReducer} from 'react-redux-snackbar'
 
 import authentication from 'reducers/authentication'
 import {userData, userMedia} from 'reducers/data'
 import {mediaUpload, mediaInfo, mediaDelete, mediaSelect} from 'reducers/media'
 import html5video from 'reducers/html5video'
-import toast from 'reducers/toast'
 import settings from 'reducers/settings'
 
 const reducers = combineReducers({
@@ -16,8 +16,8 @@ const reducers = combineReducers({
   mediaDelete,
   mediaSelect,
   html5video,
-  toast,
-  settings
+  settings,
+  snackbar: snackbarReducer
 })
 
 export default reducers

@@ -30,7 +30,6 @@ export default connect(mapStateToProps)(({isFetchingUser}) => {
                 .then(module => module.default))} />
             <Route
               path='/cp/settings'
-              exact
               component={asyncComponent(() => import(/* webpackChunkName: "content_cp_settings" */'./settings')
                 .then(module => module.default))} />
             <Route

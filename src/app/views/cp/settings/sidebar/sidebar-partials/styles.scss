@@ -2,18 +2,12 @@
     .section {
         padding: 0 32px;
 
-        h3 {
-            font-size: 1.4em;
-        }
+        h3 { font-size: 1.4em; }
 
         &Info {
-            ol {
-            margin-left: 32px;
-            }
+            ol { margin-left: 32px; }
 
-            p {
-                margin: 16px 0;
-            }
+            p { margin: 16px 0; }
         }
 
         code {
@@ -23,9 +17,87 @@
             padding: 4px;
             border-radius: var(--base-br);
 
-            &:hover {
-                background-color: rgba(0,0,0, .1);
-            }
+            &:hover { background-color: rgba(0,0,0, .1); }
         }
+    }
+
+    .backButton {
+        margin: 0;
+        margin-top: 4px;
+        margin-left: -8px;
+    }
+
+    .terminalWindow {
+        position: relative;
+
+        margin: auto;
+        color: #fff;
+
+        text-align: left;
+        border-radius: 10px;
+
+        header {
+            height: 30px;
+
+            background: #E0E8F0;
+
+            border-radius: 8px 8px 0 0;
+            padding-left: 10px;
+        }
+
+        &Button {
+            width: 12px;
+            height: 12px;
+            margin: 10px 8px 0 0;
+            display: inline-block;
+            border-radius: 8px;
+        }
+
+        section {
+            width: 100%;
+            top: 30px;
+            bottom: 0;
+            box-sizing: border-box;
+
+            padding: 10px;
+            background: #30353A;
+
+            color: white;
+            font-family: Menlo, Monaco, "Consolas", "Courier New", "Courier";
+            font-size: 11pt;
+
+            cursor: text;
+            overflow: auto;
+        }
+    }
+
+    .green { background: #3BB662; }
+
+    .yellow { background: #E5C30F; }
+
+    .red { background: #E75448; }
+
+    .terminalBlue { color: #35acf7; }
+
+    .terminalLightBlue { color: #81D4FA; }
+
+    @keyframes :local(blink) {
+        0% { opacity:1; }
+        50% { opacity:0; }
+        100% { opacity:1; }
+    }
+
+    .cursor {
+        display: inline-block;
+        width: 1.5px;
+        height: 15px;
+
+        margin-top: -2px;
+
+        background-color: #fff;
+        vertical-align: middle;
+        opacity: 1;
+
+        animation: blink 0.7s infinite;
     }
 }

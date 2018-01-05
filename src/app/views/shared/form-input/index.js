@@ -16,7 +16,8 @@ export default class FormInput extends Component {
     changeHandler,
     noValidationStyle,
     autofocus,
-    validationMessage
+    validationMessage,
+    tabindex
   }) {
     return (
       <div class='input-container flex flex-dc'>
@@ -30,6 +31,7 @@ export default class FormInput extends Component {
           onInput={changeHandler}
           noValidationStyle={noValidationStyle}
           title={inputLabel}
+          tabindex={tabindex}
           autofocus={autofocus}
         />
         <label for={inputId}>{validationMessage}</label>

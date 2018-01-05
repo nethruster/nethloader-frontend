@@ -64,6 +64,7 @@
     "preact-redux": "^2.0.3",
     "react-facebook": "^4.1.1",
     "react-ink": "^6.2.0",
+    "react-redux-snackbar": "^1.1.0",
     "react-router-dom": "^4.2.2",
     "react-virtual-list": "^2.2.2",
     "redux": "^3.7.2",

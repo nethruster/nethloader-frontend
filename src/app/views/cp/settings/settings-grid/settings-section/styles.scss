@@ -25,6 +25,10 @@
                         color: var(--contrast-bg);
                         opacity: 1;
                     }
+
+                    &[data-dangerbutton] {
+                        svg { color: var(--warning-color); }
+                    }
                 }
             }
 
@@ -38,6 +42,10 @@
 
                     color: var(--default-color-hover);
                     opacity: .85;
+                }
+
+                &[data-dangerbutton] {
+                    svg { color: var(--warning-color); }
                 }
             }
 

@@ -1,8 +1,9 @@
 import {h, Component} from 'preact'
 import {connect} from 'preact-redux'
+import {showSnack} from 'react-redux-snackbar'
 
-import Modal from '../../../shared/modal'
-import FormInput from '../../../shared/form-input'
+import Modal from '../../../../shared/modal'
+import FormInput from '../../../../shared/form-input'
 import {validateEmpty} from 'utils'
 import {changeUserPassword} from 'serverAPI/settings'
 import {logoutUser} from 'serverAPI/authentication'
@@ -61,7 +62,8 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
         state.newPassword.inputState = 'invalid'
         state.cNewPassword.inputState = 'invalid'
         state.newPassword.validationMessage = "Password fields don't match, make sure they are the same"
-      } else if (this.state.newPassword.value === this.state.cNewPassword.value) {
+      } else if (this.state.newPassword.value === this.state.cNewPassword.value && this.state.oldPassword.inputState !== 'empty') {
+        state.oldPassword.inputState = 'valid'
         state.newPassword.inputState = 'valid'
         state.cNewPassword.inputState = 'valid'
         state.newPassword.validationMessage = 'Valid'
@@ -76,12 +78,18 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
 
   handleSubmit (event) {
     event.preventDefault()
-    if (this.state.newPassword.inputState === 'valid') {
+    if (this.state.newPassword.inputState === 'valid' && this.state.oldPassword.inputState === 'valid') {
       this.props.dispatch(changeUserPassword(this.state.oldPassword.value, this.state.newPassword.value, this.props.sessionData.id, this.props.token)).then(() => {
         this.props.toggleModal()
         this.form.reset()
         this.props.dispatch(logoutUser(this.props.sessionData.id, this.props.token))
       })
+    } else {
+      this.props.dispatch(showSnack('emptyPasswordSettings', {
+        label: this.state.newPassword.validationMessage || 'Please, fill in all the fields',
+        timeout: 3000,
+        button: { label: 'OK' }
+      }))
     }
   }
 
@@ -101,7 +109,6 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
             inputLabel='Current password'
             changeHandler={this.handleChange}
             required
-            noValidationStyle
             inputState={this.state.oldPassword.inputState}
             validationMessage={this.state.oldPassword.validationMessage}
           />

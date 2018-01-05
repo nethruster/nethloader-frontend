@@ -12,11 +12,11 @@ const mapStateToProps = (state) => {
   return {isTouchDevice}
 }
 
-export default connect(mapStateToProps)(({icon, isTouchDevice, title, currentText, currentData, dataCopy, onClickExecute, disabled}) => {
+export default connect(mapStateToProps)(({icon, isTouchDevice, title, currentText, currentData, dataCopy, onClickExecute, disabled, danger}) => {
   return (
     <div class={`flex flex-full-center flex-dc ${style.section} ${disabled ? style.sectionDisabled : ''}`} data-copytext={dataCopy} onClick={onClickExecute}>
       <Ink />
-      <h5 class={`flex flex-full-center ${style.sectionTitle}`}><Icon iconName={icon} />&nbsp;{title}</h5>
+      <h5 class={`flex flex-full-center ${style.sectionTitle}`} data-dangerbutton={danger}><Icon iconName={icon} />&nbsp;{title}</h5>
       <div class={`flex flex-cross-center flex-dc ${style.sectionContent}`}>
         <p>{currentText && `${currentText}:`} <span>{currentData}</span></p>
       </div>
