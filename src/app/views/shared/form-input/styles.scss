@@ -15,6 +15,11 @@
 
             & + label { color: var(--warning-color); }
         }
+
+        .valid[noValidationStyle],
+        .invalid[noValidationStyle] {
+            & + label { opacity: 0; }
+        }
     }
 }
 

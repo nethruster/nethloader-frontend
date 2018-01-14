@@ -7,7 +7,7 @@ import Ink from 'react-ink'
 import Button from '../../button'
 import Modal from '../../modal'
 import Icon from '../../icon'
-import {isValidFormat, getPageFactor} from 'utils'
+import {isValidFormat, getPageFactor, supportedExtensions} from 'utils'
 import {uploadMedia, getMediaInfo} from 'serverAPI/media'
 import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 import locale from 'locale'
@@ -173,7 +173,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     }
 
     this.props.dispatch(showSnack('addedFilesClick', {
-      label: `Added ${validFilesCount} ${validFilesCount === 1 ? 'file' : 'files'} succesfully`,
+      label: `Added ${validFilesCount} ${validFilesCount === 1 ? 'file' : 'files'}`,
       timeout: 3000,
       button: { label: 'OK' }
     }))
@@ -190,38 +190,40 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
   handleFileDrop (event) {
     event.preventDefault()
 
-    let validFilesCount = 0
+    if (event.dataTransfer.files.length > 0) {
+      let validFilesCount = 0
 
-    let modals = {
-      ...this.state.modals
-    }
-
-    if (!modals.upload.isActive && event.dataTransfer.files.length > 0) {
-      this.toggleUploadModal()
-    }
-
-    for (let file of event.dataTransfer.files) {
-      if (isValidFormat(file.name.split('.').pop())) {
-        validFilesCount++
-        modals.upload.files.push(file)
-        modals.upload.selectedFiles.push(file.name)
-      } else {
-        this.props.dispatch(showSnack('invalidFileDrop', {
-          label: 'Invalid files detected',
-          timeout: 3000,
-          button: { label: 'OK' }
-        }))
-        console.log(`${viewStrings.invalid_file_detected}: ` + file.name)
+      let modals = {
+        ...this.state.modals
       }
+
+      if (!modals.upload.isActive && event.dataTransfer.files.length > 0) {
+        this.toggleUploadModal()
+      }
+
+      for (let file of event.dataTransfer.files) {
+        if (isValidFormat(file.name.split('.').pop())) {
+          validFilesCount++
+          modals.upload.files.push(file)
+          modals.upload.selectedFiles.push(file.name)
+        } else {
+          this.props.dispatch(showSnack('invalidFileDrop', {
+            label: 'Invalid files detected',
+            timeout: 3000,
+            button: { label: 'OK' }
+          }))
+          console.log(`${viewStrings.invalid_file_detected}: ` + file.name)
+        }
+      }
+
+      this.props.dispatch(showSnack('addedFilesDrop', {
+        label: `Added ${validFilesCount} ${validFilesCount === 1 ? 'file' : 'files'}`,
+        timeout: 3000,
+        button: { label: 'OK' }
+      }))
+
+      this.setState({modals})
     }
-
-    this.props.dispatch(showSnack('addedFilesDrop', {
-      label: `Added ${validFilesCount} ${validFilesCount === 1 ? 'file' : 'files'} succesfully`,
-      timeout: 3000,
-      button: { label: 'OK' }
-    }))
-
-    this.setState({modals})
   }
 
   render ({dispatch, isAuthenticated, token, isFetchingUser, strData}) {
@@ -245,7 +247,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
                 type='file'
                 id='fileInput'
                 name='file'
-                accept='image/*, video/*'
+                accept={supportedExtensions.map(item => `.${item}`)}
                 onChange={this.handleFileChange}
                 multiple />
               {
