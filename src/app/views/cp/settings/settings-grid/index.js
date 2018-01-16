@@ -1,7 +1,7 @@
 import {h, Component} from 'preact'
 import {connect} from 'preact-redux'
 
-import SettingsSection from './settings-section'
+import SettingsSection from '../../../shared/settings-section'
 import UsernameModal from './modals/username'
 import EmailModal from './modals/email'
 import PasswordModal from './modals/password'

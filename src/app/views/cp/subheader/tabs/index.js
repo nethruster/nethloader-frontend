@@ -29,7 +29,7 @@ export default connect(mapStateToProps)(({userData}) => {
         </NavLink>
         {
           userData.isAdmin &&
-          <NavLink exact to='/cp/neth-admin' activeClassName='tab-active' data-dangerbutton>
+          <NavLink to='/cp/neth-admin' activeClassName='tab-active' data-dangerbutton>
             <Icon iconName='admin-settings' />&nbsp;
             {viewStrings.tabs.admin_settings}
           </NavLink>

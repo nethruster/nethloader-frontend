@@ -194,5 +194,6 @@ export {
   getPageFactor,
   filterExtensions,
   unprocessableExtensions,
+  supportedExtensions,
   isFiltered
 }

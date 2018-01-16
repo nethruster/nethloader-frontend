@@ -39,8 +39,8 @@ export default connect(mapStateToProps)(class Uploads extends Component {
 
     this.state = {
       modals: {
-        singleDelete: {isActive: false},
-        multipleDelete: {isActive: false}
+        singleDeleteActive: false,
+        multipleDeleteActive: false
       },
       isDeleting: false
     }
@@ -122,13 +122,13 @@ export default connect(mapStateToProps)(class Uploads extends Component {
         ...this.state.modals
       }
 
-      modals.singleDelete.isActive || modals.multipleDelete.isActive ? scrollBlockOff() : scrollBlockOn()
+      modals.singleDeleteActive || modals.multipleDeleteActive ? scrollBlockOff() : scrollBlockOn()
 
       if (this.props.selectedMedia.length === 1) {
         // If we're not multiple-selecting or we're deleting just one item
-        modals.singleDelete.isActive = !modals.singleDelete.isActive
+        modals.singleDeleteActive = !modals.singleDeleteActive
       } else {
-        modals.multipleDelete.isActive = !modals.multipleDelete.isActive
+        modals.multipleDeleteActive = !modals.multipleDeleteActive
       }
 
       this.setState({modals})
@@ -171,12 +171,11 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     return (
       <div class={style.uploads}>
         {
-          (!!userMedia && totalCount <= 0 && userMedia.totalCount === 0)
-            ? null
-            : <UploadsToolbar
-              handleDeleteClick={this.toggleDeleteConfirmModal}
-              updateUserMedia={updateUserMedia}
-            />
+          Number(totalCount) > 0 &&
+          <UploadsToolbar
+            handleDeleteClick={this.toggleDeleteConfirmModal}
+            updateUserMedia={updateUserMedia}
+          />
         }
         {
           isFetchingMedia
@@ -186,7 +185,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
 
         {/* Single Delete Modal */}
         <Modal
-          isActive={this.state.modals.singleDelete.isActive}
+          isActive={this.state.modals.singleDeleteActive}
           modalTitle='Delete item'
           toggleModal={this.toggleDeleteConfirmModal}
           closeButtonText={viewStrings.modals.deny}
@@ -196,7 +195,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
         </Modal>
         {/* Multiple Delete Modal */}
         <Modal
-          isActive={this.state.modals.multipleDelete.isActive}
+          isActive={this.state.modals.multipleDeleteActive}
           modalTitle='Delete items'
           toggleModal={this.toggleDeleteConfirmModal}
           closeButtonText={viewStrings.modals.deny}

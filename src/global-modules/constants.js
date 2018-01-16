@@ -58,5 +58,36 @@ export default keymirror({
   // Settings
   CHANGE_SETTING_REQUEST: null,
   CHANGE_SETTING_RECIEVE: null,
-  ERROR_CHANGE_SETTING: null
+  ERROR_CHANGE_SETTING: null,
+
+  // Get users
+  USERS_REQUEST: null,
+  USERS_RECIEVE: null,
+  ERROR_USERS: null,
+
+  // Delete user
+  USER_DELETE_REQUEST: null,
+  USER_DELETE_RECIEVE: null,
+  ERROR_USER_DELETE: null,
+
+  // Create user
+  USER_CREATE_REQUEST: null,
+  USER_CREATE_RECIEVE: null,
+  ERROR_USER_CREATE: null,
+
+  // Get media
+  MEDIA_REQUEST: null,
+  MEDIA_RECIEVE: null,
+  ERROR_MEDIA: null,
+
+  // Select users
+  USER_SELECT: null,
+  USER_UNSELECT: null,
+  USER_SELECT_ALL: null,
+  USER_UNSELECT_ALL: null,
+
+  // Toggle is admin
+  TOGGLE_ADMIN_REQUEST: null,
+  TOGGLE_ADMIN_RECIEVE: null,
+  ERROR_TOGGLE_ADMIN: null
 })

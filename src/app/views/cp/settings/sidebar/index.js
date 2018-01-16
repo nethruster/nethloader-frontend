@@ -19,7 +19,7 @@ export default function () {
             <h6>ShareX</h6>
             <p>
                 A free application for windows which works great when used with Nethloader.<br />
-              <small>Click to read guide.</small>
+              <small>Click to read guide</small>
             </p>
           </NavLink>
           <NavLink to='/cp/settings/curl' activeClassName={style.activeSection}>

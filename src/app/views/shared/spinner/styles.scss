@@ -1,9 +1,12 @@
 :global {
    .loader {
+        position: relative;
+        
         max-width: 40px;
-       
-        margin: 0 auto;
+        min-width: 20px;
 
+        margin: 0 auto;
+        
         &:before {
             content: '';
             display: block;
@@ -22,8 +25,6 @@
         right: 0;
         width: 100%;
         height: 100%;
-
-        margin: auto;
 
         animation: rotate 2s linear infinite;
         transform-origin: center center;

@@ -35,7 +35,7 @@ export default connect(mapStateToProps)(class SelectControls extends Component {
     }
   }
 
-  render ({handleDeleteClick, userMedia, updateUserMedia, selectedMedia}) {
+  render ({handleDeleteClick, userMedia, updateUserMedia}) {
     return (
       <div class={`flex flex-cross-center flex-sb`}>
         <Button

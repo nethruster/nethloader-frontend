@@ -11,6 +11,7 @@
             cursor: pointer;
             
             user-select: none;
+            outline: none;
         }
 
         .checkbox {
@@ -49,6 +50,15 @@
         p { 
             padding: var(--base-pm);
             font-size: .95em;
+
+            &>div {
+                padding: var(--base-pm) calc(var(--base-pm) * 3);
+            }
         }
+    }
+
+    .disabled {
+        opacity: .5;
+        pointer-events: none;
     }
 }

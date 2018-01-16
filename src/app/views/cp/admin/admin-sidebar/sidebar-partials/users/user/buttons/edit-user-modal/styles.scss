@@ -1,0 +1,40 @@
+:local {
+    .modalContent {
+        display: grid;
+        grid-template-rows: minmax(55px, max-content) minmax(55px, max-content);
+        grid-template-columns: 1fr 1fr;
+
+        width: 100%;
+
+        @media(max-width: 500px) {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .modalGridItem {
+        position: relative;
+
+        padding: 8px;
+
+        span {
+            flex: 1;
+            position: relative;
+        }
+    }
+
+    .confirmButton { margin-top: 4px; }
+
+    .customModalClass { margin-right: var(--base-pm); }
+
+    .button {
+        margin: var(--base-pm);
+
+        span {
+            position: relative;
+            margin: var(--base-pm) 0;
+
+            small { opacity: .8; }
+        }
+    }
+}

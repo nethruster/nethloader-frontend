@@ -1,0 +1,35 @@
+:local {
+    .section {
+        flex: 1;
+
+        padding: 0 32px;
+
+        h3 { font-size: 1.4em; }
+    }
+
+    .usersTable {
+        height: 100%;
+
+        margin: 16px 0;
+    }
+    
+    .userTableHeader {
+        display: grid;
+        width: 100%;
+        grid-template-rows: minmax(55px, max-content);
+        grid-template-columns: minmax(120px, max-content) 1fr 1fr minmax(55px, max-content) minmax(55px, max-content) minmax(55px, max-content);
+
+        padding: 0 8px;
+
+        opacity: .7;        
+        font-size: .92em;
+        border-bottom: 1px solid var(--default-border-color);
+        
+    }
+
+    .backButton {
+        margin: 0;
+        margin-top: 4px;
+        margin-left: -8px;
+    }
+}

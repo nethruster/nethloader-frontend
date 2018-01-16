@@ -2,7 +2,7 @@ import {h} from 'preact'
 import {connect} from 'preact-redux'
 import Ink from 'react-ink'
 
-import Icon from '../../../../shared/icon'
+import Icon from '../icon'
 
 import style from './styles.scss'
 

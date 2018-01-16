@@ -8,9 +8,10 @@ const requestSettingChange = () => {
   }
 }
 
-const receiveSettingChange = () => {
+const receiveSettingChange = (data) => {
   return {
     type: appConstants.CHANGE_SETTING_RECIEVE,
+    data,
     isFetching: false
   }
 }

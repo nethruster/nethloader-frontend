@@ -3,21 +3,24 @@ import appConstants from '../constants'
 // Settings reducer
 const settings = (state = {
   isFetching: false,
+  data: null,
   errorMessage: ''
 }, action) => {
   switch (action.type) {
-    case appConstants.REQUEST_CHANGE_SETTING:
+    case appConstants.CHANGE_SETTING_REQUEST:
       return Object.assign({}, state, {
         isFetching: true
       })
-    case appConstants.RECIEVE_CHANGE_SETTING:
+    case appConstants.CHANGE_SETTING_RECIEVE:
       return Object.assign({}, state, {
         isFetching: false,
+        data: action.data,
         errorMessage: ''
       })
-    case appConstants.CHANGE_SETTING_ERROR:
+    case appConstants.ERROR_CHANGE_SETTING:
       return Object.assign({}, state, {
         isFetching: false,
+        data: null,
         errorMessage: action.errorMessage
       })
     default:

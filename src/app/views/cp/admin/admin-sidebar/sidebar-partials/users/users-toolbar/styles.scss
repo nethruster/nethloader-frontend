@@ -1,0 +1,15 @@
+:local {
+    .usersToolbar {
+            justify-content: flex-end;
+            border-bottom: 1px solid var(--default-border-color);
+
+            padding: 0 var(--base-pm);
+
+            &Select { 
+                justify-content: flex-end;
+
+                margin-bottom: var(--base-pm);
+                margin-right: 8px;
+             }
+        }
+}

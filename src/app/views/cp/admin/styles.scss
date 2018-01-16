@@ -1,0 +1,8 @@
+:local {
+    .cpadmin {
+        max-width: var(--content-max-width);
+        width: 100%;
+
+        @media (max-width: 1150px) { flex-direction: column; }
+    }
+}

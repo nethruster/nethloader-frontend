@@ -20,11 +20,11 @@
             
             span { margin: calc(var(--base-pm) * 2); }
 
-            svg{ color: #000; }
+            svg { color: #000; }
+
+            .twitter {
+                svg { color: #1da1f3; }
+            }
         }
-    }
-    
-    .twitter {
-        svg { color: #1da1f3; }
     }
 }

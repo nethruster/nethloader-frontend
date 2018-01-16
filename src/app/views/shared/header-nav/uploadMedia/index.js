@@ -120,30 +120,34 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
       this.toggleIsUploading()
 
       for (let file of filesToUpload) {
-        this.props.dispatch(uploadMedia(file, this.props.token)).then((imageId) => {
-          this.increaseUploadedFileCount()
+        try {
+          this.props.dispatch(uploadMedia(file, this.props.token)).then((imageId) => {
+            this.increaseUploadedFileCount()
 
-          if (this.state.modals.upload.uploadedFileCount === this.state.modals.upload.selectedFiles.length) {
-            let fileCount = this.state.modals.upload.uploadedFileCount
-            this.resetForm(event)
-            this.toggleIsUploading()
-            this.toggleUploadModal()
+            if (this.state.modals.upload.uploadedFileCount === this.state.modals.upload.selectedFiles.length) {
+              let fileCount = this.state.modals.upload.uploadedFileCount
+              this.resetForm(event)
+              this.toggleIsUploading()
+              this.toggleUploadModal()
 
-            if (fileCount === 1) {
-              this.props.dispatch(getMediaInfo(imageId)).then(response => {
-                this.props.history.push(`/${response.id}`)
-              }).catch(() => {
-                this.context.router.history.push('/404')
-              })
-            } else {
-              let newParams = this.props.params
+              if (fileCount === 1) {
+                this.props.dispatch(getMediaInfo(imageId)).then(response => {
+                  this.props.history.push(`/${response.id}`)
+                }).catch(() => {
+                  this.context.router.history.push('/404')
+                })
+              } else {
+                let newParams = this.props.params
 
-              newParams.offset = this.pageFactor * newParams.mediaLimit
+                newParams.offset = this.pageFactor * newParams.mediaLimit
 
-              this.props.history.push('/cp/overview')
+                this.props.history.push('/cp/overview')
+              }
             }
-          }
-        })
+          })
+        } catch (err) {
+          console.log(err)
+        }
       }
     } else {
       console.log(viewStrings.response.error)
@@ -197,7 +201,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
         ...this.state.modals
       }
 
-      if (!modals.upload.isActive && event.dataTransfer.files.length > 0) {
+      if (!modals.upload.isActive) {
         this.toggleUploadModal()
       }
 

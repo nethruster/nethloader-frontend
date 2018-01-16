@@ -8,6 +8,7 @@
         z-index: 15;
 
         pointer-events: none;
+        cursor: auto;
 
         &.active {
             z-index: 5;
@@ -30,8 +31,9 @@
         
         &-content {
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
             max-height: 100vh;
+
             z-index: 10;
             border-radius: var(--base-br);
             border: 1px solid var(--default-border-color);
@@ -64,9 +66,7 @@
                 @media(max-width: 400px) { flex-direction: column; }
             }
 
-            @media(max-width: 500px) {
-                border-radius: 0;
-            }
+            @media(max-width: 500px) { border-radius: 0; }
         }
 
         &-overlay {
@@ -90,22 +90,15 @@
             margin-bottom: 0;
             margin-left: var(--base-pm);
 
-            svg {
-                width: 18px;
-            }
+            svg { width: 18px; }
         }
 
         &-close-button {
-            &:hover svg{
-                color: var(--warning-color);
-            }
+            &:hover svg{ color: var(--warning-color); }
         }
 
         &-accept-button {
-            &:hover svg { 
-                color: var(--valid-color);
-                
-            }
+            &:hover svg { color: var(--valid-color); }
         }
     }
 }

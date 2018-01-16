@@ -100,6 +100,7 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
         modalTitle='Change password'
         toggleModal={toggleModal}
         closeButtonText='Cancel'
+        form
         acceptButtonText='Change'
         onAcceptExecute={this.handleSubmit}>
         <form class={`flex flex-full-center flex-dc`} onSubmit={this.handleSubmit} ref={(el) => { this.form = el }}>

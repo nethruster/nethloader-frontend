@@ -85,6 +85,7 @@ export default connect(mapStateToProps)(class EmailModal extends Component {
         toggleModal={toggleModal}
         closeButtonText='Cancel'
         acceptButtonText='Change'
+        form
         onAcceptExecute={this.handleSubmit}>
         <form class={`flex flex-full-center flex-dc`} onSubmit={this.handleSubmit} ref={(el) => { this.form = el }}>
           <FormInput

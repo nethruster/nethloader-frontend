@@ -34,7 +34,6 @@ export default connect(mapStateToProps)(({isFetchingUser}) => {
                 .then(module => module.default))} />
             <Route
               path='/cp/neth-admin'
-              exact
               component={asyncComponent(() => import(/* webpackChunkName: "content_cp_admin" */'./admin')
                 .then(module => module.default))} />
             <Route

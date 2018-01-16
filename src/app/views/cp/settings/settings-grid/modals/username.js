@@ -83,6 +83,7 @@ export default connect(mapStateToProps)(class UsernameModal extends Component {
         isActive={isActive}
         modalTitle='Change username'
         toggleModal={toggleModal}
+        form
         closeButtonText='Cancel'
         acceptButtonText='Change'
         onAcceptExecute={this.handleSubmit}>

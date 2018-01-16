@@ -15,7 +15,8 @@ export default function Modal ({
   acceptButtonText,
   onAcceptExecute,
   disabled,
-  children
+  children,
+  form
 }) {
   return (
     <div
@@ -39,6 +40,7 @@ export default function Modal ({
               spinner={disabled}
               spinnerSize='14'
               tabindex='-1'
+              type={form ? 'submit' : ''}
             />
           }
           <Button

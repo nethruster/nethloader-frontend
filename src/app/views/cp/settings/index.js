@@ -20,6 +20,7 @@ export default function () {
 
         <Route
           path='/cp/settings/curl'
+          exact
           component={CurlPartial} />
 
         <Route

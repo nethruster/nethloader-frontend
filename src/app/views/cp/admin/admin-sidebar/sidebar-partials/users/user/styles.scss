@@ -1,0 +1,77 @@
+:local {
+    .userRow {
+        display: grid;
+        width: 100%;
+        grid-template-rows: minmax(55px, max-content);
+        grid-template-columns: minmax(120px, max-content) 1fr 1fr minmax(55px, max-content) minmax(55px, max-content) minmax(55px, max-content);
+
+        padding: 0 8px;
+        font-size: .92em;
+        
+        &Field {
+            p {
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            &:not(.userRowFieldIcon) { overflow: hidden; }
+
+            &Icon {
+                &Interactive {
+                    cursor: pointer;
+
+                    &>button {
+                        min-width: 40px;
+                        min-height: 40px;
+
+                        margin: 0;
+                    }
+
+                    li {
+                        svg { width: 16px; }
+                    }
+                }
+            }
+        }
+       
+        
+        &:not(:last-child) { border-bottom: 1px solid var(--default-border-color); }
+        
+        &:hover { background-color: rgba(0, 0, 0, 0.05); }
+    }
+    
+    .selectButton {
+        min-width: 40px;
+        min-height: 40px;
+
+        border-radius: 100%!important;
+        
+        cursor: pointer;
+
+        transition: background-color .3s;
+
+        &:hover { background-color: var(--default-bg-hover) }
+    }
+
+    .adminBadge {
+        padding: 1px 8px;
+
+        background-color: rgba(0, 0, 0, 0.05);
+
+        border-radius: 4px;
+        font-size: .75em;
+        text-transform: uppercase;
+        color: var(--warning-color);
+    }
+
+    .userBadge {
+        padding: 1px 8px;
+
+        background-color: rgba(0, 0, 0, 0.05);
+
+        border-radius: 4px;
+        font-size: .75em;
+        text-transform: uppercase;
+        color: inherit;
+    }
+}
