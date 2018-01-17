@@ -24,7 +24,18 @@
         opacity: .7;        
         font-size: .92em;
         border-bottom: 1px solid var(--default-border-color);
-        
+
+        @media(max-width: 700px) {
+            grid-template-columns: 1fr 1fr minmax(55px, max-content) minmax(55px, max-content) minmax(55px, max-content);
+
+            &FieldId { display: none!important; }
+        }
+
+        @media(max-width: 555px) {
+            grid-template-columns: 1fr minmax(55px, max-content) minmax(55px, max-content) minmax(55px, max-content);
+
+            &FieldEmail { display: none!important; }
+        }
     }
 
     .backButton {

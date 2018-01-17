@@ -133,6 +133,8 @@
 
             svg { width: 18px; }
 
+            p { margin-left: 8px; }
+
             &:hover,
             &:focus { background-color: var(--default-bg-hover) }
         }

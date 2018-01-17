@@ -26,8 +26,7 @@ export default connect(mapStateToProps)(class UsernameModal extends Component {
         inputState: 'empty',
         value: '',
         validationMessage: ''
-      },
-      formValidationText: ''
+      }
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -37,7 +36,6 @@ export default connect(mapStateToProps)(class UsernameModal extends Component {
   handleChange (event) {
     let newUsername = this.state.newUsername
 
-    let formValidationText = ''
     let input = event.target
 
     newUsername.value = event.target.value
@@ -55,8 +53,7 @@ export default connect(mapStateToProps)(class UsernameModal extends Component {
     }
 
     this.setState({
-      newUsername,
-      formValidationText
+      newUsername
     })
   }
 
@@ -69,7 +66,7 @@ export default connect(mapStateToProps)(class UsernameModal extends Component {
         this.form.reset()
       })
     } else {
-      this.props.dispatch(showSnack('emptyPasswordSettings', {
+      this.props.dispatch(showSnack('emptyUsernameSettings', {
         label: this.state.newUsername.validationMessage || 'That\'s not a valid username',
         timeout: 3000,
         button: { label: 'OK' }

@@ -36,8 +36,7 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
         inputState: 'empty',
         validationMessage: '',
         value: ''
-      },
-      formValidationText: ''
+      }
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -47,7 +46,6 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
   handleChange (event) {
     let state = {...this.state}
 
-    let formValidationText = ''
     let input = event.target
     let activeInputOnState = state[event.target.id]
 
@@ -71,8 +69,7 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
     }
 
     this.setState({
-      ...state,
-      formValidationText
+      ...state
     })
   }
 
@@ -132,7 +129,6 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
             inputState={this.state.cNewPassword.inputState}
             validationMessage={this.state.cNewPassword.validationMessage}
           />
-          <p>{this.state.formValidationText}</p>
         </form>
       </Modal>
     )

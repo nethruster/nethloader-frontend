@@ -299,11 +299,16 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
             </form>
             <div class={`flex flex-dc flex-cross-center ${style.formatInfo}`}>
               <h6>Supported files:</h6>
-              {!isFetchingUser &&
-              <div class='flex flex-cross-center flex-sa'>
-                <p><Icon iconName='file-video' />&nbsp;<span>{strData.supportedVideoExtensions.join(', ')}</span></p>
-                <p><Icon iconName='file-image' />&nbsp;<span>{strData.supportedImageExtensions.join(', ')}</span></p>
-              </div>}
+              {
+                !isFetchingUser &&
+                !!strData.supportedVideoExtensions &&
+              (
+                <div class='flex flex-cross-center flex-sa'>
+                  <p><Icon iconName='file-video' />&nbsp;<span>{strData.supportedVideoExtensions.join(', ')}</span></p>
+                  <p><Icon iconName='file-image' />&nbsp;<span>{strData.supportedImageExtensions.join(', ')}</span></p>
+                </div>
+              )
+              }
             </div>
           </div>
         </Modal>

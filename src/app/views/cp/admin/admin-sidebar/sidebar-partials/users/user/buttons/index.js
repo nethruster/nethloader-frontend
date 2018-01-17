@@ -99,7 +99,7 @@ export default connect(mapStateToProps)(class UserButtons extends Component {
             <li>
               <Button
                 icon='edit'
-                text='User settings'
+                text='Edit user'
                 onClickExecute={this.toggleEditUserModal}
                 dropdown
               />

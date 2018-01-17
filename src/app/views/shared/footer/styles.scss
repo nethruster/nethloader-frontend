@@ -6,9 +6,10 @@
             font-weight: 300;
             font-size: .95em;
 
-            @media(max-width: 420px) {
-                flex-direction: column;
-                margin: calc(var(--base-pm) * 2);
+            @media(max-width: 420px) { 
+                flex-direction: column; 
+
+                margin: 0!important;
             }
         }
 

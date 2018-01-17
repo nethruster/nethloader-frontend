@@ -25,13 +25,13 @@ export default connect(mapStateToProps)(class User extends Component {
         style={style}
         class={style.userRow}
         key={itemData.id}>
-        <span class={`flex flex-cross-center ${style.userRowField}`}>
+        <span class={`flex flex-cross-center ${style.userRowField} ${style.userRowFieldId}`}>
           <p>{itemData.id}</p>
         </span>
         <span class={`flex flex-cross-center ${style.userRowField}`}>
-          <p>{itemData.name}&nbsp;{itemData.id === sessionData.id ? <span class={style.userBadge}>You</span> : ''}</p>
+          <p>{itemData.name}</p>
         </span>
-        <span class={`flex flex-cross-center ${style.userRowField}`}>
+        <span class={`flex flex-cross-center ${style.userRowField} ${style.userRowFieldEmail}`}>
           <p>{itemData.email}</p>
         </span>
         <span class={`flex flex-full-center ${style.userRowField} ${style.userRowFieldIcon}`}>
@@ -52,7 +52,11 @@ export default connect(mapStateToProps)(class User extends Component {
           ? <span class={`flex flex-full-center ${style.userRowField} ${style.userRowFieldIcon} ${style.userRowFieldIconInteractive}`}>
             <Link to='/cp/settings'><Button iconButton icon='settings' /></Link>
           </span>
-          : <UserButtons itemData={itemData} handleToggleUser={handleToggleUser} toggleDeleteConfirmModal={toggleDeleteConfirmModal} />
+          : <UserButtons
+            itemData={itemData}
+            handleToggleUser={handleToggleUser}
+            toggleDeleteConfirmModal={toggleDeleteConfirmModal}
+          />
         }
       </li>
     )

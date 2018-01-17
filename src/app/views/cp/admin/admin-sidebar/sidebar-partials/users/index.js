@@ -83,7 +83,7 @@ export default connect(mapStateToProps)(class UsersPartial extends Component {
         />
       )
     }
-    return <p>WTF</p>
+    return <p>Couldn't load users :(. Check the console.</p>
   }
 
   // Select
@@ -161,9 +161,9 @@ export default connect(mapStateToProps)(class UsersPartial extends Component {
         <div class={style.usersTable}>
           <UsersToolbar handleDeleteClick={this.toggleDeleteConfirmModal} />
           <div class={`${style.userRow} ${style.userTableHeader}`}>
-            <span class={`flex flex-cross-center ${style.userRowField}`}>ID</span>
-            <span class={`flex flex-cross-center ${style.userRowField}`}>Name</span>
-            <span class={`flex flex-cross-center ${style.userRowField}`}>Email</span>
+            <span class={`flex flex-cross-center ${style.userTableHeaderFieldId}`}>ID</span>
+            <span class={`flex flex-cross-center`}>Name</span>
+            <span class={`flex flex-cross-center ${style.userTableHeaderFieldEmail}`}>Email</span>
           </div>
           {isFetchingUsers && !uData
             ? <ViewLoading />

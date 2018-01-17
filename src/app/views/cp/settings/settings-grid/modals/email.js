@@ -26,8 +26,7 @@ export default connect(mapStateToProps)(class EmailModal extends Component {
         inputState: 'empty',
         value: '',
         validationMessage: ''
-      },
-      formValidationText: ''
+      }
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -37,7 +36,6 @@ export default connect(mapStateToProps)(class EmailModal extends Component {
   handleChange (event) {
     let newEmail = this.state.newEmail
 
-    let formValidationText = ''
     let input = event.target
 
     newEmail.value = event.target.value
@@ -55,8 +53,7 @@ export default connect(mapStateToProps)(class EmailModal extends Component {
     }
 
     this.setState({
-      newEmail,
-      formValidationText
+      newEmail
     })
   }
 
