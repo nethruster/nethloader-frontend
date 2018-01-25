@@ -1,22 +1,9 @@
 import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
 
-import Button from '../../../../../../../shared/button'
+import Button from '../../../../../shared/button'
 import CreateUserModal from './add-user-modal'
 
-const mapStateToProps = (state) => {
-  const {isFetchingUsers, uData} = state.users
-  const {allToggled, selectedUsers} = state.userSelect
-
-  return {
-    isFetchingUsers,
-    uData,
-    allToggled,
-    selectedUsers
-  }
-}
-
-export default connect(mapStateToProps)(class AddUser extends Component {
+export default class AddUser extends Component {
   constructor (props) {
     super(props)
 
@@ -37,4 +24,4 @@ export default connect(mapStateToProps)(class AddUser extends Component {
       </div>
     )
   }
-})
+}

@@ -2,21 +2,18 @@ import {h, Component} from 'preact'
 import {connect} from 'preact-redux'
 import {showSnack} from 'react-redux-snackbar'
 
-import Modal from '../../../../../../../../shared/modal'
-import FormInput from '../../../../../../../../shared/form-input'
-import Checkbox from '../../../../../../../../shared/checkbox'
+import Modal from '../../../../../../shared/modal'
+import FormInput from '../../../../../../shared/form-input'
+import Checkbox from '../../../../../../shared/checkbox'
 import {validateEmpty, validateEmail, validateName} from 'utils'
 import {createUser, getUsers} from 'serverAPI/admin-settings'
 
 import style from './styles.scss'
 
 const mapStateToProps = (state) => {
-  const {token, sessionData} = state.authentication
+  const {token} = state.authentication
 
-  return {
-    token,
-    sessionData
-  }
+  return {token}
 }
 
 export default connect(mapStateToProps)(class CreateUserModal extends Component {

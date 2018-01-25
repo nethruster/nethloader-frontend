@@ -1,9 +1,9 @@
 import {h, Component} from 'preact'
 import {connect} from 'preact-redux'
 
-import Button from '../../../../../../../shared/button'
-import DropDownMenu from '../../../../../../../shared/dropdown-menu'
-import Modal from '../../../../../../../shared/modal'
+import Button from '../../../../../shared/button'
+import DropDownMenu from '../../../../../shared/dropdown-menu'
+import Modal from '../../../../../shared/modal'
 import EditUserModal from './edit-user-modal'
 import {userUnselectAll} from 'actions/admin-settings'
 import {deleteAllUserImages} from 'serverAPI/settings'
@@ -78,15 +78,6 @@ export default connect(mapStateToProps)(class UserButtons extends Component {
       <span class={`flex flex-full-center ${style.userRowField} ${style.userRowFieldIcon} ${style.userRowFieldIconInteractive}`}>
         <div class={`flex flex-full-center`}>
           <DropDownMenu>
-            <li>
-              <a href>
-                <Button
-                  text='View Media'
-                  icon='file-image'
-                  dropdown
-                />
-              </a>
-            </li>
             <li>
               <Button
                 icon='copy'

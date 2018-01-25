@@ -108,7 +108,7 @@ const getUserMediaCount = async (id, authToken) => {
   if (serverResponse.status >= 200 && serverResponse.status < 300) {
     let responseData = await serverResponse.json()
 
-    if (!isNaN(responseData.data.countImages) && responseData.data.countImages >= 0) {
+    if (!Number.isNaN(responseData.data.countImages) && responseData.data.countImages >= 0) {
       // Set the data in local storage
       window.localStorage.setItem('neth-totalCount', JSON.stringify(responseData.data.countImages))
 

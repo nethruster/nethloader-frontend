@@ -1,11 +1,10 @@
 import {h, Component} from 'preact'
-import {Link} from 'react-router-dom'
 import {connect} from 'preact-redux'
 import VirtualList from 'react-virtual-list'
 
-import Button from '../../../../../shared/button'
-import Modal from '../../../../../shared/modal'
-import ViewLoading from '../../../../../shared/view-loading'
+import Icon from '../../../shared/icon'
+import Modal from '../../../shared/modal'
+import ViewLoading from '../../../shared/view-loading'
 import User from './user'
 import UsersToolbar from './users-toolbar'
 import {getUsers, deleteUser} from 'serverAPI/admin-settings'
@@ -47,7 +46,7 @@ export default connect(mapStateToProps)(class UsersPartial extends Component {
     this.confirmMultipleDelete = this.confirmMultipleDelete.bind(this)
   }
 
-  async componentWillMount () {
+  componentWillMount () {
     this.getUsers()
     const list = ({
       virtual,
@@ -66,7 +65,8 @@ export default connect(mapStateToProps)(class UsersPartial extends Component {
   }
 
   async getUsers () {
-    await this.props.dispatch(getUsers(this.props.token))
+    let users = this.props.dispatch(getUsers(this.props.token))
+    return users
   }
 
   toggleIsDeleting () {
@@ -157,7 +157,7 @@ export default connect(mapStateToProps)(class UsersPartial extends Component {
   render ({isFetchingUsers, uData}) {
     return (
       <div class={style.section}>
-        <div class='flex flex-cross-center'><Link to='/cp/neth-admin'><Button customClass={style.backButton} iconButton icon='back' /></Link>&nbsp;<h3>Users</h3></div>
+        <div class='flex flex-cross-center'><h3 class='flex flex-full-center'><Icon iconName='account-multiple' />&nbsp;Users</h3></div>
         <div class={style.usersTable}>
           <UsersToolbar handleDeleteClick={this.toggleDeleteConfirmModal} />
           <div class={`${style.userRow} ${style.userTableHeader}`}>

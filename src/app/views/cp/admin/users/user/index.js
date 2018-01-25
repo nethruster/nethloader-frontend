@@ -2,8 +2,8 @@ import {h, Component} from 'preact'
 import {connect} from 'preact-redux'
 import {Link} from 'react-router-dom'
 
-import Checkbox from '../../../../../../shared/checkbox'
-import Button from '../../../../../../shared/button'
+import Checkbox from '../../../../shared/checkbox'
+import Button from '../../../../shared/button'
 import UserButtons from './buttons'
 
 import style from './styles.scss'

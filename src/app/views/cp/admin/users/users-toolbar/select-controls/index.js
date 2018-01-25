@@ -1,21 +1,20 @@
 import {h, Component} from 'preact'
 import {connect} from 'preact-redux'
 
-import Button from '../../../../../../../shared/button'
+import Button from '../../../../../shared/button'
 import {userSelectAll, userUnselectAll} from 'actions/admin-settings'
 
 import './styles.scss'
 
 const mapStateToProps = (state) => {
   const {sessionData} = state.authentication
-  const {isFetchingUsers, uData} = state.users
   const {allToggled, selectedUsers} = state.userSelect
+  const {uData} = state.users
 
   return {
-    isFetchingUsers,
-    uData,
     allToggled,
     selectedUsers,
+    uData,
     sessionData
   }
 }

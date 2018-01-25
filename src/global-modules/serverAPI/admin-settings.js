@@ -2,13 +2,11 @@ import {apiBaseUrl} from 'app.config'
 
 import {
   requestUsers, recieveUsers, usersError,
-  requestMedia, recieveMedia, mediaError
-} from 'actions/admin-settings'
-import {
+  requestMedia, recieveMedia, mediaError,
   requestDeleteUser, recieveDeleteUser, deleteUserError,
   requestCreateUser, recieveCreateUser, createUserError,
   requestToggleAdmin, recieveToggleAdmin, toggleAdminError
-} from '../actions/admin-settings'
+} from 'actions/admin-settings'
 
 // Get all users
 const getUsers = (authToken) => {
@@ -133,7 +131,7 @@ const getMedia = (authToken) => {
       'authentication': authToken
     },
     body: JSON.stringify({
-      query: `query{ images {totalCount, images{id, extension, user{id}, createdAt}}}`
+      query: `query{ images {totalCount, images{id, extension, user{id, name}, createdAt}}}`
     })
   }
 

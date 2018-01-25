@@ -41,8 +41,6 @@ export default connect(mapStateToProps)(class CurlPartial extends Component {
         <div class={style.sectionInfo}>
           <p>
             You can upload files using cURL in your terminal on Mac and Linux.<br />
-            This requires to use the parameters 'user', 'upload-token' and 'file', which are explained below.
-            It's important to use the 'Accept: application/json' header, if you don't you will be redirected to the home page whenever an error occurs.
           </p>
 
           <div class={style.sectionInfo}>
@@ -56,7 +54,7 @@ export default connect(mapStateToProps)(class CurlPartial extends Component {
                 <span class={style.terminalBlue}>{userData.name}</span>
                 @<span class={style.terminalLightBlue}>potato_pc</span>&nbsp;
                 <span class={style.terminalBlue}>$</span>&nbsp;
-                {`curl command goes here`}<span class={style.cursor} />
+                {`comming soon...`}<span class={style.cursor} />
               </section>
             </div>
           </div>

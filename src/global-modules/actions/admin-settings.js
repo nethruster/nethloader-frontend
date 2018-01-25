@@ -125,6 +125,37 @@ const userUnselectAll = () => {
   }
 }
 
+// Select media
+const mediaSelect = (adminSelectedMedia) => {
+  return {
+    type: appConstants.ADMIN_MEDIA_SELECT,
+    adminSelectedMedia
+  }
+}
+
+const mediaUnselect = (adminSelectedMedia) => {
+  return {
+    type: appConstants.ADMIN_MEDIA_UNSELECT,
+    adminSelectedMedia
+  }
+}
+
+const mediaSelectAll = (adminSelectedMedia) => {
+  return {
+    type: appConstants.ADMIN_MEDIA_SELECT_ALL,
+    adminSelectedMedia,
+    allToggled: true
+  }
+}
+
+const mediaUnselectAll = () => {
+  return {
+    type: appConstants.ADMIN_MEDIA_UNSELECT_ALL,
+    adminSelectedMedia: [],
+    allToggled: false
+  }
+}
+
 // Create new user
 const requestToggleAdmin = () => {
   return {
@@ -167,5 +198,9 @@ export {
   userUnselectAll,
   requestToggleAdmin,
   recieveToggleAdmin,
-  toggleAdminError
+  toggleAdminError,
+  mediaSelect,
+  mediaUnselect,
+  mediaSelectAll,
+  mediaUnselectAll
 }

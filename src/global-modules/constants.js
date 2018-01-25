@@ -89,5 +89,10 @@ export default keymirror({
   // Toggle is admin
   TOGGLE_ADMIN_REQUEST: null,
   TOGGLE_ADMIN_RECIEVE: null,
-  ERROR_TOGGLE_ADMIN: null
+  ERROR_TOGGLE_ADMIN: null,
+
+  ADMIN_MEDIA_SELECT: null,
+  ADMIN_MEDIA_UNSELECT: null,
+  ADMIN_MEDIA_SELECT_ALL: null,
+  ADMIN_MEDIA_UNSELECT_ALL: null
 })

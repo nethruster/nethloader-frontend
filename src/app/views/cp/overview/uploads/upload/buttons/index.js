@@ -80,7 +80,7 @@ export default connect(mapStateToProps)(class UploadButtons extends Component {
               text={this.state.copy.valueCopied
                 ? viewStrings.copied
                 : viewStrings.copy_url}
-              copyText={`${mediaUrl}`}
+              copyText={mediaUrl}
               onClickExecute={this.handleCopyClick}
               dropdown
             />

@@ -3,8 +3,8 @@
         display: grid;
         width: 100%;
         grid-template-rows: minmax(55px, max-content);
-        grid-template-columns: minmax(120px, max-content) 1fr 1fr minmax(55px, max-content) minmax(55px, max-content) minmax(55px, max-content);
-
+        grid-template-columns: var(--users-template-column);
+        
         padding: 0 8px;
         font-size: .92em;
 

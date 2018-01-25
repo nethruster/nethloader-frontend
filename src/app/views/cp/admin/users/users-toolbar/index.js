@@ -1,22 +1,11 @@
 import {h} from 'preact'
-import {connect} from 'preact-redux'
 
-import Filters from './filters'
 import SelectUserControls from './select-controls'
 import AddUser from './add-user'
 
 import style from './styles.scss'
 
-const mapStateToProps = (state) => {
-  const {userMedia, params} = state.userMedia
-
-  return {
-    userMedia,
-    params
-  }
-}
-
-export default connect(mapStateToProps)(({handleDeleteClick, userMedia, updateUserMedia, params}) => {
+export default function ({handleDeleteClick}) {
   return (
     <div class={`flex flex-dc ${style.usersToolbar}`}>
       <div class={`flex flex-cross-center ${style.usersToolbarSelect}`}>
@@ -28,4 +17,4 @@ export default connect(mapStateToProps)(({handleDeleteClick, userMedia, updateUs
       </div>
     </div>
   )
-})
+}
