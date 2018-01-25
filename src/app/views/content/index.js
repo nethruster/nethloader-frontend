@@ -7,10 +7,10 @@ import {checkUserSessionValidity} from 'utils'
 import {getUserData} from 'serverAPI/data'
 import {logoutUser} from 'serverAPI/authentication'
 import asyncComponent from 'asyncComponent'
-import Footer from '../footer'
+import Footer from '../shared/footer'
 import HeaderNav from '../header-nav'
-import NotFound from '../not-found'
-import MediaView from '../../media-view'
+import NotFound from '../shared/not-found'
+import MediaView from '../media-view'
 
 import style from './styles.scss'
 
@@ -59,7 +59,7 @@ export default connect(mapStateToProps)(class Content extends Component {
             isAuthenticated
               ? <Route
                 path='/cp'
-                component={asyncComponent(() => import(/* webpackChunkName: "content_cp" */'../../cp')
+                component={asyncComponent(() => import(/* webpackChunkName: "content_cp" */'../cp')
                   .then(module => module.default))} />
 
               : <Redirect from='/cp' to='/login' />

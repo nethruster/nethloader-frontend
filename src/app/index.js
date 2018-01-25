@@ -3,7 +3,7 @@ import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 import {connect} from 'preact-redux'
 
 import asyncComponent from 'asyncComponent'
-import Content from '../app/views/shared/content'
+import Content from './views/content'
 
 // Global CSS custom properties
 import 'style-vars.scss'

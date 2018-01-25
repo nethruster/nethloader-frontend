@@ -2,7 +2,7 @@ import {h, Component} from 'preact'
 import {NavLink, withRouter} from 'react-router-dom'
 import {connect} from 'preact-redux'
 
-import Button from '../../button'
+import Button from '../../shared/button'
 import locale from 'locale'
 import {logoutUser} from 'serverAPI/authentication'
 

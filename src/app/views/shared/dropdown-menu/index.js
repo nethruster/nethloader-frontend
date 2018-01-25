@@ -69,7 +69,7 @@ export default class DropDownMenu extends Component {
         <div
           class={`${style.dropdownOverlay} ${this.state.isOpen ? style.active : ''}`}
           onClick={this.handleClick}
-          style={{ top: Math.round(window.pageYOffset) }}
+          style={navTrigger ? '' : { top: Math.round(window.pageYOffset) }}
         />
       </div>
     )
