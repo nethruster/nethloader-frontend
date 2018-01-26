@@ -43,11 +43,6 @@
     }
 
     html[dark]:root {
-        --base-pm: 8px;
-        --base-br: 4px;
-
-        --shapes-layer: url(../assets/img/section-background.svg) 50% 17vh no-repeat;
-
         --contrast-gradient: linear-gradient(to left top, darken(#36adf7, 15%), darken(#36adf7, 20%)) 0 0 no-repeat;
         --contrast-bg: darken(#36adf7, 20%);
         --contrast-color:  rgba(255, 255, 255, 0.9);
@@ -61,23 +56,5 @@
         --default-color: $default-color-dark;
         --icon-button-color: rgb(185, 185, 185);
         --very-specific-light-color: rgba(255,255,255,.1);
-
-        --valid-color: #00C853;
-        --warning-color:  #DD2C00;
-
-        --twitter-color: #1da1f3;
-        --facebook-color: #3b5998;
-
-        --content-max-width: 1300px;
-
-        --header-nav-logo-size: 34px;
-        --header-nav-height: 50px;
-
-        --input-radio-size: 20px;
-        --input-radio-size-checked: 10px;
-
-        --medialist-item-height: 90px;
-        --medialist-item-media-width: 100px;
-        --medialist-item-media-height: 74px;
     }
 }
