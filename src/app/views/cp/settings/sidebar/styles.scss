@@ -11,7 +11,6 @@
             margin-bottom: var(--base-pm);
 
             font-size: 1em;
-            font-weight: 300;
         }
 
         h5 {
@@ -37,7 +36,7 @@
                 transition: background-color .2s ease;
                 
                 &:hover,
-                &.activeSection { background-color: rgba(0,0,0,.08); }
+                &.activeSection { background-color: var(--very-specific-light-color); }
             }
 
             @media (max-width: 480px) { flex-direction: column; }

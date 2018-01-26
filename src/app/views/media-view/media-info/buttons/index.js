@@ -7,6 +7,7 @@ import VideoToolbar from '../../../shared/video-element/video-toolbar'
 import {isValidVideoFormat} from 'utils'
 import Button from '../../../shared/button'
 import {deleteMedia} from 'serverAPI/media'
+import {baseMediaPath} from 'app.config'
 
 import style from './styles.scss'
 
@@ -36,6 +37,9 @@ export default connect(mapStateToProps)(class MediaInfoButtons extends Component
       isDeleteModalActive: false
     }
 
+    this.mediaSrc = ''
+    this.mediaUrl = ''
+
     this.toggleDeleteModal = this.toggleDeleteModal.bind(this)
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
   }
@@ -51,21 +55,26 @@ export default connect(mapStateToProps)(class MediaInfoButtons extends Component
     })
   }
 
-  render ({mediaInfo, isAuthenticated, userData, sessionData, isFetching, mediaSrc, mediaUrl}) {
+  computeMediaUrls () {
+    this.mediaSrc = `${baseMediaPath}${this.props.mediaInfo.id}.${this.props.mediaInfo.extension}`
+    this.mediaUrl = `${document.location.origin}/${this.props.mediaInfo.id}`
+    return true
+  }
+
+  render ({mediaInfo, isAuthenticated, userData, sessionData, isFetching}) {
     return (
       <div class='flex flex-cross-center'>
-        {
-          mediaInfo &&
+        {mediaInfo && !isFetching && this.computeMediaUrls() &&
           <div class={`flex flex-cross-center ${style.utilButtons}`}>
             <a
-              href={mediaSrc}
+              href={this.mediaSrc}
               download={mediaInfo.id}
               rel='noopener'
               title={viewStrings.download}>
               <Button iconButton icon='download' />
             </a>
             <a
-              href={mediaSrc}
+              href={this.mediaSrc}
               target='_blank'
               rel='noopener'
               title={viewStrings.view_original}>
@@ -101,13 +110,13 @@ export default connect(mapStateToProps)(class MediaInfoButtons extends Component
             title='Share on Twitter'
             rel='noopener'
             target='_blank'
-            href={`https://twitter.com/intent/tweet?url=${mediaUrl};text=Uploaded media via Nethloader;related=nethruster,gariasf,claudio4`}>
+            href={`https://twitter.com/intent/tweet?url=${this.mediaUrl};text=Uploaded media via Nethloader;related=nethruster,gariasf,claudio4`}>
             <Icon iconName='twitter' />
           </a>
           <a
             class={`flex flex-full-center ${style.shareButton} ${style.facebook}`}
             title='Share on Facebook'
-            href={`http://www.facebook.com/sharer/sharer.php?u=${mediaUrl}&display=popup`}>
+            href={`http://www.facebook.com/sharer/sharer.php?u=${this.mediaUrl}&display=popup`}>
             <Icon iconName='facebook' />
           </a>
         </div>

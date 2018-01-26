@@ -40,10 +40,7 @@ export default connect(mapStateToProps)(class MediaView extends Component {
                   mediaSrc={this.mediaSrc}
                   type={mediaInfo.extension}
                   id={mediaInfo.id} />
-                <MediaInfo
-                  mediaSrc={this.mediaSrc}
-                  mediaUrl={this.mediaUrl}
-                  createdAt={mediaInfo.createdAt} />
+                <MediaInfo createdAt={mediaInfo.createdAt} />
               </div>
             )
             : <ViewLoading />

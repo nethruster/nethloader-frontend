@@ -11,13 +11,11 @@
         }
 
         code {
-            background-color: rgba(0,0,0, .05);
+           background-color: var(--very-specific-light-color);
 
             margin: 16px;
             padding: 4px;
             border-radius: var(--base-br);
-
-            &:hover { background-color: rgba(0,0,0, .1); }
         }
     }
 

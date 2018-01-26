@@ -42,20 +42,6 @@
             }
         }
 
-        &Big {
-            padding: 0 calc(var(--base-pm) * 5);
-
-            background-color: var(--default-bg);
-            color: var(--contrast-bg);
-            border: 0;
-
-            line-height: 38px;
-            text-transform: uppercase;
-
-            &:hover,
-            &:focus { box-shadow: 0 10px 40px currentColor; }
-        }
-
         &Small {
             width: auto;
 
@@ -102,7 +88,7 @@
             
             &:hover,
             &:focus {
-                color: var(--default-bg);
+                color: var(--contrast-color);
                 background-color: rgba(255, 255, 255, 0.1);
             }
 
@@ -187,7 +173,7 @@
             svg {
                 width: 24px;
 
-                color: rgba(42, 67, 90, 0.9);
+                color: var(--icon-button-color);
 
                 // Workaround to center svg icon
                 position: relative;
@@ -220,10 +206,10 @@
 :global {
     a.nav-active {
        button {
-            color: var(--default-bg);
+            color: var(--contrast-color);
             background-color: rgba(255, 255, 255, 0.1);
 
-            svg { color: var(--default-bg); }
+            svg { color: var(--contrast-color); }
        }
     }
 

@@ -1,7 +1,7 @@
 :global {
     .paper {
         width: 100%;
-        background-color: rgba(255, 255, 255, 1);
+        background-color: var(--default-bg);
         color: var(--default-color);
 
         font-weight: 300;

@@ -8,6 +8,7 @@ import PasswordModal from './modals/password'
 import ApiKeyModal from './modals/apikey'
 import DeleteAllMediaModal from './modals/delete-all-media'
 import DeleteUserAccountModal from './modals/delete-user-account.js'
+import {toggleDarkMode} from 'utils'
 
 import style from './styles.scss'
 
@@ -121,6 +122,13 @@ export default connect(mapStateToProps)(class SettingsGrid extends Component {
           onClickExecute={this.toggleDeleteUserAccountModal}
         />
         <DeleteUserAccountModal isActive={this.state.deleteUserAccountModal} toggleModal={this.toggleDeleteUserAccountModal} />
+
+        <SettingsSection
+          icon='dark-light'
+          title='Toggle dark mode'
+          currentData={`Activate a dark mode if you're a night owl or restore the glorious white.`}
+          onClickExecute={toggleDarkMode}
+        />
       </div>
     )
   }

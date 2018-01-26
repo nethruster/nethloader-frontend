@@ -5,6 +5,8 @@
 
         background: var(--shapes-layer), var(--contrast-gradient);
         color: var(--contrast-color);
+        
+        &>div { border: .5px solid var(--contrast-bg); }
 
         &AltLinks {
             width: 70%;

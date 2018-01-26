@@ -21,6 +21,13 @@ if (!document.getElementById('wtf-gtfo')) { // If this node is present the app d
     store = createStoreWithMiddleware(reducers, (window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
   }
 
+  // Toggle site theme
+  if (window.localStorage.getItem('nth-theme') === 'dark') {
+    document.documentElement.setAttribute('dark', '')
+  } else {
+    document.documentElement.removeAttribute('dark')
+  }
+
   render(
     <Provider store={store}>
       <App />

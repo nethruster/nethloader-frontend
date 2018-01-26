@@ -178,6 +178,16 @@ const isFiltered = (params) => {
   return false
 }
 
+const toggleDarkMode = () => {
+  if (window.localStorage.getItem('nth-theme') === 'dark') {
+    window.localStorage.setItem('nth-theme', 'light')
+    document.documentElement.removeAttribute('dark')
+  } else {
+    window.localStorage.setItem('nth-theme', 'dark')
+    document.documentElement.setAttribute('dark', '')
+  }
+}
+
 export {
   validateEmpty,
   validateEmail,
@@ -195,5 +205,6 @@ export {
   filterExtensions,
   unprocessableExtensions,
   supportedExtensions,
-  isFiltered
+  isFiltered,
+  toggleDarkMode
 }

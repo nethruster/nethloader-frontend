@@ -33,6 +33,9 @@ const loginUser = (credentials, maintainSession, history, loginFormElement) => {
 
         window.localStorage.setItem('neth-jwtToken', responseData.data.login)
         window.localStorage.setItem('neth-sessionData', JSON.stringify(decodedData))
+        if (window.localStorage.getItem('nth-theme') === null) {
+          window.localStorage.setItem('nth-theme', 'light')
+        }
 
         // Get storage data
         getStorageParams(responseData.data.login)
@@ -81,6 +84,9 @@ const registerUser = (data, history, registerFormElement) => {
         // If register was successful, set the token in local storage
         window.localStorage.setItem('neth-jwtToken', responseData.data.register)
         window.localStorage.setItem('neth-sessionData', JSON.stringify(decodedData))
+        if (window.localStorage.getItem('nth-theme') === null) {
+          window.localStorage.setItem('nth-theme', 'light')
+        }
 
         // Get storage data
         getStorageParams(responseData.data.register)
