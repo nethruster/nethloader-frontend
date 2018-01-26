@@ -89,7 +89,7 @@ const getMediaInfo = (mediaId) => {
       'content-type': 'application/json'
     },
     body: JSON.stringify({
-      query: `query{ image(id: "${mediaId}") { id, extension, createdAt } }`
+      query: `query{ image(id: "${mediaId}") { id, extension, user {id}, createdAt } }`
     })
   }
 

@@ -4,10 +4,10 @@ import AsyncMedia from 'asyncMedia'
 
 import style from './styles.scss'
 
-export default function MediaItem ({type, id}) {
+export default function MediaItem ({type, id, isFetching}) {
   return (
     <div class={`${style.mediaItem}`}>
-      <AsyncMedia type={type} id={id} willPlayback />
+      {!isFetching && type && id && <AsyncMedia type={type} id={id} willPlayback />}
     </div>
   )
 }

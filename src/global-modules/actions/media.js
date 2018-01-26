@@ -49,7 +49,7 @@ const requestMediaInfo = () => {
   return {
     type: appConstants.MEDIA_INFO_REQUEST,
     isFetching: true,
-    mediaInfo: {}
+    mediaInfo: null
   }
 }
 
@@ -65,7 +65,7 @@ const mediaInfoError = (errorMessage) => {
   return {
     type: appConstants.MEDIA_INFO_FAILURE,
     isFetching: false,
-    mediaInfo: {},
+    mediaInfo: null,
     errorMessage
   }
 }

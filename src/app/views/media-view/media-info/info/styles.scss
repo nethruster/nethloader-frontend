@@ -1,0 +1,17 @@
+:local {
+    .mediaInfoDate {
+        svg { opacity: .3; }
+    }
+
+    .data {
+        height: 100%;
+        padding: 0 8px;
+    }
+
+    p {
+        font-size: .9em;
+        font-weight: 300;
+
+        svg { width: 18px; }
+    }
+}

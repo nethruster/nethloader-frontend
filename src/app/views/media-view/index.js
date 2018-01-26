@@ -21,29 +21,32 @@ function mapStateToProps (state) {
 export default connect(mapStateToProps)(class MediaView extends Component {
   componentWillMount () {
     window.scrollTo(0, 0) // Quick hack to fix react-routing scroll issue
-    this.props.dispatch(getMediaInfo(this.context.router.route.match.params.id)).catch(() => {
+    this.props.dispatch(getMediaInfo(this.context.router.route.match.params.id)).then((data) => {
+      this.mediaSrc = `${baseMediaPath}${data.id}.${data.extension}`
+      this.mediaUrl = `${document.location.origin}/${data.id}`
+    }).catch(() => {
       this.context.router.history.push('/404')
     })
   }
 
   render ({mediaInfo, isFetching}) {
-    const mediaSrc = `${baseMediaPath}${mediaInfo.id}.${mediaInfo.extension}`
     return (
       <div class={`${style.mediaView} flex flex-full-center`}>
         {
-          isFetching
-            ? <ViewLoading />
-            : (
+          !isFetching && mediaInfo
+            ? (
               <div class={`${style.mediaViewWrapper} flex flex-dc flex-full-center`}>
                 <MediaItem
-                  mediaSrc={mediaSrc}
+                  mediaSrc={this.mediaSrc}
                   type={mediaInfo.extension}
                   id={mediaInfo.id} />
                 <MediaInfo
-                  mediaSrc={mediaSrc}
-                  data={mediaInfo} />
+                  mediaSrc={this.mediaSrc}
+                  mediaUrl={this.mediaUrl}
+                  createdAt={mediaInfo.createdAt} />
               </div>
             )
+            : <ViewLoading />
         }
       </div>
     )

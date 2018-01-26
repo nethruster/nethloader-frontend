@@ -7,22 +7,6 @@
         margin-top: -1px;
         border: 1px solid rgba(0,0,0,.08);
 
-        &Date {
-            svg { opacity: .3; }
-        }
-
-        div {
-            height: 100%;
-            padding: 0 8px;
-        }
-
-        p {
-            font-size: .9em;
-            font-weight: 300;
-
-            svg { width: 18px; }
-        }
-
         @media (max-width: 500px) {
             width: 100%;
             justify-content: flex-end;
@@ -34,19 +18,5 @@
 
             div { margin: var(--base-pm) 0; }
         }
-    }
-
-    .shareButton {
-        margin: 0 8px;
-
-        svg { width: 20px; }
-    }
-
-    .twitter {
-            svg { color: var(--twitter-color); }
-    }
-
-    .facebook {
-            svg { color: var(--facebook-color); }
     }
 }

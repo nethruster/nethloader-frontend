@@ -1,0 +1,24 @@
+:local {
+    .shareButton {
+        margin: 0 var(--base-pm);
+
+        svg { width: 20px; }
+    }
+
+    .twitter {
+            svg { color: var(--twitter-color); }
+    }
+
+    .facebook {
+            svg { color: var(--facebook-color); }
+    }
+
+    .socialShare {
+        border-left: 1px solid rgba(0,0,0,.1);
+        padding-left: var(--base-pm);
+    }
+
+    .utilButtons {
+        margin-right: var(--base-pm);
+    }
+}

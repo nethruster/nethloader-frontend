@@ -48,13 +48,13 @@ const mediaDelete = (state = {
 
 const mediaInfo = (state = {
   isFetching: false,
-  mediaInfo: {}
+  mediaInfo: null
 }, action) => {
   switch (action.type) {
     case appConstants.MEDIA_INFO_REQUEST:
       return Object.assign({}, state, {
         isFetching: true,
-        mediaInfo: {}
+        mediaInfo: null
       })
     case appConstants.MEDIA_INFO_SUCCESS:
       return Object.assign({}, state, {
@@ -64,7 +64,7 @@ const mediaInfo = (state = {
     case appConstants.MEDIA_INFO_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
-        mediaInfo: {},
+        mediaInfo: null,
         errorMessage: action.errorMessage
       })
     default:
