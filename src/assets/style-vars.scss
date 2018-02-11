@@ -14,7 +14,7 @@
         --contrast-color:  rgba(255, 255, 255, 0.9);
         --contrast-bg-hover: lighten(#1e87f0, 5%);
 
-        --default-gradient: linear-gradient(to left top, #f0f0f0, #ffffff);
+        --default-gradient: linear-gradient(to left top, #fff, #f0f0f0);
         --default-bg: #fff;
         --default-color: $default-color;
         --default-bg-hover: transparentize($default-color, .9);

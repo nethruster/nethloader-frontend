@@ -4,6 +4,7 @@ import {connect} from 'preact-redux'
 
 import Button from '../../../../shared/button'
 import {copyToClipboard} from 'utils'
+import {apiBaseUrl} from 'app.config'
 
 import style from './styles.scss'
 
@@ -46,15 +47,22 @@ export default connect(mapStateToProps)(class CurlPartial extends Component {
           <div class={style.sectionInfo}>
             <div class={style.terminalWindow}>
               <header>
-                <div class={`${style.terminalWindowButton} ${style.green}`} />
-                <div class={`${style.terminalWindowButton} ${style.yellow}`} />
                 <div class={`${style.terminalWindowButton} ${style.red}`} />
+                <div class={`${style.terminalWindowButton} ${style.yellow}`} />
+                <div class={`${style.terminalWindowButton} ${style.green}`} />
               </header>
               <section>
                 <span class={style.terminalBlue}>{userData.name}</span>
-                @<span class={style.terminalLightBlue}>potato_pc</span>&nbsp;
+                @<span class={style.terminalLightBlue}>nethloader_pc</span>&nbsp;
                 <span class={style.terminalBlue}>$</span>&nbsp;
-                {`comming soon...`}<span class={style.cursor} />
+                {
+                  `curl -X POST \\
+                  ${apiBaseUrl.replace('graphql', 'api')} \\
+                  -H 'api-key: ${userData.apiKey}' \\
+                  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \\
+                  -F 'file=@/absolute/path/to/file'`.split('\n').map((line, key) => <span key={key}>{line}<br /></span>) // If you see this, don't()
+                }
+                <span class={style.cursor} />
               </section>
             </div>
           </div>
