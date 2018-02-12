@@ -42,6 +42,20 @@
             @media (max-width: 480px) { flex-direction: column; }
         }
 
+        code {
+            background-color: var(--very-specific-light-color);
+
+            margin: 4px;
+            padding: 4px;
+            border-radius: var(--base-br);
+        }
+
+        button {
+            width: 100%;
+            
+            font-size: .9em;
+        }
+
         @media (max-width: 800px) {
             max-width: none;
 
