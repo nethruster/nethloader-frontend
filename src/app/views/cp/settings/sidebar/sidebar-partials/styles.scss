@@ -9,6 +9,15 @@
 
             p { margin: 16px 0; }
         }
+
+        code {
+            background-color: var(--very-specific-light-color);
+
+            margin: 4px;
+            padding: 4px;
+            
+            border-radius: var(--base-br);
+        }
     }
 
     .backButton {

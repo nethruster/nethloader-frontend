@@ -5,8 +5,11 @@
         margin-top: calc(var(--base-pm) * 4);
 
         &Wrapper {
-            max-width: calc(100% - calc(var(--base-pm) * 4));
+            max-width: calc(70% - calc(var(--base-pm) * 4));
+
             overflow: hidden;
+
+            @media(max-width: 650px) { max-width: calc(100% - calc(var(--base-pm) * 4)); }
         }
 
         @media(max-width: 370px) {

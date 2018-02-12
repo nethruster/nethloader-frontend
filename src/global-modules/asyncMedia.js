@@ -80,6 +80,7 @@ export default class AsyncMedia extends Component {
               src={mediaSrc}
               height={elementHeight}
               width={elementWidth}
+              onClick={this.props.onClickExecute || ''}
               alt={`${this.props.type} ${mediaSrc}`}
             />
           )

@@ -9,5 +9,55 @@
 
         img,
         video { border-radius: var(--base-br); }
+
+        img { cursor: zoom-in; }
+
+        &.zoomed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            padding: 0;
+
+            background-color: var(--default-color);
+            border-radius: 0;
+
+            text-align: center;            
+           
+            overflow: auto;           
+            z-index: 100;            
+
+            .closeButton { display: flex; }
+
+            img {
+                max-width: none;
+
+                margin: 42px 0 0 0;
+
+                background-color: #fff;
+                border-radius: 0;
+
+                pointer-events: initial;
+                cursor: grab;
+            }
+        }
+    }
+
+    .closeButton {
+        justify-content: flex-end;
+        display: none;
+        position: fixed;
+        right: 0;
+        height: 42px;
+        left: 0;
+        top: 0;
+
+        background-color: var(--default-color);
+        
+        span { cursor: pointer; }
+
+        svg { margin-right: 32px; }
     }
 }

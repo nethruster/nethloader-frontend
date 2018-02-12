@@ -22,9 +22,11 @@
                 b { font-weight: 500; }
 
                 p {
+                    @media(max-width: 525px) { display: none; }
+
                     font-size: .9em;
 
-                        svg {
+                    svg {
                         width: 20px;
 
                         vertical-align: top;
@@ -41,7 +43,10 @@
 
                 &Left { text-align: left; }
 
-                &Custom { width: 90px; }
+                &Custom { 
+                    @media(max-width: 525px) { flex-direction: column-reverse; }
+
+                    width: 90px; }
 
                 &:hover {
                     opacity: 1;
@@ -49,18 +54,8 @@
                 }
 
                 @media(max-width: 650px) {
-                    &Button { 
-                        font-size: .9em;
-                        white-space: nowrap;
-                    }
-                }
-
-                @media(max-width: 525px) {
-                    &Button {
-                        p { display: none; }
-
-                        &Custom { flex-direction: column-reverse; }
-                    }
+                    font-size: .9em;
+                    white-space: nowrap;
                 }
             }
         }

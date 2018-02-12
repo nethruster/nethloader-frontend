@@ -2016,6 +2016,10 @@ domutils@1.5.1:
     dom-serializer "0"
     domelementtype "1"
 
+dragscroll@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/dragscroll/-/dragscroll-0.0.8.tgz#de4771e5f3a14d77b583ecef5d38bd9618f27563"
+
 duplexify@^3.4.2, duplexify@^3.5.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/duplexify/-/duplexify-3.5.3.tgz#8b5818800df92fd0125b27ab896491912858243e"

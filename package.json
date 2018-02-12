@@ -58,6 +58,7 @@
     "webpack-dev-server": "^2.8.2"
   },
   "dependencies": {
+    "dragscroll": "^0.0.8",
     "jwt-decode": "^2.2.0",
     "preact": "^8.2.5",
     "preact-compat": "^3.17.0",
