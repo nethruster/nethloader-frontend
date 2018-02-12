@@ -13,7 +13,7 @@
         code {
            background-color: var(--very-specific-light-color);
 
-            margin: 16px;
+            margin: 4px;
             padding: 4px;
             border-radius: var(--base-br);
         }
@@ -32,15 +32,30 @@
         color: #fff;
 
         text-align: left;
-        border-radius: 10px;
+        border-radius: 4px;
 
         header {
             height: 30px;
 
-            background: #E0E8F0;
+            background: rgb(202, 215, 228);
 
-            border-radius: 8px 8px 0 0;
+            border-radius: 4px 4px 0 0;
             padding-left: 10px;
+
+            button {
+                position: relative;
+                border: none;
+                margin: 2px 4px;
+                padding: 2px 16px;
+                min-width: 80px;
+                cursor: pointer;
+                background: rgba(48, 53, 58, 0.85);
+                border-radius: 4px;
+                outline: none;
+                font-size: .8em;
+                text-transform: uppercase;
+                color: rgba(255, 255, 255, 0.836);
+            }
         }
 
         &Button {
