@@ -111,7 +111,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     } else {
       // Item isn't selected, select
       selectedMedia.push(id)
-      this.props.dispatch(mediaSelect(selectedMedia))
+      this.props.dispatch(mediaSelect(selectedMedia, Number(selectedMedia.length) === Number(this.props.totalCount)))
     }
   }
 

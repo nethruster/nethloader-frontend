@@ -71,17 +71,19 @@ const mediaInfoError = (errorMessage) => {
 }
 
 // Select media
-const mediaSelect = (selectedMedia) => {
+const mediaSelect = (selectedMedia, allToggled) => {
   return {
     type: appConstants.MEDIA_SELECT,
-    selectedMedia
+    selectedMedia,
+    allToggled
   }
 }
 
 const mediaUnselect = (selectedMedia) => {
   return {
     type: appConstants.MEDIA_UNSELECT,
-    selectedMedia
+    selectedMedia,
+    allToggled: false
   }
 }
 

@@ -121,45 +121,7 @@ const createUser = (username, email, password, willBeAdmin, authToken) => {
   }
 }
 
-// Get all media
-const getMedia = (authToken) => {
-  let requestConfig = {
-    method: 'POST',
-    headers: {
-      'accept': 'application/json',
-      'content-type': 'application/json',
-      'authentication': authToken
-    },
-    body: JSON.stringify({
-      query: `query{ images {totalCount, images{id, extension, user{id, name}, createdAt}}}`
-    })
-  }
-
-  return async dispatch => {
-    dispatch(requestMedia())
-
-    let serverResponse = await fetch(apiBaseUrl, requestConfig)
-
-    if (serverResponse.status >= 200 && serverResponse.status < 300) {
-      let responseData = await serverResponse.json()
-
-      if (responseData.data.images) {
-        // Dispatch the success action
-        dispatch(recieveMedia(responseData.data.images.images))
-
-        return responseData.data.images.images
-      }
-      console.log('getMedia - responseData: ', responseData)
-      dispatch(mediaError(responseData.errors[0].message))
-      return Promise.reject(responseData.errors[0].message)
-    }
-    console.log('getMedia - serverResponse: ', serverResponse)
-    dispatch(mediaError(serverResponse.status))
-    return Promise.reject(serverResponse.status)
-  }
-}
-
-// Get all media
+// Toggle is admin
 const toggleIsAdmin = (userId, isAdmin, authToken) => {
   let requestConfig = {
     method: 'POST',

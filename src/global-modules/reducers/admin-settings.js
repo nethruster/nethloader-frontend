@@ -1,32 +1,5 @@
 import appConstants from '../constants'
 
-const media = (state = {
-  isFetchingMedia: false,
-  mData: null,
-  errorMessage: ''
-}, action) => {
-  switch (action.type) {
-    case appConstants.MEDIA_REQUEST:
-      return Object.assign({}, state, {
-        isFetchingMedia: true
-      })
-    case appConstants.MEDIA_RECIEVE:
-      return Object.assign({}, state, {
-        isFetchingMedia: false,
-        mData: action.mData,
-        errorMessage: ''
-      })
-    case appConstants.ERROR_MEDIA:
-      return Object.assign({}, state, {
-        isFetchingMedia: false,
-        mData: null,
-        errorMessage: action.errorMessage
-      })
-    default:
-      return state
-  }
-}
-
 const users = (state = {
   isFetchingUsers: false,
   uData: null,
@@ -109,11 +82,13 @@ const userSelect = (state = {
   switch (action.type) {
     case appConstants.USER_SELECT:
       return Object.assign({}, state, {
-        selectedUsers: action.selectedUsers
+        selectedUsers: action.selectedUsers,
+        allToggled: action.allToggled
       })
     case appConstants.USER_UNSELECT:
       return Object.assign({}, state, {
-        selectedUsers: action.selectedUsers
+        selectedUsers: action.selectedUsers,
+        allToggled: false
       })
     case appConstants.USER_SELECT_ALL:
       return Object.assign({}, state, {

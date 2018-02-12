@@ -95,17 +95,19 @@ const mediaError = (errorMessage) => {
 }
 
 // Select user
-const userSelect = (selectedUsers) => {
+const userSelect = (selectedUsers, alltoggled) => {
   return {
     type: appConstants.USER_SELECT,
-    selectedUsers
+    selectedUsers,
+    allToggled
   }
 }
 
 const userUnselect = (selectedUsers) => {
   return {
     type: appConstants.USER_UNSELECT,
-    selectedUsers
+    selectedUsers,
+    allToggled: false
   }
 }
 
@@ -121,37 +123,6 @@ const userUnselectAll = () => {
   return {
     type: appConstants.USER_UNSELECT_ALL,
     selectedUsers: [],
-    allToggled: false
-  }
-}
-
-// Select media
-const mediaSelect = (adminSelectedMedia) => {
-  return {
-    type: appConstants.ADMIN_MEDIA_SELECT,
-    adminSelectedMedia
-  }
-}
-
-const mediaUnselect = (adminSelectedMedia) => {
-  return {
-    type: appConstants.ADMIN_MEDIA_UNSELECT,
-    adminSelectedMedia
-  }
-}
-
-const mediaSelectAll = (adminSelectedMedia) => {
-  return {
-    type: appConstants.ADMIN_MEDIA_SELECT_ALL,
-    adminSelectedMedia,
-    allToggled: true
-  }
-}
-
-const mediaUnselectAll = () => {
-  return {
-    type: appConstants.ADMIN_MEDIA_UNSELECT_ALL,
-    adminSelectedMedia: [],
     allToggled: false
   }
 }

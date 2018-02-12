@@ -79,11 +79,13 @@ const mediaSelect = (state = {
   switch (action.type) {
     case appConstants.MEDIA_SELECT:
       return Object.assign({}, state, {
-        selectedMedia: action.selectedMedia
+        selectedMedia: action.selectedMedia,
+        allToggled: action.allToggled
       })
     case appConstants.MEDIA_UNSELECT:
       return Object.assign({}, state, {
-        selectedMedia: action.selectedMedia
+        selectedMedia: action.selectedMedia,
+        allToggled: false
       })
     case appConstants.MEDIA_SELECT_ALL:
       return Object.assign({}, state, {
