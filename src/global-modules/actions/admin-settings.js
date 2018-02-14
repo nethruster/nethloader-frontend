@@ -95,7 +95,7 @@ const mediaError = (errorMessage) => {
 }
 
 // Select user
-const userSelect = (selectedUsers, alltoggled) => {
+const userSelect = (selectedUsers, allToggled) => {
   return {
     type: appConstants.USER_SELECT,
     selectedUsers,

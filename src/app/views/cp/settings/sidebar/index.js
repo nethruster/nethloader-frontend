@@ -3,6 +3,7 @@ import {NavLink} from 'react-router-dom'
 import {copyToClipboard} from 'utils'
 import {connect} from 'preact-redux'
 import Button from '../../../shared/button'
+import Icon from '../../../shared/icon'
 
 import style from './styles.scss'
 
@@ -41,9 +42,6 @@ export default connect(mapStateToProps)(class Sidebar extends Component {
           <p>
             Nethloader can be integrated with 3rd party services and software using an APIkey by which you can upload images to this account.
           </p>
-          <p>
-            The key can be used to upload media to this account directly and without authentication, be careful with it.
-          </p>
           <div class={style.sidebarLinks}>
             <NavLink to='/cp/settings/sharex' activeClassName={style.activeSection}>
               <h6>ShareX</h6>
@@ -75,6 +73,12 @@ export default connect(mapStateToProps)(class Sidebar extends Component {
               onClickExecute={this.handleCopyClick}
             />
           </div>
+          <p class={`danger-text ${style.warning}`}>
+            <Icon iconName='warning' /> This key can be used to upload media to this account directly and without authentication, be careful with it.
+          </p>
+          <p class={`${style.warning}`}>
+            <Icon iconName='info' /> If your APIkey gets compromised, published or stolen, you can always come back here an renew it to get a new one.
+          </p>
         </div>
       </div>
     )

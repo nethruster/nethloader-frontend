@@ -66,6 +66,8 @@
 
 .danger-text { color: var(--warning-color); }
 
+.danger-text > svg { vertical-align: text-top; }
+
 .wtf-gtfo img { margin: 16px; }
 
 .wtf-gtfo p,

@@ -159,7 +159,6 @@ const adminMediaSelect = (state = {
 }
 
 export {
-  media,
   users,
   userDelete,
   userSelect,

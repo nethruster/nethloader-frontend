@@ -13,10 +13,16 @@
         code {
             background-color: var(--very-specific-light-color);
 
-            margin: 4px;
+            margin: 32px 4px;
             padding: 4px;
             
             border-radius: var(--base-br);
+        }
+
+        .warning { 
+            max-width: 450px;
+            margin: 0 auto;
+            font-size: .9em;
         }
     }
 
