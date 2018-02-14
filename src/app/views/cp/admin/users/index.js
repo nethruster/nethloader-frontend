@@ -99,7 +99,7 @@ export default connect(mapStateToProps)(class UsersPartial extends Component {
     } else {
       // Item isn't selected, select
       selectedUsers.push(id)
-      this.props.dispatch(userSelect(selectedUsers, Number(this.props.uData.length) === Number(selectedUsers.length)))
+      this.props.dispatch(userSelect(selectedUsers, Number(this.props.uData.length) - 1 === Number(selectedUsers.length)))
     }
   }
 
