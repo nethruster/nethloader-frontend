@@ -90,9 +90,12 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({names: ['vendor', 'config', 'locale']}),
     new HtmlWebpackPlugin({
       minify: {
-        collapseWhitespace: true
+        collapseWhitespace: true,
+        minifyCSS: true,
+        minifyJS: true
       },
       hash: true,
+      
       template: APP_DIR + '/index.html'
     }),
     new CopyWebpackPlugin([
