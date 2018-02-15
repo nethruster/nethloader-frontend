@@ -5,6 +5,10 @@ import Modal from '../../../../shared/modal'
 import {renewUserApiKey} from 'serverAPI/settings'
 import {getUserData} from 'serverAPI/data'
 
+import locale from 'locale'
+
+const viewStrings = locale.cp.settings.settings_grid.partials.apikey
+
 const mapStateToProps = (state) => {
   const {token, sessionData} = state.authentication
 
@@ -33,12 +37,12 @@ export default connect(mapStateToProps)(class ApiKeyModal extends Component {
       <Modal
         isActive={isActive}
         toggleModal={toggleModal}
-        modalTitle='Regenerate APIKey'
-        closeButtonText='Wait, no'
-        acceptButtonText='Regenerate'
+        modalTitle={viewStrings.title}
+        closeButtonText={viewStrings.cancel}
+        acceptButtonText={viewStrings.accept}
         onAcceptExecute={this.handleSubmit}>
-        <p class='flex flex-full-center'>Any app set up with your current key will stop working after this.</p>
-        <p class='flex flex-full-center danger-text'>THIS CANNOT BE UNDONE.</p>
+        <p class='flex flex-full-center'>{viewStrings.description}</p>
+        <p class='flex flex-full-center danger-text'>{viewStrings.warning}</p>
       </Modal>
     )
   }

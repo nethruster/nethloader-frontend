@@ -168,18 +168,18 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
         modals.upload.selectedFiles.push(file.name)
       } else {
         this.props.dispatch(showSnack('invalidFileClick', {
-          label: 'Invalid files detected',
+          label: viewStrings.toasts.invalid_files,
           timeout: 3000,
-          button: { label: 'OK' }
+          button: { label: viewStrings.toasts.ok }
         }))
         console.log(`${viewStrings.invalid_file_detected}: ` + file.name)
       }
     }
 
     this.props.dispatch(showSnack('addedFilesClick', {
-      label: `Added ${validFilesCount} ${validFilesCount === 1 ? 'file' : 'files'}`,
+      label: `${viewStrings.toasts.added} ${validFilesCount} ${validFilesCount === 1 ? viewStrings.toasts.file : viewStrings.toasts.files}`,
       timeout: 3000,
-      button: { label: 'OK' }
+      button: { label: viewStrings.toast_ok }
     }))
 
     this.setState({modals})
@@ -212,18 +212,18 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
           modals.upload.selectedFiles.push(file.name)
         } else {
           this.props.dispatch(showSnack('invalidFileDrop', {
-            label: 'Invalid files detected',
+            label: viewStrings.toasts.invalid_files,
             timeout: 3000,
-            button: { label: 'OK' }
+            button: { label: viewStrings.toasts.ok }
           }))
           console.log(`${viewStrings.invalid_file_detected}: ` + file.name)
         }
       }
 
       this.props.dispatch(showSnack('addedFilesDrop', {
-        label: `Added ${validFilesCount} ${validFilesCount === 1 ? 'file' : 'files'}`,
+        label: `${viewStrings.toasts.added} ${validFilesCount} ${validFilesCount === 1 ? viewStrings.toasts.file : viewStrings.toasts.files}`,
         timeout: 3000,
-        button: { label: 'OK' }
+        button: { label: viewStrings.toast_ok }
       }))
 
       this.setState({modals})
@@ -298,7 +298,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
                 tabindex='-1' />
             </form>
             <div class={`flex flex-dc flex-cross-center ${style.formatInfo}`}>
-              <h6>Supported files:</h6>
+              <h6>{viewStrings.supported_files}:</h6>
               {
                 !isFetchingUser &&
                 !!strData.supportedVideoExtensions &&

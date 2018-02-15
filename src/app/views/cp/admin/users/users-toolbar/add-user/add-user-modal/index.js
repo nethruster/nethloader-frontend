@@ -10,6 +10,10 @@ import {createUser, getUsers} from 'serverAPI/admin-settings'
 
 import style from './styles.scss'
 
+import locale from 'locale'
+
+const viewStrings = locale.cp.admin.users.toolbar.add_user_modal
+
 const mapStateToProps = (state) => {
   const {token} = state.authentication
 
@@ -78,16 +82,16 @@ export default connect(mapStateToProps)(class CreateUserModal extends Component 
 
     if (validateEmpty(input.value)) {
       activeInputOnState.inputState = 'invalid'
-      activeInputOnState.validationMessage = 'This field is empty'
+      activeInputOnState.validationMessage = viewStrings.form.empty
     } else if (input.type === 'email' && !validateEmail(input.value)) {
       activeInputOnState.inputState = 'invalid'
-      activeInputOnState.validationMessage = 'Invalid email'
+      activeInputOnState.validationMessage = viewStrings.form.email.invalid
     } else if (input.id === 'username' && !validateName(input.value)) {
       activeInputOnState.inputState = 'invalid'
-      activeInputOnState.validationMessage = 'Invalid username'
+      activeInputOnState.validationMessage = viewStrings.form.username.only_aplhanum
     } else {
       activeInputOnState.inputState = 'valid'
-      activeInputOnState.validationMessage = 'Valid'
+      activeInputOnState.validationMessage = viewStrings.form.valid
     }
 
     this.setState({
@@ -110,9 +114,9 @@ export default connect(mapStateToProps)(class CreateUserModal extends Component 
       })
     } else {
       this.props.dispatch(showSnack('invalidOrEmptyAddUser', {
-        label: this.state.username.validationMessage || this.state.email.validationMessage || 'Please, fill in all the fields',
+        label: this.state.username.validationMessage || this.state.email.validationMessage || viewStrings.form.empty_fields,
         timeout: 3000,
-        button: { label: 'OK' }
+        button: { label: viewStrings.toast_ok }
       }))
     }
   }
@@ -121,17 +125,17 @@ export default connect(mapStateToProps)(class CreateUserModal extends Component 
     return (
       <Modal
         isActive={isActive}
-        modalTitle='Create new user'
+        modalTitle={viewStrings.title}
         toggleModal={toggleModal}
-        closeButtonText='Cancel'
-        acceptButtonText='Create'
+        closeButtonText={viewStrings.cancel}
+        acceptButtonText={viewStrings.accept}
         form
         onAcceptExecute={this.handleSubmit}>
         <form class={`flex flex-full-center flex-dc`} onSubmit={this.handleSubmit} ref={(el) => { this.form = el }}>
           <FormInput
             inputId='email'
             inputType='email'
-            inputLabel='Email'
+            inputLabel={viewStrings.form.email.title}
             changeHandler={this.handleChange}
             required
             inputState={this.state.email.inputState}
@@ -140,7 +144,7 @@ export default connect(mapStateToProps)(class CreateUserModal extends Component 
           <FormInput
             inputId='username'
             inputType='text'
-            inputLabel='Username'
+            inputLabel={viewStrings.form.username.title}
             changeHandler={this.handleChange}
             required
             inputState={this.state.username.inputState}
@@ -149,7 +153,7 @@ export default connect(mapStateToProps)(class CreateUserModal extends Component 
           <FormInput
             inputId='password'
             inputType='password'
-            inputLabel='Password'
+            inputLabel={viewStrings.form.password.title}
             changeHandler={this.handleChange}
             required
             noValidationStyle
@@ -158,7 +162,7 @@ export default connect(mapStateToProps)(class CreateUserModal extends Component 
           />
           <div class={style.willBeAdminCheckbox}>
             <Checkbox
-              text='Make administrator'
+              text={viewStrings.form.make_admin}
               dataId='willBeAdmin'
               tabindex='-1'
               isSelected={this.state.willBeAdmin}

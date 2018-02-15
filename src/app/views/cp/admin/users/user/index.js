@@ -8,6 +8,10 @@ import UserButtons from './buttons'
 
 import style from './styles.scss'
 
+import locale from 'locale'
+
+const viewStrings = locale.cp.admin.users.user
+
 const mapStateToProps = (state) => {
   const {selectedUsers} = state.userSelect
   const {sessionData} = state.authentication
@@ -35,7 +39,7 @@ export default connect(mapStateToProps)(class User extends Component {
           <p>{itemData.email}</p>
         </span>
         <span class={`flex flex-full-center ${style.userRowField} ${style.userRowFieldIcon}`}>
-          <p>{itemData.isAdmin ? <span class={style.adminBadge}>Admin</span> : ''}</p>
+          <p>{itemData.isAdmin ? <span class={style.adminBadge}>{viewStrings.table.is_admin}</span> : ''}</p>
         </span>
         {itemData.id === sessionData.id && itemData.isAdmin
           ? {}

@@ -186,7 +186,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
         {/* Single Delete Modal */}
         <Modal
           isActive={this.state.modals.singleDeleteActive}
-          modalTitle='Delete item'
+          modalTitle={viewStrings.modals.title}
           toggleModal={this.toggleDeleteConfirmModal}
           closeButtonText={viewStrings.modals.deny}
           acceptButtonText={viewStrings.modals.confirm}
@@ -196,7 +196,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
         {/* Multiple Delete Modal */}
         <Modal
           isActive={this.state.modals.multipleDeleteActive}
-          modalTitle='Delete items'
+          modalTitle={viewStrings.modals.title}
           toggleModal={this.toggleDeleteConfirmModal}
           closeButtonText={viewStrings.modals.deny}
           acceptButtonText={viewStrings.modals.confirm}

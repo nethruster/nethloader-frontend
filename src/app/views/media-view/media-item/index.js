@@ -34,7 +34,7 @@ export default class MediaItem extends Component {
     return (
       <div class={`${style.mediaItem} ${this.state.isZoomed ? style.zoomed : ''} dragscroll`}>
         <div onClick={this.closeZoom} class={`${style.closeButton}`}>
-          <span class='flex flex-full-center'><Icon iconName='close' iconColor='#fff' /></span>
+          <span class='flex flex-full-center'><Icon iconName='close' /></span>
         </div>
         
         {!isFetching && type && id && <AsyncMedia onClickExecute={this.openZoom} type={type} id={id} willPlayback />}

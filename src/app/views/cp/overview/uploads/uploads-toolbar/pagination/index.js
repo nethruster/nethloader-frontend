@@ -82,7 +82,7 @@ export default connect(mapStateToProps)(class Pagination extends Component {
   }
 
   computePageList () {
-    // Can be decimal, if that's the case round up to add another page for the remaining media
+    // Can be a fraction, if that's the case round up to add another page for the remaining media
     let nPages = Math.ceil(this.props.userMedia.totalCount / this.props.params.mediaLimit)
     // Create an array from a number, v (value) is empty (undefined) but it is the first argument of the array item so we cannot bypass it
     let pagesArray = Array.from({ length: nPages }, (v, i) => i)

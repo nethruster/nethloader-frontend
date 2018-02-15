@@ -9,6 +9,10 @@ import {apiBaseUrl} from 'app.config'
 
 import style from './styles.scss'
 
+import locale from 'locale'
+
+const viewStrings = locale.cp.settings.sidebar.partials.curl
+
 const mapStateToProps = (state) => {
   const {userData} = state.userData
 
@@ -47,8 +51,8 @@ export default connect(mapStateToProps)(class CurlPartial extends Component {
         <div class='flex flex-cross-center'><Link to='/cp/settings'><Button customClass={style.backButton} iconButton icon='back' /></Link>&nbsp;<h3>Using cURL</h3></div>
         <div class={style.sectionInfo}>
           <p>
-            You can upload files using cURL in your terminal on Mac and Linux.<br />
-            Use the command provided below replacing <code>/absolute/path/to/file</code> with the path of the file you want to upload.
+            {viewStrings.description}<br />
+            {viewStrings.usage_description} <code>/absolute/path/to/file</code>.
           </p>
 
           <div class={style.sectionInfo}>
@@ -60,14 +64,15 @@ export default connect(mapStateToProps)(class CurlPartial extends Component {
                   <div class={`${style.terminalWindowButton} ${style.green}`} />
                 </div>
                 <button data-copytext={curlCommand} onClick={this.handleCopyClick} class='flex flex-full-center'>
-                  <Ink />{this.state.valueCopied ? 'Copied!' : 'Copy'}</button>
+                  <Ink />{this.state.valueCopied ? viewStrings.command_copied : viewStrings.copy_command}</button>
               </header>
               <section>
                 <span class={style.terminalBlue}>{userData.name}</span>
-                @<span class={style.terminalLightBlue}>nethloader_pc</span>&nbsp;
+                @<span class={style.terminalLightBlue}>{viewStrings.terminal_hostname}</span>&nbsp;
                 <span class={style.terminalBlue}>$</span>&nbsp;
                 {
-                  curlCommand.split('\n').map((line, key) => <span key={key}>{line}<br /></span>) // If you see this, don't()
+                  // If you see this, don't()
+                  curlCommand.split('\n').map((line, key) => <span key={key}>{line}<br /></span>)
                 }
                 <span class={style.cursor} />
               </section>

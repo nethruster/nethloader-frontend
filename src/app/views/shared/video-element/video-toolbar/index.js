@@ -6,6 +6,10 @@ import {toggleControls} from 'actions/html5video'
 
 import Button from '../../button'
 
+import locale from 'locale'
+
+const viewStrings = locale.media_view.toolbar
+
 const mapStateToProps = (state) => {
   const {showControls, isTouchDevice} = state.html5video
 
@@ -32,8 +36,8 @@ export default connect(mapStateToProps)(class VideoElement extends Component {
       <a
         title={
           showControls
-            ? 'Hide Controls'
-            : 'Show controls'
+            ? viewStrings.hide_controls
+            : viewStrings.show_controls
         }
         onClick={this.toggleVideoControls}>
         <Button

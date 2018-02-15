@@ -8,6 +8,10 @@ import {validateEmpty, validateName} from 'utils'
 import {changeUserName} from 'serverAPI/settings'
 import {getUserData} from 'serverAPI/data'
 
+import locale from 'locale'
+
+const viewStrings = locale.cp.settings.settings_grid.partials.username
+
 const mapStateToProps = (state) => {
   const {token, sessionData} = state.authentication
 
@@ -42,13 +46,13 @@ export default connect(mapStateToProps)(class UsernameModal extends Component {
 
     if (validateEmpty(input.value)) {
       newUsername.inputState = 'invalid'
-      newUsername.validationMessage = 'This field is empty'
+      newUsername.validationMessage = viewStrings.form.empty
     } else if (!validateName(input.value)) {
       newUsername.inputState = 'invalid'
-      newUsername.validationMessage = 'Usernames must only contain alphanumeric characters'
+      newUsername.validationMessage = viewStrings.form.only_aplhanum
     } else {
       newUsername.inputState = 'valid'
-      newUsername.validationMessage = 'Cool! This username is valid'
+      newUsername.validationMessage = viewStrings.from.valid
       newUsername.value = input.value
     }
 
@@ -67,9 +71,9 @@ export default connect(mapStateToProps)(class UsernameModal extends Component {
       })
     } else {
       this.props.dispatch(showSnack('emptyUsernameSettings', {
-        label: this.state.newUsername.validationMessage || 'That\'s not a valid username',
+        label: this.state.newUsername.validationMessage || viewStrings.form.submit_error,
         timeout: 3000,
-        button: { label: 'OK' }
+        button: { label: viewStrings.toast_ok }
       }))
     }
   }
@@ -78,17 +82,17 @@ export default connect(mapStateToProps)(class UsernameModal extends Component {
     return (
       <Modal
         isActive={isActive}
-        modalTitle='Change username'
+        modalTitle={viewStrings.title}
         toggleModal={toggleModal}
         form
-        closeButtonText='Cancel'
-        acceptButtonText='Change'
+        closeButtonText={viewStrings.cancel}
+        acceptButtonText={viewStrings.accept}
         onAcceptExecute={this.handleSubmit}>
         <form class={`flex flex-full-center flex-dc`} onSubmit={this.handleSubmit} ref={(el) => { this.form = el }}>
           <FormInput
             inputId='new-username'
             inputType='text'
-            inputLabel='New username'
+            inputLabel={viewStrings.form.placeholder}
             changeHandler={this.handleChange}
             required
             inputState={this.state.newUsername.inputState}

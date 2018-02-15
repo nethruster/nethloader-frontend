@@ -13,6 +13,10 @@ import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 
 import style from './styles.scss'
 
+import locale from 'locale'
+
+const viewStrings = locale.cp.admin.users
+
 const mapStateToProps = (state) => {
   const {isFetchingUsers, uData} = state.users
   const {allToggled, selectedUsers} = state.userSelect
@@ -83,7 +87,7 @@ export default connect(mapStateToProps)(class UsersPartial extends Component {
         />
       )
     }
-    return <p>Couldn't load users :(. Check the console.</p>
+    return <p>{viewStrings.user_load_error}</p>
   }
 
   // Select
@@ -99,6 +103,7 @@ export default connect(mapStateToProps)(class UsersPartial extends Component {
     } else {
       // Item isn't selected, select
       selectedUsers.push(id)
+      // We subtract 1 to the total ammount because we don't manipulate the current user here
       this.props.dispatch(userSelect(selectedUsers, Number(this.props.uData.length) - 1 === Number(selectedUsers.length)))
     }
   }
@@ -157,13 +162,13 @@ export default connect(mapStateToProps)(class UsersPartial extends Component {
   render ({isFetchingUsers, uData}) {
     return (
       <div class={style.section}>
-        <div class='flex flex-cross-center'><h3 class='flex flex-full-center'><Icon iconName='account-multiple' />&nbsp;Users</h3></div>
+        <div class='flex flex-cross-center'><h3 class='flex flex-full-center'><Icon iconName='account-multiple' />&nbsp;{viewStrings.title}</h3></div>
         <div class={style.usersTable}>
           <UsersToolbar handleDeleteClick={this.toggleDeleteConfirmModal} />
           <div class={`${style.userRow} ${style.userTableHeader}`}>
             <span class={`flex flex-cross-center ${style.userTableHeaderFieldId}`}>ID</span>
-            <span class={`flex flex-cross-center`}>Name</span>
-            <span class={`flex flex-cross-center ${style.userTableHeaderFieldEmail}`}>Email</span>
+            <span class={`flex flex-cross-center`}>{viewStrings.table.title_name}</span>
+            <span class={`flex flex-cross-center ${style.userTableHeaderFieldEmail}`}>{viewStrings.table.table_email}</span>
           </div>
           {isFetchingUsers && !uData
             ? <ViewLoading />
@@ -173,24 +178,26 @@ export default connect(mapStateToProps)(class UsersPartial extends Component {
         {/* Single Delete Modal */}
         <Modal
           isActive={this.state.modals.singleDeleteActive}
-          modalTitle='Delete user'
+          modalTitle={viewStrings.action_modals.title}
           toggleModal={this.toggleDeleteConfirmModal}
-          closeButtonText='Wait, no'
-          acceptButtonText='Yes, do it'
+          closeButtonText={viewStrings.action_modals.cancel}
+          acceptButtonText={viewStrings.action_modals.accept}
           onAcceptExecute={this.confirmSingleDelete}>
-          <p class='flex flex-full-center'>Are you sure that you want to delete the selected user?</p>
+          <p class='flex flex-full-center' >
+            {viewStrings.action_modals.single_delete}
+          </p>
         </Modal>
         {/* Multiple Delete Modal */}
         <Modal
           isActive={this.state.modals.multipleDeleteActive}
-          modalTitle='Delete users'
+          modalTitle={viewStrings.action_modals.title}
           toggleModal={this.toggleDeleteConfirmModal}
-          closeButtonText='Wait, no'
-          acceptButtonText='Yes, do it'
+          closeButtonText={viewStrings.action_modals.cancel}
+          acceptButtonText={viewStrings.action_modals.accept}
           onAcceptExecute={this.confirmMultipleDelete}
           disabled={this.state.isDeleting}>
           <p class='flex flex-full-center'>
-            {this.props.selectedUsers.length} users are about to be deleted, are you sure that you want to proceed?
+            {this.props.selectedUsers.length} {viewStrings.action_modals.multiple_delete}
           </p>
         </Modal>
       </div>

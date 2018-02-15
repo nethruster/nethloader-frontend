@@ -13,6 +13,10 @@ import {showSnack} from 'react-redux-snackbar'
 
 import style from './styles.scss'
 
+import locale from 'locale'
+
+const viewStrings = locale.cp.admin.users.user.buttons.edit_user_modal
+
 const mapStateToProps = (state) => {
   const {token} = state.authentication
   const {isFetchingtoggleAdmin} = state.toggleIsAdmin
@@ -86,14 +90,13 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
 
     if (validateEmpty(input.value)) {
       username.inputState = 'invalid'
-      username.validationMessage = 'This field is empty'
+      username.validationMessage = viewStrings.form.username.empty
     } else if (!validateName(input.value)) {
       username.inputState = 'invalid'
-      username.validationMessage = 'Only alphanumeric characters'
+      username.validationMessage = viewStrings.form.username.only_alphanum
     } else {
       username.inputState = 'valid'
-      username.validationMessage = 'Cool! This username is valid'
-      username.value = input.value
+      username.validationMessage = viewStrings.form.username.valid
     }
 
     this.setState({
@@ -110,13 +113,13 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
 
     if (validateEmpty(input.value)) {
       email.inputState = 'invalid'
-      email.validationMessage = 'The field is empty'
+      email.validationMessage = viewStrings.form.email.empty
     } else if (!validateEmail(input.value)) {
       email.inputState = 'invalid'
-      email.validationMessage = "Emails include '@' and a domain"
+      email.validationMessage = viewStrings.form.email.invalid
     } else {
       email.inputState = 'valid'
-      email.validationMessage = 'Nice! This email is valid'
+      email.validationMessage = viewStrings.form.email.valid
       email.value = input.value
     }
 
@@ -135,7 +138,7 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
 
     if (validateEmpty(input.value)) {
       password.inputState = 'invalid'
-      password.validationMessage = 'This field is empty'
+      password.validationMessage = viewStrings.form.password.empty
     } else {
       password.inputState = 'valid'
       password.value = input.value
@@ -161,9 +164,9 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
       this.usernameForm.reset()
     } else {
       this.props.dispatch(showSnack('emptyUsernameAdminSettings', {
-        label: this.state.newUsername.validationMessage || 'That\'s not a valid username',
+        label: this.state.newUsername.validationMessage || viewStrings.form.username.submit_error,
         timeout: 3000,
-        button: { label: 'OK' }
+        button: { label: viewStrings.toast_ok }
       }))
     }
   }
@@ -183,9 +186,9 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
       this.emailForm.reset()
     } else {
       this.props.dispatch(showSnack('emptyEmailAdminSettings', {
-        label: this.state.newEmail.validationMessage || 'That\'s not a valid email',
+        label: this.state.newEmail.validationMessage || viewStrings.form.email.submit_error,
         timeout: 3000,
-        button: { label: 'OK' }
+        button: { label: viewStrings.toast_ok }
       }))
     }
   }
@@ -205,9 +208,9 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
       this.passwordForm.reset()
     } else {
       this.props.dispatch(showSnack('emptyPasswordAdminSettings', {
-        label: this.state.password.validationMessage || 'That\'s an empty password',
+        label: this.state.password.validationMessage || viewStrings.form.password.submit_error,
         timeout: 3000,
-        button: { label: 'OK' }
+        button: { label: viewStrings.toast_ok }
       }))
     }
   }
@@ -216,13 +219,13 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
     return (
       <Modal
         isActive={isActive}
-        modalTitle='Edit user'
+        modalTitle={viewStrings.title}
         toggleModal={toggleModal}
-        closeButtonText='Close'>
+        closeButtonText={viewStrings.close}>
         <div class={style.modalContent}>
           <div class={`flex ${style.modalGridItem}`}>
             <span class='flex flex-main-center flex-dc'>
-              <h5>Username</h5>
+              <h5>{viewStrings.form.username.title}</h5>
               <form ref={(el) => { this.usernameForm = el }} onSubmit={this.handleSubmitUsername}>
                 <FormInput
                   inputId={`editName-${data.id}`}
@@ -245,7 +248,7 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
           </div>
           <div class={`flex ${style.modalGridItem}`}>
             <span class='flex flex-main-center flex-dc'>
-              <h5>Email</h5>
+              <h5>{viewStrings.form.email.title}</h5>
               <form ref={(el) => { this.emailForm = el }} onSubmit={this.handleSubmitEmail}>
                 <FormInput
                   inputId={`editEmail-${data.id}`}
@@ -268,12 +271,12 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
           </div>
           <div class={`flex ${style.modalGridItem}`}>
             <span class='flex flex-main-center flex-dc'>
-              <h5>Password</h5>
+              <h5>{viewStrings.form.password.title}</h5>
               <form ref={(el) => { this.passwordForm = el }} onSubmit={this.handleSubmitPassword}>
                 <FormInput
                   inputId={`editPassword-${data.id}`}
                   inputType='password'
-                  inputLabel="Do you know it? We don't."
+                  inputLabel={viewStrings.form.password.placeholder}
                   changeHandler={this.handlePasswordChange}
                   required
                   inputState={this.state.password.inputState}
@@ -291,7 +294,7 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
           </div>
           <div class={`flex flex-cross-center ${style.modalGridItem}`}>
             <Checkbox
-              text='Administrator'
+              text={viewStrings.form.administrator}
               dataId={`isAdmin-${data.id}`}
               tabindex='-1'
               disabled={isFetchingtoggleAdmin || isFetchingUsers}
@@ -308,12 +311,12 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
         </div>
         <div class={`flex flex-full-center flex-dc ${style.button}`}>
           <Button
-            text='Regen APIkey'
+            text={viewStrings.form.regen_apikey}
             icon='renew-key'
             onClickExecute={this.handleRenewApiKeySubmit}
             spinner={isFetching}
             disabled={isFetching || isFetchingUsers} />
-          <span class='flex flex-full-center'>Current apiKey:&nbsp;
+          <span class='flex flex-full-center'>{viewStrings.current_apikey}:&nbsp;
             <small>
               {
                 isFetchingUsers

@@ -5,6 +5,10 @@ import Modal from '../../../../shared/modal'
 import {deleteUser} from 'serverAPI/settings'
 import {logoutUser} from 'serverAPI/authentication'
 
+import locale from 'locale'
+
+const viewStrings = locale.cp.settings.settings_grid.partials.account_remove
+
 const mapStateToProps = (state) => {
   const {token, sessionData} = state.authentication
   const {isFetching} = state.settings
@@ -36,12 +40,12 @@ export default connect(mapStateToProps)(class DeleteUserAccountModal extends Com
         isActive={isActive}
         disabled={isFetching}
         toggleModal={toggleModal}
-        modalTitle='Delete media'
-        closeButtonText='Wait, no'
-        acceptButtonText='I know, proceed'
+        modalTitle={viewStrings.title}
+        closeButtonText={viewStrings.cancel}
+        acceptButtonText={viewStrings.accept}
         onAcceptExecute={this.handleSubmit}>
-        <p class='flex flex-full-center'>This will delete ALL your uploaded media AND your account, which will be innaccesible thereafter.</p>
-        <p class='flex flex-full-center danger-text'>IT CANNOT BE UNDONE.</p>
+        <p class='flex flex-full-center'>{viewStrings.description}</p>
+        <p class='flex flex-full-center danger-text'>{viewStrings.warning}</p>
       </Modal>
     )
   }

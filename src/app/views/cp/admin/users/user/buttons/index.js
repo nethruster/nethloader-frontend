@@ -11,6 +11,10 @@ import {copyToClipboard} from 'utils'
 
 import style from '../styles.scss'
 
+import locale from 'locale'
+
+const viewStrings = locale.cp.admin.users.user.buttons
+
 const mapStateToProps = (state) => {
   const {selectedUsers} = state.userSelect
   const {sessionData, token} = state.authentication
@@ -81,7 +85,7 @@ export default connect(mapStateToProps)(class UserButtons extends Component {
             <li>
               <Button
                 icon='copy'
-                text={this.state.apiKeyCopied ? 'Copied!' : 'Copy APIkey'}
+                text={this.state.apiKeyCopied ? viewStrings.apikey_copied : viewStrings.copy_apikey}
                 copyText={itemData.apiKey}
                 onClickExecute={this.handleCopyClick}
                 dropdown
@@ -90,7 +94,7 @@ export default connect(mapStateToProps)(class UserButtons extends Component {
             <li>
               <Button
                 icon='edit'
-                text='Edit user'
+                text={viewStrings.edit_user}
                 onClickExecute={this.toggleEditUserModal}
                 dropdown
               />
@@ -98,7 +102,7 @@ export default connect(mapStateToProps)(class UserButtons extends Component {
             <li>
               <Button
                 icon='delete-sweep'
-                text='Delete media'
+                text={viewStrings.delete_user_media}
                 onClickExecute={this.toggleDeleteUserMedia}
                 dropdown
               />
@@ -106,7 +110,7 @@ export default connect(mapStateToProps)(class UserButtons extends Component {
             <li>
               <Button
                 dataId={itemData.id}
-                text='Delete user'
+                text={viewStrings.delete_user}
                 icon='delete'
                 dropdown
                 onClickExecute={this.handleDeleteClick}
@@ -117,13 +121,13 @@ export default connect(mapStateToProps)(class UserButtons extends Component {
         <EditUserModal isActive={this.state.isToggleEditUserModalActive} toggleModal={this.toggleEditUserModal} data={itemData} />
         <Modal
           isActive={this.state.isDeleteAllMediaModalActive}
-          modalTitle='Delete media'
+          modalTitle={viewStrings.delete_user_media_modal.title}
           toggleModal={this.toggleDeleteUserMedia}
-          closeButtonText='Wait, no'
-          acceptButtonText='I know, proceed'
+          closeButtonText={viewStrings.delete_user_media_modal.button_deny}
+          acceptButtonText={viewStrings.delete_user_media_modal.button_accept}
           onAcceptExecute={this.handleDeleteUserMediaSubmit}>
-          <p class='flex flex-full-center'>This will delete ALL media uploaded by this user.</p>
-          <p class='flex flex-full-center danger-text'>IT CANNOT BE UNDONE.</p>
+          <p class='flex flex-full-center'>{viewStrings.delete_user_media_modal.text_info}</p>
+          <p class='flex flex-full-center danger-text'>{viewStrings.delete_user_media_modal.text_warning}</p>
         </Modal>
       </span>
     )

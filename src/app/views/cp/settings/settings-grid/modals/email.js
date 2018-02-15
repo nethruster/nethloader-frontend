@@ -8,6 +8,10 @@ import {validateEmpty, validateEmail} from 'utils'
 import {changeUserEmail} from 'serverAPI/settings'
 import {getUserData} from 'serverAPI/data'
 
+import locale from 'locale'
+
+const viewStrings = locale.cp.settings.settings_grid.partials.email
+
 const mapStateToProps = (state) => {
   const { token, sessionData } = state.authentication
 
@@ -42,13 +46,13 @@ export default connect(mapStateToProps)(class EmailModal extends Component {
 
     if (validateEmpty(input.value)) {
       newEmail.inputState = 'invalid'
-      newEmail.validationMessage = 'The field is empty'
+      newEmail.validationMessage = viewStrings.form.empty
     } else if (!validateEmail(input.value)) {
       newEmail.inputState = 'invalid'
-      newEmail.validationMessage = "Emails must include '@' and a domain name"
+      newEmail.validationMessage = viewStrings.form.invalid
     } else {
       newEmail.inputState = 'valid'
-      newEmail.validationMessage = 'Nice! This email is valid'
+      newEmail.validationMessage = viewStrings.form.valid
       newEmail.value = input.value
     }
 
@@ -67,9 +71,9 @@ export default connect(mapStateToProps)(class EmailModal extends Component {
       })
     } else {
       this.props.dispatch(showSnack('emptyEmailSettings', {
-        label: this.state.newEmail.validationMessage || 'That\'s not a valid email',
+        label: this.state.newEmail.validationMessage || viewStrings.form.submit_error,
         timeout: 3000,
-        button: { label: 'OK' }
+        button: { label: viewStrings.toast_ok }
       }))
     }
   }
@@ -78,17 +82,17 @@ export default connect(mapStateToProps)(class EmailModal extends Component {
     return (
       <Modal
         isActive={isActive}
-        modalTitle='Change email'
+        modalTitle={viewStrings.title}
         toggleModal={toggleModal}
-        closeButtonText='Cancel'
-        acceptButtonText='Change'
+        closeButtonText={viewStrings.cancel}
+        acceptButtonText={viewStrings.accept}
         form
         onAcceptExecute={this.handleSubmit}>
         <form class={`flex flex-full-center flex-dc`} onSubmit={this.handleSubmit} ref={(el) => { this.form = el }}>
           <FormInput
             inputId='new-email'
             inputType='email'
-            inputLabel='New email'
+            inputLabel={viewStrings.form.placeholder}
             changeHandler={this.handleChange}
             required
             inputState={this.state.newEmail.inputState}

@@ -7,6 +7,10 @@ import Icon from '../../../../shared/icon'
 
 import style from './styles.scss'
 
+import locale from 'locale'
+
+const viewStrings = locale.cp.settings.sidebar.partials.sharex
+
 const mapStateToProps = (state) => {
   const {userData} = state.userData
 
@@ -40,21 +44,16 @@ export default connect(mapStateToProps)(class SharexPartial extends Component {
         <div class='flex flex-cross-center'><Link to='/cp/settings'><Button customClass={style.backButton} iconButton icon='back' /></Link>&nbsp;<h3>Setting up ShareX</h3></div>
         <div class={style.sectionInfo}>
           <p>
-          Nethloader is compatible with ShareX (Windows only application). It is an advanced and free application to take screenshots and record the screen while making the process of sharing easy.
-        Setting up Nethloader with ShareX is really simple.
+            {viewStrings.description}
           </p>
 
           <p>
-          In order to set up ShareX in with Nethloader, follow these instructions:
+            {viewStrings.instructions_title}:
           </p>
           <ol>
-            <li>Open ShareX and choose destinations on the left hand side of the window</li>
-            <li>Choose destination settings</li>
-            <li>Scroll down in the list on the left and select 'Custom uploaders'</li>
-            <li>Click the 'Import' button and select 'From URL...'</li>
-            <li>Paste the url shown below these instructions and click OK</li>
-            <li>Check and see if the selected image uploader is 'Nethloader' and close the window</li>
-            <li>In the main window of ShareX select destinations on the left hand side of the window, then select image uploader and click on 'Custom image uploader'</li>
+            {Object.values(viewStrings.instructions).map(value => {
+              return <li>{value}</li>
+            })}
           </ol>
         </div>
         <span class='flex flex-full-center'>
@@ -66,15 +65,15 @@ export default connect(mapStateToProps)(class SharexPartial extends Component {
           <Button
             small
             text={this.state.valueCopied
-              ? 'Copied!'
-              : 'Copy URL'
+              ? viewStrings.autoconfig_copied
+              : viewStrings.copy_autoconfig
             }
             copyText={`${window.location.origin}/sharex?apikey=${userData.apiKey}`}
             onClickExecute={this.handleCopyClick}
           />
         </span>
         <p class={`danger-text ${style.warning}`}>
-          <Icon iconName='warning' /> This url is used to auto-configure ShareX to upload media to this account directly and without authentication, do not share it.
+          <Icon iconName='warning' /> {viewStrings.autoconfigure_security_warning}
         </p>
       </div>
     )

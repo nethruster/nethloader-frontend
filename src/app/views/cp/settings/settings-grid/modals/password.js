@@ -8,6 +8,10 @@ import {validateEmpty} from 'utils'
 import {changeUserPassword} from 'serverAPI/settings'
 import {logoutUser} from 'serverAPI/authentication'
 
+import locale from 'locale'
+
+const viewStrings = locale.cp.settings.settings_grid.partials.password
+
 const mapStateToProps = (state) => {
   const {token, sessionData} = state.authentication
 
@@ -54,17 +58,17 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
 
     if (validateEmpty(input.value)) {
       activeInputOnState.inputState = 'invalid'
-      activeInputOnState.validationMessage = 'This field is empty'
+      activeInputOnState.validationMessage = viewStrings.form.empty
     } else if (input.id === 'newPassword' || input.id === 'cNewPassword') {
       if (this.state.newPassword.value !== this.state.cNewPassword.value) {
         state.newPassword.inputState = 'invalid'
         state.cNewPassword.inputState = 'invalid'
-        state.newPassword.validationMessage = "Password fields don't match, make sure they are the same"
+        state.newPassword.validationMessage = viewStrings.form.invalid
       } else if (this.state.newPassword.value === this.state.cNewPassword.value && this.state.oldPassword.inputState !== 'empty') {
         state.oldPassword.inputState = 'valid'
         state.newPassword.inputState = 'valid'
         state.cNewPassword.inputState = 'valid'
-        state.newPassword.validationMessage = 'Valid'
+        state.newPassword.validationMessage = viewStrings.form.valid
       }
     }
 
@@ -83,9 +87,9 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
       })
     } else {
       this.props.dispatch(showSnack('emptyPasswordSettings', {
-        label: this.state.newPassword.validationMessage || 'Please, fill in all the fields',
+        label: this.state.newPassword.validationMessage || viewStrings.form.submit_error,
         timeout: 3000,
-        button: { label: 'OK' }
+        button: { label: viewStrings.toast_ok }
       }))
     }
   }
@@ -94,17 +98,17 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
     return (
       <Modal
         isActive={isActive}
-        modalTitle='Change password'
+        modalTitle={viewStrings.title}
         toggleModal={toggleModal}
-        closeButtonText='Cancel'
+        closeButtonText={viewStrings.cancel}
         form
-        acceptButtonText='Change'
+        acceptButtonText={viewStrings.accept}
         onAcceptExecute={this.handleSubmit}>
         <form class={`flex flex-full-center flex-dc`} onSubmit={this.handleSubmit} ref={(el) => { this.form = el }}>
           <FormInput
             inputId='oldPassword'
             inputType='password'
-            inputLabel='Current password'
+            inputLabel={viewStrings.form.placeholder_current_password}
             changeHandler={this.handleChange}
             required
             inputState={this.state.oldPassword.inputState}
@@ -113,7 +117,7 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
           <FormInput
             inputId='newPassword'
             inputType='password'
-            inputLabel='New password'
+            inputLabel={viewStrings.form.placeholder_new_password}
             changeHandler={this.handleChange}
             required
             inputState={this.state.newPassword.inputState}
@@ -122,7 +126,7 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
           <FormInput
             inputId='cNewPassword'
             inputType='password'
-            inputLabel='Retype new password'
+            inputLabel={viewStrings.form.placeholder_new_password_check}
             changeHandler={this.handleChange}
             required
             noValidationStyle

@@ -12,6 +12,10 @@ import {toggleDarkMode} from 'utils'
 
 import style from './styles.scss'
 
+import locale from 'locale'
+
+const viewStrings = locale.cp.settings.settings_grid.sections
+
 const mapStateToProps = (state) => {
   const {userData} = state.userData
   const {totalCount} = state.userMedia
@@ -72,8 +76,8 @@ export default connect(mapStateToProps)(class SettingsGrid extends Component {
       <div class={style.gridContainer}>
         <SettingsSection
           icon='user'
-          title='Change username'
-          currentText='Current username'
+          title={viewStrings.username.title}
+          currentText={viewStrings.username.description}
           currentData={userData.name}
           onClickExecute={this.toggleUsernameModal}
         />
@@ -81,16 +85,16 @@ export default connect(mapStateToProps)(class SettingsGrid extends Component {
 
         <SettingsSection
           icon='password'
-          title='Change password'
-          currentData="That's your secret, we'd put it here if we knew."
+          title={viewStrings.password.title}
+          currentData={viewStrings.password.description}
           onClickExecute={this.togglePasswordModal}
         />
         <PasswordModal isActive={this.state.passwordModal} toggleModal={this.togglePasswordModal} />
 
         <SettingsSection
           icon='email'
-          title='Change email'
-          currentText='Current email'
+          title={viewStrings.email.title}
+          currentText={viewStrings.email.description}
           currentData={userData.email}
           onClickExecute={this.toggleEmailModal}
         />
@@ -98,8 +102,8 @@ export default connect(mapStateToProps)(class SettingsGrid extends Component {
 
         <SettingsSection
           icon='auto-upload'
-          title='Regenerate APIkey'
-          currentData='Generate a new APIKey. This will replace your current one.'
+          title={viewStrings.apikey_regen.title}
+          currentData={viewStrings.apikey_regen.description}
           onClickExecute={this.toggleApikeyModal}
         />
         <ApiKeyModal isActive={this.state.apikeyModal} toggleModal={this.toggleApikeyModal} />
@@ -107,8 +111,8 @@ export default connect(mapStateToProps)(class SettingsGrid extends Component {
         <SettingsSection
           icon='delete-sweep'
           danger
-          title='Delete all media'
-          currentData={`Delete all your images and videos. (${totalCount} items)`}
+          title={viewStrings.user_media_remove.title}
+          currentData={`${viewStrings.user_media_remove.description} (${totalCount} ${viewStrings.user_media_remove.items})`}
           onClickExecute={this.toggleDeleteAllMediaModal}
           disabled={totalCount <= 0}
         />
@@ -117,16 +121,16 @@ export default connect(mapStateToProps)(class SettingsGrid extends Component {
         <SettingsSection
           icon='account-remove'
           danger
-          title='Remove account'
-          currentData={`Delete this account and all its media. (Forever!)`}
+          title={viewStrings.account_remove.title}
+          currentData={viewStrings.account_remove.description}
           onClickExecute={this.toggleDeleteUserAccountModal}
         />
         <DeleteUserAccountModal isActive={this.state.deleteUserAccountModal} toggleModal={this.toggleDeleteUserAccountModal} />
 
         <SettingsSection
           icon='dark-light'
-          title='Toggle dark mode'
-          currentData={`Activate a dark mode if you're a night owl or restore the glorious white.`}
+          title={viewStrings.dark_mode.title}
+          currentData={viewStrings.dark_mode.description}
           onClickExecute={toggleDarkMode}
         />
       </div>

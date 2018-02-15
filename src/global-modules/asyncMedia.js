@@ -86,7 +86,7 @@ export default class AsyncMedia extends Component {
           )
 
           this.setState({mediaNode})
-
+          
           tempImgElement.remove()
         }
       }
