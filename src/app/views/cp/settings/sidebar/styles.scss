@@ -23,14 +23,14 @@
         p { font-size: .85em; }
 
         &Links {
-            margin-top: calc(var(--base-pm) * 2);
+            margin: calc(var(--base-pm) * 3) 0;
             
             a {
                 display: block;
                 width: 100%;
 
                 padding: var(--base-pm);
-                margin: var(--base-pm);
+                margin: var(--base-pm) 0;
 
                 border-radius: var(--base-br);
                 transition: background-color .2s ease;

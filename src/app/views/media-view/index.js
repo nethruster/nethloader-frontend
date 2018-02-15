@@ -23,6 +23,7 @@ export default connect(mapStateToProps)(class MediaView extends Component {
     super(props)
 
     this.metas = {}
+
     this.computeMeta = this.renderMeta.bind(this)
   }
 
@@ -39,7 +40,9 @@ export default connect(mapStateToProps)(class MediaView extends Component {
   }
 
   componentWillUnmount () {
-    Object.values(this.metas).forEach(element => element.remove())
+    if (this.metas) {
+      Object.values(this.metas).forEach(element => element.remove())
+    }
   }
 
   renderMeta () {
@@ -49,7 +52,7 @@ export default connect(mapStateToProps)(class MediaView extends Component {
 
     this.metas.twitterSite = document.createElement('meta')
     this.metas.twitterSite.name = 'twitter:site'
-    this.metas.twitterSite.content = '@Nethloader'
+    this.metas.twitterSite.content = '@nethruster'
 
     this.metas.twitterDesc = document.createElement('meta')
     this.metas.twitterDesc.name = 'twitter:description'
