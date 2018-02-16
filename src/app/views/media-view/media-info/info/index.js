@@ -7,7 +7,7 @@ import style from './styles.scss'
 
 export default function MediaInfoData ({createdAt}) {
   return (
-    <div title={computeDateFormat(createdAt)} class={`${style.data}`}>
+    <div title={computeDateFormat(createdAt)} class={`flex flex-full-center ${style.data}`}>
       <p class={style.mediaInfoDate}>
         <Icon iconName='calendar-clock' />&nbsp;{computeDate(createdAt)} - {computeTime(createdAt)}
       </p>

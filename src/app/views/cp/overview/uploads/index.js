@@ -78,7 +78,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
 
   computeMediaList () {
     let mediaList = this.props.userMedia.images
-    if (this.props.totalCount > 0 && mediaList) {
+    if (this.props.totalCount > 0 && Object.keys(mediaList).length > 0) {
       return (
         <this.mediaVirtualList
           items={mediaList}

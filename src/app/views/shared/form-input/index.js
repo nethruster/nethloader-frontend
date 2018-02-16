@@ -7,6 +7,10 @@ export default class FormInput extends Component {
     return this.props.validationMessage !== nextProps.validationMessage
   }
 
+  componentDidMount () {
+    this.input.value = ''
+  }
+
   render ({
     inputId,
     inputType,
@@ -33,6 +37,7 @@ export default class FormInput extends Component {
           title={inputLabel}
           tabindex={tabindex}
           autofocus={autofocus}
+          ref={(el) => { this.input = el }}
         />
         <label for={inputId}>{validationMessage}</label>
       </div>
