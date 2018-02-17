@@ -37,7 +37,7 @@ export default class FormInput extends Component {
           title={inputLabel}
           tabindex={tabindex}
           autofocus={autofocus}
-          ref={(el) => { this.input = el }}
+          ref={el => { this.input = el }}
         />
         <label for={inputId}>{validationMessage}</label>
       </div>

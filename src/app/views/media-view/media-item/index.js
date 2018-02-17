@@ -30,9 +30,8 @@ export default class MediaItem extends Component {
   }
 
   render ({type, id, isFetching}) {
-    require('dragscroll')
     return (
-      <div class={`${style.mediaItem} ${this.state.isZoomed ? style.zoomed : ''} dragscroll`}>
+      <div class={`${style.mediaItem} ${this.state.isZoomed ? style.zoomed : ''}`}>
         <div onClick={this.closeZoom} class={`${style.closeButton}`}>
           <span class='flex flex-full-center'><Icon iconName='close' /></span>
         </div>
