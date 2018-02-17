@@ -41,7 +41,7 @@
                 border-radius: 0;
 
                 pointer-events: initial;
-                cursor: default;
+                cursor: zoom-out;
             }
         }
     }
@@ -56,6 +56,7 @@
         top: 0;
 
         background-color: var(--default-bg);
+        border-bottom: 1px solid rgba(0,0,0,.08);
         
         span { cursor: pointer; }
 

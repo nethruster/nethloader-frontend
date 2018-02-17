@@ -36,7 +36,8 @@ export default connect(mapStateToProps)(class SettingsGrid extends Component {
       passwordModal: false,
       apikeyModal: false,
       deleteAllUserMediaModal: false,
-      deleteUserAccountModal: false
+      deleteUserAccountModal: false,
+      extraOptions: false
     }
 
     this.toggleUsernameModal = this.toggleUsernameModal.bind(this)
@@ -45,6 +46,7 @@ export default connect(mapStateToProps)(class SettingsGrid extends Component {
     this.toggleApikeyModal = this.toggleApikeyModal.bind(this)
     this.toggleDeleteAllMediaModal = this.toggleDeleteAllMediaModal.bind(this)
     this.toggleDeleteUserAccountModal = this.toggleDeleteUserAccountModal.bind(this)
+    this.toggleExtraOptions = this.toggleExtraOptions.bind(this)
   }
 
   toggleUsernameModal () {
@@ -69,6 +71,10 @@ export default connect(mapStateToProps)(class SettingsGrid extends Component {
 
   toggleDeleteUserAccountModal () {
     this.setState({ deleteUserAccountModal: !this.state.deleteUserAccountModal })
+  }
+
+  toggleExtraOptions () {
+    this.setState({extraOptions: !this.state.extraOptions})
   }
 
   render ({userData, totalCount}) {
@@ -107,6 +113,18 @@ export default connect(mapStateToProps)(class SettingsGrid extends Component {
           onClickExecute={this.toggleApikeyModal}
         />
         <ApiKeyModal isActive={this.state.apikeyModal} toggleModal={this.toggleApikeyModal} />
+        <SettingsSection
+          icon='dark-light'
+          title={viewStrings.dark_mode.title}
+          currentData={viewStrings.dark_mode.description}
+          onClickExecute={toggleDarkMode}
+        />
+        <SettingsSection
+          icon='warning'
+          danger={this.state.extraOptions}
+          currentData='Toggle extra options'
+          onClickExecute={this.toggleExtraOptions}
+        />
 
         <SettingsSection
           icon='delete-sweep'
@@ -114,6 +132,7 @@ export default connect(mapStateToProps)(class SettingsGrid extends Component {
           title={viewStrings.user_media_remove.title}
           currentData={`${viewStrings.user_media_remove.description} (${totalCount} ${viewStrings.user_media_remove.items})`}
           onClickExecute={this.toggleDeleteAllMediaModal}
+          hidden={!this.state.extraOptions}
           disabled={totalCount <= 0}
         />
         <DeleteAllMediaModal isActive={this.state.deleteAllUserMediaModal} toggleModal={this.toggleDeleteAllMediaModal} />
@@ -124,15 +143,10 @@ export default connect(mapStateToProps)(class SettingsGrid extends Component {
           title={viewStrings.account_remove.title}
           currentData={viewStrings.account_remove.description}
           onClickExecute={this.toggleDeleteUserAccountModal}
+          hidden={!this.state.extraOptions}
         />
         <DeleteUserAccountModal isActive={this.state.deleteUserAccountModal} toggleModal={this.toggleDeleteUserAccountModal} />
 
-        <SettingsSection
-          icon='dark-light'
-          title={viewStrings.dark_mode.title}
-          currentData={viewStrings.dark_mode.description}
-          onClickExecute={toggleDarkMode}
-        />
       </div>
     )
   }

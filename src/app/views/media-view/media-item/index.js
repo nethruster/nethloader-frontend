@@ -11,20 +11,15 @@ export default class MediaItem extends Component {
 
     this.state = {isZoomed: false}
 
-    this.openZoom = this.openZoom.bind(this)
-    this.closeZoom = this.closeZoom.bind(this)
+    this.toggleZoom = this.toggleZoom.bind(this)
   }
 
-  openZoom () {
+  toggleZoom () {
     if (!this.state.isZoomed) {
       document.body.style.overflowY = 'hidden'
       this.setState({isZoomed: true})
-    }
-  }
-
-  closeZoom () {
-    if (this.state.isZoomed) {
-      this.setState({isZoomed: false})
+    } else {
+      this.setState({ isZoomed: false })
       document.body.style.overflowY = 'initial'
     }
   }
@@ -32,11 +27,11 @@ export default class MediaItem extends Component {
   render ({type, id, isFetching}) {
     return (
       <div class={`${style.mediaItem} ${this.state.isZoomed ? style.zoomed : ''}`}>
-        <div onClick={this.closeZoom} class={`${style.closeButton}`}>
+        <div onClick={this.toggleZoom} class={`${style.closeButton}`}>
           <span class='flex flex-full-center'><Icon iconName='close' /></span>
         </div>
         
-        {!isFetching && type && id && <AsyncMedia onClickExecute={this.openZoom} type={type} id={id} willPlayback />}
+        {!isFetching && type && id && <AsyncMedia onClickExecute={this.toggleZoom} type={type} id={id} willPlayback />}
       </div>
     )
   }

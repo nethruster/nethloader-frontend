@@ -168,7 +168,7 @@ export default connect(mapStateToProps)(class UsersPartial extends Component {
           <div class={`${style.userRow} ${style.userTableHeader}`}>
             <span class={`flex flex-cross-center ${style.userTableHeaderFieldId}`}>ID</span>
             <span class={`flex flex-cross-center`}>{viewStrings.table.title_name}</span>
-            <span class={`flex flex-cross-center ${style.userTableHeaderFieldEmail}`}>{viewStrings.table.table_email}</span>
+            <span class={`flex flex-cross-center ${style.userTableHeaderFieldEmail}`}>{viewStrings.table.title_email}</span>
           </div>
           {isFetchingUsers && !uData
             ? <ViewLoading />
