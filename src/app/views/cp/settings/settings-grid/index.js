@@ -107,7 +107,7 @@ export default connect(mapStateToProps)(class SettingsGrid extends Component {
         <EmailModal isActive={this.state.emailModal} toggleModal={this.toggleEmailModal} />
 
         <SettingsSection
-          icon='auto-upload'
+          icon='renew-key'
           title={viewStrings.apikey_regen.title}
           currentData={viewStrings.apikey_regen.description}
           onClickExecute={this.toggleApikeyModal}

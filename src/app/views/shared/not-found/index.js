@@ -5,6 +5,9 @@ import locale from 'locale'
 
 import style from './styles.scss'
 
+// Notice me file-loader (●´ω｀●)
+import '../../../../assets/img/sorry.gif'
+
 const viewStrings = locale.shared.not_found
 
 export default function NotFound () {

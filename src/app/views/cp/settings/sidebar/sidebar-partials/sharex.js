@@ -56,6 +56,9 @@ export default connect(mapStateToProps)(class SharexPartial extends Component {
             })}
           </ol>
         </div>
+        <p class={`danger-text ${style.warning}`}>
+          <Icon iconName='warning' /> {viewStrings.autoconfigure_security_warning}
+        </p>
         <span class='flex flex-full-center'>
           <code class='token'>
             <a href={`${window.location.origin}/sharex?apikey=${userData.apiKey}`} rel='noopener' target='_blank'>
@@ -72,9 +75,6 @@ export default connect(mapStateToProps)(class SharexPartial extends Component {
             onClickExecute={this.handleCopyClick}
           />
         </span>
-        <p class={`danger-text ${style.warning}`}>
-          <Icon iconName='warning' /> {viewStrings.autoconfigure_security_warning}
-        </p>
       </div>
     )
   }

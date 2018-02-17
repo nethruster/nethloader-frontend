@@ -1,7 +1,10 @@
 import {h, Component} from 'preact'
 import {connect} from 'preact-redux'
+import {showSnack} from 'react-redux-snackbar'
 
 import Modal from '../../../../shared/modal'
+import FormInput from '../../../../shared/form-input'
+import {validateEmpty} from 'utils'
 import {deleteUser} from 'serverAPI/settings'
 import {logoutUser} from 'serverAPI/authentication'
 
@@ -24,14 +27,48 @@ export default connect(mapStateToProps)(class DeleteUserAccountModal extends Com
   constructor (props) {
     super(props)
 
+    this.state = {
+      passwordInput: {
+        inputState: 'empty',
+        validationMessage: '',
+        value: ''
+      }
+    }
+
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  handleSubmit () {
-    this.props.dispatch(deleteUser(this.props.sessionData.id, this.props.token)).then(() => {
-      this.props.toggleModal()
-      this.props.dispatch(logoutUser())
-    })
+  handleSubmit (event) {
+    event.preventDefault()
+    if (this.state.passwordInput.inputState === 'valid') {
+      this.props.dispatch(deleteUser(this.props.sessionData.id, this.props.token)).then(() => {
+        this.props.toggleModal()
+        this.form.reset()
+        this.props.dispatch(logoutUser())
+      })
+    } else {
+      this.props.dispatch(showSnack('emptyPasswordDeleteMedia', {
+        label: this.state.passwordInput.validationMessage || 'Please, type in your password',
+        timeout: 3000,
+        button: { label: 'OK' }
+      }))
+    }
+  }
+
+  handleChange (event) {
+    let passwordInput = this.state.passwordInput
+
+    if (validateEmpty(event.target.value)) {
+      passwordInput.inputState = 'invalid'
+      passwordInput.validationMessage = 'Please, type in your password'
+    } else {
+      passwordInput.value = event.target.value
+      passwordInput.inputState = 'valid'
+      passwordInput.validationMessage = ''
+    }
+
+    this.setState({ passwordInput })
   }
 
   render ({isActive, toggleModal, isFetching}) {
@@ -46,6 +83,18 @@ export default connect(mapStateToProps)(class DeleteUserAccountModal extends Com
         onAcceptExecute={this.handleSubmit}>
         <p class='flex flex-full-center'>{viewStrings.description}</p>
         <p class='flex flex-full-center danger-text'>{viewStrings.warning}</p>
+        <small>Please type in your password to confirm</small>
+        <form class={`flex flex-full-center flex-dc`} onSubmit={this.handleSubmit} ref={(el) => { this.form = el }}>
+          <FormInput
+            inputId='user-password-delete-account'
+            inputType='password'
+            inputLabel='Account password'
+            changeHandler={this.handleChange}
+            required
+            inputState={this.state.passwordInput.inputState}
+            validationMessage={this.state.passwordInput.validationMessage}
+          />
+        </form>
       </Modal>
     )
   }

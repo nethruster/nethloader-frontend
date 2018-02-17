@@ -156,7 +156,7 @@ const renewUserApiKey = (userId, authToken) => {
 }
 
 // Delete all media
-const deleteAllUserImages = (userId, authToken) => {
+const deleteAllUserImages = (userId, authToken, userPassword) => {
   let requestConfig = {
     method: 'POST',
     headers: {
@@ -165,7 +165,7 @@ const deleteAllUserImages = (userId, authToken) => {
       'authentication': authToken
     },
     body: JSON.stringify({
-      query: `mutation{ deleteAllUserImages(userId: "${userId}")}`
+      query: `mutation{ deleteAllUserImages(userId: "${userId}", password: "${userPassword}")}`
     })
   }
 
@@ -194,7 +194,7 @@ const deleteAllUserImages = (userId, authToken) => {
 }
 
 // Delete user
-const deleteUser = (userId, authToken) => {
+const deleteUser = (userId, authToken, userPassword) => {
   let requestConfig = {
     method: 'POST',
     headers: {
@@ -203,7 +203,7 @@ const deleteUser = (userId, authToken) => {
       'authentication': authToken
     },
     body: JSON.stringify({
-      query: `mutation{ deleteUser(userId: "${userId}")}`
+      query: `mutation{ deleteUser(userId: "${userId}", password: "${userPassword}")}`
     })
   }
 
