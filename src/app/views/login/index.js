@@ -1,5 +1,6 @@
 import {h} from 'preact'
 import {Link} from 'react-router-dom'
+import {Snackbar} from 'react-redux-snackbar'
 
 import LoginForm from './login-form'
 import Footer from '../shared/footer'
@@ -9,6 +10,22 @@ import style from './styles.scss'
 import '../shared/paper/paper.scss'
 
 const viewStrings = locale.login
+
+const snackStyles = {
+  snack: {
+    padding: '16px',
+    border: 'none'
+  },
+  button: {
+    color: '#f2f2f2',
+    cursor: 'pointer'
+  },
+  'span': {
+    fontSize: '1em',
+    letterSpacing: '.5px',
+    fontWeight: '300'
+  }
+}
 
 export default function Login () {
   return (
@@ -22,6 +39,7 @@ export default function Login () {
         </div>
       </div>
       <Footer />
+      <Snackbar customStyles={snackStyles} />
     </div>
   )
 }

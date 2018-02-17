@@ -173,10 +173,8 @@ const deleteAllUserImages = (userId, authToken, userPassword) => {
     dispatch(requestSettingChange())
 
     let serverResponse = await fetch(apiBaseUrl, requestConfig)
-
+    let responseData = await serverResponse.json()
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
-      let responseData = await serverResponse.json()
-
       if (responseData.data.deleteAllUserImages) {
         // Dispatch the success action
         dispatch(receiveSettingChange())
@@ -187,8 +185,8 @@ const deleteAllUserImages = (userId, authToken, userPassword) => {
       }
     } else {
       console.log('deleteAllUserImages - serverResponse: ', serverResponse)
-      dispatch(settingChangeError(serverResponse.status))
-      return Promise.reject(serverResponse.status)
+      dispatch(settingChangeError(responseData.errors[0].message))
+      return Promise.reject(responseData.errors[0].message)
     }
   }
 }
@@ -211,10 +209,8 @@ const deleteUser = (userId, authToken, userPassword) => {
     dispatch(requestSettingChange())
 
     let serverResponse = await fetch(apiBaseUrl, requestConfig)
-
+    let responseData = await serverResponse.json()
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
-      let responseData = await serverResponse.json()
-
       if (responseData.data.deleteUser) {
         // Dispatch the success action
         dispatch(receiveSettingChange())
@@ -224,9 +220,9 @@ const deleteUser = (userId, authToken, userPassword) => {
         return Promise.reject(responseData.errors[0].message)
       }
     } else {
-      console.log('deleteUser - serverResponse: ', serverResponse)
-      dispatch(settingChangeError(serverResponse.status))
-      return Promise.reject(serverResponse.status)
+      console.log('deleteUser - serverResponse: ', responseData)
+      dispatch(settingChangeError(responseData.errors[0].message))
+      return Promise.reject(responseData.errors[0].message)
     }
   }
 }

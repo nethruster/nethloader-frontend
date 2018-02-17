@@ -46,6 +46,18 @@ export default connect(mapStateToProps)(class DeleteAllMediaModal extends Compon
         this.props.toggleModal()
         this.form.reset()
         this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token, {}))
+      }).catch(err => {
+        let errorMessage = ''
+        if (err === 'Unauthorized') {
+          errorMessage = 'Incorrect password'
+        } else {
+          errorMessage = err
+        }
+        this.props.dispatch(showSnack('wrongPasswordDeleteMedia', {
+          label: errorMessage,
+          timeout: 3000,
+          button: { label: 'OK' }
+        }))
       })
     } else {
       this.props.dispatch(showSnack('emptyPasswordDeleteMedia', {

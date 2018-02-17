@@ -13,7 +13,8 @@ const loginUser = (credentials, maintainSession, history, loginFormElement) => {
     method: 'POST',
     headers: {
       'accept': 'application/json',
-      'content-type': 'application/json'},
+      'content-type': 'application/json'
+    },
     body: JSON.stringify({
       query: `mutation{ login(email: "${credentials.email}", password: "${credentials.password}", preventSessionExpire: ${maintainSession}) }`
     })
@@ -23,10 +24,9 @@ const loginUser = (credentials, maintainSession, history, loginFormElement) => {
     dispatch(requestLogin())
 
     let serverResponse = await fetch(apiBaseUrl, requestConfig)
-
+    
+    let responseData = await serverResponse.json()
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
-      let responseData = await serverResponse.json()
-
       if (responseData.data.login) {
         // If login was successful, set the token in local storage
         let decodedData = jwtDecode(responseData.data.login)
@@ -50,9 +50,9 @@ const loginUser = (credentials, maintainSession, history, loginFormElement) => {
         return Promise.reject(responseData.errors[0].message)
       }
     } else {
-      console.log('loginUser - serverResponse: ', serverResponse)
-      dispatch(loginError(serverResponse.status))
-      return Promise.reject(serverResponse.status)
+      console.log('loginUser - serverResponse: ', responseData.errors[0].message)
+      dispatch(loginError(responseData.errors[0].message))
+      return Promise.reject(responseData.errors[0].message)
     }
   }
 }

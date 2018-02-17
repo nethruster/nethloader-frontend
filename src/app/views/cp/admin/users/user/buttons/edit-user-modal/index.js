@@ -316,14 +316,13 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
             onClickExecute={this.handleRenewApiKeySubmit}
             spinner={isFetching}
             disabled={isFetching || isFetchingUsers} />
-          <span class='flex flex-full-center'>{viewStrings.current_apikey}:&nbsp;
-            <small>
-              {
-                isFetchingUsers
-                  ? <Spinner size='20px' />
-                  : data.apiKey
-              }
-            </small>
+          <span class='flex flex-full-center'>
+            {viewStrings.current_apikey}:&nbsp;
+            <p>
+              { isFetchingUsers
+                ? <Spinner size='20px' />
+                : data.apiKey }
+            </p>
           </span>
         </div>
       </Modal>

@@ -1,6 +1,7 @@
 import {h, Component} from 'preact'
 import {Link} from 'react-router-dom'
 import {connect} from 'preact-redux'
+
 import {copyToClipboard} from 'utils'
 import Button from '../../../../shared/button'
 import Icon from '../../../../shared/icon'

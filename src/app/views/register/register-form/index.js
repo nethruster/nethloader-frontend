@@ -104,7 +104,20 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
     }
 
     if (this.state.data.username.inputState === 'valid') {
-      await this.props.dispatch(registerUser(data, this.context.router.history, event.target))
+      await this.props.dispatch(registerUser(data, this.context.router.history, event.target)).catch((err) => {
+        let errorMessage = ''
+        if (err === 'Registration is not allowed in this instance') {
+          errorMessage = 'Registration is disabled'
+        } else {
+          errorMessage = err
+        }
+
+        this.props.dispatch(showSnack('loginError', {
+          label: errorMessage,
+          timeout: 30000,
+          button: { label: 'OK' }
+        }))
+      })
       getStorageParams(this.props.token)
     } else {
       this.props.dispatch(showSnack('invalidUsername', {
