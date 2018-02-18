@@ -114,7 +114,7 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
 
         this.props.dispatch(showSnack('loginError', {
           label: errorMessage,
-          timeout: 30000,
+          timeout: 3000,
           button: { label: 'OK' }
         }))
       })
