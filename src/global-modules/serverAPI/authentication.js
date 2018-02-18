@@ -74,10 +74,8 @@ const registerUser = (data, history, registerFormElement) => {
     dispatch(requestRegister())
 
     let serverResponse = await fetch(apiBaseUrl, requestConfig)
-
+    let responseData = await serverResponse.json()
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
-      let responseData = await serverResponse.json()
-
       if (responseData.data.register) {
         let decodedData = jwtDecode(responseData.data.register)
 
@@ -102,9 +100,9 @@ const registerUser = (data, history, registerFormElement) => {
         return Promise.reject(responseData.errors[0].message)
       }
     } else {
-      console.log('registerUser - serverResponse: ', serverResponse)
-      dispatch(registerError(serverResponse.status))
-      return Promise.reject(serverResponse.status)
+      console.log('registerUser - serverResponse: ', responseData.errors[0])
+      dispatch(loginError(responseData.errors[0].message))
+      return Promise.reject(responseData.errors[0].message)
     }
   }
 }

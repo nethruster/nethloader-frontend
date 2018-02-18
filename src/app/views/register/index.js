@@ -13,7 +13,8 @@ const viewStrings = locale.register
 
 const snackStyles = {
   snack: {
-    padding: '16px'
+    padding: '16px',
+    border: 'none'
   },
   button: {
     color: '#f2f2f2',
