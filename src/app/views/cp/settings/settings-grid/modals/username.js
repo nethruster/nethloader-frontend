@@ -35,6 +35,7 @@ export default connect(mapStateToProps)(class UsernameModal extends Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleToggleModal = this.handleToggleModal.bind(this)
   }
 
   handleChange (event) {
@@ -52,7 +53,7 @@ export default connect(mapStateToProps)(class UsernameModal extends Component {
       newUsername.validationMessage = viewStrings.form.only_aplhanum
     } else {
       newUsername.inputState = 'valid'
-      newUsername.validationMessage = viewStrings.from.valid
+      newUsername.validationMessage = viewStrings.form.valid
       newUsername.value = input.value
     }
 
@@ -78,12 +79,27 @@ export default connect(mapStateToProps)(class UsernameModal extends Component {
     }
   }
 
+  handleToggleModal () {
+    this.props.toggleModal()
+    let newUsername = {
+      inputState: 'empty',
+      value: '',
+      validationMessage: ''
+    }
+
+    this.setState({
+      newUsername
+    })
+
+    this.form.reset()
+  }
+
   render ({isActive, toggleModal}) {
     return (
       <Modal
         isActive={isActive}
         modalTitle={viewStrings.title}
-        toggleModal={toggleModal}
+        toggleModal={this.handleToggleModal}
         form
         closeButtonText={viewStrings.cancel}
         acceptButtonText={viewStrings.accept}

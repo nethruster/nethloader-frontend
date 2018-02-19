@@ -41,6 +41,10 @@ export default connect(mapStateToProps)(class Overview extends Component {
     }
   }
 
+  componentWillMount () {
+    window.scrollTo(0, 0) // Quick hack to fix react-routing scroll issue
+  }
+
   updateUserMedia (params) {
     let newParams = params || {}
 

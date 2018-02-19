@@ -35,6 +35,7 @@ export default connect(mapStateToProps)(class EmailModal extends Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleToggleModal = this.handleToggleModal.bind(this)
   }
 
   handleChange (event) {
@@ -78,12 +79,28 @@ export default connect(mapStateToProps)(class EmailModal extends Component {
     }
   }
 
+  handleToggleModal () {
+    this.props.toggleModal()
+    
+    let newEmail = {
+      inputState: 'empty',
+      value: '',
+      validationMessage: ''
+    }
+
+    this.setState({
+      newEmail
+    })
+
+    this.form.reset()
+  }
+
   render ({isActive, toggleModal}) {
     return (
       <Modal
         isActive={isActive}
         modalTitle={viewStrings.title}
-        toggleModal={toggleModal}
+        toggleModal={this.handleToggleModal}
         closeButtonText={viewStrings.cancel}
         acceptButtonText={viewStrings.accept}
         form

@@ -45,6 +45,7 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleToggleModal = this.handleToggleModal.bind(this)
   }
 
   handleChange (event) {
@@ -64,7 +65,7 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
         state.newPassword.inputState = 'invalid'
         state.cNewPassword.inputState = 'invalid'
         state.newPassword.validationMessage = viewStrings.form.invalid
-      } else if (this.state.newPassword.value === this.state.cNewPassword.value && this.state.oldPassword.inputState !== 'empty') {
+      } else if (this.state.newPassword.value === this.state.cNewPassword.value && !validateEmpty(this.state.oldPassword.value)) {
         state.oldPassword.inputState = 'valid'
         state.newPassword.inputState = 'valid'
         state.cNewPassword.inputState = 'valid'
@@ -94,12 +95,30 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
     }
   }
 
+  handleToggleModal () {
+    this.props.toggleModal()
+
+    let defaultState = {
+      inputState: 'empty',
+      value: '',
+      validationMessage: ''
+    }
+
+    this.setState({
+      oldPassword: defaultState,
+      newPassword: defaultState,
+      cNewPassword: defaultState
+    })
+
+    this.form.reset()
+  }
+
   render ({isActive, toggleModal}) {
     return (
       <Modal
         isActive={isActive}
         modalTitle={viewStrings.title}
-        toggleModal={toggleModal}
+        toggleModal={this.handleToggleModal}
         closeButtonText={viewStrings.cancel}
         form
         acceptButtonText={viewStrings.accept}

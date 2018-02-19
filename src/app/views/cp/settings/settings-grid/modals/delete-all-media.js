@@ -37,6 +37,7 @@ export default connect(mapStateToProps)(class DeleteAllMediaModal extends Compon
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleToggleModal = this.handleToggleModal.bind(this)
   }
 
   handleSubmit (event) {
@@ -83,13 +84,30 @@ export default connect(mapStateToProps)(class DeleteAllMediaModal extends Compon
     this.setState({passwordInput})
   }
 
+  handleToggleModal () {
+    this.props.toggleModal()
+
+    let passwordInput = {
+      inputState: 'empty',
+      value: '',
+      validationMessage: ''
+    }
+
+    this.setState({
+      passwordInput
+    })
+
+    this.form.reset()
+  }
+
   render ({isActive, toggleModal, isFetching}) {
     return (
       <Modal
         isActive={isActive}
         disabled={isFetching}
-        toggleModal={toggleModal}
+        toggleModal={this.handleToggleModal}
         modalTitle={viewStrings.title}
+        form
         closeButtonText={viewStrings.cancel}
         acceptButtonText={viewStrings.accept}
         onAcceptExecute={this.handleSubmit}>
