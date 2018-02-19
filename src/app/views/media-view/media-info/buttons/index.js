@@ -110,7 +110,7 @@ export default connect(mapStateToProps)(class MediaInfoButtons extends Component
             title='Share on Twitter'
             rel='noopener'
             target='_blank'
-            href={`https://twitter.com/intent/tweet?url=${this.mediaUrl};text=Uploaded media via Nethloader;related=nethruster,gariasf,claudio4`}>
+            href={`https://twitter.com/intent/tweet?url=${this.mediaUrl};text=Uploaded media via Nethloader;related=nethruster,gariasf,claudio4sv`}>
             <Icon iconName='twitter' />
           </a>
           <a
