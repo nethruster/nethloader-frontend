@@ -333,14 +333,22 @@
             "cancel": "Wait, no",
             "accept": "I know, proceed",
             "description": "This will delete ALL your uploaded media since you created the account.",
-            "warning": "IT CANNOT BE UNDONE."
+            "warning": "IT CANNOT BE UNDONE.",
+            "toast_ok": "OK",
+            "incorrect_password": "Incorrect password",
+            "empty_password": "Please, type in your password",
+            "type_password_to_confirm": "Please type in your password to confirm"
           },
           "account_remove": {
             "title": "Delete account",
             "cancel": "Wait, no",
             "accept": "I know, proceed",
             "description": "This will delete ALL your uploaded media AND your account, which will be innaccesible thereafter.",
-            "warning": "IT CANNOT BE UNDONE."
+            "warning": "IT CANNOT BE UNDONE.",
+            "toast_ok": "OK",
+            "incorrect_password": "Incorrect password",
+            "empty_password": "Please, type in your password",
+            "type_password_to_confirm": "Please type in your password to confirm"
           }
         }
       }

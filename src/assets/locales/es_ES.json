@@ -332,14 +332,22 @@
             "cancel": "No, espera",
             "accept": "Adelante",
             "description": "Esto va a borrar TODOS los archivos que hayas subido desde que creaste la cuenta.",
-            "warning": "NO SE PUEDE DESHACER."
+            "warning": "NO SE PUEDE DESHACER.",
+            "toast_ok": "OK",
+            "incorrect_password": "Contraseña incorrecta",
+            "empty_password": "Por favor, escribe tu contraseña",
+            "type_password_to_confirm": "Escribe tu contraseña para continuar"
           },
           "account_remove": {
             "title": "Borrar cuenta",
             "cancel": "Espera, no",
             "accept": "Adelante",
             "description": "Esto va a eliminar TODOS los archivos Y tu cuenta, que ya no serán accesibles a posteriori.",
-            "warning": "NO SE PUEDE DESHACER."
+            "warning": "NO SE PUEDE DESHACER.",
+            "toast_ok": "OK",
+            "incorrect_password": "Contraseña incorrecta",
+            "empty_password": "Por favor, escribe tu contraseña",
+            "type_password_to_confirm": "Escribe tu contraseña para continuar"
           }
         }
       }

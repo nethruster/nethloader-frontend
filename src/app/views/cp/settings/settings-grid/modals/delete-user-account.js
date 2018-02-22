@@ -50,7 +50,7 @@ export default connect(mapStateToProps)(class DeleteUserAccountModal extends Com
       }).catch(err => {
         let errorMessage = ''
         if (err === 'Unauthorized') {
-          errorMessage = 'Incorrect password'
+          errorMessage = viewStrings.incorrect_password
         } else {
           errorMessage = err
         }
@@ -62,7 +62,7 @@ export default connect(mapStateToProps)(class DeleteUserAccountModal extends Com
       })
     } else {
       this.props.dispatch(showSnack('emptyPasswordDeleteMedia', {
-        label: this.state.passwordInput.validationMessage || 'Please, type in your password',
+        label: this.state.passwordInput.validationMessage || viewStrings.empty_password,
         timeout: 3000,
         button: { label: 'OK' }
       }))
@@ -74,7 +74,7 @@ export default connect(mapStateToProps)(class DeleteUserAccountModal extends Com
 
     if (validateEmpty(event.target.value)) {
       passwordInput.inputState = 'invalid'
-      passwordInput.validationMessage = 'Please, type in your password'
+      passwordInput.validationMessage = viewStrings.empty_password
     } else {
       passwordInput.value = event.target.value
       passwordInput.inputState = 'valid'
@@ -113,7 +113,7 @@ export default connect(mapStateToProps)(class DeleteUserAccountModal extends Com
         onAcceptExecute={this.handleSubmit}>
         <p class='flex flex-full-center'>{viewStrings.description}</p>
         <p class='flex flex-full-center danger-text'>{viewStrings.warning}</p>
-        <small>Please type in your password to confirm</small>
+        <small>{viewStrings.type_password_to_confirm}</small>
         <form class={`flex flex-full-center flex-dc`} onSubmit={this.handleSubmit} ref={(el) => { this.form = el }}>
           <FormInput
             inputId='user-password-delete-account'
