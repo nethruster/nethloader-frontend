@@ -1,5 +1,6 @@
 import {h, Component} from 'preact'
 import {connect} from 'preact-redux'
+import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 
 import Button from '../../../../../shared/button'
 import DropDownMenu from '../../../../../shared/dropdown-menu'
@@ -50,6 +51,7 @@ export default connect(mapStateToProps)(class UserButtons extends Component {
   }
 
   toggleEditUserModal () {
+    this.state.isToggleEditUserModalActive ? scrollBlockOff() : scrollBlockOn()
     this.setState({isToggleEditUserModalActive: !this.state.isToggleEditUserModalActive})
   }
 
@@ -68,6 +70,7 @@ export default connect(mapStateToProps)(class UserButtons extends Component {
   }
 
   toggleDeleteUserMedia () {
+    this.state.isDeleteAllMediaModalActive ? scrollBlockOff() : scrollBlockOn()
     this.setState({ isDeleteAllMediaModalActive: !this.state.isDeleteAllMediaModalActive })
   }
 

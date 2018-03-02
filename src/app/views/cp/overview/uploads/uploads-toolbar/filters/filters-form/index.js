@@ -91,7 +91,7 @@ export default connect(mapStateToProps)(class FiltersForm extends Component {
         ref={(el) => { this.filtersForm = el }}>
         <div>
           <h5>{viewStrings.type}:</h5>
-          <div class={`${style.filtersFormSection} flex flex-sa`}>
+          <div class={`${style.filtersFormSection} ${style.radioButtons} flex flex-sa`}>
             <FormInputRadio
               inputName='filterType'
               inputValue=''
@@ -118,7 +118,7 @@ export default connect(mapStateToProps)(class FiltersForm extends Component {
             />
           </div>
           <h5>{viewStrings.date_interval}:</h5>
-          <div class={`${style.filtersFormSection} flex flex-sa`}>
+          <div class={`${style.filtersFormSection} ${style.dateInputs} flex flex-sa`}>
             <label>
               <p>{viewStrings.after}</p>
               <FormInput

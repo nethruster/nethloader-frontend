@@ -24,11 +24,7 @@
         &Submit {
             text-align: right;
 
-            a {
-                margin: 0 var(--base-pm);
-
-                cursor: pointer;
-            }
+            a { cursor: pointer; }
         }
 
         &LimitSelect { min-width: 200px; }
@@ -38,5 +34,14 @@
         }
     }
 
+    @media(max-width: 450px) {
+        .radioButtons {
+            flex-direction: column;
+
+            div { margin: var(--base-pm) }
+        }
+
+        .dateInputs { flex-direction: column; }
+    }
    
 }

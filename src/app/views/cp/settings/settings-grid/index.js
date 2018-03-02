@@ -9,6 +9,7 @@ import ApiKeyModal from './modals/apikey'
 import DeleteAllMediaModal from './modals/delete-all-media'
 import DeleteUserAccountModal from './modals/delete-user-account.js'
 import {toggleDarkMode} from 'utils'
+import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 
 import style from './styles.scss'
 
@@ -50,26 +51,32 @@ export default connect(mapStateToProps)(class SettingsGrid extends Component {
   }
 
   toggleUsernameModal () {
+    this.state.usernameModal ? scrollBlockOff() : scrollBlockOn()
     this.setState({ usernameModal: !this.state.usernameModal })
   }
 
   toggleEmailModal () {
+    this.state.emailModal ? scrollBlockOff() : scrollBlockOn()
     this.setState({ emailModal: !this.state.emailModal })
   }
 
   togglePasswordModal () {
+    this.state.passwordModal ? scrollBlockOff() : scrollBlockOn()
     this.setState({ passwordModal: !this.state.passwordModal })
   }
 
   toggleApikeyModal () {
+    this.state.apikeyModal ? scrollBlockOff() : scrollBlockOn()
     this.setState({ apikeyModal: !this.state.apikeyModal })
   }
 
   toggleDeleteAllMediaModal () {
+    this.state.deleteAllUserMediaModal ? scrollBlockOff() : scrollBlockOn()
     this.setState({ deleteAllUserMediaModal: !this.state.deleteAllUserMediaModal })
   }
 
   toggleDeleteUserAccountModal () {
+    this.state.deleteUserAccountModal ? scrollBlockOff() : scrollBlockOn()
     this.setState({ deleteUserAccountModal: !this.state.deleteUserAccountModal })
   }
 

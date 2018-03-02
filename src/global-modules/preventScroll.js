@@ -1,47 +1,49 @@
 /**
- * This script provides an interface to block and unblock document scrolling, including keypresses and touch events.
+ * This script provides an interface to block and unblock document scrolling.
  */
-
-/* List of keys that can cause scrolling
- *
- * spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
- * left: 37, up: 38, right: 39, down: 40,
- */
-const scrollKeys = [32, 33, 34, 35, 36, 37, 38, 39, 40]
-let pageXOffset,
-  pageYOffset
 
 export function scrollBlockOn () {
-  // Save current scroll position so we can lock it later
-  pageXOffset = window.pageXOffset
-  pageYOffset = window.pageYOffset
-
-  document.addEventListener('scroll', _scrollHandler)
-  document.addEventListener('wheel', _defaultHandler)
-  document.addEventListener('DOMMouseScroll', _defaultHandler)
-  document.addEventListener('touchmove', _defaultHandler)
-  document.addEventListener('keydown', _keydownHandler)
-}
-
-export function scrollBlockOff () {
-  document.removeEventListener('scroll', _scrollHandler)
-  document.removeEventListener('wheel', _defaultHandler)
-  document.removeEventListener('DOMMouseScroll', _defaultHandler)
-  document.removeEventListener('touchmove', _defaultHandler)
-  document.removeEventListener('keydown', _keydownHandler)
-}
-
-function _defaultHandler (event) {
-  event.preventDefault()
-}
-
-function _keydownHandler (event) {
-  if (scrollKeys.includes(event.keyCode)) {
-    event.preventDefault()
+  let body = document.body
+  // Detect if we are in a touchscreen device
+  if ('ontouchstart' in document.documentElement) {
+    return null
+  } else if (_hasScrollbar()) {
+    body.style.overflow = 'hidden'
+    body.style.paddingRight = '17px'
   }
 }
 
-function _scrollHandler (event) {
-  event.preventDefault()
-  window.scrollTo(pageXOffset, pageYOffset)
+export function scrollBlockOff () {
+  document.body.removeAttribute('style')
+}
+
+/* Huge thanks to Tyler Cipriani
+ * https://tylercipriani.com/blog/2014/07/12/crossbrowser-javascript-scrollbar-detection/
+ */
+const _hasScrollbar = function () {
+  // The Modern solution
+  if (typeof window.innerWidth === 'number') { return window.innerWidth > document.documentElement.clientWidth }
+
+  // rootElem for quirksmode
+  let rootElem = document.documentElement || document.body
+
+  // Check overflow style property on body for fauxscrollbars
+  let overflowStyle
+
+  if (typeof rootElem.currentStyle !== 'undefined') { overflowStyle = rootElem.currentStyle.overflow }
+
+  overflowStyle = overflowStyle || window.getComputedStyle(rootElem, '').overflow
+
+  // Also need to check the Y axis overflow
+  let overflowYStyle
+
+  if (typeof rootElem.currentStyle !== 'undefined') { overflowYStyle = rootElem.currentStyle.overflowY }
+
+  overflowYStyle = overflowYStyle || window.getComputedStyle(rootElem, '').overflowY
+
+  let contentOverflows = rootElem.scrollHeight > rootElem.clientHeight
+  let overflowShown = /^(visible|auto)$/.test(overflowStyle) || /^(visible|auto)$/.test(overflowYStyle)
+  let alwaysShowScroll = overflowStyle === 'scroll' || overflowYStyle === 'scroll'
+
+  return (contentOverflows && overflowShown) || (alwaysShowScroll)
 }
