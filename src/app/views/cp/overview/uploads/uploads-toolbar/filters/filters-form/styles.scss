@@ -43,5 +43,11 @@
 
         .dateInputs { flex-direction: column; }
     }
-   
+
+   .disabledLink {
+        small { opacity: .4; }
+
+        cursor: not-allowed!important;
+        pointer-events: none;
+   }
 }

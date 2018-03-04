@@ -165,7 +165,7 @@
           "video": "Video/gif",
           "results_per_page": "Resultados por página",
           "all": "Todo",
-          "reset_fields": "Filtros por defecto",
+          "reset_fields": "Reestablecer filtros",
           "submit": "Filtrar"
         }
       },

@@ -4,6 +4,7 @@ import {connect} from 'preact-redux'
 import Button from '../../../../../../shared/button'
 import FormInput from '../../../../../../shared/form-input'
 import FormInputRadio from '../../../../../../shared/form-input-radio'
+import {isFiltered} from 'utils'
 import locale from 'locale'
 
 import style from './styles.scss'
@@ -41,7 +42,9 @@ export default connect(mapStateToProps)(class FiltersForm extends Component {
   }
 
   handleSubmitFilters (event) {
-    event.preventDefault()
+    if (event) {
+      event.preventDefault()
+    }
 
     this.context.router.history.push('/cp/overview')
     this.props.updateUserMedia(this.state.filters)
@@ -59,6 +62,7 @@ export default connect(mapStateToProps)(class FiltersForm extends Component {
     this.filtersForm.reset()
 
     this.setState({filters: defaultFilters})
+    this.handleSubmitFilters()
   }
 
   handleTypeChange (e) {
@@ -173,7 +177,7 @@ export default connect(mapStateToProps)(class FiltersForm extends Component {
         </div>
 
         <div class={`${style.filtersFormSubmit}`}>
-          <a onClick={this.resetFilters}><small>{viewStrings.reset_fields}</small></a>
+          {isFiltered(this.state.filters) ? <a onClick={this.resetFilters}><small>{viewStrings.reset_fields}</small></a> : <a class={style.disabledLink}><small>{viewStrings.reset_fields}</small></a>}
           <Button type='submit' text={viewStrings.submit} contrast />
         </div>
       </form>
