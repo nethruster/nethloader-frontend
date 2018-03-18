@@ -3,7 +3,7 @@
             position: relative;
 
             margin: calc(var(--base-pm) * 2);
-            padding: 24px 16px;
+            padding: calc(var(--base-pm) * 3) calc(var(--base-pm) * 2);
             
             border-radius: 4px;
             border: 1px solid rgba(0, 0, 0, .085);
