@@ -5,7 +5,6 @@ import MediaItem from './media-item'
 import MediaInfo from './media-info'
 import ViewLoading from '../shared/view-loading'
 import NotFound from '../shared/not-found'
-import {baseMediaPath} from 'app.config'
 import {getMediaInfo} from 'serverAPI/media'
 
 import style from './styles.scss'
@@ -25,9 +24,10 @@ export default connect(mapStateToProps)(class MediaView extends Component {
 
     this.state = {
       mediaData: {
-        id: '',
-        extension: '',
-        found: true
+        id: null,
+        extension: null,
+        found: true,
+        createdAt: null
       }
     }
   }
@@ -40,8 +40,16 @@ export default connect(mapStateToProps)(class MediaView extends Component {
       }
     } catch (err) {
       this.props.dispatch(getMediaInfo(this.context.router.route.match.params.id)).then((data) => {
-        this.mediaSrc = `${baseMediaPath}${data.id}.${data.extension}`
+        this.mediaSrc = `${baseMediaPath}${data.id}.${data.extension}` // eslint-disable-line no-undef
         this.mediaUrl = `${document.location.origin}/${data.id}`
+
+        let mediaData = this.state.mediaData
+        mediaData.found = true
+        mediaData.id = data.id
+        mediaData.extension = data.extension
+        mediaData.createdAt = data.createdAt
+
+        this.setState({mediaData})
       }).catch(() => {
         let mediaData = this.state.mediaData
         mediaData.found = false
@@ -54,14 +62,14 @@ export default connect(mapStateToProps)(class MediaView extends Component {
     return (
       <div class={`${style.mediaView} flex flex-full-center`}>
         {
-          this.state.mediaData.found ? (!isFetching && mediaInfo
+          this.state.mediaData.found ? (!isFetching && (mediaInfo || this.state.mediaData.id)
             ? (
               <div class={`${style.mediaViewWrapper} flex flex-dc flex-full-center`}>
                 <MediaItem
                   mediaSrc={this.mediaSrc}
-                  type={mediaInfo.extension}
-                  id={mediaInfo.id} />
-                <MediaInfo createdAt={mediaInfo.createdAt} />
+                  type={this.state.mediaData.extension}
+                  id={this.state.mediaData.id} />
+                <MediaInfo createdAt={this.state.mediaData.createdAt} />
               </div>
             )
             : <ViewLoading />) : <NotFound />
