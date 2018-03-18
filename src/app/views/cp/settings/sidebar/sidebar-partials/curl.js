@@ -9,9 +9,7 @@ import {apiBaseUrl} from 'app.config'
 
 import style from './styles.scss'
 
-import locale from 'locale'
-
-const viewStrings = locale.cp.settings.sidebar.partials.curl
+const viewStrings = locale.cp.settings.sidebar.partials.curl // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {userData} = state.userData

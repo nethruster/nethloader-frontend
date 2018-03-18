@@ -8,9 +8,7 @@ import {validateEmpty} from 'utils'
 import {deleteAllUserImages} from 'serverAPI/settings'
 import {getUserMedia} from 'serverAPI/data'
 
-import locale from 'locale'
-
-const viewStrings = locale.cp.settings.settings_grid.partials.delete_user_media
+const viewStrings = locale.cp.settings.settings_grid.partials.delete_user_media // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {token, sessionData} = state.authentication

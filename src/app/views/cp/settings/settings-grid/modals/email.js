@@ -8,9 +8,7 @@ import {validateEmpty, validateEmail} from 'utils'
 import {changeUserEmail} from 'serverAPI/settings'
 import {getUserData} from 'serverAPI/data'
 
-import locale from 'locale'
-
-const viewStrings = locale.cp.settings.settings_grid.partials.email
+const viewStrings = locale.cp.settings.settings_grid.partials.email // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const { token, sessionData } = state.authentication

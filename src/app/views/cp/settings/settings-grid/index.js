@@ -13,9 +13,7 @@ import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 
 import style from './styles.scss'
 
-import locale from 'locale'
-
-const viewStrings = locale.cp.settings.settings_grid.sections
+const viewStrings = locale.cp.settings.settings_grid.sections // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {userData} = state.userData

@@ -1,8 +1,5 @@
-import {apiBaseUrl} from 'app.config'
-
 import {
   requestUsers, recieveUsers, usersError,
-  requestMedia, recieveMedia, mediaError,
   requestDeleteUser, recieveDeleteUser, deleteUserError,
   requestCreateUser, recieveCreateUser, createUserError,
   requestToggleAdmin, recieveToggleAdmin, toggleAdminError
@@ -25,7 +22,7 @@ const getUsers = (authToken) => {
   return async dispatch => {
     dispatch(requestUsers())
 
-    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
 
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
       let responseData = await serverResponse.json()
@@ -63,7 +60,7 @@ const deleteUser = (userId, authToken) => {
   return async dispatch => {
     dispatch(requestDeleteUser())
 
-    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
       let responseData = await serverResponse.json()
 
@@ -100,7 +97,7 @@ const createUser = (username, email, password, willBeAdmin, authToken) => {
   return async dispatch => {
     dispatch(requestCreateUser())
 
-    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
 
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
       let responseData = await serverResponse.json()
@@ -138,7 +135,7 @@ const toggleIsAdmin = (userId, isAdmin, authToken) => {
   return async dispatch => {
     dispatch(requestToggleAdmin())
 
-    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
 
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
       let responseData = await serverResponse.json()
@@ -163,6 +160,5 @@ export {
   getUsers,
   deleteUser,
   createUser,
-  getMedia,
   toggleIsAdmin
 }

@@ -1,4 +1,4 @@
-{
+const locale = { // eslint-disable-line no-unused-vars
   "header_nav": {
     "about_nethloader": "About Nethloader",
     "login": "Login",

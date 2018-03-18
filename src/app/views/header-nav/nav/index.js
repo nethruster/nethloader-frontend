@@ -3,12 +3,11 @@ import {NavLink, withRouter} from 'react-router-dom'
 import {connect} from 'preact-redux'
 
 import Button from '../../shared/button'
-import locale from 'locale'
 import {logoutUser} from 'serverAPI/authentication'
 
 import style from './styles.scss'
 
-const viewStrings = locale.header_nav
+const viewStrings = locale.header_nav // eslint-disable-line no-undef
 
 function mapStateToProps (state) {
   const {isAuthenticated} = state.authentication

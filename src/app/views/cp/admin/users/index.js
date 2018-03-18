@@ -13,9 +13,7 @@ import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 
 import style from './styles.scss'
 
-import locale from 'locale'
-
-const viewStrings = locale.cp.admin.users
+const viewStrings = locale.cp.admin.users // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {isFetchingUsers, uData} = state.users

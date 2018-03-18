@@ -8,9 +8,7 @@ import {validateEmpty, validateName} from 'utils'
 import {changeUserName} from 'serverAPI/settings'
 import {getUserData} from 'serverAPI/data'
 
-import locale from 'locale'
-
-const viewStrings = locale.cp.settings.settings_grid.partials.username
+const viewStrings = locale.cp.settings.settings_grid.partials.username // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {token, sessionData} = state.authentication

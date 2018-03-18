@@ -3,7 +3,6 @@ import {h, Component} from 'preact'
 import ViewLoading from '../app/views/shared/view-loading'
 import VideoElement from '../app/views/shared/video-element'
 import {isValidVideoFormat, unprocessableExtensions} from 'utils'
-import {baseMediaPath} from 'app.config'
 
 export default class AsyncMedia extends Component {
   constructor (props) {
@@ -21,9 +20,9 @@ export default class AsyncMedia extends Component {
 
   computeMediaSrc () {
     if (this.props.thumbnail && this.hasThumbnail()) {
-      return `${baseMediaPath}${this.props.id}_thumb.jpg`
+      return `${baseMediaPath}${this.props.id}_thumb.jpg` // eslint-disable-line no-undef
     }
-    return `${baseMediaPath}${this.props.id}.${this.props.type}`
+    return `${baseMediaPath}${this.props.id}.${this.props.type}` // eslint-disable-line no-undef
   }
 
   componentDidMount () {

@@ -10,9 +10,7 @@ import {createUser, getUsers} from 'serverAPI/admin-settings'
 
 import style from './styles.scss'
 
-import locale from 'locale'
-
-const viewStrings = locale.cp.admin.users.toolbar.add_user_modal
+const viewStrings = locale.cp.admin.users.toolbar.add_user_modal // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {token} = state.authentication

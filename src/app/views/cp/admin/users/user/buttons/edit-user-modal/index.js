@@ -13,9 +13,7 @@ import {showSnack} from 'react-redux-snackbar'
 
 import style from './styles.scss'
 
-import locale from 'locale'
-
-const viewStrings = locale.cp.admin.users.user.buttons.edit_user_modal
+const viewStrings = locale.cp.admin.users.user.buttons.edit_user_modal // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {token} = state.authentication

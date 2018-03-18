@@ -1,5 +1,3 @@
-import {apiBaseUrl} from 'app.config'
-
 import {requestMediaUpload, receiveMediaUpload, mediaUploadError,
   requestMediaDelete, receiveMediaDelete, mediaDeleteError,
   requestMediaInfo, mediaInfoError, receiveMediaInfo} from 'actions/media'
@@ -23,7 +21,7 @@ const uploadMedia = (media, authToken) => {
   return async dispatch => {
     dispatch(requestMediaUpload())
 
-    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
 
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
       let responseData = await serverResponse.json()
@@ -61,7 +59,7 @@ const deleteMedia = (mediaId, authToken) => {
   return async dispatch => {
     dispatch(requestMediaDelete())
 
-    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
       let responseData = await serverResponse.json()
 
@@ -96,7 +94,7 @@ const getMediaInfo = (mediaId) => {
   return async dispatch => {
     dispatch(requestMediaInfo())
 
-    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
 
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
       let responseData = await serverResponse.json()

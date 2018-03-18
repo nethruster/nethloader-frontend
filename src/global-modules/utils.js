@@ -1,6 +1,10 @@
 import {checkCurrentSessionToken} from 'serverAPI/authentication'
 
-const fallbackStorageParams = { 'unprocessableExtensions': ['webp', 'webm', 'svg'], 'supportedVideoExtensions': ['mp4', 'ogg', 'webm', 'gif'], 'supportedImageExtensions': ['png', 'jpg', 'jpeg', 'svg', 'webp'] }
+const fallbackStorageParams = {
+  'unprocessableExtensions': ['webp', 'webm', 'svg'],
+  'supportedVideoExtensions': ['mp4', 'ogg', 'webm', 'gif'],
+  'supportedImageExtensions': ['png', 'jpg', 'jpeg', 'svg', 'webp']
+}
 
 const storageParams = JSON.parse(window.localStorage.getItem('neth-strData')) || fallbackStorageParams // Storage data
 

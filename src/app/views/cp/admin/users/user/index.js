@@ -8,9 +8,7 @@ import UserButtons from './buttons'
 
 import style from './styles.scss'
 
-import locale from 'locale'
-
-const viewStrings = locale.cp.admin.users.user
+const viewStrings = locale.cp.admin.users.user // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {selectedUsers} = state.userSelect

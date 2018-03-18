@@ -6,14 +6,13 @@ import Upload from './upload'
 import UploadsToolbar from './uploads-toolbar'
 import Modal from '../../../shared/modal'
 import ViewLoading from '../../../shared/view-loading'
-import locale from 'locale'
 import {deleteMedia} from 'serverAPI/media'
 import {mediaSelect, mediaUnselect, mediaUnselectAll} from 'actions/media'
 import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 
 import style from './styles.scss'
 
-const viewStrings = locale.cp.overview.uploads
+const viewStrings = locale.cp.overview.uploads // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {isFetchingMedia, userMedia, params, totalCount} = state.userMedia

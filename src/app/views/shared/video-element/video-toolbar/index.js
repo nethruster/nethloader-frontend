@@ -6,9 +6,7 @@ import {toggleControls} from 'actions/html5video'
 
 import Button from '../../button'
 
-import locale from 'locale'
-
-const viewStrings = locale.media_view.toolbar
+const viewStrings = locale.media_view.toolbar // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {showControls, isTouchDevice} = state.html5video

@@ -4,13 +4,12 @@ import {connect} from 'preact-redux'
 
 import Uploads from './uploads'
 import Button from '../../shared/button'
-import locale from 'locale'
 import {getUserMedia} from 'serverAPI/data'
 import {getPageFactor} from 'utils'
 
 import style from './styles.scss'
 
-const viewStrings = locale.cp.overview
+const viewStrings = locale.cp.overview // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {userMedia, isFetchingMedia, params} = state.userMedia

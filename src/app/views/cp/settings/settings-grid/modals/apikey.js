@@ -5,9 +5,7 @@ import Modal from '../../../../shared/modal'
 import {renewUserApiKey} from 'serverAPI/settings'
 import {getUserData} from 'serverAPI/data'
 
-import locale from 'locale'
-
-const viewStrings = locale.cp.settings.settings_grid.partials.apikey
+const viewStrings = locale.cp.settings.settings_grid.partials.apikey // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {token, sessionData} = state.authentication

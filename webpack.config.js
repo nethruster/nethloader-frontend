@@ -12,8 +12,6 @@ const APP_DIR = path.resolve(__dirname, 'src')
 module.exports = {
   entry: {
     'main': APP_DIR + '/index.js',
-    'config': 'app.config',
-    'locale': 'locale',
     'vendor': [
       'preact',
       'preact-compat',
@@ -87,7 +85,7 @@ module.exports = {
       minRatio: 0.8
     }) : new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({names: ['vendor', 'config', 'locale']}),
+    new webpack.optimize.CommonsChunkPlugin({names: ['vendor']}),
     new HtmlWebpackPlugin({
       minify: {
         collapseWhitespace: true,
@@ -100,7 +98,9 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       { from: path.join(APP_DIR, 'assets', 'favicons'), to: path.join(BUILD_DIR, 'assets', 'favicons') },
-      { from: path.join(APP_DIR, 'assets', 'css'), to: path.join(BUILD_DIR, 'assets', 'css') }
+      { from: path.join(APP_DIR, 'assets', 'css'), to: path.join(BUILD_DIR, 'assets', 'css') },
+      { from: path.join(APP_DIR, 'assets', 'app.config.js'), to: path.join(BUILD_DIR, 'assets', 'app.config.js') },
+      { from: path.join(APP_DIR, 'assets', 'locale.js'), to: path.join(BUILD_DIR, 'assets', 'locale.js') }
     ])
   ]
 }

@@ -2,11 +2,10 @@ import {h} from 'preact'
 import {connect} from 'preact-redux'
 
 import SubheaderTabs from './tabs'
-import locale from 'locale'
 
 import style from './styles.scss'
 
-const viewStrings = locale.cp.subheader
+const viewStrings = locale.cp.subheader // eslint-disable-line no-undef
 
 function mapStateToProps (state) {
   const {userData} = state.userData

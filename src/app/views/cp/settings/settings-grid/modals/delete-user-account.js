@@ -8,9 +8,7 @@ import {validateEmpty} from 'utils'
 import {deleteUser} from 'serverAPI/settings'
 import {logoutUser} from 'serverAPI/authentication'
 
-import locale from 'locale'
-
-const viewStrings = locale.cp.settings.settings_grid.partials.account_remove
+const viewStrings = locale.cp.settings.settings_grid.partials.account_remove // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {token, sessionData} = state.authentication

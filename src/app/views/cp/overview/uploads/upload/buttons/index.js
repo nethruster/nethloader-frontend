@@ -4,14 +4,13 @@ import {connect} from 'preact-redux'
 import DropDownMenu from '../../../../../shared/dropdown-menu'
 import Button from '../../../../../shared/button'
 import Checkbox from '../../../../../shared/checkbox'
-import locale from 'locale'
 import {copyToClipboard} from 'utils'
 import {mediaUnselectAll} from 'actions/media'
 import {baseMediaPath} from 'app.config'
 
 import style from './styles.scss'
 
-const viewStrings = locale.cp.overview.uploads.upload
+const viewStrings = locale.cp.overview.uploads.upload // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {selectedMedia} = state.mediaSelect

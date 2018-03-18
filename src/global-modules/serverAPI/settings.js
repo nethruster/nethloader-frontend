@@ -1,5 +1,3 @@
-import {apiBaseUrl} from 'app.config'
-
 import {
   requestSettingChange, receiveSettingChange, settingChangeError
 } from 'actions/settings'
@@ -21,7 +19,7 @@ const changeUserName = (newUsername, userId, authToken) => {
   return async dispatch => {
     dispatch(requestSettingChange())
 
-    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
 
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
       let responseData = await serverResponse.json()
@@ -58,7 +56,7 @@ const changeUserEmail = (newEmail, userId, authToken) => {
   return async dispatch => {
     dispatch(requestSettingChange())
 
-    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
 
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
       let responseData = await serverResponse.json()
@@ -96,7 +94,7 @@ const changeUserPassword = (oldPassword, newPassword, userId, authToken) => {
   return async dispatch => {
     dispatch(requestSettingChange())
 
-    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
 
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
       let responseData = await serverResponse.json()
@@ -134,7 +132,7 @@ const renewUserApiKey = (userId, authToken) => {
   return async dispatch => {
     dispatch(requestSettingChange())
 
-    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
 
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
       let responseData = await serverResponse.json()
@@ -172,7 +170,7 @@ const deleteAllUserImages = (userId, authToken, userPassword) => {
   return async dispatch => {
     dispatch(requestSettingChange())
 
-    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
     let responseData = await serverResponse.json()
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
       if (responseData.data.deleteAllUserImages) {
@@ -208,7 +206,7 @@ const deleteUser = (userId, authToken, userPassword) => {
   return async dispatch => {
     dispatch(requestSettingChange())
 
-    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
     let responseData = await serverResponse.json()
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
       if (responseData.data.deleteUser) {

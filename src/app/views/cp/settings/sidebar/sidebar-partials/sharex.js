@@ -8,9 +8,7 @@ import Icon from '../../../../shared/icon'
 
 import style from './styles.scss'
 
-import locale from 'locale'
-
-const viewStrings = locale.cp.settings.sidebar.partials.sharex
+const viewStrings = locale.cp.settings.sidebar.partials.sharex // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {userData} = state.userData

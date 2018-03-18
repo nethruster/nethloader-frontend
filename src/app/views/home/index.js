@@ -3,11 +3,10 @@ import {h} from 'preact'
 import Button from '../shared/button'
 import Logo from '../shared/logo'
 import Footer from '../shared/footer'
-import locale from 'locale'
 
 import style from './styles.scss'
 
-const viewStrings = locale.home
+const viewStrings = locale.home // eslint-disable-line no-undef
 
 export default function Home () {
   return (

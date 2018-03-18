@@ -6,12 +6,11 @@ import Ink from 'react-ink'
 import Icon from '../../../../../shared/icon'
 import Button from '../../../../../shared/button'
 import DropDownMenu from '../../../../../shared/dropdown-menu'
-import locale from 'locale'
 import {getPageFactor} from 'utils'
 
 import style from './styles.scss'
 
-const viewStrings = locale.cp.overview.uploads.pagination
+const viewStrings = locale.cp.overview.uploads.pagination // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {userMedia, params, isFetchingMedia} = state.userMedia

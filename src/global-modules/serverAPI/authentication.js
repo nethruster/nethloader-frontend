@@ -1,4 +1,3 @@
-import {apiBaseUrl} from 'app.config'
 import jwtDecode from 'jwt-decode'
 
 import {getStorageParams} from 'serverAPI/data'
@@ -23,7 +22,7 @@ const loginUser = (credentials, maintainSession, history, loginFormElement) => {
   return async dispatch => {
     dispatch(requestLogin())
 
-    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
     
     let responseData = await serverResponse.json()
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
@@ -73,7 +72,7 @@ const registerUser = (data, history, registerFormElement) => {
   return async dispatch => {
     dispatch(requestRegister())
 
-    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
     let responseData = await serverResponse.json()
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
       if (responseData.data.register) {
@@ -141,7 +140,7 @@ const checkCurrentSessionToken = async (token) => {
     })
   }
 
-  let serverResponse = await fetch(apiBaseUrl, requestConfig)
+  let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
 
   if (serverResponse.status >= 200 && serverResponse.status < 300) {
     let responseData = await serverResponse.json()

@@ -5,11 +5,10 @@ import Button from '../../../../../../shared/button'
 import FormInput from '../../../../../../shared/form-input'
 import FormInputRadio from '../../../../../../shared/form-input-radio'
 import {isFiltered} from 'utils'
-import locale from 'locale'
 
 import style from './styles.scss'
 
-const viewStrings = locale.cp.overview.filters.form
+const viewStrings = locale.cp.overview.filters.form // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {params, userMedia, isFetchingMedia} = state.userMedia

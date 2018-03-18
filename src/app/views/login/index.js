@@ -4,12 +4,11 @@ import {Snackbar} from 'react-redux-snackbar'
 
 import LoginForm from './login-form'
 import Footer from '../shared/footer'
-import locale from 'locale'
 
 import style from './styles.scss'
 import '../shared/paper/paper.scss'
 
-const viewStrings = locale.login
+const viewStrings = locale.login // eslint-disable-line no-undef
 
 const snackStyles = {
   snack: {

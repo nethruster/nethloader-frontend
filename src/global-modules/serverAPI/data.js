@@ -1,5 +1,3 @@
-import {apiBaseUrl} from 'app.config'
-
 import {requestUserData, receiveUserData, userDataError,
   requestUserMedia, receiveUserMedia, userMediaError} from 'actions/data'
 
@@ -22,7 +20,7 @@ const getUserData = (id, authToken) => {
   return async dispatch => {
     dispatch(requestUserData())
 
-    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
 
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
       let responseData = await serverResponse.json()
@@ -66,7 +64,7 @@ const getUserMedia = (id, authToken, params) => {
 
     let totalCount = await getUserMediaCount(id, authToken)
 
-    let serverResponse = await fetch(apiBaseUrl, requestConfig)
+    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
 
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
       let responseData = await serverResponse.json()
@@ -103,7 +101,7 @@ const getUserMediaCount = async (id, authToken) => {
     })
   }
 
-  let serverResponse = await fetch(apiBaseUrl, requestConfig)
+  let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
 
   if (serverResponse.status >= 200 && serverResponse.status < 300) {
     let responseData = await serverResponse.json()
@@ -136,7 +134,7 @@ const getStorageParams = async (authToken) => {
     })
   }
 
-  let serverResponse = await fetch(apiBaseUrl, requestConfig)
+  let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
 
   if (serverResponse.status >= 200 && serverResponse.status < 300) {
     let responseData = await serverResponse.json()

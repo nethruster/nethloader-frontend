@@ -4,11 +4,10 @@ import {connect} from 'preact-redux'
 import Modal from '../../../../../shared/modal'
 import Button from '../../../../../shared/button'
 import FiltersForm from './filters-form'
-import locale from 'locale'
 import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 import {isFiltered} from 'utils'
 
-const viewStrings = locale.cp.overview.filters
+const viewStrings = locale.cp.overview.filters // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {params} = state.userMedia

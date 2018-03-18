@@ -4,12 +4,11 @@ import {Link} from 'react-router-dom'
 
 import RegisterForm from './register-form'
 import Footer from '../shared/footer'
-import locale from 'locale'
 
 import style from './styles.scss'
 import '../shared/paper/paper.scss'
 
-const viewStrings = locale.register
+const viewStrings = locale.register // eslint-disable-line no-undef
 
 const snackStyles = {
   snack: {

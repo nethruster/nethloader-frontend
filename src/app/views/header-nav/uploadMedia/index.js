@@ -10,11 +10,10 @@ import Icon from '../../shared/icon'
 import {isValidFormat, getPageFactor, supportedExtensions} from 'utils'
 import {uploadMedia, getMediaInfo} from 'serverAPI/media'
 import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
-import locale from 'locale'
 
 import style from './styles.scss'
 
-const viewStrings = locale.shared.upload_media
+const viewStrings = locale.shared.upload_media // eslint-disable-line no-undef
 
 function mapStateToProps (state) {
   const {token, sessionData} = state.authentication

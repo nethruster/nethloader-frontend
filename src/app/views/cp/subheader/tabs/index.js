@@ -3,11 +3,10 @@ import {NavLink} from 'react-router-dom'
 import {connect} from 'preact-redux'
 
 import Icon from '../../../shared/icon'
-import locale from 'locale'
 
 import style from './styles.scss'
 
-const viewStrings = locale.cp.subheader
+const viewStrings = locale.cp.subheader // eslint-disable-line no-undef
 
 function mapStateToProps (state) {
   const {userData} = state.userData

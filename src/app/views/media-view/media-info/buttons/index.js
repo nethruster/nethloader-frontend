@@ -11,8 +11,7 @@ import {baseMediaPath} from 'app.config'
 
 import style from './styles.scss'
 
-import locale from 'locale'
-const viewStrings = locale.media_view.buttons
+const viewStrings = locale.media_view.buttons // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
   const {isAuthenticated, token, sessionData} = state.authentication

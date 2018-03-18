@@ -14,6 +14,10 @@
     <link rel="shortcut icon" href="/assets/favicons/favicon.ico?v=YAoGY2Yjjx">
     <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml?v=YAoGY2Yjjx">
     <meta name="theme-color" content="#1e87f0">
+
+    <!-- Define global config -->
+    <script src='/assets/app.config.js'></script>
+    <script src='/assets/locale.js'></script>
 </head>
 <body>
     <div id="nethloader" role="main" class='flex'>
@@ -110,7 +114,7 @@
                     var localStTest = window.localStorage
                     var sessionStTest = window.sessionStorage
                 } catch (err) {
-                    console.warn('Nethloader relies heavily on browser data APIs like localStorage, sessionStorage, please enable them to use the app.')
+                    console.error('Nethloader relies heavily on browser data APIs like localStorage, sessionStorage, please enable them to use the app.')
                     throw Error('Nethloader relies heavily on browser data APIs, please enable cookies and browser data to enjoy the app properly.')
                 }
             }

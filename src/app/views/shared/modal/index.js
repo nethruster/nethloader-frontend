@@ -1,12 +1,11 @@
 import {h} from 'preact'
 
 import Button from '../button'
-import locale from 'locale'
 
 import './styles.scss'
 
-const viewStrings = locale.shared.modal
-
+const viewStrings = locale.shared.modal // eslint-disable-line no-undef
+ 
 export default function Modal ({
   isActive,
   modalTitle,

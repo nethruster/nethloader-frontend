@@ -1,11 +1,10 @@
 import {h} from 'preact'
 
-import locale from 'locale'
 import {computeDateFormat, computeDate, computeTime} from 'utils'
 
 import style from './styles.scss'
 
-const viewStrings = locale.cp.overview.uploads.upload
+const viewStrings = locale.cp.overview.uploads.upload // eslint-disable-line no-undef
 
 export default function UploadData ({data}) {
   return (

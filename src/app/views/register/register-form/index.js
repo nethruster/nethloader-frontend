@@ -4,14 +4,13 @@ import {showSnack} from 'react-redux-snackbar'
 
 import FormInput from './../../shared/form-input'
 import Button from '../../shared/button'
-import locale from 'locale'
 import {validateEmpty, validateEmail, validateName} from 'utils'
 import {registerUser} from 'serverAPI/authentication'
 import {getStorageParams} from 'serverAPI/data'
 
 import style from './styles.scss'
 
-const viewStrings = locale.register.form
+const viewStrings = locale.register.form // eslint-disable-line no-undef
 
 function mapStateToProps (state) {
   const {isFetching} = state.authentication
