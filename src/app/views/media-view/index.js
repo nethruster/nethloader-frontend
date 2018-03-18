@@ -24,25 +24,37 @@ export default connect(mapStateToProps)(class MediaView extends Component {
     super(props)
 
     this.state = {
-      mediaState: true
+      mediaData: {
+        id: '',
+        extension: '',
+        found: true
+      }
     }
   }
 
   componentWillMount () {
     window.scrollTo(0, 0) // Quick hack to fix react-routing scroll issue
-    this.props.dispatch(getMediaInfo(this.context.router.route.match.params.id)).then((data) => {
-      this.mediaSrc = `${baseMediaPath}${data.id}.${data.extension}`
-      this.mediaUrl = `${document.location.origin}/${data.id}`
-    }).catch(() => {
-      this.setState({mediaState: false})
-    })
+    try {
+      if (ssrData) { // eslint-disable-line no-undef
+        this.setState({mediaData: ssrData}) // eslint-disable-line no-undef
+      }
+    } catch (err) {
+      this.props.dispatch(getMediaInfo(this.context.router.route.match.params.id)).then((data) => {
+        this.mediaSrc = `${baseMediaPath}${data.id}.${data.extension}`
+        this.mediaUrl = `${document.location.origin}/${data.id}`
+      }).catch(() => {
+        let mediaData = this.state.mediaData
+        mediaData.found = false
+        this.setState({mediaData})
+      })
+    }
   }
 
   render ({mediaInfo, isFetching}) {
     return (
       <div class={`${style.mediaView} flex flex-full-center`}>
         {
-          this.state.mediaState ? (!isFetching && mediaInfo
+          this.state.mediaData.found ? (!isFetching && mediaInfo
             ? (
               <div class={`${style.mediaViewWrapper} flex flex-dc flex-full-center`}>
                 <MediaItem
