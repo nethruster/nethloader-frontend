@@ -79,13 +79,6 @@ module.exports = {
         'NODE_ENV': isProduction ? JSON.stringify('production') : JSON.stringify('development')
       }
     }),
-    isProduction ? new CompressionPlugin({
-      algorithm: 'gzip',
-      test: /\.(js|css|json|svg|png|jpeg)$/,
-      minRatio: 0.8
-    }) : new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({names: ['vendor']}),
     new HtmlWebpackPlugin({
       minify: {
         collapseWhitespace: true,
@@ -96,6 +89,13 @@ module.exports = {
       
       template: APP_DIR + '/index.html'
     }),
+    isProduction ? new CompressionPlugin({
+      algorithm: 'gzip',
+      test: /\.(html|js|css|json|svg|png|jpeg)$/,
+      minRatio: 0.8
+    }) : new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({names: ['vendor']}),
     new CopyWebpackPlugin([
       { from: path.join(APP_DIR, 'assets', 'favicons'), to: path.join(BUILD_DIR, 'assets', 'favicons') },
       { from: path.join(APP_DIR, 'assets', 'css'), to: path.join(BUILD_DIR, 'assets', 'css') },
