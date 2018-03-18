@@ -18,6 +18,9 @@
     <!-- Define global config -->
     <script src='/assets/app.config.js'></script>
     <script src='/assets/locale.js'></script>
+
+    <link rel="stylesheet" href="/assets/css/css-reset.css">
+    <link rel="stylesheet" href="/assets/css/css-utils.css">
 </head>
 <body>
     <div id="nethloader" role="main" class='flex'>
@@ -96,8 +99,6 @@
             </div>
         </div>
     </div>
-    <link rel="stylesheet" href="/assets/css/css-reset.css">
-    <link rel="stylesheet" href="/assets/css/css-utils.css">
         <script>
             var checkBrowserIntegrity = function () {
                 // Required ES6 API detection
@@ -118,7 +119,6 @@
                     throw Error('Nethloader relies heavily on browser data APIs, please enable cookies and browser data to enjoy the app properly.')
                 }
             }
-
             // Simple feature check to prevent some browsers from hurting themselves and others around them
             try {
                 checkBrowserIntegrity()

@@ -86,7 +86,7 @@ export default connect(mapStateToProps)(class VideoElement extends Component {
     return (
       <div
         class={
-          `flex flex-full-center ${ // See button shared component as to why I break this computed classes like this
+          `${ // See button shared component as to why I break this computed classes like this
             this.evalCustomControls() ? style.videoContainer : ''} ${
             (isPlaying || (this.video && !this.video.paused)) && !showControls ? style.videoContainerPlaying : ''}`
         }
