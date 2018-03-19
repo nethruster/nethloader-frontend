@@ -81,7 +81,7 @@ export default connect(mapStateToProps)(class MediaInfoButtons extends Component
               isValidVideoFormat(mediaData.extension) && mediaData.extension !== 'gif' && <VideoToolbar /> // If the element is a video, show video tools
             }
             {
-              isAuthenticated && (userData.isAdmin || sessionData.id === mediaData.user.id) &&
+              isAuthenticated && (userData.isAdmin || sessionData.id === mediaData.userId) &&
               <Button
                 iconButton
                 icon='delete'

@@ -27,8 +27,17 @@ export default connect(mapStateToProps)(class MediaView extends Component {
         id: null,
         extension: null,
         found: true,
-        createdAt: null
+        createdAt: null,
+        userId: null
       }
+    }
+
+    this.defaultState = {
+      id: null,
+      extension: null,
+      found: true,
+      createdAt: null,
+      userId: null
     }
   }
 
@@ -56,6 +65,16 @@ export default connect(mapStateToProps)(class MediaView extends Component {
         this.setState({mediaData})
       })
     }
+  }
+
+  componentWillUnmount () {
+    try { // eslint-disable-line no-undef
+      ssrData = mediaData // eslint-disable-line no-undef
+    } catch (err) {
+      console.info(err)
+    }
+    
+    this.setState(this.defaultState)
   }
 
   render ({mediaInfo, isFetching}) {
