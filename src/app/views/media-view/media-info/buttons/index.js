@@ -7,7 +7,6 @@ import VideoToolbar from '../../../shared/video-element/video-toolbar'
 import {isValidVideoFormat} from 'utils'
 import Button from '../../../shared/button'
 import {deleteMedia} from 'serverAPI/media'
-import {baseMediaPath} from 'app.config'
 
 import style from './styles.scss'
 
@@ -16,14 +15,13 @@ const viewStrings = locale.media_view.buttons // eslint-disable-line no-undef
 const mapStateToProps = (state) => {
   const {isAuthenticated, token, sessionData} = state.authentication
   const {userData} = state.userData
-  const {mediaInfo, isFetching} = state.mediaInfo
+  const {isFetching} = state.mediaInfo
 
   return {
     isAuthenticated,
     token,
     userData,
     sessionData,
-    mediaInfo,
     isFetching
   }
 }
@@ -48,26 +46,26 @@ export default connect(mapStateToProps)(class MediaInfoButtons extends Component
   }
 
   handleDeleteClick () {
-    this.props.dispatch(deleteMedia(this.props.mediaInfo.id, this.props.token)).then(() => {
+    this.props.dispatch(deleteMedia(this.props.mediaData.id, this.props.token)).then(() => {
       this.toggleDeleteModal()
       this.context.router.history.push('/cp')
     })
   }
 
   computeMediaUrls () {
-    this.mediaSrc = `${baseMediaPath}${this.props.mediaInfo.id}.${this.props.mediaInfo.extension}`
-    this.mediaUrl = `${document.location.origin}/${this.props.mediaInfo.id}`
+    this.mediaSrc = `${baseMediaPath}${this.props.mediaData.id}.${this.props.mediaData.extension}` // eslint-disable-line no-undef
+    this.mediaUrl = `${document.location.origin}/${this.props.mediaData.id}`
     return true
   }
 
-  render ({mediaInfo, isAuthenticated, userData, sessionData, isFetching}) {
+  render ({mediaData, isAuthenticated, userData, sessionData, isFetching}) {
     return (
       <div class='flex flex-cross-center'>
-        {mediaInfo && !isFetching && this.computeMediaUrls() &&
+        {mediaData && !isFetching && this.computeMediaUrls() &&
           <div class={`flex flex-cross-center ${style.utilButtons}`}>
             <a
               href={this.mediaSrc}
-              download={mediaInfo.id}
+              download={mediaData.id}
               rel='noopener'
               title={viewStrings.download}>
               <Button iconButton icon='download' />
@@ -80,10 +78,10 @@ export default connect(mapStateToProps)(class MediaInfoButtons extends Component
               <Button iconButton icon='open-in-new' />
             </a>
             {
-              isValidVideoFormat(mediaInfo.extension) && mediaInfo.extension !== 'gif' && <VideoToolbar /> // If the element is a video, show video tools
+              isValidVideoFormat(mediaData.extension) && mediaData.extension !== 'gif' && <VideoToolbar /> // If the element is a video, show video tools
             }
             {
-              isAuthenticated && (userData.isAdmin || sessionData.id === mediaInfo.user.id) &&
+              isAuthenticated && (userData.isAdmin || sessionData.id === mediaData.user.id) &&
               <Button
                 iconButton
                 icon='delete'

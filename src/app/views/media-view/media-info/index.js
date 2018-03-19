@@ -5,11 +5,11 @@ import MediaInfoData from './info'
 
 import style from './styles.scss'
 
-export default function MediaInfo ({createdAt}) {
+export default function MediaInfo ({mediaData}) {
   return (
     <div class={`${style.mediaInfo} flex flex-cross-center`}>
-      <MediaInfoData createdAt={createdAt} />
-      <MediaInfoButtons />
+      <MediaInfoData createdAt={mediaData.createdAt} />
+      <MediaInfoButtons mediaData={mediaData} />
     </div>
   )
 }

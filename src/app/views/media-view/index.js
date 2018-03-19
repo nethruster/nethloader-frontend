@@ -69,7 +69,7 @@ export default connect(mapStateToProps)(class MediaView extends Component {
                   mediaSrc={this.mediaSrc}
                   type={this.state.mediaData.extension}
                   id={this.state.mediaData.id} />
-                <MediaInfo createdAt={this.state.mediaData.createdAt} />
+                <MediaInfo mediaData={this.state.mediaData} />
               </div>
             )
             : <ViewLoading />) : <NotFound />
