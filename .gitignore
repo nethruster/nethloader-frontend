@@ -3,3 +3,4 @@ dist/*
 npm-debug*
 node_modules
 yarn-error*
+src/assets/app.config.js
