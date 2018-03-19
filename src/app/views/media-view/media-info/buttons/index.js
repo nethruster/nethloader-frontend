@@ -39,6 +39,7 @@ export default connect(mapStateToProps)(class MediaInfoButtons extends Component
 
     this.toggleDeleteModal = this.toggleDeleteModal.bind(this)
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
+    this.computeMediaUrls = this.computeMediaUrls.bind(this)
   }
 
   toggleDeleteModal () {
@@ -61,7 +62,7 @@ export default connect(mapStateToProps)(class MediaInfoButtons extends Component
   render ({mediaData, isAuthenticated, userData, sessionData, isFetching}) {
     return (
       <div class='flex flex-cross-center'>
-        {mediaData && !isFetching && this.computeMediaUrls() &&
+        {!isFetching && this.computeMediaUrls() &&
           <div class={`flex flex-cross-center ${style.utilButtons}`}>
             <a
               href={this.mediaSrc}

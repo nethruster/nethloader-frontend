@@ -43,23 +43,26 @@ export default connect(mapStateToProps)(class MediaView extends Component {
 
   componentWillMount () {
     window.scrollTo(0, 0) // Quick hack to fix react-routing scroll issue
-    try {
-      if (ssrData) { // eslint-disable-line no-undef
-        this.setState({mediaData: ssrData}) // eslint-disable-line no-undef
-      }
-    } catch (err) {
-      this.props.dispatch(getMediaInfo(this.context.router.route.match.params.id)).then((data) => {
+    
+    let routeId = this.context.router.route.match.params.id
+    let metaScript = document.getElementById('meta-script')
+    
+    if (metaScript && ssrData.id === routeId) { // eslint-disable-line no-undef
+      this.setState({mediaData: ssrData}) // eslint-disable-line no-undef
+    } else {
+      this.props.dispatch(getMediaInfo(routeId)).then((data) => {
         this.mediaSrc = `${baseMediaPath}${data.id}.${data.extension}` // eslint-disable-line no-undef
         this.mediaUrl = `${document.location.origin}/${data.id}`
 
         let mediaData = this.state.mediaData
-        mediaData.found = true
         mediaData.id = data.id
         mediaData.extension = data.extension
         mediaData.createdAt = data.createdAt
+        mediaData.userId = data.user.id
 
         this.setState({mediaData})
-      }).catch(() => {
+      }).catch((err) => {
+        console.error(err)
         let mediaData = this.state.mediaData
         mediaData.found = false
         this.setState({mediaData})
@@ -68,30 +71,34 @@ export default connect(mapStateToProps)(class MediaView extends Component {
   }
 
   componentWillUnmount () {
-    try { // eslint-disable-line no-undef
-      ssrData = mediaData // eslint-disable-line no-undef
+    try {
+      let metaScript = document.getElementById('meta-script')
+      if (metaScript) {
+        metaScript.remove() // Free the data to give way to new async data
+        this.setState({ mediaData: this.defaultState })
+      }
     } catch (err) {
-      console.info(err)
+      console.error(err)
     }
-    
-    this.setState(this.defaultState)
   }
 
   render ({mediaInfo, isFetching}) {
     return (
       <div class={`${style.mediaView} flex flex-full-center`}>
         {
-          this.state.mediaData.found ? (!isFetching && (mediaInfo || this.state.mediaData.id)
+          this.state.mediaData.found
             ? (
-              <div class={`${style.mediaViewWrapper} flex flex-dc flex-full-center`}>
-                <MediaItem
-                  mediaSrc={this.mediaSrc}
-                  type={this.state.mediaData.extension}
-                  id={this.state.mediaData.id} />
-                <MediaInfo mediaData={this.state.mediaData} />
-              </div>
-            )
-            : <ViewLoading />) : <NotFound />
+              !isFetching && this.state.mediaData.id
+                ? (
+                  <div class={`${style.mediaViewWrapper} flex flex-dc flex-full-center`}>
+                    <MediaItem
+                      mediaSrc={this.mediaSrc}
+                      type={this.state.mediaData.extension}
+                      id={this.state.mediaData.id} />
+                    <MediaInfo mediaData={this.state.mediaData} />
+                  </div>
+                ) : <ViewLoading />
+            ) : <NotFound />
         }
       </div>
     )

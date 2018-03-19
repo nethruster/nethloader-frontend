@@ -33,7 +33,10 @@
             user-select: none;
 
             img, 
-            video { border-radius: var(--base-br); }
+            video { 
+                display: block;
+                border-radius: var(--base-br);                
+            }
         }
     }
 }
