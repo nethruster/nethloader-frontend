@@ -182,6 +182,10 @@ const isFiltered = (params) => {
   return false
 }
 
+/**
+ * Toggle app UI dark mode
+ * Toggles an 'dark' attribute on the document element and stores the mode state in localStorage
+ */
 const toggleDarkMode = () => {
   if (window.localStorage.getItem('nth-theme') === 'dark') {
     window.localStorage.setItem('nth-theme', 'light')
