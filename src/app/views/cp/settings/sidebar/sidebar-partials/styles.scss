@@ -48,27 +48,6 @@
 
             border-radius: var(--base-br) var(--base-br) 0 0;
             padding-left: 10px;
-
-            button {
-                position: relative;
-                min-width: 80px;
-                
-                margin: 2px calc(var(--base-pm) / 2);
-                padding: 2px calc(var(--base-pm) * 2);
-               
-                border: none;
-                color: rgba(255, 255, 255, 0.836);
-                
-                background: rgba(48, 53, 58, 0.85);
-                border-radius: var(--base-br);
-                
-                font-size: .8em;
-
-                cursor: pointer;
-                outline: none;
-                text-transform: uppercase;
-                
-            }
         }
 
         &Button {
@@ -125,5 +104,26 @@
         opacity: 1;
 
         animation: blink 0.7s infinite;
+    }
+
+    .copyButton {
+        position: relative;
+        min-width: 80px;
+        
+        margin: 2px calc(var(--base-pm) / 2);
+        padding: 2px calc(var(--base-pm) * 2);
+        
+        border: none;
+        color: rgba(255, 255, 255, 0.836);
+        
+        background: rgba(48, 53, 58, 0.85);
+        border-radius: var(--base-br);
+        
+        font-size: .8em;
+
+        cursor: pointer;
+        outline: none;
+        text-transform: uppercase;
+        
     }
 }

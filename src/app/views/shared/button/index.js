@@ -47,7 +47,7 @@ export default class Button extends Component {
     }
     /* eslint-enable no-lone-blocks */
     return (
-      <button
+      <div
         data-id={dataId}
         class={`flex flex-full-center ${style.button} ${
           navButton ? style.buttonNav : ''} ${
@@ -82,7 +82,7 @@ export default class Button extends Component {
             }
           </p>
         }
-      </button>
+      </div>
     )
   }
 }

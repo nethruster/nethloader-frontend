@@ -45,13 +45,13 @@
         code {
             background-color: var(--very-specific-light-color);
 
-            margin: 4px;
-            padding: 4px;
+            margin: calc(var(--base-pm) / 2);
+            padding: calc(var(--base-pm) / 2);
             border-radius: var(--base-br);
         }
 
         .warning {
-            margin: 16px 0;
+            margin: calc(var(--base-pm) * 2) 0;
             
             svg { vertical-align: text-top; }
         }

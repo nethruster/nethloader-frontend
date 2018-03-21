@@ -5,7 +5,6 @@ import Ink from 'react-ink'
 
 import Button from '../../../../shared/button'
 import {copyToClipboard} from 'utils'
-import {apiBaseUrl} from 'app.config'
 
 import style from './styles.scss'
 
@@ -40,7 +39,7 @@ export default connect(mapStateToProps)(class CurlPartial extends Component {
 
   render ({userData}) {
     const curlCommand = `curl -X POST \\
-                  ${apiBaseUrl.replace('graphql', 'api')} \\
+          ${apiBaseUrl.replace('graphql', 'api')} \\
                   -H 'api-key: ${userData.apiKey}' \\
                   -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \\
                   -F 'file=@/absolute/path/to/file'`
@@ -61,8 +60,8 @@ export default connect(mapStateToProps)(class CurlPartial extends Component {
                   <div class={`${style.terminalWindowButton} ${style.yellow}`} />
                   <div class={`${style.terminalWindowButton} ${style.green}`} />
                 </div>
-                <button data-copytext={curlCommand} onClick={this.handleCopyClick} class='flex flex-full-center'>
-                  <Ink />{this.state.valueCopied ? viewStrings.command_copied : viewStrings.copy_command}</button>
+                <div data-copytext={curlCommand} onClick={this.handleCopyClick} class={`flex flex-full-center ${style.copyButton}`}>
+                  <Ink />{this.state.valueCopied ? viewStrings.command_copied : viewStrings.copy_command}</div>
               </header>
               <section>
                 <span class={style.terminalBlue}>{userData.name}</span>
