@@ -1,10 +1,19 @@
 import {h, Component} from 'preact'
+import {connect} from 'preact-redux'
 
 import ViewLoading from '../app/views/shared/view-loading'
 import VideoElement from '../app/views/shared/video-element'
 import {isValidVideoFormat, unprocessableExtensions} from 'utils'
 
-export default class AsyncMedia extends Component {
+const mapStateToProps = (state) => {
+  const { sessionData } = state.authentication  
+
+  return {
+    sessionData
+  }
+}
+
+export default connect(mapStateToProps)(class AsyncMedia extends Component {
   constructor (props) {
     super(props)
 
@@ -20,9 +29,9 @@ export default class AsyncMedia extends Component {
 
   computeMediaSrc () {
     if (this.props.thumbnail && this.hasThumbnail()) {
-      return `${baseMediaPath}${this.props.id}_thumb.jpg` // eslint-disable-line no-undef
+      return `${baseMediaPath}${this.props.sessionData.id}/${this.props.id}_thumb.jpg` // eslint-disable-line no-undef
     }
-    return `${baseMediaPath}${this.props.id}.${this.props.type}` // eslint-disable-line no-undef
+    return `${baseMediaPath}${this.props.sessionData.id}/${this.props.id}.${this.props.type}` // eslint-disable-line no-undef
   }
 
   componentDidMount () {
@@ -97,4 +106,4 @@ export default class AsyncMedia extends Component {
       ? this.state.mediaNode
       : <ViewLoading />
   }
-}
+})
