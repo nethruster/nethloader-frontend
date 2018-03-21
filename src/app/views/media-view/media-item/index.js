@@ -31,7 +31,12 @@ export default class MediaItem extends Component {
           <span class='flex flex-full-center'><Icon iconName='close' /></span>
         </div>
         
-        {!isFetching && type && id && <AsyncMedia onClickExecute={this.toggleZoom} type={type} id={id} willPlayback />}
+        {
+          !isFetching && type && id &&
+          <div class={this.state.isZoomed ? style.zoomedMediaContainer : ''}>
+            <AsyncMedia onClickExecute={this.toggleZoom} type={type} id={id} willPlayback />
+          </div>
+        }
       </div>
     )
   }

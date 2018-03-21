@@ -5,16 +5,18 @@
         cursor: pointer;
 
         &::after {
-            bottom: 0;
             left: 0;
-            right: 0;
             top: 0;
             position: absolute;
+            width: 100%;
+            height: calc(100% - 5px);
+            
+            border-radius: 3px;
+            
 
             content: '';
             background: rgba(0,0,0,.5) url(../../../../assets/img/play-circle.svg) no-repeat center center;
             background-size: 72px 72px;
-            border-radius: 4px;
 
             transition: opacity .2s cubic-bezier(.4,0,.2,1);
         }
