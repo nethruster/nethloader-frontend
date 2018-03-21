@@ -60,8 +60,8 @@ export default connect(mapStateToProps)(class CurlPartial extends Component {
                   <div class={`${style.terminalWindowButton} ${style.yellow}`} />
                   <div class={`${style.terminalWindowButton} ${style.green}`} />
                 </div>
-                <div data-copytext={curlCommand} onClick={this.handleCopyClick} class={`flex flex-full-center ${style.copyButton}`}>
-                  <Ink />{this.state.valueCopied ? viewStrings.command_copied : viewStrings.copy_command}</div>
+                <button data-copytext={curlCommand} onClick={this.handleCopyClick} class={`flex flex-full-center ${style.copyButton}`}>
+                  <Ink />{this.state.valueCopied ? viewStrings.command_copied : viewStrings.copy_command}</button>
               </header>
               <section>
                 <span class={style.terminalBlue}>{userData.name}</span>
