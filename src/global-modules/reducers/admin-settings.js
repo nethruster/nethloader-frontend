@@ -129,7 +129,6 @@ const toggleIsAdmin = (state = {
   }
 }
 
-
 export {
   users,
   userDelete,

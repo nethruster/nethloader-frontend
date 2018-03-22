@@ -38,11 +38,13 @@ export default connect(mapStateToProps)(class CurlPartial extends Component {
   }
 
   render ({userData}) {
+    /* eslint-disable no-undef */
     const curlCommand = `curl -X POST \\
           ${apiBaseUrl.replace('graphql', 'api')} \\
                   -H 'api-key: ${userData.apiKey}' \\
                   -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \\
                   -F 'file=@/absolute/path/to/file'`
+    /* eslint-enable no-undef */
     return (
       <div class={style.section}>
         <div class='flex flex-cross-center'><Link to='/cp/settings'><Button customClass={style.backButton} iconButton icon='back' /></Link>&nbsp;<h3>Using cURL</h3></div>

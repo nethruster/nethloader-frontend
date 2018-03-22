@@ -174,7 +174,8 @@ const getPageFactor = (router) => {
  */
 const isFiltered = (params) => {
   for (let key in baseParams) {
-    if (baseParams[key] != params[key]) { // It's important to allow coercion here, values may have been transformed to other types
+    // It's important to allow coercion here, values may have been transformed to other types
+    if (baseParams[key] != params[key]) { // eslint-disable-line eqeqeq
       return true
     }
   }

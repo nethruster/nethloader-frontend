@@ -6,7 +6,7 @@ import VideoElement from '../app/views/shared/video-element'
 import {isValidVideoFormat, unprocessableExtensions} from 'utils'
 
 const mapStateToProps = (state) => {
-  const { mediaInfo } = state.mediaInfo  
+  const { mediaInfo } = state.mediaInfo
 
   return {
     mediaInfo
