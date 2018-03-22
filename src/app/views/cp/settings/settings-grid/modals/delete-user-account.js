@@ -41,7 +41,7 @@ export default connect(mapStateToProps)(class DeleteUserAccountModal extends Com
   handleSubmit (event) {
     event.preventDefault()
     if (this.state.passwordInput.inputState === 'valid') {
-      this.props.dispatch(deleteUser(this.props.sessionData.id, this.props.token)).then(() => {
+      this.props.dispatch(deleteUser(this.props.sessionData.id, this.props.token, this.state.passwordInput.value)).then(() => {
         this.props.toggleModal()
         this.form.reset()
         this.props.dispatch(logoutUser())
