@@ -47,7 +47,7 @@ const mediaDelete = (state = {
 }
 
 const mediaInfo = (state = {
-  isFetching: false,
+  isFetching: true,
   mediaInfo: null
 }, action) => {
   switch (action.type) {

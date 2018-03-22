@@ -5,11 +5,14 @@ import ViewLoading from '../app/views/shared/view-loading'
 import VideoElement from '../app/views/shared/video-element'
 import {isValidVideoFormat, unprocessableExtensions} from 'utils'
 
-const mapStateToProps = (state) => {
-  const { mediaInfo } = state.mediaInfo
+function mapStateToProps (state) {
+  const {mediaInfo, isFetching} = state.mediaInfo
+  const {sessionData} = state.authentication
 
   return {
-    mediaInfo
+    mediaInfo,
+    isFetching,
+    sessionData
   }
 }
 
@@ -26,12 +29,13 @@ export default connect(mapStateToProps)(class AsyncMedia extends Component {
   hasThumbnail () {
     return !unprocessableExtensions.includes(this.props.type)
   }
-
+  
   computeMediaSrc () {
+    let userId = this.props.mediaInfo ? this.props.mediaInfo.user.id : this.props.sessionData.id
     if (this.props.thumbnail && this.hasThumbnail()) {
-      return `${baseMediaPath}${this.props.mediaInfo.user.id}/${this.props.id}_thumb.jpg` // eslint-disable-line no-undef
+      return `${baseMediaPath}${userId}/${this.props.id}_thumb.jpg` // eslint-disable-line no-undef
     }
-    return `${baseMediaPath}${this.props.mediaInfo.user.id}/${this.props.id}.${this.props.type}` // eslint-disable-line no-undef
+    return `${baseMediaPath}${userId}/${this.props.id}.${this.props.type}` // eslint-disable-line no-undef
   }
 
   componentDidMount () {
