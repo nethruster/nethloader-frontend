@@ -169,9 +169,5 @@ export {
   userUnselectAll,
   requestToggleAdmin,
   recieveToggleAdmin,
-  toggleAdminError,
-  mediaSelect,
-  mediaUnselect,
-  mediaSelectAll,
-  mediaUnselectAll
+  toggleAdminError
 }

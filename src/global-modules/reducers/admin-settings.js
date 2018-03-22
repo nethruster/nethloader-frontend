@@ -129,40 +129,11 @@ const toggleIsAdmin = (state = {
   }
 }
 
-// Admin media select
-const adminMediaSelect = (state = {
-  adminSelectedMedia: [],
-  allToggled: false
-}, action) => {
-  switch (action.type) {
-    case appConstants.ADMIN_MEDIA_SELECT:
-      return Object.assign({}, state, {
-        adminSelectedMedia: action.adminSelectedMedia
-      })
-    case appConstants.ADMIN_MEDIA_UNSELECT:
-      return Object.assign({}, state, {
-        adminSelectedMedia: action.adminSelectedMedia
-      })
-    case appConstants.ADMIN_MEDIA_SELECT_ALL:
-      return Object.assign({}, state, {
-        adminSelectedMedia: action.adminSelectedMedia,
-        allToggled: true
-      })
-    case appConstants.ADMIN_MEDIA_UNSELECT_ALL:
-      return Object.assign({}, state, {
-        adminSelectedMedia: [],
-        allToggled: false
-      })
-    default:
-      return state
-  }
-}
 
 export {
   users,
   userDelete,
   userSelect,
   userCreate,
-  adminMediaSelect,
   toggleIsAdmin
 }
