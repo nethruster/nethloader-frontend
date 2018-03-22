@@ -6,10 +6,10 @@ import VideoElement from '../app/views/shared/video-element'
 import {isValidVideoFormat, unprocessableExtensions} from 'utils'
 
 const mapStateToProps = (state) => {
-  const { sessionData } = state.authentication  
+  const { mediaInfo } = state.mediaInfo  
 
   return {
-    sessionData
+    mediaInfo
   }
 }
 
@@ -29,9 +29,9 @@ export default connect(mapStateToProps)(class AsyncMedia extends Component {
 
   computeMediaSrc () {
     if (this.props.thumbnail && this.hasThumbnail()) {
-      return `${baseMediaPath}${this.props.sessionData.id}/${this.props.id}_thumb.jpg` // eslint-disable-line no-undef
+      return `${baseMediaPath}${this.props.mediaInfo.user.id}/${this.props.id}_thumb.jpg` // eslint-disable-line no-undef
     }
-    return `${baseMediaPath}${this.props.sessionData.id}/${this.props.id}.${this.props.type}` // eslint-disable-line no-undef
+    return `${baseMediaPath}${this.props.mediaInfo.user.id}/${this.props.id}.${this.props.type}` // eslint-disable-line no-undef
   }
 
   componentDidMount () {
