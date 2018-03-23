@@ -40,6 +40,8 @@ export default connect(mapStateToProps)(class MediaInfoButtons extends Component
     this.toggleDeleteModal = this.toggleDeleteModal.bind(this)
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
     this.computeMediaUrls = this.computeMediaUrls.bind(this)
+
+    this.metaScript = document.getElementById('meta-script')
   }
 
   toggleDeleteModal () {
@@ -54,7 +56,7 @@ export default connect(mapStateToProps)(class MediaInfoButtons extends Component
   }
 
   computeMediaUrls () {
-    this.mediaSrc = `${baseMediaPath}${this.props.mediaData.id}.${this.props.mediaData.extension}` // eslint-disable-line no-undef
+    this.mediaSrc = `${baseMediaPath}${this.props.mediaData.userId}/${this.props.mediaData.id}.${this.props.mediaData.extension}` // eslint-disable-line no-undef
     this.mediaUrl = `${document.location.origin}/${this.props.mediaData.id}`
     return true
   }
@@ -62,7 +64,7 @@ export default connect(mapStateToProps)(class MediaInfoButtons extends Component
   render ({mediaData, isAuthenticated, userData, sessionData, isFetching}) {
     return (
       <div class='flex flex-cross-center'>
-        {!isFetching && this.computeMediaUrls() &&
+        {(!isFetching || this.metaScript) && this.computeMediaUrls() && // eslint-disable-line no-undef
           <div class={`flex flex-cross-center ${style.utilButtons}`}>
             <a
               href={this.mediaSrc}

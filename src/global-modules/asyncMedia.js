@@ -31,7 +31,7 @@ export default connect(mapStateToProps)(class AsyncMedia extends Component {
   }
   
   computeMediaSrc () {
-    let userId = this.props.mediaInfo ? this.props.mediaInfo.user.id : this.props.sessionData.id
+    let userId = this.props.mediaInfo ? this.props.mediaInfo.user.id : ssrData.userId // eslint-disable-line no-undef
     if (this.props.thumbnail && this.hasThumbnail()) {
       return `${baseMediaPath}${userId}/${this.props.id}_thumb.jpg` // eslint-disable-line no-undef
     }
@@ -70,6 +70,14 @@ export default connect(mapStateToProps)(class AsyncMedia extends Component {
             />
           )
 
+          tempVideoElement.onabort = (event) => {
+            console.log('asyncMedia - video abort: ' + event)
+          }
+
+          tempVideoElement.onerror = (event) => {
+            console.log('asyncMedia - video error: ' + event)
+          }
+
           this.setState({mediaNode})
 
           tempSourceElement.remove()
@@ -96,6 +104,14 @@ export default connect(mapStateToProps)(class AsyncMedia extends Component {
               alt={`${this.props.type} ${mediaSrc}`}
             />
           )
+
+          tempImgElement.onabort = (event) => {
+            console.log('asyncMedia - image abort: ' + event)
+          }
+
+          tempImgElement.onerror = (event) => {
+            console.log('asyncMedia - image error: ' + event)
+          }
 
           this.setState({mediaNode})
           

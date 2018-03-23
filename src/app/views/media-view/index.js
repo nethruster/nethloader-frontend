@@ -39,6 +39,8 @@ export default connect(mapStateToProps)(class MediaView extends Component {
       createdAt: null,
       userId: null
     }
+
+    this.metaScript = document.getElementById('meta-script')
   }
 
   componentWillMount () {
@@ -51,7 +53,7 @@ export default connect(mapStateToProps)(class MediaView extends Component {
       this.setState({mediaData: ssrData}) // eslint-disable-line no-undef
     } else {
       this.props.dispatch(getMediaInfo(routeId)).then((data) => {
-        this.mediaSrc = `${baseMediaPath}${data.id}.${data.extension}` // eslint-disable-line no-undef
+        this.mediaSrc = `${baseMediaPath}${data.user.id}/${data.id}.${data.extension}` // eslint-disable-line no-undef
         this.mediaUrl = `${document.location.origin}/${data.id}`
 
         let mediaData = this.state.mediaData
@@ -72,9 +74,8 @@ export default connect(mapStateToProps)(class MediaView extends Component {
 
   componentWillUnmount () {
     try {
-      let metaScript = document.getElementById('meta-script')
-      if (metaScript) {
-        metaScript.remove() // Free the data to give way to new async data
+      if (this.metaScript) {
+        this.metaScript.remove() // Free the data to give way to new async data
         this.setState({ mediaData: this.defaultState })
       }
     } catch (err) {
@@ -82,13 +83,13 @@ export default connect(mapStateToProps)(class MediaView extends Component {
     }
   }
 
-  render ({mediaInfo, isFetching}) {
+  render ({isFetching}) {
     return (
       <div class={`${style.mediaView} flex flex-full-center`}>
         {
           this.state.mediaData.found
             ? (
-              !isFetching && this.state.mediaData.id
+              (!isFetching && this.state.mediaData.userId) || this.metaScript
                 ? (
                   <div class={`${style.mediaViewWrapper} flex flex-dc flex-full-center`}>
                     <MediaItem
