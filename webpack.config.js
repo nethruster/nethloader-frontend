@@ -3,11 +3,19 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const isProduction = process.argv.indexOf('-p') !== -1 // Check if we are in production mode
 
 const BUILD_DIR = path.resolve(__dirname, 'dist')
 const APP_DIR = path.resolve(__dirname, 'src')
+
+const cleanOptions = {
+  root: path.resolve(__dirname),
+  exclude: ['.gitkeep'],
+  verbose: true,
+  dry: !isProduction
+}
 
 module.exports = {
   entry: {
@@ -24,7 +32,7 @@ module.exports = {
     path: BUILD_DIR,
     publicPath: '/',
     filename: '[name].js',
-    chunkFilename: '[name][chunkhash].js'
+    chunkFilename: '[name].[chunkhash:7].js'
   },
   module: {
     loaders: [
@@ -36,7 +44,7 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          'style-loader?modules=true&localIdentName=[name]__[local]',
+          'style-loader?modules=true&localIdentName=lsh[hash:base64:7]&minimize: true',
           'css-loader',
           'postcss-loader',
           'sass-loader'
@@ -74,6 +82,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(BUILD_DIR, cleanOptions),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': isProduction ? JSON.stringify('production') : JSON.stringify('development')
