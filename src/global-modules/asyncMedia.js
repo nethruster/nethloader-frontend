@@ -1,22 +1,10 @@
 import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
 
 import ViewLoading from '../app/views/shared/view-loading'
 import VideoElement from '../app/views/shared/video-element'
 import {isValidVideoFormat, unprocessableExtensions} from 'utils'
 
-function mapStateToProps (state) {
-  const {mediaInfo, isFetching} = state.mediaInfo
-  const {sessionData} = state.authentication
-
-  return {
-    mediaInfo,
-    isFetching,
-    sessionData
-  }
-}
-
-export default connect(mapStateToProps)(class AsyncMedia extends Component {
+export default class AsyncMedia extends Component {
   constructor (props) {
     super(props)
 
@@ -27,15 +15,15 @@ export default connect(mapStateToProps)(class AsyncMedia extends Component {
   }
 
   hasThumbnail () {
-    return !unprocessableExtensions.includes(this.props.type)
+    return !unprocessableExtensions.includes(this.props.mediaInfo.extension)
   }
   
   computeMediaSrc () {
-    let userId = this.props.mediaInfo ? this.props.mediaInfo.user.id : ssrData.userId // eslint-disable-line no-undef
+    let userId = this.props.user ? this.props.user : this.props.mediaInfo.userId // eslint-disable-line no-undef
     if (this.props.thumbnail && this.hasThumbnail()) {
-      return `${baseMediaPath}${userId}/${this.props.id}_thumb.jpg` // eslint-disable-line no-undef
+      return `${baseMediaPath}${userId}/${this.props.mediaInfo.id}_thumb.jpg` // eslint-disable-line no-undef
     }
-    return `${baseMediaPath}${userId}/${this.props.id}.${this.props.type}` // eslint-disable-line no-undef
+    return `${baseMediaPath}${userId}/${this.props.mediaInfo.id}.${this.props.mediaInfo.extension}` // eslint-disable-line no-undef
   }
 
   componentDidMount () {
@@ -45,19 +33,19 @@ export default connect(mapStateToProps)(class AsyncMedia extends Component {
       if (
         (
           !this.props.thumbnail &&
-          this.props.type !== 'gif' &&
-          isValidVideoFormat(this.props.type)
+          this.props.mediaInfo.extension !== 'gif' &&
+          isValidVideoFormat(this.props.mediaInfo.extension)
         ) ||
         (
           this.props.thumbnail &&
           !this.hasThumbnail() &&
-          isValidVideoFormat(this.props.type)
+          isValidVideoFormat(this.props.mediaInfo.extension)
         )
       ) {
         let tempVideoElement = document.createElement('video')
         let tempSourceElement = document.createElement('source')
         tempSourceElement.src = mediaSrc
-        tempSourceElement.type = `video/${this.props.type}`
+        tempSourceElement.type = `video/${this.props.mediaInfo.extension}`
         tempVideoElement.appendChild(tempSourceElement)
 
         tempVideoElement.oncanplay = () => {
@@ -65,7 +53,7 @@ export default connect(mapStateToProps)(class AsyncMedia extends Component {
             <VideoElement
               src={mediaSrc}
               height={this.props.size}
-              type={this.props.type}
+              type={this.props.mediaInfo.extension}
               willPlayback={this.props.willPlayback && !this.props.thumbnail}
             />
           )
@@ -101,7 +89,7 @@ export default connect(mapStateToProps)(class AsyncMedia extends Component {
               height={elementHeight}
               width={elementWidth}
               onClick={this.props.onClickExecute || ''}
-              alt={`${this.props.type} ${mediaSrc}`}
+              alt={`${this.props.mediaInfo.extension} ${mediaSrc}`}
             />
           )
 
@@ -126,4 +114,4 @@ export default connect(mapStateToProps)(class AsyncMedia extends Component {
       ? this.state.mediaNode
       : <ViewLoading />
   }
-})
+}

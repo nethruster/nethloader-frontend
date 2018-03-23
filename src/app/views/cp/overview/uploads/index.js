@@ -61,6 +61,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
             style={style}
             key={item.id}
             data={item}
+            user={this.props.sessionData.id}
             handleToggleSelect={this.handleToggleMedia}
             toggleDeleteConfirmModal={this.toggleDeleteConfirmModal}
           />
@@ -166,7 +167,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     }
   }
 
-  render ({isFetchingMedia, userMedia, selectedMedia, updateUserMedia, totalCount}) {
+  render ({isFetchingMedia, isFetchingUser, userMedia, selectedMedia, updateUserMedia, totalCount}) {
     return (
       <div class={style.uploads}>
         {

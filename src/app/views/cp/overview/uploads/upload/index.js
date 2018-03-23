@@ -7,14 +7,14 @@ import AsyncMedia from 'asyncMedia'
 
 import style from './styles.scss'
 
-export default function Upload ({data, isSelected, handleToggleSelect, toggleDeleteConfirmModal}) {
+export default function Upload ({data, user, isSelected, handleToggleSelect, toggleDeleteConfirmModal}) {
   return (
     <li class={`${style.upload} flex flex-cross-center flex-sb`}>
       <Link to={`/${data.id}`} class={`${style.uploadDataLink} flex`}>
         <div class={`${style.uploadMedia} flex flex-full-center`}>
           <AsyncMedia
-            id={data.id}
-            type={data.extension}
+            mediaInfo={data}
+            user={user}
             thumbnail
           />
         </div>
