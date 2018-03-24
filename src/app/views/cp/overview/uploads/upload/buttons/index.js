@@ -6,7 +6,6 @@ import Button from '../../../../../shared/button'
 import Checkbox from '../../../../../shared/checkbox'
 import {copyToClipboard} from 'utils'
 import {mediaUnselectAll} from 'actions/media'
-import {baseMediaPath} from 'app.config'
 
 import style from './styles.scss'
 
@@ -50,8 +49,8 @@ export default connect(mapStateToProps)(class UploadButtons extends Component {
     this.props.toggleDeleteConfirmModal()
   }
 
-  render ({data, handleToggleSelect, selectedMedia}) {
-    const mediaPath = `${baseMediaPath}${data.id}.${data.extension}`
+  render ({data, user, handleToggleSelect, selectedMedia}) {
+    const mediaPath = `${baseMediaPath}${user}/${data.id}.${data.extension}` // eslint-disable-line no-undef
     const mediaUrl = `${document.location.origin}/${data.id}`
 
     return (

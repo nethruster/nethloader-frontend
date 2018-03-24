@@ -23,6 +23,7 @@ export default function Upload ({data, user, isSelected, handleToggleSelect, tog
 
       <UploadButtons
         data={data}
+        user={user}
         toggleDeleteConfirmModal={toggleDeleteConfirmModal}
         handleToggleSelect={handleToggleSelect}
       />
