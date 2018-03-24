@@ -7,7 +7,7 @@
             font-size: .95em;
 
             @media(max-width: 420px) { 
-                flex-direction: column; 
+                flex-direction: column;
 
                 margin: 0!important;
             }
@@ -26,6 +26,8 @@
             .twitter {
                 svg { color: #1da1f3; }
             }
+
+            @media(max-width: 420px) { margin-bottom: calc(var(--base-pm) * 2); }
         }
     }
 }

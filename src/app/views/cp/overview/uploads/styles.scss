@@ -16,6 +16,8 @@
             animation-fill-mode: both;
         }
 
-        @media (max-width: 520px) { margin: 0; }
+        @media (max-width: 420px) { margin: 0; }
+
+        @media (max-width: 720px) { margin-bottom: calc(var(--base-pm) * 10); }
     }
 }
