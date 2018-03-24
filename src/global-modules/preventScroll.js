@@ -3,10 +3,10 @@
  */
 
 export function scrollBlockOn () {
-  let body = document.body
+  let body = document.documentElement
   // Detect if we are in a touchscreen device
   if ('ontouchstart' in document.documentElement) {
-    return null
+    body.style.overflow = 'hidden'
   } else if (_hasScrollbar()) {
     body.style.overflow = 'hidden'
     body.style.paddingRight = '17px'
@@ -14,7 +14,7 @@ export function scrollBlockOn () {
 }
 
 export function scrollBlockOff () {
-  document.body.removeAttribute('style')
+  document.documentElement.removeAttribute('style')
 }
 
 /* Huge thanks to Tyler Cipriani
@@ -43,7 +43,7 @@ const _hasScrollbar = function () {
 
   let contentOverflows = rootElem.scrollHeight > rootElem.clientHeight
   let overflowShown = /^(visible|auto)$/.test(overflowStyle) || /^(visible|auto)$/.test(overflowYStyle)
-  let alwaysShowScroll = overflowStyle === 'scroll' || overflowYStyle === 'scroll'
+  let alwaysShowScroll = overflowStyle === 'scroll' || overflowYStyle === 'scroll' || overflowStyle === 'auto' || overflowYStyle === 'auto'
 
   return (contentOverflows && overflowShown) || (alwaysShowScroll)
 }

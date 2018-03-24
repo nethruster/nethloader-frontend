@@ -7,6 +7,7 @@ import Icon from '../../../../../shared/icon'
 import Button from '../../../../../shared/button'
 import DropDownMenu from '../../../../../shared/dropdown-menu'
 import {getPageFactor} from 'utils'
+import {scrollBlockOff} from 'preventScroll'
 
 import style from './styles.scss'
 
@@ -95,6 +96,7 @@ export default connect(mapStateToProps)(class Pagination extends Component {
           <Button
             class='flex flex-full-center'
             dropdown
+            onClickExecute={scrollBlockOff}
             text={entry + 1}
           />
         </NavLink>

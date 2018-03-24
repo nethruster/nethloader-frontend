@@ -2,6 +2,7 @@ import {h, Component} from 'preact'
 
 import Button from '../../../../../shared/button'
 import CreateUserModal from './add-user-modal'
+import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
 
 export default class AddUser extends Component {
   constructor (props) {
@@ -14,6 +15,7 @@ export default class AddUser extends Component {
 
   toggleAddUserModal () {
     this.setState({ addUserModal: !this.state.addUserModal })
+    this.state.addUserModal ? scrollBlockOn() : scrollBlockOff()
   }
 
   render () {

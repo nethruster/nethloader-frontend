@@ -31,11 +31,11 @@ export default connect(mapStateToProps)(class Filters extends Component {
   toggleFilterModal () {
     let modals = this.state.modals
 
-    modals.filter.isActive ? scrollBlockOff() : scrollBlockOn()
-
     modals.filter.isActive = !modals.filter.isActive
 
     this.setState({modals})
+    
+    modals.filter.isActive ? scrollBlockOn() : scrollBlockOff()
   }
 
   render ({updateUserMedia, params}) {
@@ -50,7 +50,8 @@ export default connect(mapStateToProps)(class Filters extends Component {
         <Modal
           modalTitle={viewStrings.title}
           isActive={this.state.modals.filter.isActive}
-          toggleModal={this.toggleFilterModal}>
+          toggleModal={this.toggleFilterModal}
+          willOverflow>
           <FiltersForm
             updateUserMedia={updateUserMedia}
             toggleFilterModal={this.toggleFilterModal}

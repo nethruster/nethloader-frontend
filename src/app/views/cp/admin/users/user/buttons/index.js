@@ -49,7 +49,7 @@ export default connect(mapStateToProps)(class UserButtons extends Component {
   }
 
   toggleEditUserModal () {
-    this.state.isToggleEditUserModalActive ? scrollBlockOff() : scrollBlockOn()
+    this.state.isToggleEditUserModalActive ? scrollBlockOn() : scrollBlockOff()
     this.setState({isToggleEditUserModalActive: !this.state.isToggleEditUserModalActive})
   }
 
@@ -68,7 +68,7 @@ export default connect(mapStateToProps)(class UserButtons extends Component {
   }
 
   toggleDeleteUserMedia () {
-    this.state.isDeleteAllMediaModalActive ? scrollBlockOff() : scrollBlockOn()
+    this.state.isDeleteAllMediaModalActive ? scrollBlockOn() : scrollBlockOff()
     this.setState({ isDeleteAllMediaModalActive: !this.state.isDeleteAllMediaModalActive })
   }
 

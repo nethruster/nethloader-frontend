@@ -112,7 +112,7 @@ export default connect(mapStateToProps)(class UsersPartial extends Component {
         ...this.state.modals
       }
 
-      modals.singleDeleteActive || modals.multipleDeleteActive ? scrollBlockOff() : scrollBlockOn()
+      modals.singleDeleteActive || modals.multipleDeleteActive ? scrollBlockOn() : scrollBlockOff()
 
       if (this.props.selectedUsers.length === 1) {
         // If we're not multiple-selecting or we're deleting just one item

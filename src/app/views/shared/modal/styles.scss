@@ -1,3 +1,11 @@
+:local {
+    .smallHeight {
+        max-height: 100vh;
+        
+        overflow: auto;
+    }
+}
+
 :global {
     .modal {
         position: absolute;

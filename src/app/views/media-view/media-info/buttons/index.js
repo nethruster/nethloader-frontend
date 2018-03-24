@@ -7,6 +7,7 @@ import VideoToolbar from '../../../shared/video-element/video-toolbar'
 import {isValidVideoFormat} from 'utils'
 import Button from '../../../shared/button'
 import {deleteMedia} from 'serverAPI/media'
+import {scrollBlockOff, scrollBlockOn} from 'preventScroll'
 
 import style from './styles.scss'
 
@@ -46,6 +47,7 @@ export default connect(mapStateToProps)(class MediaInfoButtons extends Component
 
   toggleDeleteModal () {
     this.setState({isDeleteModalActive: !this.state.isDeleteModalActive})
+    this.state.isDeleteModalActive ? scrollBlockOn() : scrollBlockOff()
   }
 
   handleDeleteClick () {

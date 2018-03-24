@@ -122,14 +122,14 @@ export default connect(mapStateToProps)(class Uploads extends Component {
         ...this.state.modals
       }
 
-      modals.singleDeleteActive || modals.multipleDeleteActive ? scrollBlockOff() : scrollBlockOn()
-
       if (this.props.selectedMedia.length === 1) {
         // If we're not multiple-selecting or we're deleting just one item
         modals.singleDeleteActive = !modals.singleDeleteActive
       } else {
         modals.multipleDeleteActive = !modals.multipleDeleteActive
       }
+      
+      modals.singleDeleteActive || modals.multipleDeleteActive ? scrollBlockOn() : scrollBlockOff()
 
       this.setState({modals})
     }
