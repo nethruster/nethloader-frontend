@@ -235,7 +235,7 @@ const locale = { // eslint-disable-line no-unused-vars
               'step_7': "In the main window of ShareX select destinations on the left hand side of the window, then select image uploader and click on 'Custom image uploader'"
             },
             'autoconfig_copied': 'Copied!',
-            'copy_autoconfig': 'Copy APIKey',
+            'copy_autoconfig': 'Copy link',
             'autoconfigure_security_warning': 'This url is used to auto-configure ShareX to upload media to this account directly and without authentication, do not share it.'
           },
           'curl': {
