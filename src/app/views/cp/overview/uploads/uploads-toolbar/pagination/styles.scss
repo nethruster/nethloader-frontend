@@ -14,7 +14,7 @@
                 opacity: .8;
                 border-radius: var(--base-br) var(--base-br) 0 0;
                 text-align: center;
-                
+
                 cursor: pointer;
                 transition: background-color .2s ease-in-out;
                 user-select: none;
@@ -44,7 +44,7 @@
 
                 &Left { text-align: left; }
 
-                &Custom { 
+                &Custom {
                     @media(max-width: 525px) { flex-direction: column-reverse; }
 
                     width: 90px; }

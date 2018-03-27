@@ -8,7 +8,7 @@
             &:checked + label:before { border-color: var(--contrast-bg); }
             &:checked + label:after { transform: scale(1); }
         }
-        
+
         label {
             display: inline-block;
             height: var( --input-radio-size);
@@ -48,7 +48,7 @@
                 background: var(--contrast-bg);
 
                 transform: scale(0);
-                
+
             }
         }
     }

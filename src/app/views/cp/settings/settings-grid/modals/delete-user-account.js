@@ -1,18 +1,18 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
-import {showSnack} from 'react-redux-snackbar'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
+import { showSnack } from 'react-redux-snackbar'
 
 import Modal from '../../../../shared/modal'
 import FormInput from '../../../../shared/form-input'
-import {validateEmpty} from 'utils'
-import {deleteUser} from 'serverAPI/settings'
-import {logoutUser} from 'serverAPI/authentication'
+import { validateEmpty } from 'utils'
+import { deleteUser } from 'serverAPI/settings'
+import { logoutUser } from 'serverAPI/authentication'
 
 const viewStrings = locale.cp.settings.settings_grid.partials.account_remove // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {token, sessionData} = state.authentication
-  const {isFetching} = state.settings
+  const { token, sessionData } = state.authentication
+  const { isFetching } = state.settings
 
   return {
     token,
@@ -98,7 +98,7 @@ export default connect(mapStateToProps)(class DeleteUserAccountModal extends Com
     this.form.reset()
   }
 
-  render ({isActive, toggleModal, isFetching}) {
+  render ({ isActive, toggleModal, isFetching }) {
     return (
       <Modal
         isActive={isActive}

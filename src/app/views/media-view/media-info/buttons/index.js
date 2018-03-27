@@ -1,22 +1,22 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
 
 import Icon from '../../../shared/icon'
 import Modal from '../../../shared/modal'
 import VideoToolbar from '../../../shared/video-element/video-toolbar'
-import {isValidVideoFormat} from 'utils'
+import { isValidVideoFormat } from 'utils'
 import Button from '../../../shared/button'
-import {deleteMedia} from 'serverAPI/media'
-import {scrollBlockOff, scrollBlockOn} from 'preventScroll'
+import { deleteMedia } from 'serverAPI/media'
+import { scrollBlockOff, scrollBlockOn } from 'preventScroll'
 
 import style from './styles.scss'
 
 const viewStrings = locale.media_view.buttons // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {isAuthenticated, token, sessionData} = state.authentication
-  const {userData} = state.userData
-  const {isFetching} = state.mediaInfo
+  const { isAuthenticated, token, sessionData } = state.authentication
+  const { userData } = state.userData
+  const { isFetching } = state.mediaInfo
 
   return {
     isAuthenticated,
@@ -46,7 +46,7 @@ export default connect(mapStateToProps)(class MediaInfoButtons extends Component
   }
 
   toggleDeleteModal () {
-    this.setState({isDeleteModalActive: !this.state.isDeleteModalActive})
+    this.setState({ isDeleteModalActive: !this.state.isDeleteModalActive })
     this.state.isDeleteModalActive ? scrollBlockOn() : scrollBlockOff()
   }
 
@@ -63,7 +63,7 @@ export default connect(mapStateToProps)(class MediaInfoButtons extends Component
     return true
   }
 
-  render ({mediaData, isAuthenticated, userData, sessionData, isFetching}) {
+  render ({ mediaData, isAuthenticated, userData, sessionData, isFetching }) {
     return (
       <div class='flex flex-cross-center'>
         {(!isFetching || this.metaScript) && this.computeMediaUrls() && // eslint-disable-line no-undef

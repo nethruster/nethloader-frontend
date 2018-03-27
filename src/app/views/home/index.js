@@ -1,4 +1,4 @@
-import {h} from 'preact'
+import { h } from 'preact'
 
 import Button from '../shared/button'
 import Logo from '../shared/logo'

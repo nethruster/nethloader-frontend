@@ -1,6 +1,6 @@
-import {h} from 'preact'
-import {NavLink} from 'react-router-dom'
-import {connect} from 'preact-redux'
+import { h } from 'preact'
+import { NavLink } from 'react-router-dom'
+import { connect } from 'preact-redux'
 
 import Icon from '../../../shared/icon'
 
@@ -9,12 +9,12 @@ import style from './styles.scss'
 const viewStrings = locale.cp.subheader // eslint-disable-line no-undef
 
 function mapStateToProps (state) {
-  const {userData} = state.userData
+  const { userData } = state.userData
 
-  return {userData}
+  return { userData }
 }
 
-export default connect(mapStateToProps)(({userData}) => {
+export default connect(mapStateToProps)(({ userData }) => {
   return (
     <div class={`${style.tabs} flex flex-cross-center`}>
       <nav class='flex flex-cross-center flex-sa'>

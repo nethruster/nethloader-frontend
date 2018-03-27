@@ -1,7 +1,9 @@
-import {requestUserData, receiveUserData, userDataError,
-  requestUserMedia, receiveUserMedia, userMediaError} from 'actions/data'
+import {
+  requestUserData, receiveUserData, userDataError,
+  requestUserMedia, receiveUserMedia, userMediaError
+} from 'actions/data'
 
-import {filterExtensions} from 'utils'
+import { filterExtensions } from 'utils'
 
 // User data
 const getUserData = (id, authToken) => {

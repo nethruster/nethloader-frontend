@@ -1,5 +1,5 @@
-import {h} from 'preact'
-import {Switch, Route} from 'react-router-dom'
+import { h } from 'preact'
+import { Switch, Route } from 'react-router-dom'
 
 import Sidebar from './sidebar'
 import SettingsGrid from './settings-grid'

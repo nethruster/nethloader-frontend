@@ -1,4 +1,4 @@
-import {checkCurrentSessionToken} from 'serverAPI/authentication'
+import { checkCurrentSessionToken } from 'serverAPI/authentication'
 
 const fallbackStorageParams = {
   'unprocessableExtensions': ['webp', 'webm', 'svg'],

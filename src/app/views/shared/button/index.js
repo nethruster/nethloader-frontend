@@ -1,4 +1,4 @@
-import {h, Component} from 'preact'
+import { h, Component } from 'preact'
 
 import Icon from '../icon/'
 import Spinner from '../spinner'
@@ -9,9 +9,9 @@ import style from './styles.scss'
 export default class Button extends Component {
   shouldComponentUpdate (nextProps, nextState) {
     return (this.props.disabled !== nextProps.disabled) ||
-           (this.props.spinner !== nextProps.spinner) ||
-           (this.props.icon !== nextProps.icon) ||
-           (this.props.text !== nextProps.text)
+      (this.props.spinner !== nextProps.spinner) ||
+      (this.props.icon !== nextProps.icon) ||
+      (this.props.text !== nextProps.text)
   }
 
   render ({

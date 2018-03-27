@@ -1,5 +1,5 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
 
 import SettingsSection from '../../../shared/settings-section'
 import UsernameModal from './modals/username'
@@ -8,16 +8,16 @@ import PasswordModal from './modals/password'
 import ApiKeyModal from './modals/apikey'
 import DeleteAllMediaModal from './modals/delete-all-media'
 import DeleteUserAccountModal from './modals/delete-user-account.js'
-import {toggleDarkMode} from 'utils'
-import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
+import { toggleDarkMode } from 'utils'
+import { scrollBlockOn, scrollBlockOff } from 'preventScroll'
 
 import style from './styles.scss'
 
 const viewStrings = locale.cp.settings.settings_grid.sections // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {userData} = state.userData
-  const {totalCount} = state.userMedia
+  const { userData } = state.userData
+  const { totalCount } = state.userMedia
 
   return {
     userData,
@@ -79,10 +79,10 @@ export default connect(mapStateToProps)(class SettingsGrid extends Component {
   }
 
   toggleExtraOptions () {
-    this.setState({extraOptions: !this.state.extraOptions})
+    this.setState({ extraOptions: !this.state.extraOptions })
   }
 
-  render ({userData, totalCount}) {
+  render ({ userData, totalCount }) {
     return (
       <div class={style.gridContainer}>
         <SettingsSection

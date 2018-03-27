@@ -1,22 +1,22 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
-import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
+import { scrollBlockOn, scrollBlockOff } from 'preventScroll'
 
 import Button from '../../../../../shared/button'
 import DropDownMenu from '../../../../../shared/dropdown-menu'
 import Modal from '../../../../../shared/modal'
 import EditUserModal from './edit-user-modal'
-import {userUnselectAll} from 'actions/admin-settings'
-import {deleteAllUserImages} from 'serverAPI/settings'
-import {copyToClipboard} from 'utils'
+import { userUnselectAll } from 'actions/admin-settings'
+import { deleteAllUserImages } from 'serverAPI/settings'
+import { copyToClipboard } from 'utils'
 
 import style from '../styles.scss'
 
 const viewStrings = locale.cp.admin.users.user.buttons // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {selectedUsers} = state.userSelect
-  const {sessionData, token} = state.authentication
+  const { selectedUsers } = state.userSelect
+  const { sessionData, token } = state.authentication
 
   return {
     selectedUsers,
@@ -50,7 +50,7 @@ export default connect(mapStateToProps)(class UserButtons extends Component {
 
   toggleEditUserModal () {
     this.state.isToggleEditUserModalActive ? scrollBlockOn() : scrollBlockOff()
-    this.setState({isToggleEditUserModalActive: !this.state.isToggleEditUserModalActive})
+    this.setState({ isToggleEditUserModalActive: !this.state.isToggleEditUserModalActive })
   }
 
   handleCopyClick (event) {
@@ -78,7 +78,7 @@ export default connect(mapStateToProps)(class UserButtons extends Component {
     })
   }
 
-  render ({itemData, selectedUsers, handleToggleUser, toggleDeleteConfirmModal}) {
+  render ({ itemData, selectedUsers, handleToggleUser, toggleDeleteConfirmModal }) {
     return (
       <span class={`flex flex-full-center ${style.userRowField} ${style.userRowFieldIcon} ${style.userRowFieldIconInteractive}`}>
         <div class={`flex flex-full-center`}>

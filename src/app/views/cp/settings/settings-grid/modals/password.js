@@ -1,17 +1,17 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
-import {showSnack} from 'react-redux-snackbar'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
+import { showSnack } from 'react-redux-snackbar'
 
 import Modal from '../../../../shared/modal'
 import FormInput from '../../../../shared/form-input'
-import {validateEmpty} from 'utils'
-import {changeUserPassword} from 'serverAPI/settings'
-import {logoutUser} from 'serverAPI/authentication'
+import { validateEmpty } from 'utils'
+import { changeUserPassword } from 'serverAPI/settings'
+import { logoutUser } from 'serverAPI/authentication'
 
 const viewStrings = locale.cp.settings.settings_grid.partials.password // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {token, sessionData} = state.authentication
+  const { token, sessionData } = state.authentication
 
   return {
     token,
@@ -47,7 +47,7 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
   }
 
   handleChange (event) {
-    let state = {...this.state}
+    let state = { ...this.state }
 
     let input = event.target
     let activeInputOnState = state[event.target.id]
@@ -111,7 +111,7 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
     this.form.reset()
   }
 
-  render ({isActive, toggleModal}) {
+  render ({ isActive, toggleModal }) {
     return (
       <Modal
         isActive={isActive}

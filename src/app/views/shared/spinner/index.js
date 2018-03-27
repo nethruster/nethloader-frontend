@@ -1,8 +1,8 @@
-import {h} from 'preact'
+import { h } from 'preact'
 
 import './styles.scss'
 
-export default function Spinner ({size, color}) {
+export default function Spinner ({ size, color }) {
   return (
     <div class='loader'>
       <svg

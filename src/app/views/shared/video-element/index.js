@@ -1,12 +1,12 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
 
-import {togglePlayback} from 'actions/html5video'
+import { togglePlayback } from 'actions/html5video'
 
 import style from './styles.scss'
 
 const mapStateToProps = (state) => {
-  const {isPlaying, showControls, isTouchDevice} = state.html5video
+  const { isPlaying, showControls, isTouchDevice } = state.html5video
 
   return {
     isPlaying,

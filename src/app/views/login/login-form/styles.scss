@@ -1,7 +1,7 @@
 :local {
-    .form { 
+    .form {
         width: 70%;
-        
+
         &ValidationText {
             font-size: .8em;
             color: var(--warning-color);
@@ -12,6 +12,4 @@
     }
 
     .maintainSessionCheckbox { align-self: flex-end; }
-
-
 }

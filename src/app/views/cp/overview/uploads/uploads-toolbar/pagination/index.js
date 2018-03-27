@@ -1,20 +1,20 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
-import {NavLink} from 'react-router-dom'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
+import { NavLink } from 'react-router-dom'
 import Ink from 'react-ink'
 
 import Icon from '../../../../../shared/icon'
 import Button from '../../../../../shared/button'
 import DropDownMenu from '../../../../../shared/dropdown-menu'
-import {getPageFactor} from 'utils'
-import {scrollBlockOff} from 'preventScroll'
+import { getPageFactor } from 'utils'
+import { scrollBlockOff } from 'preventScroll'
 
 import style from './styles.scss'
 
 const viewStrings = locale.cp.overview.uploads.pagination // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {userMedia, params, isFetchingMedia} = state.userMedia
+  const { userMedia, params, isFetchingMedia } = state.userMedia
 
   return {
     userMedia,
@@ -104,7 +104,7 @@ export default connect(mapStateToProps)(class Pagination extends Component {
     })
   }
 
-  render ({isFetchingMedia, userMedia}) {
+  render ({ isFetchingMedia, userMedia }) {
     return (
       <div class={`flex flex-main-center flex-sb ${style.paginationNav}`}>
         <div

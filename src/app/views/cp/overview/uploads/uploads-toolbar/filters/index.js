@@ -1,18 +1,18 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
 
 import Modal from '../../../../../shared/modal'
 import Button from '../../../../../shared/button'
 import FiltersForm from './filters-form'
-import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
-import {isFiltered} from 'utils'
+import { scrollBlockOn, scrollBlockOff } from 'preventScroll'
+import { isFiltered } from 'utils'
 
 const viewStrings = locale.cp.overview.filters // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {params} = state.userMedia
+  const { params } = state.userMedia
 
-  return {params}
+  return { params }
 }
 
 export default connect(mapStateToProps)(class Filters extends Component {
@@ -21,7 +21,7 @@ export default connect(mapStateToProps)(class Filters extends Component {
 
     this.state = {
       modals: {
-        filter: {isActive: false}
+        filter: { isActive: false }
       }
     }
 
@@ -33,12 +33,12 @@ export default connect(mapStateToProps)(class Filters extends Component {
 
     modals.filter.isActive = !modals.filter.isActive
 
-    this.setState({modals})
-    
+    this.setState({ modals })
+
     modals.filter.isActive ? scrollBlockOn() : scrollBlockOff()
   }
 
-  render ({updateUserMedia, params}) {
+  render ({ updateUserMedia, params }) {
     return (
       <div class='flex flex-full-center'>
         <Button

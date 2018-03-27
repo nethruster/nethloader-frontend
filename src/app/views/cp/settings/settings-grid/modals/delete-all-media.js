@@ -1,18 +1,18 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
-import {showSnack} from 'react-redux-snackbar'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
+import { showSnack } from 'react-redux-snackbar'
 
 import Modal from '../../../../shared/modal'
 import FormInput from '../../../../shared/form-input'
-import {validateEmpty} from 'utils'
-import {deleteAllUserImages} from 'serverAPI/settings'
-import {getUserMedia} from 'serverAPI/data'
+import { validateEmpty } from 'utils'
+import { deleteAllUserImages } from 'serverAPI/settings'
+import { getUserMedia } from 'serverAPI/data'
 
 const viewStrings = locale.cp.settings.settings_grid.partials.delete_user_media // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {token, sessionData} = state.authentication
-  const {isFetching} = state.settings
+  const { token, sessionData } = state.authentication
+  const { isFetching } = state.settings
 
   return {
     token,
@@ -70,7 +70,7 @@ export default connect(mapStateToProps)(class DeleteAllMediaModal extends Compon
 
   handleChange (event) {
     let passwordInput = this.state.passwordInput
-    
+
     if (validateEmpty(event.target.value)) {
       passwordInput.inputState = 'invalid'
       passwordInput.validationMessage = viewStrings.empty_password
@@ -79,8 +79,8 @@ export default connect(mapStateToProps)(class DeleteAllMediaModal extends Compon
       passwordInput.inputState = 'valid'
       passwordInput.validationMessage = ''
     }
-    
-    this.setState({passwordInput})
+
+    this.setState({ passwordInput })
   }
 
   handleToggleModal () {
@@ -99,7 +99,7 @@ export default connect(mapStateToProps)(class DeleteAllMediaModal extends Compon
     this.form.reset()
   }
 
-  render ({isActive, toggleModal, isFetching}) {
+  render ({ isActive, toggleModal, isFetching }) {
     return (
       <Modal
         isActive={isActive}

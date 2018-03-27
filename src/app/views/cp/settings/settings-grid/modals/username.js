@@ -1,17 +1,17 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
-import {showSnack} from 'react-redux-snackbar'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
+import { showSnack } from 'react-redux-snackbar'
 
 import Modal from '../../../../shared/modal'
 import FormInput from '../../../../shared/form-input'
-import {validateEmpty, validateName} from 'utils'
-import {changeUserName} from 'serverAPI/settings'
-import {getUserData} from 'serverAPI/data'
+import { validateEmpty, validateName } from 'utils'
+import { changeUserName } from 'serverAPI/settings'
+import { getUserData } from 'serverAPI/data'
 
 const viewStrings = locale.cp.settings.settings_grid.partials.username // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {token, sessionData} = state.authentication
+  const { token, sessionData } = state.authentication
 
   return {
     token,
@@ -92,7 +92,7 @@ export default connect(mapStateToProps)(class UsernameModal extends Component {
     this.form.reset()
   }
 
-  render ({isActive, toggleModal}) {
+  render ({ isActive, toggleModal }) {
     return (
       <Modal
         isActive={isActive}

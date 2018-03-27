@@ -8,9 +8,9 @@
 
         border-radius: var(--base-br);
 
-        &-small { 
+        &-small {
             max-width: 650px;
-            
+
             @media(max-width: 650px) { border-radius: 0; }
         }
 

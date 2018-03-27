@@ -1,7 +1,7 @@
-import {h, Component} from 'preact'
-import {NavLink} from 'react-router-dom'
-import {copyToClipboard} from 'utils'
-import {connect} from 'preact-redux'
+import { h, Component } from 'preact'
+import { NavLink } from 'react-router-dom'
+import { copyToClipboard } from 'utils'
+import { connect } from 'preact-redux'
 import Button from '../../../shared/button'
 import Icon from '../../../shared/icon'
 
@@ -10,9 +10,9 @@ import style from './styles.scss'
 const viewStrings = locale.cp.settings.sidebar // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {userData} = state.userData
+  const { userData } = state.userData
 
-  return {userData}
+  return { userData }
 }
 
 export default connect(mapStateToProps)(class Sidebar extends Component {
@@ -35,8 +35,8 @@ export default connect(mapStateToProps)(class Sidebar extends Component {
       this.setState({ valueCopied: !this.state.valueCopied })
     }, 1500)
   }
-  
-  render ({userData}) {
+
+  render ({ userData }) {
     return (
       <div class={`flex flex-dc ${style.sidebar}`}>
         <div class='flex flex-main-center flex-dc'>

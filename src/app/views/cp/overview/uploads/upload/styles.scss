@@ -1,4 +1,4 @@
-:local {    
+:local {
     .upload {
         min-height: var(--medialist-item-height);
         max-height: var(--medialist-item-height);
@@ -29,12 +29,11 @@
             overflow: hidden;
             user-select: none;
 
-            img, 
-            video { 
+            img,
+            video {
                 display: block;
-                border-radius: var(--base-br);                
+                border-radius: var(--base-br);
             }
         }
     }
 }
-

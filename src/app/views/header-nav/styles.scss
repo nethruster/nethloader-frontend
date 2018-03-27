@@ -3,7 +3,7 @@
         height: var(--header-nav-height);
 
         background: var(--contrast-gradient);
-        
+
         padding: 0 calc(var(--base-pm) * 5);
 
         &Logo {
@@ -26,7 +26,7 @@
 
         @media(max-width: 620px) {
             padding: 0 calc(var(--base-pm) * 2);
-            
+
             &Logo {
                 &Title { display: none!important; }
             }

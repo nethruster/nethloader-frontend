@@ -3,14 +3,14 @@
         width: 100%;
 
         margin-top: var(--base-pm);
-        
-        .valid:not([noValidationStyle]) { 
+
+        .valid:not([noValidationStyle]) {
             border-color: var(--valid-color);
 
             & + label { color: var(--valid-color); }
         }
-        
-        .invalid:not([noValidationStyle]) { 
+
+        .invalid:not([noValidationStyle]) {
             border-color: var(--warning-color);
 
             & + label { color: var(--warning-color); }
@@ -65,7 +65,7 @@
 
             border: 1px solid var(--contrast-bg);
             border-radius: var(--base-br);
-            
+
             font-family: inherit;
         }
     }

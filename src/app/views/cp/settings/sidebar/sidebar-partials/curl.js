@@ -1,19 +1,19 @@
-import {h, Component} from 'preact'
-import {Link} from 'react-router-dom'
-import {connect} from 'preact-redux'
+import { h, Component } from 'preact'
+import { Link } from 'react-router-dom'
+import { connect } from 'preact-redux'
 import Ink from 'react-ink'
 
 import Button from '../../../../shared/button'
-import {copyToClipboard} from 'utils'
+import { copyToClipboard } from 'utils'
 
 import style from './styles.scss'
 
 const viewStrings = locale.cp.settings.sidebar.partials.curl // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {userData} = state.userData
+  const { userData } = state.userData
 
-  return {userData}
+  return { userData }
 }
 
 export default connect(mapStateToProps)(class CurlPartial extends Component {
@@ -37,7 +37,7 @@ export default connect(mapStateToProps)(class CurlPartial extends Component {
     }, 1500)
   }
 
-  render ({userData}) {
+  render ({ userData }) {
     /* eslint-disable no-undef */
     const curlCommand = `curl -X POST \\
           ${apiBaseUrl.replace('graphql', 'api')} \\

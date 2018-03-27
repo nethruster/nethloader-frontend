@@ -1,10 +1,10 @@
-import {h} from 'preact'
+import { h } from 'preact'
 
 import Ink from 'react-ink'
 
 import style from './styles.scss'
 
-export default function Checkbox ({onChangeHandler, isSelected, text, dataId, customClass, tabindex, disabled}) {
+export default function Checkbox ({ onChangeHandler, isSelected, text, dataId, customClass, tabindex, disabled }) {
   return (
     <div class={`flex flex-full-center ${style.checkboxWrapper}`}>
       <input

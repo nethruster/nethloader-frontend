@@ -95,7 +95,7 @@ module.exports = {
         minifyJS: true
       },
       hash: true,
-      
+
       template: APP_DIR + '/index.html'
     }),
     isProduction ? new CompressionPlugin({
@@ -104,7 +104,7 @@ module.exports = {
       minRatio: 0.8
     }) : new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({names: ['vendor']}),
+    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor'] }),
     new CopyWebpackPlugin([
       { from: path.join(APP_DIR, 'assets', 'favicons'), to: path.join(BUILD_DIR, 'assets', 'favicons') },
       { from: path.join(APP_DIR, 'assets', 'css'), to: path.join(BUILD_DIR, 'assets', 'css') },

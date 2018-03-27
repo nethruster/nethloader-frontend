@@ -1,14 +1,14 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
 
 import Modal from '../../../../shared/modal'
-import {renewUserApiKey} from 'serverAPI/settings'
-import {getUserData} from 'serverAPI/data'
+import { renewUserApiKey } from 'serverAPI/settings'
+import { getUserData } from 'serverAPI/data'
 
 const viewStrings = locale.cp.settings.settings_grid.partials.apikey // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {token, sessionData} = state.authentication
+  const { token, sessionData } = state.authentication
 
   return {
     token,
@@ -30,7 +30,7 @@ export default connect(mapStateToProps)(class ApiKeyModal extends Component {
     })
   }
 
-  render ({isActive, toggleModal}) {
+  render ({ isActive, toggleModal }) {
     return (
       <Modal
         isActive={isActive}

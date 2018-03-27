@@ -8,8 +8,8 @@
         border: 1px solid rgba(0,0,0,.08);
 
         img,
-        video { 
-            border-radius: var(--base-br); 
+        video {
+            border-radius: var(--base-br);
         }
 
         img { cursor: zoom-in; }
@@ -28,8 +28,8 @@
             border: none;
 
             text-align: center;
-           
-            overflow: auto; 
+
+            overflow: auto;
             z-index: 100;
 
             .closeButton { display: flex; }
@@ -57,7 +57,7 @@
 
         background-color: var(--default-bg);
         border-bottom: 1px solid rgba(0,0,0,.08);
-        
+
         span { cursor: pointer; }
 
         svg { margin-right: 32px; }

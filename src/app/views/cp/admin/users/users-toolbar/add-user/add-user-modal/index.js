@@ -1,21 +1,21 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
-import {showSnack} from 'react-redux-snackbar'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
+import { showSnack } from 'react-redux-snackbar'
 
 import Modal from '../../../../../../shared/modal'
 import FormInput from '../../../../../../shared/form-input'
 import Checkbox from '../../../../../../shared/checkbox'
-import {validateEmpty, validateEmail, validateName} from 'utils'
-import {createUser, getUsers} from 'serverAPI/admin-settings'
+import { validateEmpty, validateEmail, validateName } from 'utils'
+import { createUser, getUsers } from 'serverAPI/admin-settings'
 
 import style from './styles.scss'
 
 const viewStrings = locale.cp.admin.users.toolbar.add_user_modal // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {token} = state.authentication
+  const { token } = state.authentication
 
-  return {token}
+  return { token }
 }
 
 export default connect(mapStateToProps)(class CreateUserModal extends Component {
@@ -70,7 +70,7 @@ export default connect(mapStateToProps)(class CreateUserModal extends Component 
   }
 
   handleChange (event) {
-    let state = {...this.state}
+    let state = { ...this.state }
 
     let input = event.target
     let activeInputOnState = state[event.target.id]
@@ -106,7 +106,7 @@ export default connect(mapStateToProps)(class CreateUserModal extends Component 
     if (this.state.email.inputState === 'valid' && this.state.username.inputState === 'valid') {
       this.props.dispatch(createUser(this.state.username.value, this.state.email.value, this.state.password.value, this.state.willBeAdmin, this.props.token)).then(() => {
         this.form.reset()
-        this.setState({...this.defaultState})
+        this.setState({ ...this.defaultState })
         this.getUsers()
         this.props.toggleModal()
       })
@@ -119,7 +119,7 @@ export default connect(mapStateToProps)(class CreateUserModal extends Component 
     }
   }
 
-  render ({isActive, toggleModal}) {
+  render ({ isActive, toggleModal }) {
     return (
       <Modal
         isActive={isActive}

@@ -1,10 +1,10 @@
-import {h, Component} from 'preact'
+import { h, Component } from 'preact'
 
 import Button from '../button'
 import Ink from 'react-ink'
 import Icon from '../icon'
-import {getPageFactor} from 'utils'
-import {scrollBlockOff, scrollBlockOn} from 'preventScroll'
+import { getPageFactor } from 'utils'
+import { scrollBlockOff, scrollBlockOn } from 'preventScroll'
 
 import style from './styles.scss'
 
@@ -12,7 +12,7 @@ export default class DropDownMenu extends Component {
   constructor (props) {
     super(props)
 
-    this.state = {isOpen: false}
+    this.state = { isOpen: false }
 
     this.handleClick = this.handleClick.bind(this)
   }
@@ -22,11 +22,11 @@ export default class DropDownMenu extends Component {
   }
 
   handleClick () {
-    this.setState({isOpen: !this.state.isOpen})
+    this.setState({ isOpen: !this.state.isOpen })
     this.state.isOpen ? scrollBlockOn() : scrollBlockOff()
   }
 
-  render ({customIcon, navTrigger, centered, noMinWidth, localePageString}) {
+  render ({ customIcon, navTrigger, centered, noMinWidth, localePageString }) {
     return (
       <div class='flex flex-full-center'>
         <div class={style.dropdownWrapper}>

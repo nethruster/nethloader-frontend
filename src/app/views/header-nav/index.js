@@ -1,5 +1,5 @@
-import {h} from 'preact'
-import {Link} from 'react-router-dom'
+import { h } from 'preact'
+import { Link } from 'react-router-dom'
 
 import HeaderNav from './nav'
 

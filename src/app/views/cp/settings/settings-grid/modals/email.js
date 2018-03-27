@@ -1,12 +1,12 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
-import {showSnack} from 'react-redux-snackbar'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
+import { showSnack } from 'react-redux-snackbar'
 
 import Modal from '../../../../shared/modal'
 import FormInput from '../../../../shared/form-input'
-import {validateEmpty, validateEmail} from 'utils'
-import {changeUserEmail} from 'serverAPI/settings'
-import {getUserData} from 'serverAPI/data'
+import { validateEmpty, validateEmail } from 'utils'
+import { changeUserEmail } from 'serverAPI/settings'
+import { getUserData } from 'serverAPI/data'
 
 const viewStrings = locale.cp.settings.settings_grid.partials.email // eslint-disable-line no-undef
 
@@ -79,7 +79,7 @@ export default connect(mapStateToProps)(class EmailModal extends Component {
 
   handleToggleModal () {
     this.props.toggleModal()
-    
+
     let newEmail = {
       inputState: 'empty',
       value: '',
@@ -93,7 +93,7 @@ export default connect(mapStateToProps)(class EmailModal extends Component {
     this.form.reset()
   }
 
-  render ({isActive, toggleModal}) {
+  render ({ isActive, toggleModal }) {
     return (
       <Modal
         isActive={isActive}

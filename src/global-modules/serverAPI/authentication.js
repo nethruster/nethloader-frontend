@@ -1,10 +1,11 @@
 import jwtDecode from 'jwt-decode'
 
-import {getStorageParams} from 'serverAPI/data'
+import { getStorageParams } from 'serverAPI/data'
 import {
   requestLogin, receiveLogin, loginError,
   requestRegister, receiveRegister, registerError,
-  requestLogout, receiveLogout } from 'actions/authentication'
+  requestLogout, receiveLogout
+} from 'actions/authentication'
 
 // Login
 const loginUser = (credentials, maintainSession, history, loginFormElement) => {
@@ -23,7 +24,7 @@ const loginUser = (credentials, maintainSession, history, loginFormElement) => {
     dispatch(requestLogin())
 
     let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
-    
+
     let responseData = await serverResponse.json()
     if (serverResponse.status >= 200 && serverResponse.status < 300) {
       if (responseData.data.login) {

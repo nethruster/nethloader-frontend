@@ -6,7 +6,7 @@
             font-weight: 300;
             font-size: .95em;
 
-            @media(max-width: 420px) { 
+            @media(max-width: 420px) {
                 flex-direction: column;
 
                 margin: 0!important;
@@ -18,7 +18,7 @@
         &Content {
             margin-top: calc(var(--base-pm) * 2);
             opacity: .7;
-            
+
             span { margin: calc(var(--base-pm) * 2); }
 
             svg { color: #000; }

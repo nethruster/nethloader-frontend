@@ -1,17 +1,17 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
 
 import Button from '../../../../../../shared/button'
 import FormInput from '../../../../../../shared/form-input'
 import FormInputRadio from '../../../../../../shared/form-input-radio'
-import {isFiltered} from 'utils'
+import { isFiltered } from 'utils'
 
 import style from './styles.scss'
 
 const viewStrings = locale.cp.overview.filters.form // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {params, userMedia, isFetchingMedia} = state.userMedia
+  const { params, userMedia, isFetchingMedia } = state.userMedia
 
   return {
     params,
@@ -60,22 +60,22 @@ export default connect(mapStateToProps)(class FiltersForm extends Component {
 
     this.filtersForm.reset()
 
-    this.setState({filters: defaultFilters})
+    this.setState({ filters: defaultFilters })
     this.handleSubmitFilters()
   }
 
   handleTypeChange (e) {
     let filters = this.state.filters
     filters.type = e.target.value
-    this.setState({filters})
+    this.setState({ filters })
   }
 
   handleDateChange (e) {
     let filters = this.state.filters
-    filters[e.target.id] = e.target.value
+    filters[ e.target.id ] = e.target.value
       ? new Date(e.target.value).getTime()
       : ''
-    this.setState({filters})
+    this.setState({ filters })
   }
 
   handleMediaLimitChange (e) {
@@ -83,10 +83,10 @@ export default connect(mapStateToProps)(class FiltersForm extends Component {
     e.target.value === viewStrings.all
       ? filters.mediaLimit = this.props.userMedia.totalCount
       : filters.mediaLimit = e.target.value
-    this.setState({filters})
+    this.setState({ filters })
   }
 
-  render ({updateUserMedia, params, dispatch, userMedia, isFetchingMedia}) {
+  render ({ updateUserMedia, params, dispatch, userMedia, isFetchingMedia }) {
     return (
       <form
         onSubmit={this.handleSubmitFilters}

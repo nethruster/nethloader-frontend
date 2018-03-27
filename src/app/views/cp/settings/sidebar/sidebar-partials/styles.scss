@@ -15,11 +15,11 @@
 
             margin: var(--base-pm) calc(var(--base-pm) / 2);
             padding: calc(var(--base-pm) / 2);
-            
+
             border-radius: var(--base-br);
         }
 
-        .warning { 
+        .warning {
             max-width: 450px;
             margin: calc(var(--base-pm) * 2) auto;
             font-size: .9em;
@@ -109,21 +109,21 @@
     .copyButton {
         position: relative;
         min-width: 80px;
-        
+
         margin: 2px calc(var(--base-pm) / 2);
         padding: 2px calc(var(--base-pm) * 2);
-        
+
         border: none;
         color: rgba(255, 255, 255, 0.836);
-        
+
         background: rgba(48, 53, 58, 0.85);
         border-radius: var(--base-br);
-        
+
         font-size: .8em;
 
         cursor: pointer;
         outline: none;
         text-transform: uppercase;
-        
+
     }
 }

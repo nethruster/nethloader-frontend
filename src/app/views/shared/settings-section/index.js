@@ -1,5 +1,5 @@
-import {h} from 'preact'
-import {connect} from 'preact-redux'
+import { h } from 'preact'
+import { connect } from 'preact-redux'
 import Ink from 'react-ink'
 
 import Icon from '../icon'
@@ -7,12 +7,12 @@ import Icon from '../icon'
 import style from './styles.scss'
 
 const mapStateToProps = (state) => {
-  const {isTouchDevice} = state.html5video
+  const { isTouchDevice } = state.html5video
 
-  return {isTouchDevice}
+  return { isTouchDevice }
 }
 
-export default connect(mapStateToProps)(({icon, isTouchDevice, title, currentText, currentData, onClickExecute, disabled, danger, hidden}) => {
+export default connect(mapStateToProps)(({ icon, isTouchDevice, title, currentText, currentData, onClickExecute, disabled, danger, hidden }) => {
   return (
     <div class={`flex flex-full-center flex-dc ${style.section} ${disabled ? style.sectionDisabled : ''} ${hidden ? style.sectionHidden : ''}`} onClick={onClickExecute}>
       <Ink />

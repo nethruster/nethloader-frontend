@@ -9,7 +9,7 @@
 
             font: inherit;
             cursor: pointer;
-            
+
             user-select: none;
             outline: none;
         }
@@ -17,7 +17,7 @@
         .checkbox {
             width: calc(15px + calc(var(--base-pm) * 2));
             padding: var(--base-pm);
-            
+
             pointer-events: none;
 
             &:before {
@@ -47,7 +47,7 @@
            }
         }
 
-        p { 
+        p {
             padding: var(--base-pm);
             font-size: .95em;
 

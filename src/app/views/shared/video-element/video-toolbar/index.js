@@ -1,15 +1,15 @@
 
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
 
-import {toggleControls} from 'actions/html5video'
+import { toggleControls } from 'actions/html5video'
 
 import Button from '../../button'
 
 const viewStrings = locale.media_view.toolbar // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {showControls, isTouchDevice} = state.html5video
+  const { showControls, isTouchDevice } = state.html5video
 
   return {
     showControls,
@@ -28,7 +28,7 @@ export default connect(mapStateToProps)(class VideoElement extends Component {
     this.props.dispatch(toggleControls(this.props.showControls))
   }
 
-  render ({showControls, isTouchDevice}) {
+  render ({ showControls, isTouchDevice }) {
     if (isTouchDevice) return {}
     return (
       <a

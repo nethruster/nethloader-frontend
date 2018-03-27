@@ -15,12 +15,18 @@
         ]
     ],
     "plugins": [
-        ["transform-react-jsx", {
-            "pragma": "h"
-        }],
-        ["transform-runtime", {
-            "polyfill": true,
-            "regenerator": true
-        }]
+        [
+            "transform-react-jsx",
+            {
+                "pragma": "h"
+            }
+        ],
+        [
+            "transform-runtime",
+            {
+                "polyfill": true,
+                "regenerator": true
+            }
+        ]
     ]
 }

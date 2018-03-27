@@ -1,15 +1,13 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
 
 import Button from '../../../../../shared/button'
-import {userSelectAll, userUnselectAll} from 'actions/admin-settings'
-
-import './styles.scss'
+import { userSelectAll, userUnselectAll } from 'actions/admin-settings'
 
 const mapStateToProps = (state) => {
-  const {sessionData} = state.authentication
-  const {allToggled, selectedUsers} = state.userSelect
-  const {uData} = state.users
+  const { sessionData } = state.authentication
+  const { allToggled, selectedUsers } = state.userSelect
+  const { uData } = state.users
 
   return {
     allToggled,
@@ -37,7 +35,7 @@ export default connect(mapStateToProps)(class SelectUserControls extends Compone
     }
   }
 
-  render ({handleDeleteClick}) {
+  render ({ handleDeleteClick }) {
     return (
       <div class={`flex flex-cross-center flex-sb`}>
         <Button

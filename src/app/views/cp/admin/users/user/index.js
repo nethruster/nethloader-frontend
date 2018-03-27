@@ -1,6 +1,6 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
-import {Link} from 'react-router-dom'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
+import { Link } from 'react-router-dom'
 
 import Checkbox from '../../../../shared/checkbox'
 import Button from '../../../../shared/button'
@@ -11,8 +11,8 @@ import style from './styles.scss'
 const viewStrings = locale.cp.admin.users.user // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {selectedUsers} = state.userSelect
-  const {sessionData} = state.authentication
+  const { selectedUsers } = state.userSelect
+  const { sessionData } = state.authentication
 
   return {
     selectedUsers,
@@ -21,7 +21,7 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(class User extends Component {
-  render ({itemData, selectedUsers, handleToggleUser, sessionData, toggleDeleteConfirmModal}) {
+  render ({ itemData, selectedUsers, handleToggleUser, sessionData, toggleDeleteConfirmModal }) {
     return (
       <li
         style={style}

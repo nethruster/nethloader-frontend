@@ -1,8 +1,8 @@
-import {h, Component} from 'preact'
+import { h, Component } from 'preact'
 
 import Button from '../../../../../shared/button'
 import CreateUserModal from './add-user-modal'
-import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
+import { scrollBlockOn, scrollBlockOff } from 'preventScroll'
 
 export default class AddUser extends Component {
   constructor (props) {

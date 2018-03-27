@@ -13,19 +13,19 @@
             opacity: 0;
             border: 1px solid transparent;
             border-radius: var(--base-br);
-            
+
             overflow: hidden;
             pointer-events: none;
             transition: .3s ease-in-out;
             transition-property: max-height, opacity, box-shadow;
-            
+
             &.active {
                 max-height: 275px;
 
                 border-color: var(--default-border-color);
                 box-shadow: 0 2px 8px 0 rgba(78, 86, 95, 0.1);
                 opacity: 1;
-                
+
                 overflow-y: auto;
                 z-index: 3;
                 pointer-events: initial;
@@ -52,7 +52,7 @@
                     opacity: .8;
                     border-radius: var(--base-br) var(--base-br) 0 0;
                     text-align: center;
-                    
+
                     cursor: pointer;
                     transition: background-color .2s ease-in-out;
                     user-select: none;

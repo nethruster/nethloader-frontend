@@ -1,16 +1,16 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
 
 import MediaItem from './media-item'
 import MediaInfo from './media-info'
 import ViewLoading from '../shared/view-loading'
 import NotFound from '../shared/not-found'
-import {getMediaInfo} from 'serverAPI/media'
+import { getMediaInfo } from 'serverAPI/media'
 
 import style from './styles.scss'
 
 function mapStateToProps (state) {
-  const {mediaInfo, isFetching} = state.mediaInfo
+  const { mediaInfo, isFetching } = state.mediaInfo
 
   return {
     mediaInfo,
@@ -45,12 +45,12 @@ export default connect(mapStateToProps)(class MediaView extends Component {
 
   componentWillMount () {
     window.scrollTo(0, 0) // Quick hack to fix react-routing scroll issue
-    
+
     let routeId = this.context.router.route.match.params.id
     let metaScript = document.getElementById('meta-script')
-    
+
     if (metaScript && ssrData.id === routeId) { // eslint-disable-line no-undef
-      this.setState({mediaData: ssrData}) // eslint-disable-line no-undef
+      this.setState({ mediaData: ssrData }) // eslint-disable-line no-undef
     } else {
       this.props.dispatch(getMediaInfo(routeId)).then((data) => {
         this.mediaSrc = `${baseMediaPath}${data.user.id}/${data.id}.${data.extension}` // eslint-disable-line no-undef
@@ -62,12 +62,12 @@ export default connect(mapStateToProps)(class MediaView extends Component {
         mediaData.createdAt = data.createdAt
         mediaData.userId = data.user.id
 
-        this.setState({mediaData})
+        this.setState({ mediaData })
       }).catch((err) => {
         console.error(err)
         let mediaData = this.state.mediaData
         mediaData.found = false
-        this.setState({mediaData})
+        this.setState({ mediaData })
       })
     }
   }
@@ -83,7 +83,7 @@ export default connect(mapStateToProps)(class MediaView extends Component {
     }
   }
 
-  render ({isFetching}) {
+  render ({ isFetching }) {
     return (
       <div class={`${style.mediaView} flex flex-full-center`}>
         {

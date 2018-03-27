@@ -1,11 +1,11 @@
-import {h, Component} from 'preact'
+import { h, Component } from 'preact'
 
 import Button from '../button'
 
 import style from './styles.scss'
 
 const viewStrings = locale.shared.modal // eslint-disable-line no-undef
- 
+
 export default class Modal extends Component {
   componentWillReceiveProps (props) {
     if (props.isActive) {
@@ -14,7 +14,7 @@ export default class Modal extends Component {
       document.body.removeAttribute('style')
     }
   }
-    
+
   render ({
     isActive,
     modalTitle,

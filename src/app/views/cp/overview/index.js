@@ -1,19 +1,19 @@
-import {h, Component} from 'preact'
-import {Link} from 'react-router-dom'
-import {connect} from 'preact-redux'
+import { h, Component } from 'preact'
+import { Link } from 'react-router-dom'
+import { connect } from 'preact-redux'
 
 import Uploads from './uploads'
 import Button from '../../shared/button'
-import {getUserMedia} from 'serverAPI/data'
-import {getPageFactor} from 'utils'
+import { getUserMedia } from 'serverAPI/data'
+import { getPageFactor } from 'utils'
 
 import style from './styles.scss'
 
 const viewStrings = locale.cp.overview // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {userMedia, isFetchingMedia, params} = state.userMedia
-  const {token, sessionData, isAuthenticated} = state.authentication
+  const { userMedia, isFetchingMedia, params } = state.userMedia
+  const { token, sessionData, isAuthenticated } = state.authentication
 
   return {
     userMedia,
@@ -52,7 +52,7 @@ export default connect(mapStateToProps)(class Overview extends Component {
     this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token, newParams))
   }
 
-  render ({isFetchingMedia, userMedia, params}) {
+  render ({ isFetchingMedia, userMedia, params }) {
     return (
       <div class={`${style.overview} flex flex-main-center`}>
         {
@@ -64,7 +64,7 @@ export default connect(mapStateToProps)(class Overview extends Component {
                   <Link to='/cp/overview/'>
                     <Button text={viewStrings.go_to_first_page} />
                   </Link>
-                &nbsp;&nbsp;
+                  &nbsp;&nbsp;
                   <Link to={`/cp/overview/${this.pageFactor}`}>
                     <Button text={viewStrings.go_to_previous_page} />
                   </Link>

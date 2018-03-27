@@ -1,5 +1,5 @@
-import {h} from 'preact'
-import {NavLink} from 'react-router-dom'
+import { h } from 'preact'
+import { NavLink } from 'react-router-dom'
 
 import Icon from '../icon'
 
@@ -9,7 +9,7 @@ import version from 'version'
 
 const viewStrings = locale.footer // eslint-disable-line no-undef
 
-export default function Footer ({contentFooter}) {
+export default function Footer ({ contentFooter }) {
   return (
     <footer class={`${style.footer} ${contentFooter ? style.footerContent : ''}`}>
       <span class='flex flex-full-center'>

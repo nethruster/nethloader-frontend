@@ -1,24 +1,24 @@
-import {h, Component} from 'preact'
-import {withRouter} from 'react-router-dom'
-import {connect} from 'preact-redux'
-import {showSnack} from 'react-redux-snackbar'
+import { h, Component } from 'preact'
+import { withRouter } from 'react-router-dom'
+import { connect } from 'preact-redux'
+import { showSnack } from 'react-redux-snackbar'
 import Ink from 'react-ink'
 
 import Button from '../../shared/button'
 import Modal from '../../shared/modal'
 import Icon from '../../shared/icon'
-import {isValidFormat, getPageFactor, supportedExtensions} from 'utils'
-import {uploadMedia, getMediaInfo} from 'serverAPI/media'
-import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
+import { isValidFormat, getPageFactor, supportedExtensions } from 'utils'
+import { uploadMedia, getMediaInfo } from 'serverAPI/media'
+import { scrollBlockOn, scrollBlockOff } from 'preventScroll'
 
 import style from './styles.scss'
 
 const viewStrings = locale.shared.upload_media // eslint-disable-line no-undef
 
 function mapStateToProps (state) {
-  const {token, sessionData} = state.authentication
-  const {params} = state.userMedia
-  const {isFetchingUser, strData} = state.userData
+  const { token, sessionData } = state.authentication
+  const { params } = state.userMedia
+  const { isFetchingUser, strData } = state.userData
 
   return {
     token,
@@ -68,7 +68,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
 
     modals.upload.uploadedFileCount++
 
-    this.setState({modals})
+    this.setState({ modals })
   }
 
   toggleUploadModal () {
@@ -81,7 +81,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
 
       modals.upload.isActive = !modals.upload.isActive
 
-      this.setState({modals})
+      this.setState({ modals })
     }
   }
 
@@ -95,7 +95,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     modals.upload.selectedFiles = []
     modals.upload.uploadedFileCount = 0
 
-    this.setState({modals})
+    this.setState({ modals })
   }
 
   toggleIsUploading () {
@@ -105,7 +105,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
 
     modals.upload.isUploading = !modals.upload.isUploading
 
-    this.setState({modals})
+    this.setState({ modals })
   }
 
   // Traditional file input methods
@@ -181,7 +181,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
       button: { label: viewStrings.toast_ok }
     }))
 
-    this.setState({modals})
+    this.setState({ modals })
   }
 
   // Drag & drop methods
@@ -225,11 +225,11 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
         button: { label: viewStrings.toast_ok }
       }))
 
-      this.setState({modals})
+      this.setState({ modals })
     }
   }
 
-  render ({dispatch, isAuthenticated, token, isFetchingUser, strData}) {
+  render ({ dispatch, isAuthenticated, token, isFetchingUser, strData }) {
     return (
       <span>
         <Button
@@ -301,12 +301,12 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
               {
                 !isFetchingUser &&
                 !!strData.supportedVideoExtensions &&
-              (
-                <div class='flex flex-cross-center flex-sa'>
-                  <p><Icon iconName='file-video' />&nbsp;<span>{strData.supportedVideoExtensions.join(', ')}</span></p>
-                  <p><Icon iconName='file-image' />&nbsp;<span>{strData.supportedImageExtensions.join(', ')}</span></p>
-                </div>
-              )
+                (
+                  <div class='flex flex-cross-center flex-sa'>
+                    <p><Icon iconName='file-video' />&nbsp;<span>{strData.supportedVideoExtensions.join(', ')}</span></p>
+                    <p><Icon iconName='file-image' />&nbsp;<span>{strData.supportedImageExtensions.join(', ')}</span></p>
+                  </div>
+                )
               }
             </div>
           </div>

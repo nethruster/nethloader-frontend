@@ -1,4 +1,4 @@
-import {h, Component} from 'preact'
+import { h, Component } from 'preact'
 
 import './styles.scss'
 
@@ -10,7 +10,7 @@ export default class Button extends Component {
     return this.props.iconName !== nextProps.iconName
   }
 
-  render ({iconName, iconColor}) {
+  render ({ iconName, iconColor }) {
     const iconStyle = {
       fill: iconColor || ''
     }

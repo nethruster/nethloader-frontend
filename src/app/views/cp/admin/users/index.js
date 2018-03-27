@@ -1,5 +1,5 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
 import VirtualList from 'react-virtual-list'
 
 import Icon from '../../../shared/icon'
@@ -7,18 +7,18 @@ import Modal from '../../../shared/modal'
 import ViewLoading from '../../../shared/view-loading'
 import User from './user'
 import UsersToolbar from './users-toolbar'
-import {getUsers, deleteUser} from 'serverAPI/admin-settings'
-import {userSelect, userUnselect, userUnselectAll} from 'actions/admin-settings'
-import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
+import { getUsers, deleteUser } from 'serverAPI/admin-settings'
+import { userSelect, userUnselect, userUnselectAll } from 'actions/admin-settings'
+import { scrollBlockOn, scrollBlockOff } from 'preventScroll'
 
 import style from './styles.scss'
 
 const viewStrings = locale.cp.admin.users // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {isFetchingUsers, uData} = state.users
-  const {allToggled, selectedUsers} = state.userSelect
-  const {token, sessionData} = state.authentication
+  const { isFetchingUsers, uData } = state.users
+  const { allToggled, selectedUsers } = state.userSelect
+  const { token, sessionData } = state.authentication
 
   return {
     token,
@@ -157,7 +157,7 @@ export default connect(mapStateToProps)(class UsersPartial extends Component {
     }
   }
 
-  render ({isFetchingUsers, uData}) {
+  render ({ isFetchingUsers, uData }) {
     return (
       <div class={style.section}>
         <div class='flex flex-cross-center'><h3 class='flex flex-full-center'><Icon iconName='account-multiple' />&nbsp;{viewStrings.title}</h3></div>

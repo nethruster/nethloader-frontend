@@ -4,7 +4,7 @@
         width: 100%;
         grid-template-rows: minmax(55px, max-content);
         grid-template-columns: var(--users-template-column);
-        
+
         padding: 0 8px;
         font-size: .92em;
 
@@ -20,7 +20,7 @@
 
             &FieldEmail { display: none!important; }
         }
-        
+
         &Field {
             p {
                 overflow: hidden;
@@ -46,19 +46,19 @@
                 }
             }
         }
-       
-        
+
+
         &:not(:last-child) { border-bottom: 1px solid var(--default-border-color); }
-        
+
         &:hover { background-color: rgba(0, 0, 0, 0.05); }
     }
-    
+
     .selectButton {
         min-width: 40px;
         min-height: 40px;
 
         border-radius: 100%!important;
-        
+
         cursor: pointer;
 
         transition: background-color .3s;

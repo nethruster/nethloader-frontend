@@ -24,9 +24,9 @@ footer, header, menu, nav { display: block; }
 
 input, select, textarea, button { font: inherit; }
 
-a, button, input, label, select, textarea { 
-    -ms-touch-action: manipulation; 
-    touch-action: manipulation; 
+a, button, input, label, select, textarea {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
 }
 
 a {
@@ -59,9 +59,9 @@ ul { list-style: none; }
 
 *,
 *:before,
-*:after { 
-    -webkit-box-sizing: inherit; 
-    box-sizing: inherit; 
+*:after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 img {

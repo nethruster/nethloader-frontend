@@ -1,6 +1,6 @@
-import {h} from 'preact'
-import {Switch, Route, Redirect} from 'react-router-dom'
-import {connect} from 'preact-redux'
+import { h } from 'preact'
+import { Switch, Route, Redirect } from 'react-router-dom'
+import { connect } from 'preact-redux'
 
 import asyncComponent from 'asyncComponent'
 import Subheader from './subheader'
@@ -10,12 +10,12 @@ import NotFound from '../shared/not-found'
 import style from './styles.scss'
 
 const mapStateToProps = (state) => {
-  const {isFetchingUser} = state.userData
+  const { isFetchingUser } = state.userData
 
-  return {isFetchingUser}
+  return { isFetchingUser }
 }
 
-export default connect(mapStateToProps)(({isFetchingUser}) => {
+export default connect(mapStateToProps)(({ isFetchingUser }) => {
   return (
     isFetchingUser
       ? <ViewLoading />

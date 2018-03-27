@@ -1,8 +1,8 @@
-import {h, Component} from 'preact'
-import {Link} from 'react-router-dom'
-import {connect} from 'preact-redux'
+import { h, Component } from 'preact'
+import { Link } from 'react-router-dom'
+import { connect } from 'preact-redux'
 
-import {copyToClipboard} from 'utils'
+import { copyToClipboard } from 'utils'
 import Button from '../../../../shared/button'
 import Icon from '../../../../shared/icon'
 
@@ -11,7 +11,7 @@ import style from './styles.scss'
 const viewStrings = locale.cp.settings.sidebar.partials.sharex // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {userData} = state.userData
+  const { userData } = state.userData
 
   return {
     userData
@@ -37,7 +37,7 @@ export default connect(mapStateToProps)(class SharexPartial extends Component {
     }, 1500)
   }
 
-  render ({userData}) {
+  render ({ userData }) {
     return (
       <div class={style.section}>
         <div class='flex flex-cross-center'><Link to='/cp/settings'><Button customClass={style.backButton} iconButton icon='back' /></Link>&nbsp;<h3>Setting up ShareX</h3></div>

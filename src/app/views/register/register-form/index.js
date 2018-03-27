@@ -1,21 +1,21 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
-import {showSnack} from 'react-redux-snackbar'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
+import { showSnack } from 'react-redux-snackbar'
 
 import FormInput from './../../shared/form-input'
 import Button from '../../shared/button'
-import {validateEmpty, validateEmail, validateName} from 'utils'
-import {registerUser} from 'serverAPI/authentication'
-import {getStorageParams} from 'serverAPI/data'
+import { validateEmpty, validateEmail, validateName } from 'utils'
+import { registerUser } from 'serverAPI/authentication'
+import { getStorageParams } from 'serverAPI/data'
 
 import style from './styles.scss'
 
 const viewStrings = locale.register.form // eslint-disable-line no-undef
 
 function mapStateToProps (state) {
-  const {isFetching} = state.authentication
+  const { isFetching } = state.authentication
 
-  return {isFetching}
+  return { isFetching }
 }
 
 export default connect(mapStateToProps)(class LoginForm extends Component {
@@ -59,7 +59,7 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
 
     let formValidationText = ''
     let input = event.target
-    let activeInputOnState = data[event.target.id]
+    let activeInputOnState = data[ event.target.id ]
 
     activeInputOnState.validationMessage = ''
     activeInputOnState.value = event.target.value
@@ -127,7 +127,7 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
     }
   }
 
-  render ({isFetching}) {
+  render ({ isFetching }) {
     return (
       <form class={`${style.form} flex flex-full-center flex-dc`} onSubmit={this.handleSubmit}>
         <FormInput

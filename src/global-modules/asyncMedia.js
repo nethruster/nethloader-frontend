@@ -1,14 +1,14 @@
-import {h, Component} from 'preact'
+import { h, Component } from 'preact'
 
 import ViewLoading from '../app/views/shared/view-loading'
 import VideoElement from '../app/views/shared/video-element'
-import {isValidVideoFormat, unprocessableExtensions} from 'utils'
+import { isValidVideoFormat, unprocessableExtensions } from 'utils'
 
 export default class AsyncMedia extends Component {
   constructor (props) {
     super(props)
 
-    this.state = {mediaNode: null}
+    this.state = { mediaNode: null }
 
     this.computeMediaSrc = this.computeMediaSrc.bind(this)
     this.hasThumbnail = this.hasThumbnail.bind(this)
@@ -17,7 +17,7 @@ export default class AsyncMedia extends Component {
   hasThumbnail () {
     return !unprocessableExtensions.includes(this.props.mediaInfo.extension)
   }
-  
+
   computeMediaSrc () {
     let userId = this.props.user ? this.props.user : this.props.mediaInfo.userId // eslint-disable-line no-undef
     if (this.props.thumbnail && this.hasThumbnail()) {
@@ -66,7 +66,7 @@ export default class AsyncMedia extends Component {
             console.log('asyncMedia - video error: ' + event)
           }
 
-          this.setState({mediaNode})
+          this.setState({ mediaNode })
 
           tempSourceElement.remove()
           tempVideoElement.remove()
@@ -101,8 +101,8 @@ export default class AsyncMedia extends Component {
             console.log('asyncMedia - image error: ' + event)
           }
 
-          this.setState({mediaNode})
-          
+          this.setState({ mediaNode })
+
           tempImgElement.remove()
         }
       }

@@ -1,20 +1,20 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
-import {showSnack} from 'react-redux-snackbar'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
+import { showSnack } from 'react-redux-snackbar'
 
 import FormInput from './../../shared/form-input'
 import Button from '../../shared/button'
 import Checkbox from '../../shared/checkbox'
-import {loginUser} from 'serverAPI/authentication'
+import { loginUser } from 'serverAPI/authentication'
 
 import style from './styles.scss'
 
 const viewStrings = locale.login.form // eslint-disable-line no-undef
 
 function mapStateToProps (state) {
-  const {isFetching} = state.authentication
+  const { isFetching } = state.authentication
 
-  return {isFetching}
+  return { isFetching }
 }
 
 export default connect(mapStateToProps)(class LoginForm extends Component {
@@ -44,7 +44,7 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
   }
 
   handleMaintainSessionCheckboxToggle () {
-    this.setState({maintainSession: !this.state.maintainSession})
+    this.setState({ maintainSession: !this.state.maintainSession })
   }
 
   handleChange (event) {
@@ -52,7 +52,7 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
       ...this.state.credentials
     }
 
-    credentials[event.target.id] = event.target.value
+    credentials[ event.target.id ] = event.target.value
 
     this.setState({
       credentials,
@@ -80,7 +80,7 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
     })
   }
 
-  render ({isFetching}) {
+  render ({ isFetching }) {
     return (
       <form class={`${style.form} flex flex-full-center flex-dc`} onSubmit={this.handleSubmit}>
         <FormInput

@@ -1,6 +1,6 @@
-import {h} from 'preact'
-import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
-import {connect} from 'preact-redux'
+import { h } from 'preact'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { connect } from 'preact-redux'
 
 import asyncComponent from 'asyncComponent'
 import Content from './views/content'
@@ -10,12 +10,12 @@ import 'style-vars.scss'
 import './styles.scss'
 
 function mapStateToProps (state) {
-  const {isAuthenticated} = state.authentication
+  const { isAuthenticated } = state.authentication
 
-  return {isAuthenticated}
+  return { isAuthenticated }
 }
 
-export default connect(mapStateToProps)(({isAuthenticated}) => {
+export default connect(mapStateToProps)(({ isAuthenticated }) => {
   return (
     <BrowserRouter>
       <Switch>

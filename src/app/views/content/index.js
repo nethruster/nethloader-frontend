@@ -1,11 +1,11 @@
-import {h, Component} from 'preact'
-import {Switch, Route, Redirect} from 'react-router-dom'
-import {connect} from 'preact-redux'
-import {Snackbar} from 'react-redux-snackbar'
+import { h, Component } from 'preact'
+import { Switch, Route, Redirect } from 'react-router-dom'
+import { connect } from 'preact-redux'
+import { Snackbar } from 'react-redux-snackbar'
 
-import {checkUserSessionValidity} from 'utils'
-import {getUserData} from 'serverAPI/data'
-import {logoutUser} from 'serverAPI/authentication'
+import { checkUserSessionValidity } from 'utils'
+import { getUserData } from 'serverAPI/data'
+import { logoutUser } from 'serverAPI/authentication'
 import asyncComponent from 'asyncComponent'
 import Footer from '../shared/footer'
 import HeaderNav from '../header-nav'
@@ -15,7 +15,7 @@ import MediaView from '../media-view'
 import style from './styles.scss'
 
 function mapStateToProps (state) {
-  const {isAuthenticated, token, sessionData} = state.authentication
+  const { isAuthenticated, token, sessionData } = state.authentication
 
   return {
     isAuthenticated,
@@ -49,8 +49,8 @@ export default connect(mapStateToProps)(class Content extends Component {
       }
     }
   }
-  
-  render ({isAuthenticated}) {
+
+  render ({ isAuthenticated }) {
     return (
       <div class={`${style.content} flex flex-dc`} role='main'>
         <HeaderNav />

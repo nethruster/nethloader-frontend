@@ -1,12 +1,12 @@
 :global {
    .loader {
         position: relative;
-        
+
         max-width: 40px;
         min-width: 20px;
 
         margin: 0 auto;
-        
+
         &:before {
             content: '';
             display: block;

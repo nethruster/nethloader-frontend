@@ -1,25 +1,25 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
 
 import Modal from '../../../../../../shared/modal'
 import FormInput from '../../../../../../shared/form-input'
 import Checkbox from '../../../../../../shared/checkbox'
 import Button from '../../../../../../shared/button'
 import Spinner from '../../../../../../shared/spinner'
-import {validateEmpty, validateName, validateEmail} from 'utils'
-import {toggleIsAdmin, getUsers} from 'serverAPI/admin-settings'
-import {renewUserApiKey, changeUserName, changeUserEmail, changeUserPassword} from 'serverAPI/settings'
-import {showSnack} from 'react-redux-snackbar'
+import { validateEmpty, validateName, validateEmail } from 'utils'
+import { toggleIsAdmin, getUsers } from 'serverAPI/admin-settings'
+import { renewUserApiKey, changeUserName, changeUserEmail, changeUserPassword } from 'serverAPI/settings'
+import { showSnack } from 'react-redux-snackbar'
 
 import style from './styles.scss'
 
 const viewStrings = locale.cp.admin.users.user.buttons.edit_user_modal // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {token} = state.authentication
-  const {isFetchingtoggleAdmin} = state.toggleIsAdmin
-  const {isFetching} = state.settings
-  const {isFetchingUsers} = state.users
+  const { token } = state.authentication
+  const { isFetchingtoggleAdmin } = state.toggleIsAdmin
+  const { isFetching } = state.settings
+  const { isFetchingUsers } = state.users
 
   return {
     token,
@@ -157,7 +157,7 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
       username.value = ''
       username.inputState = 'empty'
       username.validationMessage = ''
-      this.setState({username})
+      this.setState({ username })
 
       this.usernameForm.reset()
     } else {
@@ -179,7 +179,7 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
       email.value = ''
       email.inputState = 'empty'
       email.validationMessage = ''
-      this.setState({email})
+      this.setState({ email })
 
       this.emailForm.reset()
     } else {
@@ -201,7 +201,7 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
       password.value = ''
       password.inputState = 'empty'
       password.validationMessage = ''
-      this.setState({password})
+      this.setState({ password })
 
       this.passwordForm.reset()
     } else {
@@ -213,7 +213,7 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
     }
   }
 
-  render ({isActive, toggleModal, data, isFetchingtoggleAdmin, isFetching, isFetchingUsers}) {
+  render ({ isActive, toggleModal, data, isFetchingtoggleAdmin, isFetching, isFetchingUsers }) {
     return (
       <Modal
         isActive={isActive}
@@ -317,9 +317,9 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
           <span class='flex flex-full-center'>
             {viewStrings.current_apikey}:&nbsp;
             <p>
-              { isFetchingUsers
+              {isFetchingUsers
                 ? <Spinner size='20px' />
-                : data.apiKey }
+                : data.apiKey}
             </p>
           </span>
         </div>

@@ -1,24 +1,24 @@
-import {h, Component} from 'preact'
-import {connect} from 'preact-redux'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
 import VirtualList from 'react-virtual-list'
 
 import Upload from './upload'
 import UploadsToolbar from './uploads-toolbar'
 import Modal from '../../../shared/modal'
 import ViewLoading from '../../../shared/view-loading'
-import {deleteMedia} from 'serverAPI/media'
-import {mediaSelect, mediaUnselect, mediaUnselectAll} from 'actions/media'
-import {scrollBlockOn, scrollBlockOff} from 'preventScroll'
+import { deleteMedia } from 'serverAPI/media'
+import { mediaSelect, mediaUnselect, mediaUnselectAll } from 'actions/media'
+import { scrollBlockOn, scrollBlockOff } from 'preventScroll'
 
 import style from './styles.scss'
 
 const viewStrings = locale.cp.overview.uploads // eslint-disable-line no-undef
 
 const mapStateToProps = (state) => {
-  const {isFetchingMedia, userMedia, params, totalCount} = state.userMedia
-  const {isFetchingUser} = state.userData
-  const {sessionData, token} = state.authentication
-  const {selectedMedia} = state.mediaSelect
+  const { isFetchingMedia, userMedia, params, totalCount } = state.userMedia
+  const { isFetchingUser } = state.userData
+  const { sessionData, token } = state.authentication
+  const { selectedMedia } = state.mediaSelect
 
   return {
     isFetchingMedia,
@@ -73,7 +73,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
   }
 
   toggleIsDeleting () {
-    this.setState({isDeleting: !this.state.isDeleting})
+    this.setState({ isDeleting: !this.state.isDeleting })
   }
 
   computeMediaList () {
@@ -128,10 +128,10 @@ export default connect(mapStateToProps)(class Uploads extends Component {
       } else {
         modals.multipleDeleteActive = !modals.multipleDeleteActive
       }
-      
+
       modals.singleDeleteActive || modals.multipleDeleteActive ? scrollBlockOn() : scrollBlockOff()
 
-      this.setState({modals})
+      this.setState({ modals })
     }
   }
 
@@ -167,7 +167,7 @@ export default connect(mapStateToProps)(class Uploads extends Component {
     }
   }
 
-  render ({isFetchingMedia, isFetchingUser, userMedia, selectedMedia, updateUserMedia, totalCount}) {
+  render ({ isFetchingMedia, isFetchingUser, userMedia, selectedMedia, updateUserMedia, totalCount }) {
     return (
       <div class={style.uploads}>
         {
