@@ -53,6 +53,7 @@ const locale = { // eslint-disable-line no-unused-vars
   'cp': {
     'admin': {
       'users': {
+        'title': 'Usuarios',
         'user_load_error': 'No se pudieron cargar usuarios :(. Comprueba la consola.',
         'table': {
           'title_name': 'Nombre',
@@ -75,6 +76,10 @@ const locale = { // eslint-disable-line no-unused-vars
             'edit_user': 'Editar usuario',
             'delete_user_media': 'Borrar archivos',
             'delete_user': 'Eliminar',
+            'toast': {
+              'toast_ok': 'OK',
+              'successLabel': 'Datos de usuario eliminados'
+            },
             'delete_user_media_modal': {
               'title': 'Eliminar archivos de usuario',
               'button_accept': 'Adelante',
@@ -109,7 +114,15 @@ const locale = { // eslint-disable-line no-unused-vars
                 'administrator': 'Administrador',
                 'regen_apikey': 'Regenerar APIkey'
               },
-              'toask_ok': 'OK',
+              'toast': {
+                'toask_ok': 'OK',
+                'apikey_renewed': 'APIKey de usuario regenerada',
+                'is_now_admin': 'es ahora un admin',
+                'is_no_longer_admin': 'ya no es un admin',
+                'username_changed': 'Nombre de usuario cambiado',
+                'email_changed': 'Email de usuario cambiado',
+                'password_changed': 'Contraseña de usuario cambiada'
+              },
               'current_apikey': 'APIKey actual'
             }
           }
@@ -136,7 +149,10 @@ const locale = { // eslint-disable-line no-unused-vars
               'empty_fields': 'Por favor, rellena todos los campos',
               'make_admin': 'Hacer administrador'
             },
-            'toast_ok': 'OK'
+            'toast': {
+              'toast_ok': 'OK',
+              'user_added': 'Usuario añadido'
+            }
           }
         }
       }
@@ -290,7 +306,10 @@ const locale = { // eslint-disable-line no-unused-vars
             },
             'accept': 'Cambiar',
             'cancel': 'Cancelar',
-            'toast_ok': 'OK'
+            'toast': {
+              'toast_ok': 'OK',
+              'username_changed': 'Nombre de usuario cambiado'
+            }
           },
           'email': {
             'title': 'Cambiar email',
@@ -303,7 +322,10 @@ const locale = { // eslint-disable-line no-unused-vars
             },
             'accept': 'Cambiar',
             'cancel': 'Cancelar',
-            'toast_ok': 'OK'
+            'toast': {
+              'toast_ok': 'OK',
+              'email_changed': 'Email cambiado'
+            }
           },
           'password': {
             'title': 'Cambiar contraseña',
@@ -318,14 +340,20 @@ const locale = { // eslint-disable-line no-unused-vars
             },
             'accept': 'Cambiar',
             'cancel': 'Cancelar',
-            'toast_ok': 'OK'
+            'toast': {
+              'toast_ok': 'OK',
+              'password_changed': 'Contraseña cambiada',
+              'error_processing_request': 'Error al procesar la petición'
+            }
           },
           'apikey': {
             'title': 'Regenerar APIKey',
             'cancel': 'No, espera',
             'accept': 'Regenerar',
             'description': 'Cualquier aplicación configurada con tu APIKey actual dejará de funcionar después de esto.',
-            'warning': 'NO SE PUEDE DESHACER.'
+            'warning': 'NO SE PUEDE DESHACER.',
+            'apikey_regenerated': 'APIKey regenerada',
+            'toast_ok': 'OK'
           },
           'delete_user_media': {
             'title': 'Borrar mis archivos',
@@ -336,7 +364,8 @@ const locale = { // eslint-disable-line no-unused-vars
             'toast_ok': 'OK',
             'incorrect_password': 'Contraseña incorrecta',
             'empty_password': 'Por favor, escribe tu contraseña',
-            'type_password_to_confirm': 'Escribe tu contraseña para continuar'
+            'type_password_to_confirm': 'Escribe tu contraseña para continuar',
+            'all_media_deleted': 'Se han borrado todos los elementos'
           },
           'account_remove': {
             'title': 'Borrar cuenta',
@@ -347,7 +376,8 @@ const locale = { // eslint-disable-line no-unused-vars
             'toast_ok': 'OK',
             'incorrect_password': 'Contraseña incorrecta',
             'empty_password': 'Por favor, escribe tu contraseña',
-            'type_password_to_confirm': 'Escribe tu contraseña para continuar'
+            'type_password_to_confirm': 'Escribe tu contraseña para continuar',
+            'user_account_deleted': 'Cuenta de usuario eliminada'
           }
         }
       }

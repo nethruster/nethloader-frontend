@@ -76,6 +76,10 @@ const locale = { // eslint-disable-line no-unused-vars
             'edit_user': 'Edit user',
             'delete_user_media': 'Delete media',
             'delete_user': 'Delete',
+            'toast': {
+              'toast_ok': 'OK',
+              'successLabel': 'User media deleted'
+            },
             'delete_user_media_modal': {
               'title': 'Delete user media',
               'button_accept': 'I know, proceed',
@@ -110,7 +114,15 @@ const locale = { // eslint-disable-line no-unused-vars
                 'administrator': 'Administrator',
                 'regen_apikey': 'Regen APIKey'
               },
-              'toask_ok': 'OK',
+              'toast': {
+                'toask_ok': 'OK',
+                'apikey_renewed': 'User apikey renewed',
+                'is_now_admin': 'is now an admin',
+                'is_no_longer_admin': 'is no longer an admin',
+                'username_changed': 'User username changed',
+                'email_changed': 'User email changed',
+                'password_changed': 'User password changed'
+              },
               'current_apikey': 'Current APIKey'
             }
           }
@@ -137,7 +149,10 @@ const locale = { // eslint-disable-line no-unused-vars
               'empty_fields': 'Please, fill in all the fields',
               'make_admin': 'Make administrator'
             },
-            'toast_ok': 'OK'
+            'toast': {
+              'toast_ok': 'OK',
+              'user_added': 'User added'
+            }
           }
         }
       }
@@ -291,7 +306,10 @@ const locale = { // eslint-disable-line no-unused-vars
             },
             'accept': 'Change',
             'cancel': 'Cancel',
-            'toast_ok': 'OK'
+            'toast': {
+              'toast_ok': 'OK',
+              'username_changed': 'Username changed'
+            }
           },
           'email': {
             'title': 'Change email',
@@ -304,7 +322,10 @@ const locale = { // eslint-disable-line no-unused-vars
             },
             'accept': 'Change',
             'cancel': 'Cancel',
-            'toast_ok': 'OK'
+            'toast': {
+              'toast_ok': 'OK',
+              'email_changed': 'Email changed'
+            }
           },
           'password': {
             'title': 'Change password',
@@ -319,14 +340,20 @@ const locale = { // eslint-disable-line no-unused-vars
             },
             'accept': 'Change',
             'cancel': 'Cancel',
-            'toast_ok': 'OK'
+            'toast': {
+              'toast_ok': 'OK',
+              'password_changed': 'Password changed',
+              'error_processing_request': 'Error processing the request'
+            }
           },
           'apikey': {
             'title': 'Regenerate APIKey',
             'cancel': 'Wait, no',
             'accept': 'Regenerate',
             'description': 'Any app set up with your current key will stop working after this.',
-            'warning': 'THIS CANNOT BE UNDONE.'
+            'warning': 'THIS CANNOT BE UNDONE.',
+            'apikey_regenerated': 'APIKey regenerated',
+            'toast_ok': 'OK'
           },
           'delete_user_media': {
             'title': 'Delete my media',
@@ -337,7 +364,8 @@ const locale = { // eslint-disable-line no-unused-vars
             'toast_ok': 'OK',
             'incorrect_password': 'Incorrect password',
             'empty_password': 'Please, type in your password',
-            'type_password_to_confirm': 'Please type in your password to confirm'
+            'type_password_to_confirm': 'Please type in your password to confirm',
+            'all_media_deleted': 'All media deleted'
           },
           'account_remove': {
             'title': 'Delete account',
@@ -348,7 +376,8 @@ const locale = { // eslint-disable-line no-unused-vars
             'toast_ok': 'OK',
             'incorrect_password': 'Incorrect password',
             'empty_password': 'Please, type in your password',
-            'type_password_to_confirm': 'Please type in your password to confirm'
+            'type_password_to_confirm': 'Please type in your password to confirm',
+            'user_account_deleted': 'User account deleted'
           }
         }
       }
@@ -387,7 +416,7 @@ const locale = { // eslint-disable-line no-unused-vars
       }
     },
     'not_found': {
-      'title': "Sorry, we couldn't find that...",
+      'title': 'Sorry, we couldn\'t find that...',
       'contact_admin': 'If something should be here, contact with an administrator.'
     }
   }

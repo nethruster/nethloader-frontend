@@ -377,7 +377,7 @@ const locale = { // eslint-disable-line no-unused-vars
             'incorrect_password': 'Incorrect password',
             'empty_password': 'Please, type in your password',
             'type_password_to_confirm': 'Please type in your password to confirm',
-            'all_media_deleted': 'All media deleted'
+            'user_account_deleted': 'User account deleted'
           }
         }
       }
