@@ -52,7 +52,7 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
       ...this.state.credentials
     }
 
-    credentials[ event.target.id ] = event.target.value
+    credentials[event.target.id] = event.target.value
 
     this.setState({
       credentials,
@@ -62,7 +62,7 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
 
   async handleSubmit (event) {
     event.preventDefault()
-    await this.props.dispatch(loginUser(this.state.credentials, this.state.maintainSession, this.context.router.history, event.target)).catch(err => {
+    await this.props.dispatch(loginUser(this.state.credentials, this.state.maintainSession, this.context.router.history, event.target, false)).catch(err => {
       let errorMessage = ''
       if (err === 'Unexistent user') {
         errorMessage = 'User does not exist'
@@ -89,7 +89,6 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
           inputLabel={viewStrings.email}
           changeHandler={this.handleChange}
           required
-          tabindex='1'
           noValidationStyle
           autofocus
         />
@@ -99,7 +98,6 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
           inputLabel={viewStrings.password}
           changeHandler={this.handleChange}
           required
-          tabindex='2'
           noValidationStyle
         />
         <p class={style.formValidationText}>{this.state.formValidationText}</p>
@@ -107,7 +105,6 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
           <Checkbox
             text='Keep me logged in'
             dataId='maintainSession'
-            tabindex='-1'
             isSelected={this.state.maintainSession}
             onChangeHandler={this.handleMaintainSessionCheckboxToggle}
           />
@@ -117,7 +114,6 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
           text={viewStrings.login}
           spinner={isFetching}
           spinnerColor='#fff'
-          tabindex='4'
           spinnerSize='24'
           disabled={isFetching}
         />

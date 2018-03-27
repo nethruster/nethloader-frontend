@@ -65,7 +65,8 @@ export default class Button extends Component {
         type={type}
         onClick={onClickExecute}
         data-copytext={copyText}
-        disabled={disabled}>
+        disabled={disabled}
+        aria-label={`button ${dataId}`}>
         <Ink />
         {
           icon && !spinner
