@@ -65,7 +65,13 @@ export default connect(mapStateToProps)(class EmailModal extends Component {
     if (this.state.newEmail.inputState === 'valid') {
       this.props.dispatch(changeUserEmail(this.state.newEmail.value, this.props.sessionData.id, this.props.token)).then(() => {
         this.props.toggleModal()
-        this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token))
+        this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token)).then(() => {
+          this.props.dispatch(showSnack('emailChangeSuccesful', {
+            label: viewStrings.toast.email_changed,
+            timeout: 3000,
+            button: { label: viewStrings.toast.toast_ok }
+          }))
+        })
         this.form.reset()
       })
     } else {

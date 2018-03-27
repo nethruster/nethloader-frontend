@@ -65,7 +65,13 @@ export default connect(mapStateToProps)(class UsernameModal extends Component {
     if (this.state.newUsername.inputState === 'valid') {
       this.props.dispatch(changeUserName(this.state.newUsername.value, this.props.sessionData.id, this.props.token)).then(() => {
         this.props.toggleModal()
-        this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token))
+        this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token)).then(() => {
+          this.props.dispatch(showSnack('usernameChangeSuccesful', {
+            label: viewStrings.toast.username_changed,
+            timeout: 3000,
+            button: { label: viewStrings.toast.toast_ok }
+          }))
+        })
         this.form.reset()
       })
     } else {

@@ -70,13 +70,35 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
 
   async handleIsAdminCheckboxToggle () {
     await this.setState({ isAdmin: !this.state.isAdmin })
-    await this.props.dispatch(toggleIsAdmin(this.props.data.id, this.state.isAdmin, this.props.token))
+    await this.props.dispatch(toggleIsAdmin(this.props.data.id, this.state.isAdmin, this.props.token)).catch(err => {
+      this.props.dispatch(showSnack('adminUserRoleChangeError', {
+        label: err,
+        timeout: 3000,
+        button: { label: viewStrings.toast.toast_ok }
+      }))
+    })
     this.getUsers()
+    this.props.dispatch(showSnack('adminUserRoleChange', {
+      label: `${this.props.data.name} ${this.state.isAdmin ? viewStrings.toast.is_now_admin : viewStrings.toast.is_no_longer_admin}`,
+      timeout: 3000,
+      button: { label: viewStrings.toast.toast_ok }
+    }))
   }
 
   async handleRenewApiKeySubmit () {
-    await this.props.dispatch(renewUserApiKey(this.props.data.id, this.props.token))
+    await this.props.dispatch(renewUserApiKey(this.props.data.id, this.props.token)).catch(err => {
+      this.props.dispatch(showSnack('adminUserApikeyRenewError', {
+        label: err,
+        timeout: 3000,
+        button: { label: viewStrings.toast.toast_ok }
+      }))
+    })
     this.getUsers()
+    this.props.dispatch(showSnack('adminUserApikeyRenew', {
+      label: viewStrings.toast.apikey_renewed,
+      timeout: 3000,
+      button: { label: viewStrings.toast.toast_ok }
+    }))
   }
 
   handleUsernameChange (event) {
@@ -158,13 +180,17 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
       username.inputState = 'empty'
       username.validationMessage = ''
       this.setState({ username })
-
+      this.props.dispatch(showSnack('emptyUsernameAdminChange', {
+        label: viewStrings.toast.username_changed,
+        timeout: 3000,
+        button: { label: viewStrings.toast.toast_ok }
+      }))
       this.usernameForm.reset()
     } else {
       this.props.dispatch(showSnack('emptyUsernameAdminSettings', {
         label: this.state.newUsername.validationMessage || viewStrings.form.username.submit_error,
         timeout: 3000,
-        button: { label: viewStrings.toast_ok }
+        button: { label: viewStrings.toast.toast_ok }
       }))
     }
   }
@@ -180,13 +206,17 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
       email.inputState = 'empty'
       email.validationMessage = ''
       this.setState({ email })
-
+      this.props.dispatch(showSnack('emptyEmailAdminChange', {
+        label: viewStrings.toast.email_changed,
+        timeout: 3000,
+        button: { label: viewStrings.toast.toast_ok }
+      }))
       this.emailForm.reset()
     } else {
       this.props.dispatch(showSnack('emptyEmailAdminSettings', {
         label: this.state.newEmail.validationMessage || viewStrings.form.email.submit_error,
         timeout: 3000,
-        button: { label: viewStrings.toast_ok }
+        button: { label: viewStrings.toast.toast_ok }
       }))
     }
   }
@@ -202,13 +232,17 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
       password.inputState = 'empty'
       password.validationMessage = ''
       this.setState({ password })
-
+      this.props.dispatch(showSnack('emptyPasswordAdminChange', {
+        label: viewStrings.toast.password_changed,
+        timeout: 3000,
+        button: { label: viewStrings.toast.toast_ok }
+      }))
       this.passwordForm.reset()
     } else {
       this.props.dispatch(showSnack('emptyPasswordAdminSettings', {
         label: this.state.password.validationMessage || viewStrings.form.password.submit_error,
         timeout: 3000,
-        button: { label: viewStrings.toast_ok }
+        button: { label: viewStrings.toast.toast_ok }
       }))
     }
   }

@@ -6,7 +6,7 @@ import Modal from '../../../../shared/modal'
 import FormInput from '../../../../shared/form-input'
 import { validateEmpty } from 'utils'
 import { changeUserPassword } from 'serverAPI/settings'
-import { logoutUser } from 'serverAPI/authentication'
+import { loginUser } from 'serverAPI/authentication'
 
 const viewStrings = locale.cp.settings.settings_grid.partials.password // eslint-disable-line no-undef
 
@@ -79,10 +79,27 @@ export default connect(mapStateToProps)(class PasswordModal extends Component {
   handleSubmit (event) {
     event.preventDefault()
     if (this.state.newPassword.inputState === 'valid' && this.state.oldPassword.inputState === 'valid') {
-      this.props.dispatch(changeUserPassword(this.state.oldPassword.value, this.state.newPassword.value, this.props.sessionData.id, this.props.token)).then(() => {
+      this.props.dispatch(changeUserPassword(this.state.oldPassword.value, this.state.newPassword.value, this.props.sessionData.id, this.props.token)).then((user) => {
+        let credentials = {
+          email: user.email,
+          password: this.state.newPassword.value
+        }
+
         this.props.toggleModal()
         this.form.reset()
-        this.props.dispatch(logoutUser(this.props.sessionData.id, this.props.token))
+        this.props.dispatch(loginUser(credentials, !this.props.sessionData.exp, null, null, true)).then(() => {
+          this.props.dispatch(showSnack('passwordChangeSuccesful', {
+            label: viewStrings.toast.password_changed,
+            timeout: 3000,
+            button: { label: viewStrings.toast.toast_ok }
+          }))
+        })
+      }).catch(err => {
+        this.props.dispatch(showSnack('passwordChangeError', {
+          label: viewStrings.toast.error_processing_request,
+          timeout: 3000,
+          button: { label: viewStrings.toast_ok }
+        }))
       })
     } else {
       this.props.dispatch(showSnack('emptyPasswordSettings', {

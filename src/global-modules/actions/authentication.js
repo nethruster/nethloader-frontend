@@ -11,6 +11,13 @@ const requestLogin = () => {
   }
 }
 
+const requestLoginData = () => {
+  return {
+    type: appConstants.LOGIN_REQUEST_DATA,
+    isFetching: true
+  }
+}
+
 const receiveLogin = (token, sessionData) => {
   return {
     type: appConstants.LOGIN_SUCCESS,
@@ -91,5 +98,6 @@ export {
   receiveRegister,
   registerError,
   requestLogout,
-  receiveLogout
+  receiveLogout,
+  requestLoginData
 }

@@ -1,6 +1,5 @@
-import {h} from 'preact'
-import {Snackbar} from 'react-redux-snackbar'
-import {Link} from 'react-router-dom'
+import { h } from 'preact'
+import { Link } from 'react-router-dom'
 
 import RegisterForm from './register-form'
 import Footer from '../shared/footer'
@@ -9,22 +8,6 @@ import style from './styles.scss'
 import '../shared/paper/paper.scss'
 
 const viewStrings = locale.register // eslint-disable-line no-undef
-
-const snackStyles = {
-  snack: {
-    padding: '16px',
-    border: 'none'
-  },
-  button: {
-    color: '#f2f2f2',
-    cursor: 'pointer'
-  },
-  'span': {
-    fontSize: '1em',
-    letterSpacing: '.5px',
-    fontWeight: '300'
-  }
-}
 
 export default function Register () {
   return (
@@ -36,7 +19,6 @@ export default function Register () {
           <Link to='/login'>{viewStrings.has_account}</Link>
         </div>
       </div>
-      <Snackbar customStyles={snackStyles} />
       <Footer />
     </div>
   )

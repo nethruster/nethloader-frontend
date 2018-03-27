@@ -109,6 +109,11 @@ export default connect(mapStateToProps)(class CreateUserModal extends Component 
         this.setState({ ...this.defaultState })
         this.getUsers()
         this.props.toggleModal()
+        this.props.dispatch(showSnack('userAdded', {
+          label: viewStrings.toast.user_added,
+          timeout: 3000,
+          button: { label: viewStrings.toast.toast_ok }
+        }))
       })
     } else {
       this.props.dispatch(showSnack('invalidOrEmptyAddUser', {

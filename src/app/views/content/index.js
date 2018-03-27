@@ -1,7 +1,6 @@
 import { h, Component } from 'preact'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'preact-redux'
-import { Snackbar } from 'react-redux-snackbar'
 
 import { checkUserSessionValidity } from 'utils'
 import { getUserData } from 'serverAPI/data'
@@ -21,21 +20,6 @@ function mapStateToProps (state) {
     isAuthenticated,
     token,
     sessionData
-  }
-}
-
-const snackStyles = {
-  snack: {
-    padding: '16px'
-  },
-  button: {
-    color: '#f2f2f2',
-    cursor: 'pointer'
-  },
-  'span': {
-    fontSize: '1em',
-    letterSpacing: '.5px',
-    fontWeight: '300'
   }
 }
 
@@ -74,7 +58,6 @@ export default connect(mapStateToProps)(class Content extends Component {
             component={NotFound} />
         </Switch>
         <Footer contentFooter />
-        <Snackbar customStyles={snackStyles} />
       </div>
     )
   }

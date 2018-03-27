@@ -87,7 +87,7 @@ const changeUserPassword = (oldPassword, newPassword, userId, authToken) => {
       'authentication': authToken
     },
     body: JSON.stringify({
-      query: `mutation{ changeUserPassword(userId: "${userId}", oldPassword: "${oldPassword}", newPassword: "${newPassword}") {id} }`
+      query: `mutation{ changeUserPassword(userId: "${userId}", oldPassword: "${oldPassword}", newPassword: "${newPassword}") {id, email} }`
     })
   }
 
@@ -102,16 +102,15 @@ const changeUserPassword = (oldPassword, newPassword, userId, authToken) => {
       if (responseData.data.changeUserPassword) {
         // Dispatch the success action
         dispatch(receiveSettingChange())
-      } else {
-        console.log('changeUserPassword - responseData: ', responseData)
-        dispatch(settingChangeError(responseData.errors[0].message))
-        return Promise.reject(responseData.errors[0].message)
+        return responseData.data.changeUserPassword
       }
-    } else {
-      console.log('changeUserPassword - serverResponse: ', serverResponse)
-      dispatch(settingChangeError(serverResponse.status))
-      return Promise.reject(serverResponse.status)
+      console.log('changeUserPassword - responseData: ', responseData)
+      dispatch(settingChangeError(responseData.errors[0].message))
+      return Promise.reject(responseData.errors[0].message)
     }
+    console.log('changeUserPassword - serverResponse: ', serverResponse)
+    dispatch(settingChangeError(serverResponse.status))
+    return Promise.reject(serverResponse.status)
   }
 }
 

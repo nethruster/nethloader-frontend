@@ -44,7 +44,13 @@ export default connect(mapStateToProps)(class DeleteAllMediaModal extends Compon
       this.props.dispatch(deleteAllUserImages(this.props.sessionData.id, this.props.token, this.state.passwordInput.value)).then(() => {
         this.props.toggleModal()
         this.form.reset()
-        this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token, {}))
+        this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token, {})).then(() => {
+          this.props.dispatch(showSnack('allMediaDeleteSuccesful', {
+            label: viewStrings.all_media_deleted,
+            timeout: 3000,
+            button: { label: viewStrings.toast_ok }
+          }))
+        })
       }).catch(err => {
         let errorMessage = ''
         if (err === 'Unauthorized') {

@@ -1,6 +1,7 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
 import { scrollBlockOn, scrollBlockOff } from 'preventScroll'
+import { showSnack } from 'react-redux-snackbar'
 
 import Button from '../../../../../shared/button'
 import DropDownMenu from '../../../../../shared/dropdown-menu'
@@ -75,6 +76,17 @@ export default connect(mapStateToProps)(class UserButtons extends Component {
   handleDeleteUserMediaSubmit () {
     this.props.dispatch(deleteAllUserImages(this.props.itemData.id, this.props.token)).then(() => {
       this.toggleDeleteUserMedia()
+      this.props.dispatch(showSnack('adminAllUserMediaDeleted', {
+        label: viewStrings.toast.successLabel,
+        timeout: 3000,
+        button: { label: viewStrings.toast.toast_ok }
+      }))
+    }).catch(err => {
+      this.props.dispatch(showSnack('adminAllUserMediaDeletedError', {
+        label: err,
+        timeout: 3000,
+        button: { label: viewStrings.toast.toast_oktoast_ok }
+      }))
     })
   }
 
@@ -82,7 +94,7 @@ export default connect(mapStateToProps)(class UserButtons extends Component {
     return (
       <span class={`flex flex-full-center ${style.userRowField} ${style.userRowFieldIcon} ${style.userRowFieldIconInteractive}`}>
         <div class={`flex flex-full-center`}>
-          <DropDownMenu>
+          <DropDownMenu id={itemData.id}>
             <li>
               <Button
                 icon='copy'

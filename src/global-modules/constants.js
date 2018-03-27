@@ -3,6 +3,7 @@ import keymirror from 'keymirror'
 export default keymirror({
   // Login
   LOGIN_REQUEST: null,
+  LOGIN_REQUEST_DATA: null,
   LOGIN_SUCCESS: null,
   LOGIN_FAILURE: null,
 

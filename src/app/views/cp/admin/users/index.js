@@ -1,6 +1,7 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
 import VirtualList from 'react-virtual-list'
+import { showSnack } from 'react-redux-snackbar'
 
 import Icon from '../../../shared/icon'
 import Modal from '../../../shared/modal'
@@ -132,6 +133,12 @@ export default connect(mapStateToProps)(class UsersPartial extends Component {
       // Refresh data
       this.getUsers()
       this.toggleDeleteConfirmModal()
+    }).catch(err => {
+      this.props.dispatch(showSnack('adminDeleteSingleUserError', {
+        label: err,
+        timeout: 3000,
+        button: { label: viewStrings.toolbar.add_user_modal.toast_ok }
+      }))
     })
   }
 
@@ -152,7 +159,18 @@ export default connect(mapStateToProps)(class UsersPartial extends Component {
           // Refresh data
           this.getUsers()
           this.toggleDeleteConfirmModal()
+          this.props.dispatch(showSnack('adminDeleteMultipleUser', {
+            label: `${deleteIndexCount} users deleted`,
+            timeout: 3000,
+            button: { label: viewStrings.toolbar.add_user_modal.toast_ok }
+          }))
         }
+      }).catch(err => {
+        this.props.dispatch(showSnack('adminDeleteMultipleUserError', {
+          label: err,
+          timeout: 3000,
+          button: { label: viewStrings.toolbar.add_user_modal.toast_ok }
+        }))
       })
     }
   }
@@ -163,10 +181,10 @@ export default connect(mapStateToProps)(class UsersPartial extends Component {
         <div class='flex flex-cross-center'><h3 class='flex flex-full-center'><Icon iconName='account-multiple' />&nbsp;{viewStrings.title}</h3></div>
         <div class={style.usersTable}>
           <UsersToolbar handleDeleteClick={this.toggleDeleteConfirmModal} />
-          <div class={`${style.userRow} ${style.userTableHeader}`}>
-            <span class={`flex flex-cross-center ${style.userTableHeaderFieldId}`}>ID</span>
-            <span class={`flex flex-cross-center`}>{viewStrings.table.title_name}</span>
-            <span class={`flex flex-cross-center ${style.userTableHeaderFieldEmail}`}>{viewStrings.table.title_email}</span>
+          <div class={`${style.userTableHeader}`}>
+            <span class={`flex flex - cross - center ${style.userTableHeaderFieldId}`}>ID</span>
+            <span class={`flex flex - cross - center`}>{viewStrings.table.title_name}</span>
+            <span class={`flex flex - cross - center ${style.userTableHeaderFieldEmail}`}>{viewStrings.table.title_email}</span>
           </div>
           {isFetchingUsers && !uData
             ? <ViewLoading />

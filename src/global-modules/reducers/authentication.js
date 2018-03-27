@@ -15,6 +15,10 @@ const auth = (state = {
         sessionData: '',
         token: ''
       })
+    case appConstants.LOGIN_REQUEST_DATA:
+      return Object.assign({}, state, {
+        isFetching: true
+      })
     case appConstants.LOGIN_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,

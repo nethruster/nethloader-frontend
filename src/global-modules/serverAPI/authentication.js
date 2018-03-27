@@ -2,13 +2,13 @@ import jwtDecode from 'jwt-decode'
 
 import { getStorageParams } from 'serverAPI/data'
 import {
-  requestLogin, receiveLogin, loginError,
+  requestLogin, receiveLogin, loginError, requestLoginData,
   requestRegister, receiveRegister, registerError,
   requestLogout, receiveLogout
 } from 'actions/authentication'
 
 // Login
-const loginUser = (credentials, maintainSession, history, loginFormElement) => {
+const loginUser = (credentials, maintainSession, history, loginFormElement, wasLogged) => {
   let requestConfig = {
     method: 'POST',
     headers: {
@@ -21,7 +21,11 @@ const loginUser = (credentials, maintainSession, history, loginFormElement) => {
   }
 
   return async dispatch => {
-    dispatch(requestLogin())
+    if (wasLogged) {
+      dispatch(requestLoginData())
+    } else {
+      dispatch(requestLogin())
+    }
 
     let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
 
@@ -37,13 +41,21 @@ const loginUser = (credentials, maintainSession, history, loginFormElement) => {
           window.localStorage.setItem('nth-theme', 'light')
         }
 
-        // Get storage data
-        getStorageParams(responseData.data.login)
+        if (!wasLogged) {
+          // Get storage data
+          getStorageParams(responseData.data.login)
+        }
 
         // Dispatch the success action
         dispatch(receiveLogin(responseData.data.login, decodedData))
-        loginFormElement.reset()
-        history.push('/cp')
+
+        if (loginFormElement) {
+          loginFormElement.reset()
+        }
+
+        if (history) {
+          history.push('/cp')
+        }
       } else {
         console.log('loginUser - responseData: ', responseData)
         dispatch(loginError(responseData.errors[0].message))

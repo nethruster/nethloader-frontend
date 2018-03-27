@@ -45,6 +45,11 @@ export default connect(mapStateToProps)(class DeleteUserAccountModal extends Com
         this.props.toggleModal()
         this.form.reset()
         this.props.dispatch(logoutUser())
+        this.props.dispatch(showSnack('deleteUserAccountSuccesful', {
+          label: viewStrings.all_media_deleted,
+          timeout: 3000,
+          button: { label: viewStrings.toast_ok }
+        }))
       }).catch(err => {
         let errorMessage = ''
         if (err === 'Unauthorized') {
