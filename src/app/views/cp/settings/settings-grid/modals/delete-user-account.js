@@ -114,8 +114,8 @@ export default connect(mapStateToProps)(class DeleteUserAccountModal extends Com
         closeButtonText={viewStrings.cancel}
         acceptButtonText={viewStrings.accept}
         onAcceptExecute={this.handleSubmit}>
-        <p class='flex flex-full-center'>{viewStrings.description}</p>
-        <p class='flex flex-full-center danger-text'>{viewStrings.warning}</p>
+        <p class='flex flex-cross-center'>{viewStrings.description}</p>
+        <p class='flex flex-cross-center danger-text'>{viewStrings.warning}</p>
         <small>{viewStrings.type_password_to_confirm}</small>
         <form class={`flex flex-full-center flex-dc`} onSubmit={this.handleSubmit} ref={(el) => { this.form = el }}>
           <FormInput
