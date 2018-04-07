@@ -5,7 +5,7 @@
         background-color: var(--default-bg);
 
         border-radius: var(--base-br) var(--base-br) 0 0;
-        border: 1px solid rgba(0,0,0,.08);
+        border: 1px solid var(--very-specific-light-color);
 
         img,
         video {

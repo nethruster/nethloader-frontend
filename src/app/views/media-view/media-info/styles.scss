@@ -5,7 +5,7 @@
         border-radius: 0 0 4px 4px;
         align-self: flex-end;
         margin-top: -1px;
-        border: 1px solid rgba(0,0,0,.08);
+        border: 1px solid var(--very-specific-light-color);
 
         @media (max-width: 500px) {
             width: 100%;
