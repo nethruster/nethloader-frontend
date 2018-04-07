@@ -64,7 +64,7 @@ export default connect(mapStateToProps)(class UploadButtons extends Component {
         <DropDownMenu>
           <li>
             <a href={mediaPath}
-              download>
+              download={data.id}>
               <Button
                 text={viewStrings.download}
                 icon='download'
