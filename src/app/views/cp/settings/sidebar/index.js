@@ -75,10 +75,10 @@ export default connect(mapStateToProps)(class Sidebar extends Component {
               onClickExecute={this.handleCopyClick}
             />
           </div>
-          <p class={`danger-text ${style.warning}`}>
+          <p class={`danger-text ${style.warning} ${style.smallSvg}`}>
             <Icon iconName='warning' /> {viewStrings.api_key.no_auth_security_warning}
           </p>
-          <p class={`${style.warning}`}>
+          <p class={`${style.warning} ${style.smallSvg}`}>
             <Icon iconName='info' /> {viewStrings.api_key.compromised_apikey_info}
           </p>
         </div>

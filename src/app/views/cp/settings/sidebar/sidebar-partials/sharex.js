@@ -55,7 +55,7 @@ export default connect(mapStateToProps)(class SharexPartial extends Component {
             })}
           </ol>
         </div>
-        <p class={`danger-text ${style.warning}`}>
+        <p class={`danger-text ${style.warning} ${style.smallSvg}`}>
           <Icon iconName='warning' /> {viewStrings.autoconfigure_security_warning}
         </p>
         <span class='flex flex-full-center'>
