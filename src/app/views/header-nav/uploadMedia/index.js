@@ -131,7 +131,7 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
 
               if (fileCount === 1) {
                 this.props.dispatch(getMediaInfo(imageId)).then(response => {
-                  this.props.history.push(`/${response.id}`)
+                  window.location.href = `/${response.id}` // Window reload intended (for now)
                 }).catch(() => {
                   this.context.router.history.push('/404')
                 })
