@@ -26,7 +26,7 @@ export default class AsyncMedia extends Component {
     return `${baseMediaPath}${userId}/${this.props.mediaInfo.id}.${this.props.mediaInfo.extension}` // eslint-disable-line no-undef
   }
 
-  componentWillMount () {
+  componentDidMount () {
     if (!this.state.mediaNode) {
       let mediaSrc = this.computeMediaSrc()
 

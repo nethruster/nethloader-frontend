@@ -89,7 +89,7 @@ export default connect(mapStateToProps)(class MediaView extends Component {
         {
           this.state.mediaData.found
             ? (
-              (!isFetching && this.state.mediaData.userId !== null) || this.metaScript
+              (!isFetching && this.state.mediaData.userId) || this.metaScript
                 ? (
                   <div class={`${style.mediaViewWrapper} flex flex-dc flex-full-center`}>
                     <MediaItem

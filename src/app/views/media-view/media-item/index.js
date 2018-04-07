@@ -24,7 +24,7 @@ export default class MediaItem extends Component {
     }
   }
 
-  render ({ isFetching, mediaData }) {
+  render ({ mediaData }) {
     return (
       <div class={`${style.mediaItem} ${this.state.isZoomed ? style.zoomed : ''}`}>
         <div onClick={this.toggleZoom} class={`${style.closeButton}`}>
@@ -32,7 +32,7 @@ export default class MediaItem extends Component {
         </div>
 
         {
-          !isFetching && mediaData &&
+          mediaData &&
           <div class={this.state.isZoomed ? style.zoomedMediaContainer : ''}>
             <AsyncMedia onClickExecute={this.toggleZoom} mediaInfo={mediaData} willPlayback />
           </div>
