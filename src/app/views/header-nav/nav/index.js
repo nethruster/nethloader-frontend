@@ -4,6 +4,7 @@ import { connect } from 'preact-redux'
 
 import Button from '../../shared/button'
 import { logoutUser } from 'serverAPI/authentication'
+import { toggleDarkMode } from 'utils'
 
 import style from './styles.scss'
 
@@ -70,6 +71,12 @@ export default withRouter(connect(mapStateToProps)(class HeaderNav extends Compo
               </NavLink>
             )
         }
+        <Button
+          icon='dark-light'
+          navButton
+          small
+          onClickExecute={toggleDarkMode}
+        />
       </nav>
     )
   }
