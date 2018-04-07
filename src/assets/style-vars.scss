@@ -45,7 +45,6 @@
     html[dark]:root {
         --contrast-gradient: linear-gradient(to left top, darken(#36adf7, 15%), darken(#36adf7, 20%)) 0 0 no-repeat;
         --contrast-bg: darken(#36adf7, 20%);
-        --contrast-color:  rgba(255, 255, 255, 0.9);
         --contrast-bg-hover: lighten(#1e87f0, 5%);
 
         --default-gradient: linear-gradient(to left top, #1d2731, #121b24);

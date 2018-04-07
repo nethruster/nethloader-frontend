@@ -27,6 +27,10 @@
                 svg { color: #1da1f3; }
             }
 
+            .github {
+                svg { color: var(--default-color); }
+            }
+
             @media(max-width: 420px) { margin-bottom: calc(var(--base-pm) * 2); }
         }
     }
