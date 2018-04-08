@@ -22,14 +22,18 @@
                 width: var(--header-nav-logo-size);
                 height: var(--header-nav-logo-size);
             }
-        }
 
-        @media(max-width: 620px) {
-            padding: 0 calc(var(--base-pm) * 2);
-
-            &Logo {
+            @media(max-width: 720px) {
                 &Title { display: none!important; }
             }
+
+            @media (max-width: 360px) {
+                transform: scale(.6);
+            }
+        }
+
+        @media(max-width: 720px) {
+            padding: 0 calc(var(--base-pm) * 2);
         }
     }
 }
