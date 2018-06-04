@@ -1,12 +1,9 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
-import { showSnack } from 'react-redux-snackbar'
 
 import Modal from '../../../../shared/modal'
 import FormInput from '../../../../shared/form-input'
 import { validateEmpty } from 'utils'
-import { deleteUser } from 'serverAPI/settings'
-import { logoutUser } from 'serverAPI/authentication'
 
 const viewStrings = locale.cp.settings.settings_grid.partials.account_remove // eslint-disable-line no-undef
 
@@ -39,37 +36,7 @@ export default connect(mapStateToProps)(class DeleteUserAccountModal extends Com
   }
 
   handleSubmit (event) {
-    event.preventDefault()
-    if (this.state.passwordInput.inputState === 'valid') {
-      this.props.dispatch(deleteUser(this.props.sessionData.id, this.props.token, this.state.passwordInput.value)).then(() => {
-        this.props.toggleModal()
-        this.form.reset()
-        this.props.dispatch(logoutUser())
-        this.props.dispatch(showSnack('deleteUserAccountSuccesful', {
-          label: viewStrings.all_media_deleted,
-          timeout: 3000,
-          button: { label: viewStrings.toast_ok }
-        }))
-      }).catch(err => {
-        let errorMessage = ''
-        if (err === 'Unauthorized') {
-          errorMessage = viewStrings.incorrect_password
-        } else {
-          errorMessage = err
-        }
-        this.props.dispatch(showSnack('wrongPasswordDeleteUser', {
-          label: errorMessage,
-          timeout: 3000,
-          button: { label: 'OK' }
-        }))
-      })
-    } else {
-      this.props.dispatch(showSnack('emptyPasswordDeleteMedia', {
-        label: this.state.passwordInput.validationMessage || viewStrings.empty_password,
-        timeout: 3000,
-        button: { label: 'OK' }
-      }))
-    }
+    this.props.toggleModal()
   }
 
   handleChange (event) {

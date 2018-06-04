@@ -1,10 +1,7 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
-import { showSnack } from 'react-redux-snackbar'
 
 import Modal from '../../../../shared/modal'
-import { renewUserApiKey } from 'serverAPI/settings'
-import { getUserData } from 'serverAPI/data'
 
 const viewStrings = locale.cp.settings.settings_grid.partials.apikey // eslint-disable-line no-undef
 
@@ -25,15 +22,7 @@ export default connect(mapStateToProps)(class ApiKeyModal extends Component {
   }
 
   handleSubmit () {
-    this.props.dispatch(renewUserApiKey(this.props.sessionData.id, this.props.token)).then(() => {
-      this.props.toggleModal()
-      this.props.dispatch(showSnack('apiKeyRegenSuccesful', {
-        label: viewStrings.apikey_regenerated,
-        timeout: 3000,
-        button: { label: viewStrings.toast_ok }
-      }))
-      this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token))
-    })
+    this.props.toggleModal()
   }
 
   render ({ isActive, toggleModal }) {

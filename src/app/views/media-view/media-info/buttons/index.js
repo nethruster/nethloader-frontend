@@ -6,7 +6,6 @@ import Modal from '../../../shared/modal'
 import VideoToolbar from '../../../shared/video-element/video-toolbar'
 import { isValidVideoFormat } from 'utils'
 import Button from '../../../shared/button'
-import { deleteMedia } from 'serverAPI/media'
 import { scrollBlockOff, scrollBlockOn } from 'preventScroll'
 
 import style from './styles.scss'
@@ -51,10 +50,7 @@ export default connect(mapStateToProps)(class MediaInfoButtons extends Component
   }
 
   handleDeleteClick () {
-    this.props.dispatch(deleteMedia(this.props.mediaData.id, this.props.token)).then(() => {
-      this.toggleDeleteModal()
-      this.context.router.history.push('/cp')
-    })
+    this.toggleDeleteModal()
   }
 
   computeMediaUrls () {

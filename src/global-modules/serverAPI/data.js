@@ -1,156 +1,122 @@
 import {
-  requestUserData, receiveUserData, userDataError,
-  requestUserMedia, receiveUserMedia, userMediaError
+  requestUserMedia, receiveUserMedia,
+  requestUserData, receiveUserData
 } from 'actions/data'
-
-import { filterExtensions } from 'utils'
 
 // User data
 const getUserData = (id, authToken) => {
-  let requestConfig = {
-    method: 'POST',
-    headers: {
-      'accept': 'application/json',
-      'content-type': 'application/json',
-      'authentication': authToken
-    },
-    body: JSON.stringify({
-      query: `query{ user(id: "${id}") {name, email, apiKey, isAdmin}}`
-    })
-  }
-
   return async dispatch => {
-    dispatch(requestUserData())
-
-    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
-
-    if (serverResponse.status >= 200 && serverResponse.status < 300) {
-      let responseData = await serverResponse.json()
-      if (responseData.data.user) {
-        // Set the data in local storage
-        window.sessionStorage.setItem('neth-userData', JSON.stringify(responseData.data.user))
-        // Dispatch the success action
-        dispatch(receiveUserData(responseData.data.user))
-      } else {
-        console.log('getUserData - responseData: ', responseData)
-        dispatch(userDataError(responseData.errors[0].message))
-        return Promise.reject(responseData.errors[0].message)
-      }
-    } else {
-      console.log('getUserData - serverResponse: ', serverResponse)
-      dispatch(userDataError(serverResponse.status))
-      return Promise.reject(serverResponse.status)
+    const data = {
+      'name': 'demo',
+      'email': 'demo@demo.com',
+      'apiKey': 'ff0hEH7zvRDCYgASa3BTtwRb',
+      'isAdmin': true
     }
+    dispatch(requestUserData())
+    // Set the data in local storage
+    window.sessionStorage.setItem('neth-userData', JSON.stringify(data))
+    // Dispatch the success action
+    dispatch(receiveUserData(data))
   }
 }
 
 // User media
 const getUserMedia = (id, authToken, params) => {
-  let extensionsFilter = params.type ? `extensions: [${filterExtensions[params.type]}],` : ''
-
-  let requestConfig = {
-    method: 'POST',
-    headers: {
-      'accept': 'application/json',
-      'content-type': 'application/json',
-      'authentication': authToken
-    },
-
-    body: JSON.stringify({
-      query: `query{ images(userId: "${id}", ${extensionsFilter} limit: ${params.mediaLimit || 10}, offset: ${params.offset || 0}, orderBy: "createdAt", orderDirection: "DESC", beforeDate: "${params.beforeDate || ''}", afterDate: "${params.afterDate || ''}"){totalCount, images {id, createdAt, extension}}}`
-    })
-  }
-
   return async dispatch => {
     dispatch(requestUserMedia(params))
 
     let totalCount = await getUserMediaCount(id, authToken)
-
-    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
-
-    if (serverResponse.status >= 200 && serverResponse.status < 300) {
-      let responseData = await serverResponse.json()
-      if (responseData.data.images) {
-        // TODO Check if we already have the latest data
-        // Set the data in local storage
-        window.localStorage.setItem('neth-userMedia', JSON.stringify(responseData.data.images))
-        // Dispatch the success action
-        dispatch(receiveUserMedia(responseData.data.images, totalCount))
-      } else {
-        console.log('getUserMedia - responseData: ', responseData)
-        dispatch(userMediaError(responseData.errors[0].message))
-        return Promise.reject(responseData.errors[0].message)
-      }
-    } else {
-      console.log('getUserMedia - serverResponse: ', serverResponse)
-      dispatch(userMediaError(serverResponse.status))
-      return Promise.reject(serverResponse.status)
+    let data = {
+      'totalCount': 10,
+      'images': [
+        {
+          'id': 'w8fWWkiHc4',
+          'createdAt': 'Tue Apr 10 2018 21:17:47 GMT+0000 (UTC)',
+          'extension': 'png'
+        },
+        {
+          'id': 'gX1YNaxZwk',
+          'createdAt': 'Tue Apr 10 2018 21:06:49 GMT+0000 (UTC)',
+          'extension': 'png'
+        },
+        {
+          'id': 'jUvAVNJdoz',
+          'createdAt': 'Mon Apr 09 2018 10:34:04 GMT+0000 (UTC)',
+          'extension': 'png'
+        },
+        {
+          'id': 'tNVeMnlHO7',
+          'createdAt': 'Sun Apr 08 2018 16:07:53 GMT+0000 (UTC)',
+          'extension': 'png'
+        },
+        {
+          'id': '3TtUDlRrWb',
+          'createdAt': 'Sun Apr 08 2018 16:07:14 GMT+0000 (UTC)',
+          'extension': 'png'
+        },
+        {
+          'id': '7be_IfpRB5',
+          'createdAt': 'Tue Apr 03 2018 18:33:39 GMT+0000 (UTC)',
+          'extension': 'png'
+        },
+        {
+          'id': '1ZonWM6RJo',
+          'createdAt': 'Sun Apr 01 2018 02:17:43 GMT+0000 (UTC)',
+          'extension': 'png'
+        },
+        {
+          'id': '_w2vtQ_HeR',
+          'createdAt': 'Sun Apr 01 2018 02:01:52 GMT+0000 (UTC)',
+          'extension': 'png'
+        },
+        {
+          'id': '8FEee78cLc',
+          'createdAt': 'Sun Apr 01 2018 01:56:27 GMT+0000 (UTC)',
+          'extension': 'png'
+        },
+        {
+          'id': '0MkVuEfOub',
+          'createdAt': 'Sun Apr 01 2018 01:51:08 GMT+0000 (UTC)',
+          'extension': 'mp4'
+        }
+      ]
     }
+
+    window.localStorage.setItem('neth-userMedia', JSON.stringify(data))
+    // Dispatch the success action
+    dispatch(receiveUserMedia(data, totalCount))
   }
 }
 
 // Get total count of user images
 const getUserMediaCount = async (id, authToken) => {
-  let requestConfig = {
-    method: 'POST',
-    headers: {
-      'accept': 'application/json',
-      'content-type': 'application/json',
-      'authentication': authToken
-    },
-    body: JSON.stringify({
-      query: `query{ countImages(userId: "${id}")}`
-    })
-  }
+  window.localStorage.setItem('neth-totalCount', JSON.stringify(112))
 
-  let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
-
-  if (serverResponse.status >= 200 && serverResponse.status < 300) {
-    let responseData = await serverResponse.json()
-
-    if (!Number.isNaN(responseData.data.countImages) && responseData.data.countImages >= 0) {
-      // Set the data in local storage
-      window.localStorage.setItem('neth-totalCount', JSON.stringify(responseData.data.countImages))
-
-      return JSON.stringify(responseData.data.countImages)
-    }
-    console.log('getUserMediaCount - responseData: ', responseData)
-    return Promise.reject(responseData.errors[0].message)
-  }
-  console.log('getUserMediaCount - serverResponse: ', serverResponse)
-  return Promise.reject(serverResponse.status)
+  return 112
 }
 
 const getStorageParams = async (authToken) => {
-  let requestConfig = {
-    method: 'POST',
-    headers: {
-      'accept': 'application/json',
-      'content-type': 'application/json',
-      'authentication': authToken
-    },
-    body: JSON.stringify({
-      query: `query{unprocessableExtensions,
-                supportedVideoExtensions,
-                supportedImageExtensions}`
-    })
+  let data = {
+    'unprocessableExtensions': [
+      'webp',
+      'webm',
+      'svg'
+    ],
+    'supportedVideoExtensions': [
+      'mp4',
+      'ogg',
+      'webm',
+      'gif'
+    ],
+    'supportedImageExtensions': [
+      'png',
+      'jpg',
+      'jpeg',
+      'svg',
+      'webp'
+    ]
   }
-
-  let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
-
-  if (serverResponse.status >= 200 && serverResponse.status < 300) {
-    let responseData = await serverResponse.json()
-    if (responseData.data) {
-      // Set the data in local storage
-      window.localStorage.setItem('neth-strData', JSON.stringify(responseData.data))
-
-      return JSON.stringify(responseData.data)
-    }
-    console.log('getStorageParams - responseData: ', responseData)
-    return Promise.reject(responseData.errors[0].message)
-  }
-  console.log('getStorageParams - serverResponse: ', serverResponse)
-  return Promise.reject(serverResponse.status)
+  window.localStorage.setItem('neth-strData', JSON.stringify(data))
 }
 
 export {

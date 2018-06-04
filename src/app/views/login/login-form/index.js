@@ -1,6 +1,5 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
-import { showSnack } from 'react-redux-snackbar'
 
 import FormInput from './../../shared/form-input'
 import Button from '../../shared/button'
@@ -62,22 +61,7 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
 
   async handleSubmit (event) {
     event.preventDefault()
-    await this.props.dispatch(loginUser(this.state.credentials, this.state.maintainSession, this.context.router.history, event.target, false)).catch(err => {
-      let errorMessage = ''
-      if (err === 'Unexistent user') {
-        errorMessage = 'User does not exist'
-      } else if (err === 'Wrong password') {
-        errorMessage = 'Wrong password'
-      } else {
-        errorMessage = err
-      }
-
-      this.props.dispatch(showSnack('loginError', {
-        label: errorMessage,
-        timeout: 3000,
-        button: { label: 'OK' }
-      }))
-    })
+    await this.props.dispatch(loginUser(this.state.credentials, this.state.maintainSession, this.context.router.history, event.target, false))
   }
 
   render ({ isFetching }) {

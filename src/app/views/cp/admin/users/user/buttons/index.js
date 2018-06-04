@@ -1,14 +1,11 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
 import { scrollBlockOn, scrollBlockOff } from 'preventScroll'
-import { showSnack } from 'react-redux-snackbar'
 
 import Button from '../../../../../shared/button'
 import DropDownMenu from '../../../../../shared/dropdown-menu'
 import Modal from '../../../../../shared/modal'
 import EditUserModal from './edit-user-modal'
-import { userUnselectAll } from 'actions/admin-settings'
-import { deleteAllUserImages } from 'serverAPI/settings'
 import { copyToClipboard } from 'utils'
 
 import style from '../styles.scss'
@@ -43,9 +40,7 @@ export default connect(mapStateToProps)(class UserButtons extends Component {
     this.handleDeleteUserMediaSubmit = this.handleDeleteUserMediaSubmit.bind(this)
   }
 
-  async handleDeleteClick (event) {
-    await this.props.dispatch(userUnselectAll())
-    this.props.handleToggleUser(event)
+  handleDeleteClick (event) {
     this.props.toggleDeleteConfirmModal()
   }
 
@@ -74,20 +69,7 @@ export default connect(mapStateToProps)(class UserButtons extends Component {
   }
 
   handleDeleteUserMediaSubmit () {
-    this.props.dispatch(deleteAllUserImages(this.props.itemData.id, this.props.token)).then(() => {
-      this.toggleDeleteUserMedia()
-      this.props.dispatch(showSnack('adminAllUserMediaDeleted', {
-        label: viewStrings.toast.successLabel,
-        timeout: 3000,
-        button: { label: viewStrings.toast.toast_ok }
-      }))
-    }).catch(err => {
-      this.props.dispatch(showSnack('adminAllUserMediaDeletedError', {
-        label: err,
-        timeout: 3000,
-        button: { label: viewStrings.toast.toast_oktoast_ok }
-      }))
-    })
+    this.toggleDeleteUserMedia()
   }
 
   render ({ itemData, selectedUsers, handleToggleUser, toggleDeleteConfirmModal }) {

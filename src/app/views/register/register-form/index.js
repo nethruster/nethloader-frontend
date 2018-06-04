@@ -5,8 +5,6 @@ import { showSnack } from 'react-redux-snackbar'
 import FormInput from './../../shared/form-input'
 import Button from '../../shared/button'
 import { validateEmpty, validateEmail, validateName } from 'utils'
-import { registerUser } from 'serverAPI/authentication'
-import { getStorageParams } from 'serverAPI/data'
 
 import style from './styles.scss'
 
@@ -96,35 +94,12 @@ export default connect(mapStateToProps)(class LoginForm extends Component {
 
   async handleSubmit (event) {
     event.preventDefault()
-    let data = {
-      username: this.state.data.username.value,
-      email: this.state.data.email.value,
-      password: this.state.data.password.value
-    }
 
-    if (this.state.data.username.inputState === 'valid') {
-      await this.props.dispatch(registerUser(data, this.context.router.history, event.target)).catch((err) => {
-        let errorMessage = ''
-        if (err === 'Registration is not allowed in this instance') {
-          errorMessage = 'Registration is disabled'
-        } else {
-          errorMessage = err
-        }
-
-        this.props.dispatch(showSnack('loginError', {
-          label: errorMessage,
-          timeout: 3000,
-          button: { label: 'OK' }
-        }))
-      })
-      getStorageParams(this.props.token)
-    } else {
-      this.props.dispatch(showSnack('invalidUsername', {
-        label: this.state.data.username.validationMessage || 'Check the errors and try again',
-        timeout: 3000,
-        button: { label: 'OK' }
-      }))
-    }
+    this.props.dispatch(showSnack('loginError', {
+      label: 'Registration disabled',
+      timeout: 3000,
+      button: { label: 'OK' }
+    }))
   }
 
   render ({ isFetching }) {

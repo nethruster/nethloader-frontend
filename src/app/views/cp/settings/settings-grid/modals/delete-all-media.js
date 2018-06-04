@@ -1,12 +1,9 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
-import { showSnack } from 'react-redux-snackbar'
 
 import Modal from '../../../../shared/modal'
 import FormInput from '../../../../shared/form-input'
 import { validateEmpty } from 'utils'
-import { deleteAllUserImages } from 'serverAPI/settings'
-import { getUserMedia } from 'serverAPI/data'
 
 const viewStrings = locale.cp.settings.settings_grid.partials.delete_user_media // eslint-disable-line no-undef
 
@@ -39,39 +36,7 @@ export default connect(mapStateToProps)(class DeleteAllMediaModal extends Compon
   }
 
   handleSubmit (event) {
-    event.preventDefault()
-    if (this.state.passwordInput.inputState === 'valid') {
-      this.props.dispatch(deleteAllUserImages(this.props.sessionData.id, this.props.token, this.state.passwordInput.value)).then(() => {
-        this.props.toggleModal()
-        this.form.reset()
-        this.props.dispatch(getUserMedia(this.props.sessionData.id, this.props.token, {})).then(() => {
-          this.props.dispatch(showSnack('allMediaDeleteSuccesful', {
-            label: viewStrings.all_media_deleted,
-            timeout: 3000,
-            button: { label: viewStrings.toast_ok }
-          }))
-        })
-      }).catch(err => {
-        let errorMessage = ''
-        if (err === 'Unauthorized') {
-          errorMessage = viewStrings.incorrect_password
-        } else {
-          errorMessage = err
-        }
-
-        this.props.dispatch(showSnack('wrongPasswordDeleteMedia', {
-          label: errorMessage,
-          timeout: 3000,
-          button: { label: viewStrings.toast_ok }
-        }))
-      })
-    } else {
-      this.props.dispatch(showSnack('emptyPasswordDeleteMedia', {
-        label: this.state.passwordInput.validationMessage || viewStrings.empty_password,
-        timeout: 3000,
-        button: { label: viewStrings.toast_ok }
-      }))
-    }
+    this.props.toggleModal()
   }
 
   handleChange (event) {

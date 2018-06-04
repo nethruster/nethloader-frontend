@@ -1,15 +1,14 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
 import VirtualList from 'react-virtual-list'
-import { showSnack } from 'react-redux-snackbar'
 
 import Icon from '../../../shared/icon'
 import Modal from '../../../shared/modal'
 import ViewLoading from '../../../shared/view-loading'
 import User from './user'
 import UsersToolbar from './users-toolbar'
-import { getUsers, deleteUser } from 'serverAPI/admin-settings'
-import { userSelect, userUnselect, userUnselectAll } from 'actions/admin-settings'
+import { getUsers } from 'serverAPI/admin-settings'
+import { userSelect, userUnselect } from 'actions/admin-settings'
 import { scrollBlockOn, scrollBlockOff } from 'preventScroll'
 
 import style from './styles.scss'
@@ -127,52 +126,11 @@ export default connect(mapStateToProps)(class UsersPartial extends Component {
   }
 
   confirmSingleDelete () {
-    this.props.dispatch(deleteUser(this.props.selectedUsers[0], this.props.token)).then(() => {
-      // Reset selected items list
-      this.props.dispatch(userUnselectAll())
-      // Refresh data
-      this.getUsers()
-      this.toggleDeleteConfirmModal()
-    }).catch(err => {
-      this.props.dispatch(showSnack('adminDeleteSingleUserError', {
-        label: err,
-        timeout: 3000,
-        button: { label: viewStrings.toolbar.add_user_modal.toast_ok }
-      }))
-    })
+    this.toggleDeleteConfirmModal()
   }
 
   confirmMultipleDelete () {
-    let selectedUsers = this.props.selectedUsers
-    let deleteIndexCount = 0
-
-    this.toggleIsDeleting()
-
-    for (let userId of selectedUsers) {
-      this.props.dispatch(deleteUser(userId, this.props.token)).then(() => {
-        deleteIndexCount++
-
-        if (deleteIndexCount === selectedUsers.length) {
-          this.toggleIsDeleting()
-          // Reset selected items list
-          this.props.dispatch(userUnselectAll())
-          // Refresh data
-          this.getUsers()
-          this.toggleDeleteConfirmModal()
-          this.props.dispatch(showSnack('adminDeleteMultipleUser', {
-            label: `${deleteIndexCount} users deleted`,
-            timeout: 3000,
-            button: { label: viewStrings.toolbar.add_user_modal.toast_ok }
-          }))
-        }
-      }).catch(err => {
-        this.props.dispatch(showSnack('adminDeleteMultipleUserError', {
-          label: err,
-          timeout: 3000,
-          button: { label: viewStrings.toolbar.add_user_modal.toast_ok }
-        }))
-      })
-    }
+    this.toggleDeleteConfirmModal()
   }
 
   render ({ isFetchingUsers, uData }) {

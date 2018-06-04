@@ -1,12 +1,11 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
-import { showSnack } from 'react-redux-snackbar'
 
 import Modal from '../../../../../../shared/modal'
 import FormInput from '../../../../../../shared/form-input'
 import Checkbox from '../../../../../../shared/checkbox'
 import { validateEmpty, validateEmail, validateName } from 'utils'
-import { createUser, getUsers } from 'serverAPI/admin-settings'
+import { getUsers } from 'serverAPI/admin-settings'
 
 import style from './styles.scss'
 
@@ -102,26 +101,7 @@ export default connect(mapStateToProps)(class CreateUserModal extends Component 
   }
 
   handleSubmit (event) {
-    event.preventDefault()
-    if (this.state.email.inputState === 'valid' && this.state.username.inputState === 'valid') {
-      this.props.dispatch(createUser(this.state.username.value, this.state.email.value, this.state.password.value, this.state.willBeAdmin, this.props.token)).then(() => {
-        this.form.reset()
-        this.setState({ ...this.defaultState })
-        this.getUsers()
-        this.props.toggleModal()
-        this.props.dispatch(showSnack('userAdded', {
-          label: viewStrings.toast.user_added,
-          timeout: 3000,
-          button: { label: viewStrings.toast.toast_ok }
-        }))
-      })
-    } else {
-      this.props.dispatch(showSnack('invalidOrEmptyAddUser', {
-        label: this.state.username.validationMessage || this.state.email.validationMessage || viewStrings.form.empty_fields,
-        timeout: 3000,
-        button: { label: viewStrings.toast_ok }
-      }))
-    }
+    this.props.toggleModal()
   }
 
   render ({ isActive, toggleModal }) {

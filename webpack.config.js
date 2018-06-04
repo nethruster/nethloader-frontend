@@ -107,7 +107,6 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({ names: ['vendor'] }),
     new CopyWebpackPlugin([
       { from: path.join(APP_DIR, 'assets', 'favicons'), to: path.join(BUILD_DIR, 'assets', 'favicons') },
-      { from: path.join(APP_DIR, 'assets', 'app.config.js'), to: path.join(BUILD_DIR, 'assets', 'app.config.js') },
       { from: path.join(APP_DIR, 'assets', 'locale.js'), to: path.join(BUILD_DIR, 'assets', 'locale.js') }
     ])
   ]

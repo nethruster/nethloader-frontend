@@ -6,10 +6,6 @@ import FormInput from '../../../../../../shared/form-input'
 import Checkbox from '../../../../../../shared/checkbox'
 import Button from '../../../../../../shared/button'
 import Spinner from '../../../../../../shared/spinner'
-import { validateEmpty, validateName, validateEmail } from 'utils'
-import { toggleIsAdmin, getUsers } from 'serverAPI/admin-settings'
-import { renewUserApiKey, changeUserName, changeUserEmail, changeUserPassword } from 'serverAPI/settings'
-import { showSnack } from 'react-redux-snackbar'
 
 import style from './styles.scss'
 
@@ -64,187 +60,40 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
     this.handleSubmitPassword = this.handleSubmitPassword.bind(this)
   }
 
-  async getUsers () {
-    await this.props.dispatch(getUsers(this.props.token))
+  getUsers () {
+    return true
   }
 
-  async handleIsAdminCheckboxToggle () {
-    await this.setState({ isAdmin: !this.state.isAdmin })
-    await this.props.dispatch(toggleIsAdmin(this.props.data.id, this.state.isAdmin, this.props.token)).catch(err => {
-      this.props.dispatch(showSnack('adminUserRoleChangeError', {
-        label: err,
-        timeout: 3000,
-        button: { label: viewStrings.toast.toast_ok }
-      }))
-    })
-    this.getUsers()
-    this.props.dispatch(showSnack('adminUserRoleChange', {
-      label: `${this.props.data.name} ${this.state.isAdmin ? viewStrings.toast.is_now_admin : viewStrings.toast.is_no_longer_admin}`,
-      timeout: 3000,
-      button: { label: viewStrings.toast.toast_ok }
-    }))
+  handleIsAdminCheckboxToggle () {
+    return true
   }
 
-  async handleRenewApiKeySubmit () {
-    await this.props.dispatch(renewUserApiKey(this.props.data.id, this.props.token)).catch(err => {
-      this.props.dispatch(showSnack('adminUserApikeyRenewError', {
-        label: err,
-        timeout: 3000,
-        button: { label: viewStrings.toast.toast_ok }
-      }))
-    })
-    this.getUsers()
-    this.props.dispatch(showSnack('adminUserApikeyRenew', {
-      label: viewStrings.toast.apikey_renewed,
-      timeout: 3000,
-      button: { label: viewStrings.toast.toast_ok }
-    }))
+  handleRenewApiKeySubmit () {
+    return true
   }
 
-  handleUsernameChange (event) {
-    let username = this.state.username
-
-    let input = event.target
-
-    username.value = event.target.value
-
-    if (validateEmpty(input.value)) {
-      username.inputState = 'invalid'
-      username.validationMessage = viewStrings.form.username.empty
-    } else if (!validateName(input.value)) {
-      username.inputState = 'invalid'
-      username.validationMessage = viewStrings.form.username.only_alphanum
-    } else {
-      username.inputState = 'valid'
-      username.validationMessage = viewStrings.form.username.valid
-    }
-
-    this.setState({
-      username
-    })
+  handleUsernameChange () {
+    return true
   }
 
-  handleEmailChange (event) {
-    let email = this.state.email
-
-    let input = event.target
-
-    email.value = event.target.value
-
-    if (validateEmpty(input.value)) {
-      email.inputState = 'invalid'
-      email.validationMessage = viewStrings.form.email.empty
-    } else if (!validateEmail(input.value)) {
-      email.inputState = 'invalid'
-      email.validationMessage = viewStrings.form.email.invalid
-    } else {
-      email.inputState = 'valid'
-      email.validationMessage = viewStrings.form.email.valid
-      email.value = input.value
-    }
-
-    this.setState({
-      email
-    })
+  handleEmailChange () {
+    return true
   }
 
-  handlePasswordChange (event) {
-    let password = this.state.password
-
-    let input = event.target
-
-    password.validationMessage = ''
-    password.value = event.target.value
-
-    if (validateEmpty(input.value)) {
-      password.inputState = 'invalid'
-      password.validationMessage = viewStrings.form.password.empty
-    } else {
-      password.inputState = 'valid'
-      password.value = input.value
-    }
-
-    this.setState({
-      password
-    })
+  handlePasswordChange () {
+    return true
   }
 
-  async handleSubmitUsername (event) {
-    event.preventDefault()
-    if (this.state.username.inputState === 'valid') {
-      await this.props.dispatch(changeUserName(this.state.username.value, this.props.data.id, this.props.token))
-      await this.getUsers()
-
-      let username = this.state.username
-      username.value = ''
-      username.inputState = 'empty'
-      username.validationMessage = ''
-      this.setState({ username })
-      this.props.dispatch(showSnack('emptyUsernameAdminChange', {
-        label: viewStrings.toast.username_changed,
-        timeout: 3000,
-        button: { label: viewStrings.toast.toast_ok }
-      }))
-      this.usernameForm.reset()
-    } else {
-      this.props.dispatch(showSnack('emptyUsernameAdminSettings', {
-        label: this.state.newUsername.validationMessage || viewStrings.form.username.submit_error,
-        timeout: 3000,
-        button: { label: viewStrings.toast.toast_ok }
-      }))
-    }
+  handleSubmitUsername () {
+    return true
   }
 
-  async handleSubmitEmail (event) {
-    event.preventDefault()
-    if (this.state.email.inputState === 'valid') {
-      await this.props.dispatch(changeUserEmail(this.state.email.value, this.props.data.id, this.props.token))
-      await this.getUsers()
-
-      let email = this.state.email
-      email.value = ''
-      email.inputState = 'empty'
-      email.validationMessage = ''
-      this.setState({ email })
-      this.props.dispatch(showSnack('emptyEmailAdminChange', {
-        label: viewStrings.toast.email_changed,
-        timeout: 3000,
-        button: { label: viewStrings.toast.toast_ok }
-      }))
-      this.emailForm.reset()
-    } else {
-      this.props.dispatch(showSnack('emptyEmailAdminSettings', {
-        label: this.state.newEmail.validationMessage || viewStrings.form.email.submit_error,
-        timeout: 3000,
-        button: { label: viewStrings.toast.toast_ok }
-      }))
-    }
+  handleSubmitEmail () {
+    return true
   }
 
-  async handleSubmitPassword (event) {
-    event.preventDefault()
-    if (this.state.password.inputState === 'valid') {
-      await this.props.dispatch(changeUserPassword('', this.state.password.value, this.props.data.id, this.props.token))
-      await this.getUsers()
-
-      let password = this.state.password
-      password.value = ''
-      password.inputState = 'empty'
-      password.validationMessage = ''
-      this.setState({ password })
-      this.props.dispatch(showSnack('emptyPasswordAdminChange', {
-        label: viewStrings.toast.password_changed,
-        timeout: 3000,
-        button: { label: viewStrings.toast.toast_ok }
-      }))
-      this.passwordForm.reset()
-    } else {
-      this.props.dispatch(showSnack('emptyPasswordAdminSettings', {
-        label: this.state.password.validationMessage || viewStrings.form.password.submit_error,
-        timeout: 3000,
-        button: { label: viewStrings.toast.toast_ok }
-      }))
-    }
+  handleSubmitPassword () {
+    return true
   }
 
   render ({ isActive, toggleModal, data, isFetchingtoggleAdmin, isFetching, isFetchingUsers }) {
@@ -258,12 +107,11 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
           <div class={`flex ${style.modalGridItem}`}>
             <span class='flex flex-main-center flex-dc'>
               <h5>{viewStrings.form.username.title}</h5>
-              <form ref={(el) => { this.usernameForm = el }} onSubmit={this.handleSubmitUsername}>
+              <form ref={(el) => { this.usernameForm = el }}>
                 <FormInput
                   inputId={`editName-${data.id}`}
                   inputType='text'
                   inputLabel={this.state.username.value || data.name}
-                  changeHandler={this.handleUsernameChange}
                   required
                   inputState={this.state.username.inputState}
                   validationMessage={this.state.username.validationMessage}
@@ -274,19 +122,17 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
               <Button
                 disabled={this.state.username.inputState !== 'valid' || isFetchingUsers}
                 iconButton
-                icon='check'
-                onClickExecute={this.handleSubmitUsername} />
+                icon='check' />
             </div>
           </div>
           <div class={`flex ${style.modalGridItem}`}>
             <span class='flex flex-main-center flex-dc'>
               <h5>{viewStrings.form.email.title}</h5>
-              <form ref={(el) => { this.emailForm = el }} onSubmit={this.handleSubmitEmail}>
+              <form ref={(el) => { this.emailForm = el }}>
                 <FormInput
                   inputId={`editEmail-${data.id}`}
                   inputType='email'
                   inputLabel={data.email}
-                  changeHandler={this.handleEmailChange}
                   required
                   inputState={this.state.email.inputState}
                   validationMessage={this.state.email.validationMessage}
@@ -297,19 +143,17 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
               <Button
                 disabled={this.state.email.inputState !== 'valid' || isFetchingUsers}
                 iconButton
-                icon='check'
-                onClickExecute={this.handleSubmitEmail} />
+                icon='check' />
             </div>
           </div>
           <div class={`flex ${style.modalGridItem}`}>
             <span class='flex flex-main-center flex-dc'>
               <h5>{viewStrings.form.password.title}</h5>
-              <form ref={(el) => { this.passwordForm = el }} onSubmit={this.handleSubmitPassword}>
+              <form ref={(el) => { this.passwordForm = el }}>
                 <FormInput
                   inputId={`editPassword-${data.id}`}
                   inputType='password'
                   inputLabel={viewStrings.form.password.placeholder}
-                  changeHandler={this.handlePasswordChange}
                   required
                   inputState={this.state.password.inputState}
                   validationMessage={this.state.password.validationMessage}
@@ -320,8 +164,7 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
               <Button
                 disabled={this.state.password.inputState !== 'valid' || isFetchingUsers}
                 iconButton
-                icon='check'
-                onClickExecute={this.handleSubmitPassword} />
+                icon='check' />
             </div>
           </div>
           <div class={`flex flex-cross-center ${style.modalGridItem}`}>
@@ -331,7 +174,6 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
               tabindex='-1'
               disabled={isFetchingtoggleAdmin || isFetchingUsers}
               isSelected={this.state.isAdmin}
-              onChangeHandler={this.handleIsAdminCheckboxToggle}
               customClass={style.customModalClass}
             />
             {
@@ -345,7 +187,6 @@ export default connect(mapStateToProps)(class EditUserModal extends Component {
           <Button
             text={viewStrings.form.regen_apikey}
             icon='renew-key'
-            onClickExecute={this.handleRenewApiKeySubmit}
             spinner={isFetching}
             disabled={isFetching || isFetchingUsers} />
           <span class='flex flex-full-center'>

@@ -8,7 +8,6 @@ import Button from '../../shared/button'
 import Modal from '../../shared/modal'
 import Icon from '../../shared/icon'
 import { isValidFormat, getPageFactor, supportedExtensions } from 'utils'
-import { uploadMedia, getMediaInfo } from 'serverAPI/media'
 import { scrollBlockOn, scrollBlockOff } from 'preventScroll'
 
 import style from './styles.scss'
@@ -118,32 +117,21 @@ export default withRouter(connect(mapStateToProps)(class UploadMedia extends Com
     } else if (filesToUpload.length > 0) {
       this.toggleIsUploading()
 
-      for (let file of filesToUpload) {
+      for (let file of filesToUpload) { // eslint-disable-line no-unused-vars
         try {
-          this.props.dispatch(uploadMedia(file, this.props.token)).then((imageId) => {
-            this.increaseUploadedFileCount()
+          this.increaseUploadedFileCount()
 
-            if (this.state.modals.upload.uploadedFileCount === this.state.modals.upload.selectedFiles.length) {
-              let fileCount = this.state.modals.upload.uploadedFileCount
-              this.resetForm(event)
-              this.toggleIsUploading()
-              this.toggleUploadModal()
+          if (this.state.modals.upload.uploadedFileCount === this.state.modals.upload.selectedFiles.length) {
+            this.resetForm(event)
+            this.toggleIsUploading()
+            this.toggleUploadModal()
 
-              if (fileCount === 1) {
-                this.props.dispatch(getMediaInfo(imageId)).then(response => {
-                  window.location.href = `/${response.id}` // Window reload intended (for now)
-                }).catch(() => {
-                  this.context.router.history.push('/404')
-                })
-              } else {
-                let newParams = this.props.params
+            let newParams = this.props.params
 
-                newParams.offset = this.pageFactor * newParams.mediaLimit
+            newParams.offset = this.pageFactor * newParams.mediaLimit
 
-                this.props.history.push('/cp/overview')
-              }
-            }
-          })
+            this.props.history.push('/cp/overview')
+          }
         } catch (err) {
           console.log(err)
         }

@@ -1,116 +1,175 @@
-import {requestMediaUpload, receiveMediaUpload, mediaUploadError,
-  requestMediaDelete, receiveMediaDelete, mediaDeleteError,
-  requestMediaInfo, mediaInfoError, receiveMediaInfo} from 'actions/media'
+import {requestMediaInfo, receiveMediaInfo} from 'actions/media'
 
 // Upload
 const uploadMedia = (media, authToken) => {
-  let formData = new FormData()
 
-  formData.append('file', media, media.name)
-  formData.append('query', `mutation{uploadImage{id, extension, createdAt}}`)
-
-  let requestConfig = {
-    method: 'POST',
-    headers: {
-      'accept': 'application/json',
-      'authentication': authToken
-    },
-    body: formData
-  }
-
-  return async dispatch => {
-    dispatch(requestMediaUpload())
-
-    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
-
-    if (serverResponse.status >= 200 && serverResponse.status < 300) {
-      let responseData = await serverResponse.json()
-
-      if (responseData.data.uploadImage) {
-        // Dispatch the success action
-        dispatch(receiveMediaUpload(responseData.data.uploadImage))
-
-        return responseData.data.uploadImage.id
-      }
-      console.log('uploadMedia - responseData: ', responseData)
-      dispatch(mediaUploadError(responseData))
-      return Promise.reject(responseData)
-    }
-    console.log('uploadMedia - serverResponse: ', serverResponse)
-    dispatch(mediaUploadError(serverResponse.status))
-    return Promise.reject(serverResponse.status)
-  }
 }
 
 // Delete
 const deleteMedia = (mediaId, authToken) => {
-  let requestConfig = {
-    method: 'POST',
-    headers: {
-      'accept': 'application/json',
-      'content-type': 'application/json',
-      'authentication': authToken
-    },
-    body: JSON.stringify({
-      query: `mutation{ deleteImage(id: "${mediaId}")}`
-    })
-  }
 
-  return async dispatch => {
-    dispatch(requestMediaDelete())
-
-    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
-    if (serverResponse.status >= 200 && serverResponse.status < 300) {
-      let responseData = await serverResponse.json()
-
-      if (responseData.data.deleteImage) {
-        // Dispatch the success action
-        dispatch(receiveMediaDelete())
-      } else {
-        console.log('deleteMedia - responseData:', responseData)
-        dispatch(mediaDeleteError(responseData))
-        return Promise.reject(responseData)
-      }
-    } else {
-      console.log('deleteMedia - serverResponse:', serverResponse)
-      dispatch(mediaDeleteError(serverResponse.status))
-      return Promise.reject(serverResponse.status)
-    }
-  }
 }
 
 const getMediaInfo = (mediaId) => {
-  let requestConfig = {
-    method: 'POST',
-    headers: {
-      'accept': 'application/json',
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify({
-      query: `query{ image(id: "${mediaId}") { id, extension, user {id}, createdAt } }`
-    })
-  }
-
   return async dispatch => {
+    let data = {
+      'V2PvmS6pgk': {
+        'id': 'V2PvmS6pgk',
+        'extension': 'png',
+        'user': {
+          'id': '7oKLbycuST'
+        },
+        'createdAt': 'Tue Apr 10 2018 21:36:55 GMT+0000 (UTC)'
+      },
+      'w8fWWkiHc4': {
+        'id': 'w8fWWkiHc4',
+        'createdAt': 'Tue Apr 10 2018 21:17:47 GMT+0000 (UTC)',
+        'extension': 'png',
+        'user': {
+          'id': '7oKLbycuST'
+        }
+      },
+      'gX1YNaxZwk': {
+        'id': 'gX1YNaxZwk',
+        'createdAt': 'Tue Apr 10 2018 21:06:49 GMT+0000 (UTC)',
+        'extension': 'png',
+        'user': {
+          'id': '7oKLbycuST'
+        }
+      },
+      'jUvAVNJdoz': {
+        'id': 'jUvAVNJdoz',
+        'createdAt': 'Mon Apr 09 2018 10:34:04 GMT+0000 (UTC)',
+        'extension': 'png',
+        'user': {
+          'id': '7oKLbycuST'
+        }
+      },
+      'tNVeMnlHO7': {
+        'id': 'tNVeMnlHO7',
+        'createdAt': 'Sun Apr 08 2018 16:07:53 GMT+0000 (UTC)',
+        'extension': 'png',
+        'user': {
+          'id': '7oKLbycuST'
+        }
+      },
+      'ufcQOpDxTb': {
+        'id': 'ufcQOpDxTb',
+        'createdAt': 'Sun Apr 08 2018 16:07:14 GMT+0000 (UTC)',
+        'extension': 'png',
+        'user': {
+          'id': '7oKLbycuST'
+        }
+      },
+      '7be_IfpRB5': {
+        'id': '7be_IfpRB5',
+        'createdAt': 'Tue Apr 03 2018 18:33:39 GMT+0000 (UTC)',
+        'extension': 'png',
+        'user': {
+          'id': '7oKLbycuST'
+        }
+      },
+      '1ZonWM6RJo': {
+        'id': '1ZonWM6RJo',
+        'createdAt': 'Sun Apr 01 2018 02:17:43 GMT+0000 (UTC)',
+        'extension': 'png',
+        'user': {
+          'id': '7oKLbycuST'
+        }
+      },
+      '3zkBvas0mY': {
+        'id': '3zkBvas0mY',
+        'createdAt': 'Sun Apr 01 2018 02:01:52 GMT+0000 (UTC)',
+        'extension': 'png',
+        'user': {
+          'id': '7oKLbycuST'
+        }
+      },
+      '8FEee78cLc': {
+        'id': '8FEee78cLc',
+        'createdAt': 'Sun Apr 01 2018 01:56:27 GMT+0000 (UTC)',
+        'extension': 'png',
+        'user': {
+          'id': '7oKLbycuST'
+        }
+      },
+      '6NbG4kXRi5': {
+        'id': '6NbG4kXRi5',
+        'createdAt': 'Sun Apr 01 2018 01:51:08 GMT+0000 (UTC)',
+        'extension': 'png',
+        'user': {
+          'id': '7oKLbycuST'
+        }
+      },
+      'AW3c4UytpN': {
+        'id': 'AW3c4UytpN',
+        'createdAt': 'Sun Apr 01 2018 01:37:11 GMT+0000 (UTC)',
+        'extension': 'png',
+        'user': {
+          'id': '7oKLbycuST'
+        }
+      },
+      '2dbNyPwkeW': {
+        'id': '2dbNyPwkeW',
+        'createdAt': 'Sun Apr 01 2018 00:05:32 GMT+0000 (UTC)',
+        'extension': 'png',
+        'user': {
+          'id': '7oKLbycuST'
+        }
+      },
+      'YmPWZHz5GW': {
+        'id': 'YmPWZHz5GW',
+        'createdAt': 'Sun Apr 01 2018 00:02:36 GMT+0000 (UTC)',
+        'extension': 'png',
+        'user': {
+          'id': '7oKLbycuST'
+        }
+      },
+      'VbdakO65ul': {
+        'id': 'VbdakO65ul',
+        'createdAt': 'Sat Mar 31 2018 03:03:38 GMT+0000 (UTC)',
+        'extension': 'png',
+        'user': {
+          'id': '7oKLbycuST'
+        }
+      },
+      'YJiHlqKZ00': {
+        'id': 'YJiHlqKZ00',
+        'createdAt': 'Sat Mar 31 2018 03:03:18 GMT+0000 (UTC)',
+        'extension': 'png',
+        'user': {
+          'id': '7oKLbycuST'
+        }
+      },
+      '0MkVuEfOub': {
+        'id': '0MkVuEfOub',
+        'createdAt': 'Fri Mar 30 2018 00:32:26 GMT+0000 (UTC)',
+        'extension': 'mp4',
+        'user': {
+          'id': '7oKLbycuST'
+        }
+      },
+      '_w2vtQ_HeR': {
+        'id': '_w2vtQ_HeR',
+        'createdAt': 'Fri Mar 30 2018 00:04:55 GMT+0000 (UTC)',
+        'extension': 'jpeg',
+        'user': {
+          'id': '7oKLbycuST'
+        }
+      },
+      '3TtUDlRrWb': {
+        'id': '3TtUDlRrWb',
+        'createdAt': 'Thu Mar 29 2018 18:04:11 GMT+0000 (UTC)',
+        'extension': 'png',
+        'user': {
+          'id': '7oKLbycuST'
+        }
+      }
+    }
     dispatch(requestMediaInfo())
 
-    let serverResponse = await fetch(apiBaseUrl, requestConfig) // eslint-disable-line no-undef
-
-    if (serverResponse.status >= 200 && serverResponse.status < 300) {
-      let responseData = await serverResponse.json()
-
-      if (responseData.data.image) {
-        // Dispatch the success action
-        dispatch(receiveMediaInfo(responseData.data.image))
-        return responseData.data.image
-      }
-      console.log('getMediaInfo - responseData: ', responseData)
-      dispatch(mediaInfoError(responseData.errors[0].message))
-      return Promise.reject(responseData.errors[0].message)
-    }
-    console.log('getMediaInfo - serverResponse: ', serverResponse)
-    dispatch(mediaInfoError(serverResponse.status))
-    return Promise.reject(serverResponse.status)
+    dispatch(receiveMediaInfo(data[mediaId]))
+    return data[mediaId]
   }
 }
 

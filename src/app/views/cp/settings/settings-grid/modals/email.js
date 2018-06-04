@@ -5,7 +5,6 @@ import { showSnack } from 'react-redux-snackbar'
 import Modal from '../../../../shared/modal'
 import FormInput from '../../../../shared/form-input'
 import { validateEmpty, validateEmail } from 'utils'
-import { changeUserEmail } from 'serverAPI/settings'
 import { getUserData } from 'serverAPI/data'
 
 const viewStrings = locale.cp.settings.settings_grid.partials.email // eslint-disable-line no-undef
@@ -63,17 +62,15 @@ export default connect(mapStateToProps)(class EmailModal extends Component {
   handleSubmit (event) {
     event.preventDefault()
     if (this.state.newEmail.inputState === 'valid') {
-      this.props.dispatch(changeUserEmail(this.state.newEmail.value, this.props.sessionData.id, this.props.token)).then(() => {
-        this.props.toggleModal()
-        this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token)).then(() => {
-          this.props.dispatch(showSnack('emailChangeSuccesful', {
-            label: viewStrings.toast.email_changed,
-            timeout: 3000,
-            button: { label: viewStrings.toast.toast_ok }
-          }))
-        })
-        this.form.reset()
+      this.props.toggleModal()
+      this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token)).then(() => {
+        this.props.dispatch(showSnack('emailChangeSuccesful', {
+          label: viewStrings.toast.email_changed,
+          timeout: 3000,
+          button: { label: viewStrings.toast.toast_ok }
+        }))
       })
+      this.form.reset()
     } else {
       this.props.dispatch(showSnack('emptyEmailSettings', {
         label: this.state.newEmail.validationMessage || viewStrings.form.submit_error,

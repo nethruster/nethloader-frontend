@@ -1,12 +1,9 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
-import { showSnack } from 'react-redux-snackbar'
 
 import Modal from '../../../../shared/modal'
 import FormInput from '../../../../shared/form-input'
 import { validateEmpty, validateName } from 'utils'
-import { changeUserName } from 'serverAPI/settings'
-import { getUserData } from 'serverAPI/data'
 
 const viewStrings = locale.cp.settings.settings_grid.partials.username // eslint-disable-line no-undef
 
@@ -61,26 +58,7 @@ export default connect(mapStateToProps)(class UsernameModal extends Component {
   }
 
   handleSubmit (event) {
-    event.preventDefault()
-    if (this.state.newUsername.inputState === 'valid') {
-      this.props.dispatch(changeUserName(this.state.newUsername.value, this.props.sessionData.id, this.props.token)).then(() => {
-        this.props.toggleModal()
-        this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token)).then(() => {
-          this.props.dispatch(showSnack('usernameChangeSuccesful', {
-            label: viewStrings.toast.username_changed,
-            timeout: 3000,
-            button: { label: viewStrings.toast.toast_ok }
-          }))
-        })
-        this.form.reset()
-      })
-    } else {
-      this.props.dispatch(showSnack('emptyUsernameSettings', {
-        label: this.state.newUsername.validationMessage || viewStrings.form.submit_error,
-        timeout: 3000,
-        button: { label: viewStrings.toast_ok }
-      }))
-    }
+    this.props.toggleModal()
   }
 
   handleToggleModal () {

@@ -2,7 +2,6 @@ import { h, Component } from 'preact'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'preact-redux'
 
-import { checkUserSessionValidity } from 'utils'
 import { getUserData } from 'serverAPI/data'
 import { logoutUser } from 'serverAPI/authentication'
 import asyncComponent from 'asyncComponent'
@@ -26,11 +25,9 @@ function mapStateToProps (state) {
 export default connect(mapStateToProps)(class Content extends Component {
   async componentWillMount () {
     if (this.props.isAuthenticated) {
-      if (await checkUserSessionValidity(this.props.token, this.props.sessionData.exp)) {
-        this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token))
-      } else {
-        this.props.dispatch(logoutUser())
-      }
+      this.props.dispatch(getUserData(this.props.sessionData.id, this.props.token))
+    } else {
+      this.props.dispatch(logoutUser())
     }
   }
 
