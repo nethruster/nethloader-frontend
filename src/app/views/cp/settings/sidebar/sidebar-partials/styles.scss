@@ -126,6 +126,15 @@
         cursor: pointer;
         outline: none;
         text-transform: uppercase;
+    }
 
+    @media(max-width: 420px) {
+        .tokenLinkContainer {
+            flex-direction: column;
+
+            button {
+                width: 100%;
+            }
+        }
     }
 }
