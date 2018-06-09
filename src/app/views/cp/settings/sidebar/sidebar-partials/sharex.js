@@ -58,7 +58,7 @@ export default connect(mapStateToProps)(class SharexPartial extends Component {
         <p class={`danger-text ${style.warning} ${style.smallSvg}`}>
           <Icon iconName='warning' /> {viewStrings.autoconfigure_security_warning}
         </p>
-        <span class='flex flex-full-center'>
+        <span class={`flex flex-full-center ${style.tokenLinkContainer}`}>
           <code class='token'>
             <a href={`${window.location.origin}/sharex?apikey=${userData.apiKey}`} rel='noopener' target='_blank'>
               {window.location.origin}/sharex?{userData.apiKey}
