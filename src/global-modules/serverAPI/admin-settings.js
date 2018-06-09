@@ -8,7 +8,7 @@ const getUsers = (authToken) => {
     dispatch(requestUsers())
     const users = [
       {
-        'id': 'aef8JbRGnj',
+        'id': '7oKLbycuST',
         'name': 'demo',
         'email': 'test@test.com',
         'apiKey': 'pKH15UhsX~nxmfTp2eg5cINJ',
