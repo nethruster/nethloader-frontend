@@ -8,11 +8,11 @@ const getUsers = (authToken) => {
     dispatch(requestUsers())
     const users = [
       {
-        'id': '7oKLbycuST',
+        'id': 'aef8JbRGnj',
         'name': 'demo',
         'email': 'test@test.com',
         'apiKey': 'pKH15UhsX~nxmfTp2eg5cINJ',
-        'isAdmin': false
+        'isAdmin': true
       },
       {
         'id': 'E5Ws85hfHf',
@@ -26,7 +26,7 @@ const getUsers = (authToken) => {
         'name': 'Max',
         'email': 'maximilian@gmoil.com',
         'apiKey': 'uB19zugalM2UHJ9gAq5GyIn6',
-        'isAdmin': true
+        'isAdmin': false
       },
       {
         'id': '~kiloftr40',
