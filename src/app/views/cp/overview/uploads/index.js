@@ -6,8 +6,7 @@ import Upload from './upload'
 import UploadsToolbar from './uploads-toolbar'
 import Modal from '../../../shared/modal'
 import ViewLoading from '../../../shared/view-loading'
-import { deleteMedia } from 'serverAPI/media'
-import { mediaSelect, mediaUnselect, mediaUnselectAll } from 'actions/media'
+import { mediaSelect, mediaUnselect } from 'actions/media'
 import { scrollBlockOn, scrollBlockOff } from 'preventScroll'
 
 import style from './styles.scss'
@@ -136,35 +135,11 @@ export default connect(mapStateToProps)(class Uploads extends Component {
   }
 
   confirmSingleDelete () {
-    this.props.dispatch(deleteMedia(this.props.selectedMedia[0], this.props.token)).then(() => {
-      // Reset selected items list
-      this.props.dispatch(mediaUnselectAll())
-      // Refresh data
-      this.props.updateUserMedia(this.props.params)
-      this.toggleDeleteConfirmModal()
-    })
+    this.toggleDeleteConfirmModal()
   }
 
   confirmMultipleDelete () {
-    let selectedMedia = this.props.selectedMedia
-    let deleteIndexCount = 0
-
-    this.toggleIsDeleting()
-
-    for (let mediaId of selectedMedia) {
-      this.props.dispatch(deleteMedia(mediaId, this.props.token)).then(() => {
-        deleteIndexCount++
-
-        if (deleteIndexCount === selectedMedia.length) {
-          this.toggleIsDeleting()
-          // Reset selected items list
-          this.props.dispatch(mediaUnselectAll())
-          // Refresh data
-          this.props.updateUserMedia(this.props.params)
-          this.toggleDeleteConfirmModal()
-        }
-      })
-    }
+    this.toggleDeleteConfirmModal()
   }
 
   render ({ isFetchingMedia, isFetchingUser, userMedia, selectedMedia, updateUserMedia, totalCount }) {
