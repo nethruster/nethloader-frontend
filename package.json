@@ -1,6 +1,6 @@
 {
   "name": "nethloader-client",
-  "version": "0.1.0",
+  "version": "0.3.4",
   "description": "Nethloader frontend",
   "main": "index.js",
   "scripts": {
