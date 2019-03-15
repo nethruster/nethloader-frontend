@@ -1,59 +1,45 @@
 :global {
-    $default-color-dark: #f1f1f1;
-    $default-color: rgb(53, 53, 53);
-
     :root {
-        --default-color: $default-color;
         --base-pm: 8px;
         --base-br: 4px;
-
-        --shapes-layer: url(../assets/img/section-background.svg) 50% 17vh no-repeat;
-
-        --contrast-gradient: linear-gradient(to left top, #36adf7, #1e87f0) 0 0 no-repeat;
+        --shapes-layer: url(/assets/img/section-background.svg?1ae5e8d…) 50% 17vh no-repeat;
+        --contrast-gradient: linear-gradient(to left top,#36adf7,#1e87f0) 0 0 no-repeat;
         --contrast-bg: #1e87f0;
-        --contrast-color:  rgba(255, 255, 255, 0.9);
-        --contrast-bg-hover: lighten(#1e87f0, 5%);
-
-        --default-gradient: linear-gradient(to left top, #fff, #f0f0f0);
+        --contrast-color: hsla(0,0%,100%,.9);
+        --contrast-bg-hover: #3694f2;
+        --default-gradient: linear-gradient(to left top,#fff,#f0f0f0);
         --default-bg: #fff;
-        --default-color: $default-color;
-        --default-bg-hover: transparentize($default-color, .9);
-        --default-color-hover: lighten($default-color, 30%);
-        --default-border-color: lighten($default-color, 68%);
+        --default-color: #353535;
+        --default-bg-hover: rgba(53,53,53,.1);
+        --default-color-hover: #828282;
+        --default-border-color: #e2e2e2;
         --very-specific-light-color: rgba(0,0,0,.1);
-        --icon-button-color: rgba(42, 67, 90, 0.9);
-
-        --valid-color: #00C853;
-        --warning-color:  #DD2C00;
-
+        --icon-button-color: rgba(42,67,90,.9);
+        --valid-color: #00c853;
+        --warning-color: #dd2c00;
         --twitter-color: #1da1f3;
         --facebook-color: #3b5998;
-
         --content-max-width: 1300px;
-
         --header-nav-logo-size: 34px;
         --header-nav-height: 50px;
-
         --input-radio-size: 20px;
         --input-radio-size-checked: 10px;
-
         --medialist-item-height: 90px;
         --medialist-item-media-width: 100px;
         --medialist-item-media-height: 74px;
     }
 
     html[dark]:root {
-        --contrast-gradient: linear-gradient(to left top, darken(#36adf7, 15%), darken(#36adf7, 20%)) 0 0 no-repeat;
-        --contrast-bg: darken(#36adf7, 20%);
-        --contrast-bg-hover: lighten(#1e87f0, 5%);
-
-        --default-gradient: linear-gradient(to left top, #1d2731, #121b24);
+        --contrast-gradient: linear-gradient(to left top,#0988d8,#0879bf) 0 0 no-repeat;
+        --contrast-bg: #0879bf;
+        --contrast-bg-hover: #3694f2;
+        --default-gradient: linear-gradient(to left top,#1d2731,#121b24);
         --default-bg: #1d2731;
-        --default-bg-hover: transparentize($default-color-dark, .9);
-        --default-color-hover: darken($default-color-dark, 30%);
-        --default-border-color: darken($default-color-dark, 68%);
-        --default-color: $default-color-dark;
-        --icon-button-color: rgb(185, 185, 185);
-        --very-specific-light-color: rgba(255,255,255,.1);
+        --default-bg-hover: hsla(0,0%,95%,.1);
+        --default-color-hover: #a5a5a5;
+        --default-border-color: #444;
+        --default-color: #f1f1f1;
+        --icon-button-color: #b9b9b9;
+        --very-specific-light-color: hsla(0,0%,100%,.1);
     }
 }
